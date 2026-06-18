@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Harmonisation — facilit8 Interview Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --f8-blue:        #0070C0;
+  --f8-blue-bright: #0090E7;
+  --f8-blue-deep:   #005896;
+  --f8-blue-tint:   #E8F4FC;
+  --f8-navy:        #0A1628;
+  --f8-navy-2:      #142238;
+  --f8-teal:        #007B8A;
+  --f8-teal-tint:   #E6F4F6;
+  --f8-amber:       #B86A00;
+  --f8-amber-tint:  #FFF4E0;
+  --f8-green:       #1A6B3A;
+  --f8-green-tint:  #EAF6EE;
+  --f8-purple:      #5B3FA6;
+  --f8-purple-tint: #F2EFFF;
+  --f8-rose:        #9B1D4A;
+  --f8-rose-tint:   #FCEEF4;
+  --f8-red:         #C0392B;
+  --f8-red-tint:    #FDEEEC;
+  --f8-slate:       #3D5166;
+  --f8-slate-tint:  #EDF1F5;
+  --f8-off-white:   #F5F7FA;
+  --f8-fog:         #E6ECF2;
+  --f8-mist:        #C9D2DD;
+  --f8-grey:        #6B7A99;
+  --f8-ink:         #1A1A2E;
+  --f8-ink-soft:    #3A3F55;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --shadow-1: 0 1px 3px rgba(10,22,40,0.06);
+  --shadow-2: 0 4px 16px rgba(10,22,40,0.08), 0 1px 3px rgba(10,22,40,0.04);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  background: var(--f8-off-white);
+  color: var(--f8-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== PASSWORD OVERLAY ===== */
+#pw-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: linear-gradient(135deg, var(--f8-navy) 0%, #0d1f3c 60%, #0a1628 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+#pw-overlay.fade-out {
+  animation: pwFade 0.4s ease forwards;
+}
+@keyframes pwFade {
+  to { opacity: 0; pointer-events: none; }
+}
+#pw-box {
+  width: 100%; max-width: 420px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 48px 44px 44px;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+}
+.pw-wordmark {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--f8-blue-bright);
+  margin-bottom: 32px;
+}
+.pw-lock {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: rgba(0,144,231,0.15);
+  border: 1px solid rgba(0,144,231,0.25);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 22px;
+}
+.pw-title {
+  font-size: 20px; font-weight: 700; color: #fff;
+  letter-spacing: -0.01em; margin-bottom: 8px;
+}
+.pw-sub {
+  font-size: 13px; color: rgba(255,255,255,0.5);
+  line-height: 1.6; margin-bottom: 32px;
+}
+#pw-input {
+  width: 100%; padding: 13px 16px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.07);
+  color: #fff; font-size: 15px; font-family: var(--font-sans);
+  outline: none; margin-bottom: 12px;
+  letter-spacing: 0.06em;
+  transition: border-color 0.15s;
+}
+#pw-input::placeholder { color: rgba(255,255,255,0.3); letter-spacing: 0; }
+#pw-input:focus { border-color: var(--f8-blue-bright); }
+#pw-input.pw-shake {
+  animation: shake 0.35s ease;
+  border-color: #e05252;
+}
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-7px); }
+  40%      { transform: translateX(7px); }
+  60%      { transform: translateX(-5px); }
+  80%      { transform: translateX(5px); }
+}
+#pw-btn {
+  width: 100%; padding: 13px;
+  background: var(--f8-blue); color: #fff;
+  border: none; border-radius: 10px;
+  font-size: 14px; font-weight: 700; font-family: var(--font-sans);
+  cursor: pointer; letter-spacing: 0.04em;
+  transition: background 0.15s, transform 0.1s;
+}
+#pw-btn:hover { background: var(--f8-blue-bright); }
+#pw-btn:active { transform: scale(0.98); }
+#pw-error {
+  display: none; margin-top: 14px;
+  font-size: 12.5px; color: #f4a4a4;
+  background: rgba(192,57,43,0.15);
+  border: 1px solid rgba(192,57,43,0.25);
+  border-radius: 8px; padding: 9px 14px;
+}
+.pw-footer {
+  margin-top: 32px;
+  font-size: 11px; color: rgba(255,255,255,0.2);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+/* ===== MAIN CONTENT ===== */
+#main-content {
+  display: none;
+  padding: 36px 24px 60px;
+}
+.wrap { max-width: 960px; margin: 0 auto; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, var(--f8-navy) 0%, var(--f8-navy-2) 100%);
+  border-radius: var(--r-xl);
+  padding: 40px 44px 36px;
+  margin-bottom: 28px;
+  color: #fff;
+}
+.eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--f8-blue-bright);
+  display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+}
+.eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--f8-blue-bright); flex-shrink: 0;
+}
+h1 {
+  font-size: clamp(26px, 4vw, 38px); font-weight: 800;
+  letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 14px;
+}
+h1 em { color: var(--f8-blue-bright); font-style: normal; }
+.subtitle {
+  font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.75);
+  line-height: 1.6; margin-bottom: 22px; max-width: 640px;
+}
+.role-legend {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  margin-bottom: 18px;
+}
+.role-legend-label {
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.role-pill {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600; padding: 4px 10px;
+  border-radius: 20px; letter-spacing: 0.04em;
+}
+.role-pill-dot { width: 7px; height: 7px; border-radius: 50%; }
+.role-pill-cio { background: rgba(0,144,231,0.18); color: #7CC8FF; }
+.role-pill-cio .role-pill-dot { background: #7CC8FF; }
+.role-pill-po { background: rgba(0,123,138,0.2); color: #5FD3DF; }
+.role-pill-po .role-pill-dot { background: #5FD3DF; }
+.role-pill-both { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75); }
+.role-pill-both .role-pill-dot { background: rgba(255,255,255,0.5); }
+.role-pill-sm { background: rgba(155,29,74,0.2); color: #F4A4C0; }
+.role-pill-sm .role-pill-dot { background: #F4A4C0; }
+.version-tag {
+  font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.3);
+  text-transform: uppercase; letter-spacing: 0.12em; margin-top: 8px;
+}
+
+/* READINESS */
+.readiness-wrap {
+  background: #fff; border-radius: var(--r-lg); margin-bottom: 24px;
+  border: 1.5px solid var(--f8-fog); overflow: hidden; box-shadow: var(--shadow-1);
+}
+.readiness-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 24px; cursor: pointer; user-select: none;
+}
+.readiness-header:hover { background: var(--f8-blue-tint); }
+.readiness-badge {
+  background: var(--f8-blue); color: #fff; font-size: 10px; font-weight: 700;
+  padding: 3px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.1em;
+}
+.readiness-title { font-size: 14px; font-weight: 700; color: var(--f8-navy); }
+.readiness-subtitle { font-size: 11.5px; color: var(--f8-grey); margin-top: 2px; }
+.readiness-chevron { font-size: 20px; color: var(--f8-grey); transition: transform 0.2s; }
+.readiness-wrap.open .readiness-chevron { transform: rotate(180deg); }
+.readiness-body { display: none; padding: 0 24px 24px; }
+.readiness-wrap.open .readiness-body { display: block; }
+.readiness-intro { font-size: 13px; color: var(--f8-ink-soft); margin-bottom: 16px; line-height: 1.6; }
+.rq-list { display: flex; flex-direction: column; gap: 10px; }
+.rq-item {
+  display: flex; align-items: center; gap: 14px; padding: 12px 16px;
+  background: var(--f8-off-white); border-radius: var(--r-md);
+  border: 1.5px solid var(--f8-fog); flex-wrap: wrap;
+}
+.rq-item.yes { border-color: #A7D9B8; background: var(--f8-green-tint); }
+.rq-item.no  { border-color: #F5B8B0; background: var(--f8-red-tint); }
+.rq-num {
+  font-size: 10px; font-weight: 700; color: var(--f8-blue); text-transform: uppercase;
+  letter-spacing: 0.1em; min-width: 26px;
+}
+.rq-text { font-size: 13px; color: var(--f8-ink); flex: 1; line-height: 1.5; }
+.rq-btns { display: flex; gap: 8px; margin-left: auto; }
+.rq-btn {
+  padding: 5px 14px; border-radius: 6px; border: 1.5px solid var(--f8-mist);
+  background: #fff; font-size: 12px; font-weight: 600; cursor: pointer;
+  color: var(--f8-ink-soft); font-family: var(--font-sans);
+}
+.rq-btn:hover { border-color: var(--f8-blue); color: var(--f8-blue); }
+.rq-btn.selected-yes { background: var(--f8-green); color: #fff; border-color: var(--f8-green); }
+.rq-btn.selected-no  { background: var(--f8-red); color: #fff; border-color: var(--f8-red); }
+.readiness-result {
+  display: none; margin-top: 18px; padding: 16px 20px;
+  border-radius: var(--r-md); border-left: 4px solid;
+}
+.readiness-result.show { display: block; }
+.readiness-result.r-green { background: var(--f8-green-tint); border-color: var(--f8-green); }
+.readiness-result.r-amber { background: var(--f8-amber-tint); border-color: var(--f8-amber); }
+.readiness-result.r-red   { background: var(--f8-red-tint);   border-color: var(--f8-red); }
+.readiness-result-title { font-size: 13.5px; font-weight: 700; color: var(--f8-navy); margin-bottom: 6px; }
+.readiness-result-text { font-size: 12.5px; color: var(--f8-ink-soft); line-height: 1.6; }
+
+/* PRIMER */
+.primer-banner {
+  display: flex; gap: 18px; align-items: flex-start;
+  background: var(--f8-navy); color: #fff;
+  border-radius: var(--r-lg); padding: 22px 28px; margin-bottom: 24px;
+}
+.primer-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+.primer-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--f8-blue-bright); }
+.primer-text { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.82); }
+
+/* TABS */
+.tabs {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px;
+}
+.tab {
+  padding: 9px 16px; border-radius: 8px; border: 1.5px solid var(--f8-fog);
+  background: #fff; font-size: 12.5px; font-weight: 600; cursor: pointer;
+  color: var(--f8-grey); font-family: var(--font-sans); transition: all 0.15s;
+}
+.tab:hover { border-color: var(--f8-blue); color: var(--f8-blue); }
+.tab.active { background: var(--f8-blue); color: #fff; border-color: var(--f8-blue); }
+.seq-tab.active { background: var(--f8-blue-bright); border-color: var(--f8-blue-bright); }
+.sponsor-tab.active { background: var(--f8-teal); border-color: var(--f8-teal); }
+.buyin-tab.active { background: var(--f8-rose); border-color: var(--f8-rose); }
+
+/* SECTIONS */
+.section { display: none; }
+.section.visible { display: block; }
+.section-header {
+  display: flex; align-items: flex-start; gap: 16px;
+  margin-bottom: 22px; padding-bottom: 18px;
+  border-bottom: 2px solid var(--f8-fog);
+}
+.section-icon { font-size: 28px; flex-shrink: 0; }
+.section-title { font-size: 21px; font-weight: 700; color: var(--f8-navy); letter-spacing: -0.01em; }
+.section-desc { font-size: 13px; color: var(--f8-grey); margin-top: 4px; line-height: 1.5; }
+
+/* CARDS */
+.action-card {
+  background: #fff; border-radius: var(--r-lg); padding: 22px 24px;
+  margin-bottom: 16px; border-left: 4px solid var(--f8-blue);
+  box-shadow: var(--shadow-1);
+}
+.seq-section .action-card { border-left-color: var(--f8-blue-bright); }
+.sponsor-section .action-card { border-left-color: var(--f8-teal); }
+.buyin-section .action-card { border-left-color: var(--f8-rose); }
+.action-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 12px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.action-title { font-size: 15px; font-weight: 600; color: var(--f8-navy); line-height: 1.3; }
+.badges { display: flex; flex-wrap: wrap; gap: 5px; }
+.badge {
+  font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: 0.07em;
+}
+.badge-sprint  { background: var(--f8-blue-tint);   color: var(--f8-blue); }
+.badge-quarter { background: var(--f8-amber-tint);  color: var(--f8-amber); }
+.badge-impact  { background: var(--f8-navy);         color: #fff; }
+.badge-cio     { background: var(--f8-blue-tint);   color: var(--f8-blue-deep); }
+.badge-po      { background: var(--f8-teal-tint);   color: var(--f8-teal); }
+.badge-both    { background: var(--f8-slate-tint);  color: var(--f8-slate); }
+.badge-sm      { background: var(--f8-rose-tint);   color: var(--f8-rose); }
+.badge-rel     { background: var(--f8-red-tint);    color: var(--f8-red); }
+.action-body {
+  font-size: 13.5px; color: #444; line-height: 1.7; margin-bottom: 12px;
+}
+.note {
+  font-size: 12.5px; line-height: 1.55; padding: 10px 14px;
+  border-radius: var(--r-md); margin-top: 10px;
+}
+.note-green  { background: var(--f8-green-tint);  color: var(--f8-green); }
+.note-amber  { background: var(--f8-amber-tint);  color: var(--f8-amber); }
+.note-red    { background: var(--f8-red-tint);    color: var(--f8-red); }
+.note-purple { background: var(--f8-purple-tint); color: var(--f8-purple); }
+.note-slate  { background: var(--f8-slate-tint);  color: var(--f8-slate); }
+
+/* SEQUENCE STEPS */
+.seq-step {
+  display: flex; gap: 18px; margin-bottom: 20px;
+  background: #fff; border-radius: var(--r-lg);
+  padding: 22px 24px; box-shadow: var(--shadow-1);
+  border-left: 4px solid var(--f8-blue-bright);
+}
+.seq-num {
+  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+  background: var(--f8-blue-bright); color: #fff;
+  font-size: 15px; font-weight: 800; display: flex;
+  align-items: center; justify-content: center;
+}
+.seq-content { flex: 1; }
+.seq-meta {
+  font-size: 11px; font-weight: 600; color: var(--f8-grey);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.seq-title { font-size: 15px; font-weight: 700; color: var(--f8-navy); margin-bottom: 8px; }
+.seq-body { font-size: 13.5px; color: #444; line-height: 1.7; margin-bottom: 12px; }
+.timing-tracks { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.track {
+  font-size: 11.5px; font-weight: 600; padding: 4px 10px;
+  border-radius: 6px;
+}
+.track-sme { background: var(--f8-blue-tint); color: var(--f8-blue); }
+.track-ent { background: var(--f8-slate-tint); color: var(--f8-slate); }
+
+/* RULE BOX */
+.rule-box {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px 18px; border-radius: var(--r-md); margin-bottom: 16px;
+}
+.rule-box-blue  { background: var(--f8-blue-tint);  border-left: 3px solid var(--f8-blue); }
+.rule-box-slate { background: var(--f8-slate-tint); border-left: 3px solid var(--f8-slate); }
+.rule-box-icon { font-size: 18px; flex-shrink: 0; }
+.rule-box-text { font-size: 13px; color: var(--f8-ink-soft); line-height: 1.6; }
+
+/* DATA PREREQ */
+.data-prereq {
+  background: var(--f8-purple-tint); border: 1.5px dashed var(--f8-purple);
+  border-radius: var(--r-lg); padding: 20px 22px; margin-bottom: 18px;
+}
+.data-prereq-header { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+.data-prereq-icon { font-size: 22px; flex-shrink: 0; }
+.data-prereq-label {
+  font-size: 10px; font-weight: 700; color: var(--f8-purple);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px;
+}
+.data-prereq-title { font-size: 14px; font-weight: 700; color: var(--f8-navy); }
+.data-prereq-body { font-size: 13px; color: var(--f8-ink-soft); line-height: 1.65; margin-bottom: 12px; }
+.access-template {
+  background: rgba(91,63,166,0.08); border-radius: var(--r-md); padding: 10px 14px;
+}
+.access-template-label {
+  font-size: 10px; font-weight: 700; color: var(--f8-purple);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;
+}
+.access-template-text { font-size: 12.5px; color: var(--f8-ink-soft); line-height: 1.55; }
+
+/* PERSONA */
+.persona-card {
+  background: #fff; border-radius: var(--r-lg); padding: 22px 24px;
+  margin-bottom: 16px; border-left: 4px solid var(--f8-rose); box-shadow: var(--shadow-1);
+}
+.persona-header { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+.persona-icon { font-size: 26px; flex-shrink: 0; }
+.persona-name { font-size: 15px; font-weight: 700; color: var(--f8-navy); }
+.persona-pain { font-size: 12px; color: var(--f8-rose); font-weight: 500; margin-top: 3px; }
+.persona-body { font-size: 13.5px; color: #444; line-height: 1.7; margin-bottom: 14px; }
+.invite-script {
+  background: var(--f8-navy); border-radius: var(--r-md); padding: 14px 16px; margin-bottom: 10px;
+}
+.invite-script-label {
+  font-size: 10px; font-weight: 700; color: var(--f8-blue-bright);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px;
+}
+.invite-script-text { font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.6; }
+.culture-note {
+  font-size: 12px; color: var(--f8-grey); line-height: 1.55;
+  border-top: 1px solid var(--f8-fog); padding-top: 10px; margin-top: 4px;
+}
+
+/* TABLE */
+.translation-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px; }
+.translation-table th {
+  background: var(--f8-navy); color: #fff; padding: 10px 14px;
+  text-align: left; font-weight: 600; font-size: 11.5px;
+}
+.translation-table td { padding: 10px 14px; border-bottom: 1px solid var(--f8-fog); }
+.translation-table tr:nth-child(even) td { background: var(--f8-off-white); }
+
+/* STAT STRIP */
+.stat-strip {
+  display: flex; flex-wrap: wrap; gap: 0;
+  background: var(--f8-navy); border-radius: var(--r-xl);
+  margin-top: 40px; overflow: hidden;
+}
+.stat-item {
+  flex: 1; min-width: 140px; padding: 24px 20px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num { font-size: 32px; font-weight: 800; color: var(--f8-blue-bright); margin-bottom: 4px; }
+.stat-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* TIMELINE TABLE */
+.timeline-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 20px; }
+.timeline-table th {
+  background: var(--f8-blue-deep); color: #fff; padding: 9px 12px;
+  text-align: left; font-size: 11.5px; font-weight: 700;
+}
+.timeline-table td { padding: 9px 12px; border-bottom: 1px solid var(--f8-fog); vertical-align: top; }
+.timeline-table tr:nth-child(even) td { background: var(--f8-off-white); }
+.phase-badge {
+  display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px;
+  border-radius: 20px; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px;
+}
+.phase-1 { background: var(--f8-blue-tint); color: var(--f8-blue); }
+.phase-2 { background: var(--f8-amber-tint); color: var(--f8-amber); }
+.phase-3 { background: var(--f8-green-tint); color: var(--f8-green); }
+
+/* KPI TABLE */
+.kpi-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+.kpi-table th {
+  background: var(--f8-teal); color: #fff; padding: 9px 14px;
+  text-align: left; font-size: 11.5px; font-weight: 700;
+}
+.kpi-table td { padding: 9px 14px; border-bottom: 1px solid var(--f8-fog); }
+.kpi-table tr:nth-child(even) td { background: var(--f8-teal-tint); }
+
+/* RISK TABLE */
+.risk-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+.risk-table th {
+  background: var(--f8-navy-2); color: #fff; padding: 9px 14px;
+  text-align: left; font-size: 11.5px; font-weight: 700;
+}
+.risk-table td { padding: 9px 14px; border-bottom: 1px solid var(--f8-fog); vertical-align: top; }
+.risk-table tr:nth-child(even) td { background: var(--f8-off-white); }
+.risk-high   { color: var(--f8-red);   font-weight: 700; }
+.risk-medium { color: var(--f8-amber); font-weight: 700; }
+.risk-low    { color: var(--f8-green); font-weight: 700; }
+
+/* RESOURCE TABLE */
+.resource-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+.resource-table th {
+  background: var(--f8-slate); color: #fff; padding: 9px 14px;
+  text-align: left; font-size: 11.5px; font-weight: 700;
+}
+.resource-table td { padding: 9px 14px; border-bottom: 1px solid var(--f8-fog); vertical-align: top; }
+.resource-table tr:nth-child(even) td { background: var(--f8-slate-tint); }
+
+/* IMPACT CASCADE */
+.impact-cascade { margin-bottom: 24px; }
+.cascade-level { margin-bottom: 4px; }
+.cascade-level-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--f8-grey); margin-bottom: 10px;
+  padding-left: 4px;
+}
+.cascade-boxes {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.capabilities-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+.cascade-box {
+  background: #fff; border-radius: var(--r-lg); padding: 16px 18px;
+  flex: 1; min-width: 180px; box-shadow: var(--shadow-1);
+  border-top: 3px solid var(--f8-blue);
+}
+.cb-revenue { border-top-color: var(--f8-teal); background: var(--f8-teal-tint); flex: 1 1 100%; }
+.cb-outcome { border-top-color: var(--f8-blue); }
+.cb-adopt   { border-top-color: var(--f8-blue-bright); }
+.cb-cap     { border-top-color: var(--f8-purple); background: var(--f8-purple-tint); min-width: 160px; }
+.cb-icon { font-size: 20px; margin-bottom: 6px; }
+.cb-title {
+  font-size: 13px; font-weight: 700; color: var(--f8-navy);
+  margin-bottom: 6px; line-height: 1.3;
+}
+.cb-metric {
+  font-size: 12px; color: var(--f8-ink-soft); line-height: 1.5;
+  margin-bottom: 8px;
+}
+.cb-truth {
+  font-size: 11.5px; color: var(--f8-green); font-weight: 600;
+  font-style: italic; line-height: 1.45;
+  border-top: 1px solid var(--f8-fog); padding-top: 7px; margin-top: 4px;
+}
+.cb-cap .cb-truth { color: var(--f8-purple); border-top-color: rgba(91,63,166,0.15); }
+.cascade-arrow {
+  text-align: center; font-size: 22px; color: var(--f8-mist);
+  margin: 8px 0; line-height: 1;
+}
+.cascade-l1 .cascade-box { padding: 20px 22px; }
+</style>
+</head>
+<body>
+
+<!-- ===== PASSWORD OVERLAY ===== -->
+<div id="pw-overlay">
+  <div id="pw-box">
+    <div class="pw-wordmark">facilit8</div>
+    <div class="pw-lock">🔒</div>
+    <div class="pw-title">Protected Playbook</div>
+    <p class="pw-sub">This document is confidential.<br>Enter your access code to continue.</p>
+    <input type="password" id="pw-input" placeholder="Access code" autocomplete="off" />
+    <button id="pw-btn" onclick="checkPassword()">Unlock →</button>
+    <div id="pw-error">Incorrect code — please try again.</div>
+    <div class="pw-footer">facilit8 · Digital Transformation Series · 2026</div>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="main-content">
+<div class="wrap">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="eyebrow"><span class="eyebrow-dot"></span>facilit8 · Digital Transformation · Senior PL Edition</div>
+  <h1>Harmonise the <em>Lead:</em><br>The Senior Project Leader Playbook<br>for Lead Generation & Market Adoption</h1>
+  <p class="subtitle">A structured response to the interview case — covering problem approach, workplan, stakeholder engagement, impact case, and sustainable integration — across a 16-week pilot in 3 markets.</p>
+  <div class="role-legend">
+    <span class="role-legend-label">Role guide:</span>
+    <span class="role-pill role-pill-cio"><span class="role-pill-dot"></span>PL / You</span>
+    <span class="role-pill role-pill-po"><span class="role-pill-dot"></span>Market Teams</span>
+    <span class="role-pill role-pill-both"><span class="role-pill-dot"></span>Both</span>
+    <span class="role-pill role-pill-sm"><span class="role-pill-dot"></span>CCO / Sponsor</span>
+  </div>
+  <div class="version-tag">v6 — facilit8 · Digital Transformation Series · 2026 · Impact Case tab 3 · Partner rates · Password protected</div>
+</div>
+
+<!-- READINESS CHECK -->
+<div class="readiness-wrap" id="readiness">
+  <div class="readiness-header" onclick="toggleReadiness()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span class="readiness-badge">Step 0</span>
+      <div>
+        <div class="readiness-title">Pilot Readiness Check — Complete Before Deploying Any Action</div>
+        <div class="readiness-subtitle">5 questions · 2 minutes · tells you where to start</div>
+      </div>
+    </div>
+    <span class="readiness-chevron">▾</span>
+  </div>
+  <div class="readiness-body">
+    <p class="readiness-intro">Before running a single workshop, validate that the basics are in place. A pilot that launches without sponsor alignment or process clarity will produce noise, not results.</p>
+    <div class="rq-list">
+      <div class="rq-item" id="rq1"><div class="rq-num">Q1</div><div class="rq-text">Does the CCO actively sponsor this initiative — not just endorse it?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq1','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq1','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq2"><div class="rq-num">Q2</div><div class="rq-text">Is there a shared definition of "qualified lead" (MQL → SQL) that Sales and Marketing can both accept?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq2','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq2','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq3"><div class="rq-num">Q3</div><div class="rq-text">Have the 3 pilot markets committed one Sales and one Marketing person each for the duration?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq3','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq3','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq4"><div class="rq-num">Q4</div><div class="rq-text">Is IT available (even at limited capacity) to configure MS Dynamics for pilot workflows?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq4','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq4','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq5"><div class="rq-num">Q5</div><div class="rq-text">Is there agreement that the pilot will produce a visible "early win" result shared globally?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq5','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq5','no',this)">No</button></div></div>
+    </div>
+    <div class="readiness-result" id="r-result"></div>
+  </div>
+</div>
+
+<!-- PRIMER -->
+<div class="primer-banner">
+  <div class="primer-icon">🧭</div>
+  <div class="primer-body">
+    <div class="primer-title">The real problem isn't the CRM — it's that Sales and Marketing don't share a definition of a lead.</div>
+    <div class="primer-text">Inconsistent lead management is a <strong>process and culture problem first, a technology problem second</strong>. Pilots that lead with IT configuration before resolving the handover definition rarely achieve lasting adoption. The sequence that works: align on process → agree the data model → configure lightly → train and embed. <strong>Simple and used beats sophisticated and ignored.</strong></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab seq-tab active" onclick="show('sequence', this)">⚡ Approach</button>
+  <button class="tab" onclick="show('workplan', this)">📋 Workplan</button>
+  <button class="tab sponsor-tab" onclick="show('impact', this)">📈 Impact Case</button>
+  <button class="tab" onclick="show('resourcing', this)">👥 Resourcing</button>
+  <button class="tab" onclick="show('timeline', this)">📅 Timeline</button>
+  <button class="tab sponsor-tab" onclick="show('anchor', this)">🔗 Sustainable Integration</button>
+  <button class="tab" onclick="show('risks', this)">⚠️ Risks</button>
+  <button class="tab buyin-tab" onclick="show('buyin', this)">🎯 Stakeholders</button>
+</div>
+
+<!-- ===================== TAB 1: APPROACH ===================== -->
+<div class="section seq-section visible" id="s-sequence">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div class="section-meta">
+      <div class="section-title">Conceptual Approach — How I Structure the Problem</div>
+      <div class="section-desc">Task 1: Problem framing, key principles, and the 3-horizon solution structure</div>
+    </div>
+  </div>
+
+  <div class="rule-box rule-box-blue">
+    <div class="rule-box-icon">📐</div>
+    <div class="rule-box-text"><strong>The rule:</strong> Lead harmonisation is not an IT rollout. It is a <strong>commercial alignment programme</strong> that uses technology as its backbone. Lead with process, follow with platform, embed with people.</div>
+  </div>
+
+  <div class="rule-box rule-box-slate">
+    <div class="rule-box-icon">🔄</div>
+    <div class="rule-box-text"><strong>On structure:</strong> The 3-phase plan is a <strong>safety net, not a schedule</strong>. Phase gates are go/no-go checkpoints — not bureaucracy. If conditions allow, phases compress. If a gate reveals a problem, it's better to catch it at week 4 than fix it at week 12. I'd rather kill a bad launch early than rescue a live one. <em>Pragmatist first, process second.</em></div>
+  </div>
+
+  <div class="seq-step">
+    <div class="seq-num">1</div>
+    <div class="seq-content">
+      <div class="seq-meta">Problem Framing · Root cause before solutions <span class="badge badge-cio">PL</span></div>
+      <div class="seq-title">Define the 3 layers of the problem</div>
+      <div class="seq-body">The challenge operates at three levels simultaneously. <strong>Layer 1 — Definition:</strong> "Qualified lead" means different things in every market, creating an invisible barrier between Marketing and Sales. <strong>Layer 2 — Behaviour:</strong> Sales bypasses CRM (email forwarding); Marketing generates leads with no handover SLA. <strong>Layer 3 — Visibility:</strong> Leadership cannot see pipeline health because data lives in inboxes, spreadsheets, and local tools. Solving Layer 3 without addressing Layers 1 and 2 first is unlikely to hold.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Every pilot market team can state — in identical terms — what makes a lead qualified and who owns it at each stage.</div>
+    </div>
+  </div>
+
+  <div class="seq-step">
+    <div class="seq-num">2</div>
+    <div class="seq-content">
+      <div class="seq-meta">Key Principle · Design with, not for <span class="badge badge-both">Both</span></div>
+      <div class="seq-title">Co-design the standard — don't impose it</div>
+      <div class="seq-body">The sceptical market ("global standard won't fit us") and the impatient Sales manager are signals of a participation deficit, not a logic problem. The fastest path to adoption is to <strong>involve local Sales and Marketing leads in designing the standard process</strong> — not presenting it to them. Run facilitated as-is → to-be workshops in each pilot market (not remote slide decks). The output is a jointly-owned process map that local teams believe is partly theirs. <strong>Co-ownership reduces resistance by an order of magnitude.</strong> Critically, co-design has a deadline: all markets must reach a working standard by end of week 3. If consensus fails, <strong>the CCO makes the tie-breaking call</strong> — participation is offered, consensus is preferred, but the decision is not deferred indefinitely. This is agreed with the CCO in week 1.</div>
+      <div class="note note-amber"><strong>Constraint awareness:</strong> With only one Sales and one Marketing person per market, workshop facilitation must be time-efficient. Use structured templates, not blank canvases.</div>
+      <div class="note note-red"><strong>Veto risk:</strong> A politically powerful Market Head can stall co-design under the guise of "local complexity." The CCO tie-break authority must be communicated before workshops begin — not invoked as a surprise.</div>
+    </div>
+  </div>
+
+  <div class="seq-step">
+    <div class="seq-num">3</div>
+    <div class="seq-content">
+      <div class="seq-meta">Key Principle · Minimum viable process first <span class="badge badge-cio">PL</span></div>
+      <div class="seq-title">Build the MVP lead process, not the perfect one</div>
+      <div class="seq-body">The pilot is not about building a world-class CRM. It is about proving that <strong>a simple, consistent lead process works better than the current inconsistency</strong>. The MVP has four elements: (1) agreed MQL/SQL definitions, (2) a lead entry point in MS Dynamics, (3) a handover trigger with a 48h SLA, (4) a basic dashboard showing leads by status. Everything else is phase 2. Tool-agnostic means: configure what's already licensed before requesting new tools.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> All pilot markets use the same 4-stage lead pipeline in Dynamics within 8 weeks of kick-off, with daily active usage from both Sales and Marketing.</div>
+    </div>
+  </div>
+
+  <div class="seq-step">
+    <div class="seq-num">4</div>
+    <div class="seq-content">
+      <div class="seq-meta">Key Principle · Adoption is the product <span class="badge badge-both">Both</span></div>
+      <div class="seq-title">Make adoption visible and reward it</div>
+      <div class="seq-body">The brief asks for a pilot that makes "local organisations want more." <strong>Adoption metrics should be as visible as process metrics.</strong> Track CRM usage, lead entry compliance, and handover SLA adherence alongside conversion rates. Celebrate early wins — a market's first digital lead converted under the new process is worth sharing. Use the feedback loop to surface issues quickly and resolve them in short cycles. The influential Sales manager is an asset if engaged early.</div>
+      <div class="note note-slate"><strong>Facilit8 principle:</strong> Change that sticks is change that people chose. Make the new way the easier way, not just the mandated way.</div>
+    </div>
+  </div>
+
+  <div class="seq-step">
+    <div class="seq-num">5</div>
+    <div class="seq-content">
+      <div class="seq-meta">Scale design · Built-in from day one <span class="badge badge-sm">CCO</span></div>
+      <div class="seq-title">Design the pilot so scale is the obvious next step</div>
+      <div class="seq-body">Every artefact — process maps, CRM configuration, training materials, SLA templates — is <strong>documented as a reusable, market-agnostic asset</strong>. Pilot markets become internal advocates and peer coaches for the next wave. A retrospective at week 14 surfaces improvement areas before they compound. The CCO's live dashboard is the proof point that supports global scale approval.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> At week 16, the CCO has a live view of lead status across all 3 markets and a clear plan to onboard the next wave of markets in the following quarter.</div>
+    </div>
+  </div>
+
+  <div class="seq-step">
+    <div class="seq-num">6</div>
+    <div class="seq-content">
+      <div class="seq-meta">Selection criteria · Not all markets are equal <span class="badge badge-cio">PL</span></div>
+      <div class="seq-title">Choose pilot markets deliberately — four criteria</div>
+      <div class="seq-body"><strong>Criterion 1 — Willing Market Head:</strong> Active participation, not volunteered by a Cluster Head. Selection criteria are agreed with the CCO in week 1 — before Cluster Heads are consulted — giving the PL standing to question any nomination without it becoming a day-one political act.<br><br>
+      <strong>Criterion 2 — Some existing CRM usage:</strong> Markets starting entirely from zero add configuration complexity that obscures process learnings. A partial Dynamics footprint is sufficient.<br><br>
+      <strong>Criterion 3 — Manageable scale and clean conditions:</strong> Avoid markets that are large by revenue, customer base, or headcount — the 16-week window requires contained complexity. Also exclude markets with competing change programmes: ERP harmonisation, active acquisition integration, an existing transformation pilot, or significant leadership transition. A region with heavy acquisition activity and a parallel ERP rollout carries too many variables to produce clean learnings.<br><br>
+      <strong>Criterion 4 — Balanced portfolio:</strong> Prefer 2 markets with straightforward conditions and 1 with a defined degree of challenge. Challenge is assessed against observable factors: a sceptical Market Head on record, below-average CRM usage relative to other candidates, or a history of low participation in previous global initiatives. The PL scores each candidate on a simple grid before presenting a shortlist to the CCO. If other criteria already introduce difficulty, all 3 markets can be straightforward.</div>
+      <div class="note note-amber"><strong>Selection risk:</strong> Cluster Heads may nominate compliant markets rather than representative ones. The PL should validate each market against these four criteria before confirming the selection.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TAB 2: WORKPLAN ===================== -->
+<div class="section" id="s-workplan">
+  <div class="section-header">
+    <div class="section-icon">📋</div>
+    <div class="section-meta">
+      <div class="section-title">Workplan — Phases, Work Packages & Milestones</div>
+      <div class="section-desc">Task 2: Major work packages across 3 phases of the 16-week pilot</div>
+    </div>
+  </div>
+
+  <div class="rule-box rule-box-blue">
+    <div class="rule-box-icon">📐</div>
+    <div class="rule-box-text"><strong>Structure:</strong> 3 phases — <strong>Discover & Design (Wks 1–4)</strong>, <strong>Build & Pilot (Wks 5–12)</strong>, <strong>Embed & Scale-Prep (Wks 13–16)</strong>. Each phase has clear entry criteria, deliverables, and a milestone gate.</div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">🔍 Phase 1 — Discover & Design (Weeks 1–4)</div>
+      <div class="badges">
+        <span class="badge phase-1">Phase 1</span>
+        <span class="badge badge-impact">Foundation</span>
+      </div>
+    </div>
+    <div class="action-body">
+      <strong>WP1.1 — As-Is Process Mapping (Wks 1–2):</strong> Facilitated workshops in each of the 3 pilot markets. Document current lead sources, qualification criteria, CRM usage, and handover points. Identify the 3 biggest improvement areas per market. Output: As-Is process map × 3 markets.<br><br>
+      <strong>WP1.2 — Global Standard Design (Wks 2–3):</strong> Synthesise market findings. Co-design a standard 4-stage lead pipeline (New → MQL → SQL → Opportunity) with global Marketing and pilot market leads. Agree MQL/SQL definitions. Output: Standard Lead Process v1 + MQL/SQL definition document.<br><br>
+      <strong>WP1.3 — CRM Data Model & IT Brief (Wks 3–4):</strong> Translate process to MS Dynamics field requirements. Write a lightweight IT configuration brief (not a full spec). Agree with IT on delivery timeline within budget envelope. Output: IT brief, Dynamics configuration scope, resource sign-off.<br><br>
+      <strong>WP1.4 — Stakeholder Alignment (Wks 1–4, parallel):</strong> CCO briefing at kick-off. Market Head 1:1s. Cluster Head update. Change communication plan drafted.
+    </div>
+    <div class="note note-green"><strong>Success looks like:</strong> By end of week 4, all pilot market Sales and Marketing leads have signed off the standard process and the IT brief is approved.</div>
+    <div class="note note-amber"><strong>Phase gate:</strong> Moving into Phase 2 works best once all 3 markets have signed off the standard process and the IT brief is in place. This checkpoint is worth protecting — a week's patience here typically saves several weeks of rework later.</div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">🔧 Phase 2 — Build & Pilot (Weeks 5–12)</div>
+      <div class="badges">
+        <span class="badge phase-2">Phase 2</span>
+        <span class="badge badge-impact">Core Delivery</span>
+      </div>
+    </div>
+    <div class="action-body">
+      <strong>WP2.1 — CRM Configuration (Wks 5–7):</strong> IT configures MS Dynamics per brief. PL reviews with market representatives at week 6 checkpoint. UAT with 2 users per market. Output: Configured Dynamics pipeline live in UAT.<br><br>
+      <strong>WP2.2 — Training Development (Wks 6–7):</strong> Build lightweight training pack (1-pager process guide + 30-min live session per market). Translate core materials into market languages where needed. Output: Training pack + facilitator guide.<br><br>
+      <strong>WP2.3 — Go-Live Market A (Wk 8):</strong> First market goes live. PL on-site or high-touch remote for launch week. Daily check-in for 2 weeks. Collect feedback log.<br><br>
+      <strong>WP2.4 — Go-Live Markets B & C (Wks 9–10):</strong> Staggered launch using lessons from Market A. Market A peer-advocates briefed. 48h SLA tracked from day 1.<br><br>
+      <strong>WP2.5 — Dashboard & Reporting (Wks 8–12):</strong> Activate lead status dashboard for CCO visibility. Weekly pipeline report template live. Output: Live CCO dashboard.
+    </div>
+    <div class="note note-green"><strong>Success looks like:</strong> By end of week 12, all 3 markets are logging leads in Dynamics, the 48h SLA is being tracked, and the CCO dashboard shows data from all markets.</div>
+    <div class="note note-amber"><strong>IT dependency:</strong> Configuration must be complete by week 7. Any IT delay compresses training time — flag early and escalate to CCO if needed.</div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">🚀 Phase 3 — Embed & Scale-Prep (Weeks 13–16)</div>
+      <div class="badges">
+        <span class="badge phase-3">Phase 3</span>
+        <span class="badge badge-both">Both</span>
+      </div>
+    </div>
+    <div class="action-body">
+      <strong>WP3.1 — Adoption Review &amp; Improvement (Wks 13–14):</strong> Review CRM usage rates, SLA compliance, and qualitative feedback across all 3 markets. Run a lightweight retrospective. Identify top 3 improvement areas. Implement quick fixes within existing configuration (no new IT scope).<br><br>
+      <strong>WP3.2 — Early Results Report (Wk 14–15):</strong> Compile pilot results: lead volume, conversion rate, SLA compliance, qualitative adoption scores. Frame as "proof of concept" narrative for CCO and board. Output: 1-page results summary + 5-slide CCO deck.<br><br>
+      <strong>WP3.3 — Scale Playbook (Wk 15–16):</strong> Document all reusable assets: process maps, CRM configuration guide, training materials, SLA templates, onboarding checklist for new markets. Identify 5 candidate markets for next wave. Output: Scale playbook v1.<br><br>
+      <strong>WP3.4 — Pilot Close & Handover (Wk 16):</strong> Formal pilot close meeting with CCO and cluster heads. Hand process ownership to designated Market Process Owners. Agree next-wave timeline.
+    </div>
+    <div class="note note-green"><strong>Success looks like:</strong> At the pilot close, the CCO endorses the scale playbook and at least 2 of the 3 pilot markets have a nominated Process Owner who can support onboarding of new markets.</div>
+  </div>
+</div>
+
+<!-- ===================== TAB 3: RESOURCING ===================== -->
+<div class="section" id="s-resourcing">
+  <div class="section-header">
+    <div class="section-icon">👥</div>
+    <div class="section-meta">
+      <div class="section-title">Resourcing — Internal vs External, Roles & Budget</div>
+      <div class="section-desc">Task 2: How the 40 consultant days and CHF 75k are allocated across the pilot</div>
+    </div>
+  </div>
+
+  <div class="data-prereq">
+    <div class="data-prereq-header">
+      <div class="data-prereq-icon">💰</div>
+      <div>
+        <div class="data-prereq-label">Budget envelope</div>
+        <div class="data-prereq-title">CHF 75k total · 40 external consultant days · tight but achievable</div>
+      </div>
+    </div>
+    <div class="data-prereq-body">The budget is sufficient for a lean, well-managed pilot — but leaves no margin for scope creep. <strong>The PL role is the primary cost control mechanism.</strong> All external days must be pre-approved against specific work packages. IT time is the scarcest internal resource and must be protected via a clear brief and locked configuration scope.</div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">Internal Resource Allocation</div>
+      <div class="badges"><span class="badge badge-cio">PL</span><span class="badge badge-both">Both</span></div>
+    </div>
+    <div class="action-body">
+      <table class="resource-table">
+        <thead>
+          <tr><th>Role</th><th>Who</th><th>Commitment</th><th>Key responsibilities</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Project Leader (PL)</strong></td><td>You</td><td>Full-time, 16 weeks</td><td>Programme management, facilitation, stakeholder management, scale design</td></tr>
+          <tr><td><strong>Sales Representative</strong></td><td>1 per pilot market (×3)</td><td>~20% / 2 days/week</td><td>As-is input, UAT, go-live ambassador, feedback collection</td></tr>
+          <tr><td><strong>Marketing Representative</strong></td><td>1 per pilot market (×3)</td><td>~20% / 2 days/week</td><td>As-is input, lead source documentation, training delivery support</td></tr>
+          <tr><td><strong>IT (MS Dynamics)</strong></td><td>Shared resource</td><td>~15 days total (protected)</td><td>Configuration per brief, UAT support, dashboard setup</td></tr>
+          <tr><td><strong>CCO</strong></td><td>Sponsor</td><td>2–3 hrs/month</td><td>Escalation, global endorsement, scale sign-off</td></tr>
+          <tr><td><strong>Global Marketing Lead</strong></td><td>Process co-owner</td><td>~10% / 4 hrs/week</td><td>MQL/SQL definition, training content sign-off</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note note-amber"><strong>Capacity risk:</strong> Market-level Sales and Marketing reps carry day-jobs alongside this. The 20% estimate is optimistic during peak sales periods — build buffer in weeks 8–10.</div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">External Consultant Day Allocation (40 days / CHF 75k)</div>
+      <div class="badges"><span class="badge badge-quarter">Budget governed</span></div>
+    </div>
+    <div class="action-body">
+      <table class="resource-table">
+        <thead>
+          <tr><th>Work Package</th><th>Days</th><th>Approx. CHF</th><th>Rationale</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Process design facilitation (3 markets × as-is + to-be workshops)</td><td>10</td><td>~20,000</td><td>Skilled facilitation is the highest-leverage spend</td></tr>
+          <tr><td>CRM configuration & IT support (Dynamics setup, UAT)</td><td>12</td><td>~22,000</td><td>IT is internally constrained — external cover for configuration and testing</td></tr>
+          <tr><td>Training design & delivery support</td><td>6</td><td>~11,000</td><td>Build once, adapt ×3 markets</td></tr>
+          <tr><td>Project management & coordination support</td><td>5</td><td>~9,000</td><td>Admin, scheduling, status reporting for PL</td></tr>
+          <tr><td>Scale playbook & documentation</td><td>4</td><td>~7,000</td><td>Reusable assets for markets 4–23</td></tr>
+          <tr><td><strong>Reserve / contingency</strong></td><td>3</td><td>~6,000</td><td>Scope creep buffer — do not pre-allocate</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>40</strong></td><td><strong>~75,000</strong></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note note-green"><strong>Success looks like:</strong> External days are consumed on high-leverage activities (facilitation, configuration, training) — not on coordination and admin, which the PL handles directly.</div>
+    <div class="note note-amber"><strong>Rate stress-test:</strong> The blended rate of ~CHF 1,875/day is conservative. Specialist MS Dynamics consultants in European markets typically run CHF 2,200–2,800/day. If IT rates are higher, the flex model is: <strong>maximise the 15 internal IT days first</strong>, use external days only for tasks internal IT cannot cover, and shift facilitation days to PL-led sessions. The contingency reserve absorbs rate variance.</div>
+    <div class="note note-purple"><strong>Partner investment rates:</strong> Some implementation and facilitation partners will offer reduced rates during a pilot — treating it as an investment in the full rollout. A successful 3-market pilot with a clear scale path to 20+ markets is a commercially attractive prospect for a partner. It is worth exploring reduced rates explicitly during partner selection: lower pilot costs free up days that can be reinvested into deeper training, additional market coverage, or a stronger scale playbook — all of which increase the probability that the full rollout proceeds and that the partner is part of it.</div>
+  </div>
+</div>
+
+<!-- ===================== TAB 4: TIMELINE ===================== -->
+<div class="section" id="s-timeline">
+  <div class="section-header">
+    <div class="section-icon">📅</div>
+    <div class="section-meta">
+      <div class="section-title">Timeline — 16-Week Pilot Gantt Overview</div>
+      <div class="section-desc">Task 2: Week-by-week milestone view with phase gates and key decisions</div>
+    </div>
+  </div>
+
+  <div class="rule-box rule-box-slate">
+    <div class="rule-box-icon">⚠️</div>
+    <div class="rule-box-text"><strong>Timeline principle:</strong> Phase 2 cannot begin without Phase 1 gate sign-off. A 1-week slip in process design is recoverable. A slip in CRM configuration (WP2.1) risks the go-live date for all 3 markets.</div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">16-Week Milestone Timeline</div>
+      <div class="badges"><span class="badge badge-impact">Full pilot view</span></div>
+    </div>
+    <div class="action-body">
+      <table class="timeline-table">
+        <thead>
+          <tr><th>Week</th><th>Phase</th><th>Key Activity</th><th>Milestone / Gate</th><th>Who</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Wk 1</td><td><span class="phase-badge phase-1">Phase 1</span></td><td>CCO kick-off, project charter confirmed, market kick-off calls</td><td>🚩 Project launched</td><td>PL + CCO</td></tr>
+          <tr><td>Wk 2</td><td><span class="phase-badge phase-1">Phase 1</span></td><td>As-is workshops: Markets A, B, C (facilitated)</td><td>As-is maps complete</td><td>PL + ext. facilitator</td></tr>
+          <tr><td>Wk 3</td><td><span class="phase-badge phase-1">Phase 1</span></td><td>Global standard design workshop (remote); MQL/SQL definition agreed</td><td>Standard process draft v1</td><td>PL + Global Mktg</td></tr>
+          <tr><td>Wk 4</td><td><span class="phase-badge phase-1">Phase 1</span></td><td>IT brief finalised; market sign-off on standard process; CCO update</td><td>🚩 Phase 1 Gate: Process approved</td><td>PL + IT + CCO</td></tr>
+          <tr><td>Wk 5</td><td><span class="phase-badge phase-2">Phase 2</span></td><td>IT begins Dynamics configuration; training design starts</td><td>Configuration sprint begins</td><td>IT + ext. consultant</td></tr>
+          <tr><td>Wk 6</td><td><span class="phase-badge phase-2">Phase 2</span></td><td>Mid-config review with market reps; training pack drafted</td><td>Config checkpoint (no surprises)</td><td>PL + IT</td></tr>
+          <tr><td>Wk 7</td><td><span class="phase-badge phase-2">Phase 2</span></td><td>UAT in all 3 markets; training pack finalised</td><td>🚩 UAT signed off — all markets</td><td>Market reps + PL</td></tr>
+          <tr><td>Wk 8</td><td><span class="phase-badge phase-2">Phase 2</span></td><td>Market A go-live; training delivered; PL high-touch support</td><td>🚩 Market A live</td><td>PL + Market A team</td></tr>
+          <tr><td>Wk 9</td><td><span class="phase-badge phase-2">Phase 2</span></td><td>Market B go-live; Market A feedback loop active</td><td>🚩 Market B live</td><td>PL + Market B team</td></tr>
+          <tr><td>Wk 10</td><td><span class="phase-badge phase-2">Phase 2</span></td><td>Market C go-live; CCO dashboard activated</td><td>🚩 Market C live + dashboard live</td><td>PL + IT + Market C</td></tr>
+          <tr><td>Wk 11</td><td><span class="phase-badge phase-2">Phase 2</span></td><td>First full week: all 3 markets active; SLA tracking begins</td><td>First 48h SLA data available</td><td>PL monitors</td></tr>
+          <tr><td>Wk 12</td><td><span class="phase-badge phase-2">Phase 2</span></td><td>Phase 2 adoption review; qualitative interviews with market reps</td><td>Adoption health check</td><td>PL</td></tr>
+          <tr><td>Wk 13</td><td><span class="phase-badge phase-3">Phase 3</span></td><td>Retrospective with all market teams; top improvement areas identified</td><td>Improvement log + quick fixes</td><td>PL + all markets</td></tr>
+          <tr><td>Wk 14</td><td><span class="phase-badge phase-3">Phase 3</span></td><td>Quick fixes deployed; early results report drafted</td><td>Results report v1</td><td>PL + ext. consultant</td></tr>
+          <tr><td>Wk 15</td><td><span class="phase-badge phase-3">Phase 3</span></td><td>Scale playbook drafted; next-market candidates identified; CCO preview</td><td>Scale playbook v1</td><td>PL</td></tr>
+          <tr><td>Wk 16</td><td><span class="phase-badge phase-3">Phase 3</span></td><td>Pilot close meeting; process ownership transferred; scale approved</td><td>🚩 Pilot closed — scale greenlit</td><td>PL + CCO + Market Heads</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note note-green"><strong>Success looks like:</strong> All 5 milestone gates (🚩) are hit within 1 week of target, and the scale decision is made by the CCO at week 16 without further escalation needed.</div>
+  </div>
+</div>
+
+<!-- ===================== TAB 5: IMPACT CASE ===================== -->
+<div class="section sponsor-section" id="s-impact">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <div class="section-meta">
+      <div class="section-title">Impact Case — Half Double KPI Cascade</div>
+      <div class="section-desc">Task 4: From revenue ambition down to the capabilities that need to be in place — and what must be true for each level to hold</div>
+    </div>
+  </div>
+
+  <div class="rule-box rule-box-blue">
+    <div class="rule-box-icon">🔗</div>
+    <div class="rule-box-text"><strong>Reading this cascade:</strong> Start at the top and work down. Each level is achievable only if the level below it holds. <strong>Revenue sits at the top because that is the organisational goal this programme serves — not because the pilot claims to deliver it.</strong> The pilot proves the bottom two levels. Revenue impact becomes measurable at 3 and 6 months post-pilot. Separating programme ambition from pilot scope is intentional — conflating the two would undermine credibility.</div>
+  </div>
+
+  <div class="impact-cascade">
+
+    <div class="cascade-level cascade-l1">
+      <div class="cascade-level-label">Commercial Outcome</div>
+      <div class="cascade-boxes">
+        <div class="cascade-box cb-revenue">
+          <div class="cb-icon">💰</div>
+          <div class="cb-title">Revenue Growth from Improved Lead Conversion</div>
+          <div class="cb-metric">Lead-to-opportunity conversion rate — baseline Wk 8, trend tracked at 3 &amp; 6 months post-pilot</div>
+          <div class="cb-truth">What needs to be true: Sales and Marketing are working from the same pipeline — not parallel systems</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cascade-arrow">▼</div>
+
+    <div class="cascade-level cascade-l2">
+      <div class="cascade-level-label">Pilot Outcomes (Wk 16)</div>
+      <div class="cascade-boxes">
+        <div class="cascade-box cb-outcome">
+          <div class="cb-icon">📊</div>
+          <div class="cb-title">Pipeline Visibility</div>
+          <div class="cb-metric">CCO dashboard live and used weekly across all 3 markets</div>
+          <div class="cb-truth">What needs to be true: all leads are in one system, not inboxes</div>
+        </div>
+        <div class="cascade-box cb-outcome">
+          <div class="cb-icon">⏱</div>
+          <div class="cb-title">Faster Handover</div>
+          <div class="cb-metric">The majority of MQL→SQL handovers within 48h SLA</div>
+          <div class="cb-truth">What needs to be true: handover point is defined and owned</div>
+        </div>
+        <div class="cascade-box cb-outcome">
+          <div class="cb-icon">🎯</div>
+          <div class="cb-title">Higher Lead Quality</div>
+          <div class="cb-metric">Measurable reduction in Sales rejection rate vs. baseline</div>
+          <div class="cb-truth">What needs to be true: MQL definition is shared by both functions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cascade-arrow">▼</div>
+
+    <div class="cascade-level cascade-l3">
+      <div class="cascade-level-label">Adoption KPIs (Wks 8–16)</div>
+      <div class="cascade-boxes">
+        <div class="cascade-box cb-adopt">
+          <div class="cb-icon">💻</div>
+          <div class="cb-title">CRM Adoption</div>
+          <div class="cb-metric">Nearly all leads logged in Dynamics — not by email or spreadsheet</div>
+          <div class="cb-truth">What needs to be true: CRM is the easier path, not an extra step</div>
+        </div>
+        <div class="cascade-box cb-adopt">
+          <div class="cb-icon">🔄</div>
+          <div class="cb-title">Process Consistency</div>
+          <div class="cb-metric">All 3 markets using the same 4-stage pipeline within 2 weeks of go-live</div>
+          <div class="cb-truth">What needs to be true: HOPs are understood and locally endorsed</div>
+        </div>
+        <div class="cascade-box cb-adopt">
+          <div class="cb-icon">🌍</div>
+          <div class="cb-title">Scale Appetite</div>
+          <div class="cb-metric">At least 2 non-pilot markets express interest in onboarding before Wk 16</div>
+          <div class="cb-truth">What needs to be true: pilot results are visible and credible to peers</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cascade-arrow">▼</div>
+
+    <div class="cascade-level cascade-l4">
+      <div class="cascade-level-label">New Capabilities Required — What Must Be Built</div>
+      <div class="cascade-boxes capabilities-grid">
+        <div class="cascade-box cb-cap">
+          <div class="cb-icon">📖</div>
+          <div class="cb-title">Shared MQL / SQL Definition</div>
+          <div class="cb-truth">A single, written definition of a qualified lead that Sales and Marketing in every pilot market agree to</div>
+        </div>
+        <div class="cascade-box cb-cap">
+          <div class="cb-icon">🗺</div>
+          <div class="cb-title">Standard Lead Pipeline (HOPs)</div>
+          <div class="cb-truth">A 4-stage pipeline (New → MQL → SQL → Opportunity) in MS Dynamics — 80% global standard, 20% locally adapted</div>
+        </div>
+        <div class="cascade-box cb-cap">
+          <div class="cb-icon">🤝</div>
+          <div class="cb-title">Defined Handover Protocol</div>
+          <div class="cb-truth">A clear trigger point, owner, and 48h SLA for the Marketing → Sales handover — documented and trained</div>
+        </div>
+        <div class="cascade-box cb-cap">
+          <div class="cb-icon">📡</div>
+          <div class="cb-title">Live Reporting Dashboard</div>
+          <div class="cb-truth">A CCO-facing pipeline dashboard showing lead status, SLA compliance, and volume across all pilot markets in real time</div>
+        </div>
+        <div class="cascade-box cb-cap">
+          <div class="cb-icon">🎓</div>
+          <div class="cb-title">Market Training Capability</div>
+          <div class="cb-truth">A reusable, translatable training pack — 1-page process guide plus a 30-minute facilitated session — that any market can self-deliver</div>
+        </div>
+        <div class="cascade-box cb-cap">
+          <div class="cb-icon">🏆</div>
+          <div class="cb-title">Local Process Ownership</div>
+          <div class="cb-truth">A named Process Owner in each market — ideally the person who co-designed the standard — with a clear governance brief</div>
+        </div>
+        <div class="cascade-box cb-cap">
+          <div class="cb-icon">🔁</div>
+          <div class="cb-title">Feedback Loop Mechanism</div>
+          <div class="cb-truth">A lightweight weekly feedback form and a monthly Community of Practice call — so issues surface quickly and resolutions are shared across markets</div>
+        </div>
+        <div class="cascade-box cb-cap">
+          <div class="cb-icon">📋</div>
+          <div class="cb-title">Scale Playbook</div>
+          <div class="cb-truth">A documented onboarding pack for new markets — process maps, CRM brief, training materials, SLA templates — reusable without PL involvement</div>
+        </div>
+        <div class="cascade-box cb-cap">
+          <div class="cb-icon">📐</div>
+          <div class="cb-title">Digital Lead Generation Standard</div>
+          <div class="cb-truth">A minimum standard for how digital leads enter the pipeline — source tracking, entry point, and routing logic — so inbound and outbound leads are treated consistently</div>
+        </div>
+        <div class="cascade-box cb-cap">
+          <div class="cb-icon">🧭</div>
+          <div class="cb-title">IT Configuration Blueprint</div>
+          <div class="cb-truth">A documented MS Dynamics configuration guide — reusable for each new market without requiring a new IT scoping exercise</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note note-purple"><strong>On commercial KPIs and timing:</strong> A 16-week pilot is well-suited to establishing process and adoption metrics — it is not long enough to demonstrate revenue impact with confidence. The lead-to-opportunity conversion baseline is set at go-live so the trend becomes measurable at 3 and 6 months post-pilot. This gives the board a credible forward view rather than a premature claim.</div>
+</div>
+
+<!-- ===================== TAB 6: SUSTAINABLE INTEGRATION ===================== -->
+<div class="section sponsor-section" id="s-anchor">
+  <div class="section-header">
+    <div class="section-icon">🔗</div>
+    <div class="section-meta">
+      <div class="section-title">Sustainable Integration — HOPs, Performance & Ownership</div>
+      <div class="section-desc">Task 4: How the pilot embeds into ways of working through Harmonised Operating Procedures, performance management, and local ownership</div>
+    </div>
+  </div>
+
+  <div class="rule-box rule-box-blue">
+    <div class="rule-box-icon">🔗</div>
+    <div class="rule-box-text"><strong>Connection to the Impact Case:</strong> The 10 new capabilities defined in the Impact Case tab are the build list for Sustainable Integration. HOPs, the handover protocol, local process ownership, the feedback loop, and the scale playbook are not pilot outputs to be archived — they are the operating infrastructure that makes results hold after the PL exits. If a capability from the Impact Case is not embedded here, it will not survive the transition to business-as-usual.</div>
+  </div>
+
+  <div class="rule-box rule-box-blue">
+    <div class="rule-box-icon">📐</div>
+    <div class="rule-box-text"><strong>HOPs — Harmonised Operating Procedures</strong> is a term coined for this programme deliberately. "Harmonised" signals alignment without uniformity; "Operating Procedures" signals practical rhythm, not policy. The name itself carries the message: this is something teams work with daily, not a document filed away. <strong>80% global standard</strong> — common pipeline, shared definitions, consistent handover protocol, unified reporting. <strong>20% locally adapted</strong> — market-specific lead sources, language, and channel preferences. HOPs are a jointly-designed working agreement that local teams help shape and own.</div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">What HOPs Cover — The Operating Standard</div>
+      <div class="badges"><span class="badge badge-both">Both</span><span class="badge badge-quarter">Wk 3 designed · Wk 8 live</span></div>
+    </div>
+    <div class="action-body">
+      HOPs translate the agreed process into a day-to-day operating rhythm. Four areas:<br><br>
+      <strong>1. Lead entry &amp; qualification:</strong> How leads enter the pipeline (digital, event, referral, outbound), who qualifies them, and what the MQL threshold means in each market context.<br><br>
+      <strong>2. Handover protocol:</strong> The trigger, owner, and 48h SLA for MQL→SQL transfer — with shared language for what happens when a lead is returned or doesn't progress.<br><br>
+      <strong>3. CRM discipline:</strong> What gets logged, when, and by whom. The 20% local layer covers field names, language, and any market-specific stages — the 4-stage pipeline structure is shared.<br><br>
+      <strong>4. Reporting rhythm:</strong> How pipeline data flows to Market Heads, Cluster Heads, and the CCO — weekly automated dashboard, monthly review.
+    </div>
+    <div class="note note-green"><strong>Success looks like:</strong> A sales rep in Market A and a marketing manager in Market C can describe the handover process in equivalent terms — even if local lead generation differs.</div>
+    <div class="note note-amber"><strong>Governing the 20%:</strong> The local adaptation layer is defined as a named list of permitted variations in the HOPs reference card — lead source labels, language, and channel routing. Anything outside that list is reviewed by the Process Owner and Global Marketing Lead before being adopted. The boundary is explicit; it does not expand case-by-case.</div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">Performance Management — Cadence &amp; Incentives</div>
+      <div class="badges"><span class="badge badge-sm">CCO</span><span class="badge badge-cio">PL</span></div>
+    </div>
+    <div class="action-body">
+      Process without performance management reverts to habit. New ways of working need to be visible in how teams are reviewed and recognised.<br><br>
+      <strong>Review cadence:</strong> Market Heads reference the Dynamics dashboard in weekly 1:1s with Sales and Marketing leads. Cluster Heads receive a bi-weekly summary. The CCO holds a monthly pipeline review with lead conversion trend as a standing item.<br><br>
+      <strong>Incentive alignment:</strong> The PL works with the CCO and HR to explore whether lead-quality metrics can feed into future team targets. The goal in the pilot is to open that conversation and document a recommendation — formal changes to targets are a next-wave activity.<br><br>
+      <strong>Recognition:</strong> Early wins are shared publicly — a market's first fully-tracked digital lead conversion under the new process is featured in the CCO update. Peer visibility motivates at this stage more than policy.
+    </div>
+    <div class="note note-amber"><strong>Realistic expectation:</strong> Incentive changes take time and require HR alignment. The goal in the pilot is to begin the conversation and document the recommendation — formal changes to targets are a next-wave activity, not a week-16 deliverable.</div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">Ownership Model — Process Owners &amp; Community of Practice</div>
+      <div class="badges"><span class="badge badge-both">Both</span><span class="badge badge-impact">Long-term</span></div>
+    </div>
+    <div class="action-body">
+      Ownership transfers before the PL exits — not after. <strong>Each pilot market designates a Process Owner at go-live</strong> (week 8 at latest) — ideally the person who co-designed the process. Their role: monthly data review, flag exceptions, propose local adaptations within the HOPs 20% flexibility, and represent their market in the Community of Practice.<br><br>
+      The <strong>Lead Process Community of Practice</strong> meets monthly for 30 minutes. The Global Marketing Lead is agreed as chair in week 1 as part of their process co-owner brief — framed as a natural extension of co-designing the standard, not an additional obligation assigned later. The PL contributes to the first two sessions, then steps back. Templated agenda: 10 min pipeline trends / 10 min process issue and resolution / 10 min new market updates. New markets join as observers before their own go-live — arriving with peer context rather than headquarters instructions.
+    </div>
+    <div class="note note-green"><strong>Success looks like:</strong> Every pilot market has a named Process Owner by week 8, and the Community of Practice runs its third session without PL involvement — with at least one non-pilot market joining as an observer ahead of their own onboarding.</div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">Reporting Cadence — Who Sees What, When</div>
+      <div class="badges"><span class="badge badge-quarter">Ongoing</span></div>
+    </div>
+    <div class="action-body">
+      <table class="kpi-table">
+        <thead>
+          <tr><th>Audience</th><th>Cadence</th><th>Format</th><th>Key metric shown</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>CCO</strong></td><td>Monthly + live dashboard access</td><td>Auto dashboard + 20-min review</td><td>Pipeline volume, conversion trend, SLA compliance</td></tr>
+          <tr><td><strong>Cluster Heads</strong></td><td>Bi-weekly</td><td>2-page written summary</td><td>Market-level adoption rate and friction flags</td></tr>
+          <tr><td><strong>Market Heads</strong></td><td>Weekly (during go-live) → bi-weekly</td><td>Dashboard + 15-min check-in</td><td>CRM usage, handover SLA, rep sentiment</td></tr>
+          <tr><td><strong>Sales &amp; Marketing reps</strong></td><td>Weekly</td><td>Shared dashboard view + feedback form</td><td>Their own leads: status, age, handover due</td></tr>
+          <tr><td><strong>Global Marketing</strong></td><td>Weekly (async)</td><td>Status email + shared process doc</td><td>MQL definition adherence, process exceptions</td></tr>
+          <tr><td><strong>Community of Practice</strong></td><td>Monthly</td><td>30-min call — templated agenda</td><td>Cross-market trends, friction cases, new market updates</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note note-slate"><strong>Design principle:</strong> Reporting is most effective when it is embedded into existing meeting rhythms — not added as a separate obligation. The goal is for pipeline data to replace anecdote in conversations that are already happening.</div>
+  </div>
+</div>
+
+<!-- ===================== TAB 7: RISKS ===================== -->
+<div class="section" id="s-risks">
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <div class="section-meta">
+      <div class="section-title">Top Risks & Mitigations</div>
+      <div class="section-desc">Task 4: The risks I'd call out on day one — and how I'd manage them</div>
+    </div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">Risk Register — Pilot Level</div>
+      <div class="badges"><span class="badge badge-impact">Call out early</span></div>
+    </div>
+    <div class="action-body">
+      <table class="risk-table">
+        <thead>
+          <tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sceptical market refuses standard process</strong><br><em>"Global standard won't fit us"</em></td>
+            <td class="risk-high">High</td><td class="risk-high">High</td>
+            <td>Co-design the standard with that market's reps. Build in a documented "local variant" allowance for genuinely unique cases — governed by the Process Owner and Global Marketing Lead, not open-ended.</td>
+          </tr>
+          <tr>
+            <td><strong>IT overloaded — configuration delayed</strong></td>
+            <td class="risk-high">High</td><td class="risk-high">High</td>
+            <td>Allocate external consultant days to support IT (WP2.1). Agree and document the configuration scope at week 4 — changes after that point go through a formal review rather than being absorbed quietly. If IT capacity becomes constrained, the PL raises this with the CCO early so resourcing options can be explored.</td>
+          </tr>
+          <tr>
+            <td><strong>Influential Sales manager creates parallel process</strong></td>
+            <td class="risk-medium">Medium</td><td class="risk-high">High</td>
+            <td>Enrol this person as a co-designer and early tester. Give them visible credit for the process. Make them a market go-live champion — their buy-in is more powerful than any mandate. <strong>Structural back-stop:</strong> if behavioural enrolment fails, remove the parallel path — leads arriving by email are logged by the Marketing rep on their behalf, then shown in the dashboard. Their manager (Market Head) sees adoption data weekly. The calculus changes when inaction is visible.</td>
+          </tr>
+          <tr>
+            <td><strong>Market reps pulled back to core roles under pressure</strong></td>
+            <td class="risk-high">High</td><td class="risk-medium">Medium</td>
+            <td>Formalise the 20% commitment in writing with Market Heads before kick-off. Build 2-week buffer into go-live dates. Design all workshop and training formats to be 2-hour maximum.</td>
+          </tr>
+          <tr>
+            <td><strong>MQL/SQL definition not agreed across markets</strong></td>
+            <td class="risk-medium">Medium</td><td class="risk-high">High</td>
+            <td>Run the global standard design workshop with all 3 market reps present. Use a facilitated template — not a blank sheet. CCO makes the tie-breaking call if markets cannot agree.</td>
+          </tr>
+          <tr>
+            <td><strong>Budget overrun on IT configuration</strong></td>
+            <td class="risk-medium">Medium</td><td class="risk-medium">Medium</td>
+            <td>The configuration scope is agreed and documented at week 4. The 3-day contingency reserve is held back deliberately for genuine variance — not pre-allocated. Any additional requests are reviewed by the PL against the contingency before proceeding, keeping the budget within the agreed envelope.</td>
+          </tr>
+          <tr>
+            <td><strong>Low adoption: teams use CRM but revert to email in parallel</strong></td>
+            <td class="risk-medium">Medium</td><td class="risk-high">High</td>
+            <td>Where possible, make CRM the primary and simplest path — not an additional layer on top of existing habits. Support managers in referencing the dashboard in their 1:1s rather than email reports. Adoption data is shared with Market Heads weekly so issues are visible and can be addressed early.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note note-red"><strong>The risk that deserves the most attention:</strong> If the CCO's visible sponsorship fades after week 1, middle management will naturally deprioritise the pilot in favour of immediate operational pressures. Keeping the CCO actively engaged — through a monthly 20-minute dashboard review — is the single most protective action the PL can take throughout the programme.</div>
+  </div>
+</div>
+
+<!-- ===================== TAB 8: STAKEHOLDERS ===================== -->
+<div class="section buyin-section" id="s-buyin">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <div class="section-meta">
+      <div class="section-title">Stakeholder Engagement — Getting People on Board</div>
+      <div class="section-desc">Task 3: How I involve, convince, and govern the stakeholder map</div>
+    </div>
+  </div>
+
+  <div class="rule-box rule-box-blue">
+    <div class="rule-box-icon">🤝</div>
+    <div class="rule-box-text"><strong>Engagement principle:</strong> Different stakeholders need different things. The CCO needs confidence. Market Heads need respect for their context. Sales and Marketing reps need to feel heard — and to see the win quickly.</div>
+  </div>
+
+  <div class="persona-card">
+    <div class="persona-header">
+      <div class="persona-icon">👔</div>
+      <div>
+        <div class="persona-name">CCO — Chief Commercial Officer</div>
+        <div class="persona-pain">Needs global visibility without getting into the weeds</div>
+      </div>
+    </div>
+    <div class="persona-body">The CCO is the primary sponsor and the scale decision-maker. They care about pipeline visibility, conversion improvement, and a credible path from pilot to global. Frame everything in commercial outcomes — not CRM features. Give them a live dashboard they can show the board.</div>
+    <div class="invite-script">
+      <div class="invite-script-label">Invitation script</div>
+      <div class="invite-script-text">"[CCO name], I want to confirm the pilot design with you before week 2 starts. I'll show you the 3 markets, the timeline, and the one dashboard metric we'll use to prove success. 20 minutes. No prep needed."</div>
+    </div>
+    <div class="culture-note">For relationship-led cultures, add: "I've heard good things about your work with the clusters — I'd love your read on how Market A's head typically responds to global initiatives."</div>
+  </div>
+
+  <div class="persona-card">
+    <div class="persona-header">
+      <div class="persona-icon">🌍</div>
+      <div>
+        <div class="persona-name">Market Head — Sceptical Market</div>
+        <div class="persona-pain">"Global standard won't fit us" — fears loss of local autonomy</div>
+      </div>
+    </div>
+    <div class="persona-body">This person has seen global initiatives fail before because they ignored local context. They are not wrong to be cautious — they need to see that their voice will shape the standard, not just receive it. Co-design is the unlock. Give them a seat at the table in week 3's global standard workshop.</div>
+    <div class="invite-script">
+      <div class="invite-script-label">Invitation script</div>
+      <div class="invite-script-text">"[Name], your market's experience is exactly what we need to get the standard right. I'd like your team to help design the process — not just test it. Can we set up a 90-minute workshop in week 2?"</div>
+    </div>
+    <div class="culture-note">For relationship-led cultures: "I've been told your market has the most sophisticated local setup — I want to make sure we learn from that before we build anything."</div>
+  </div>
+
+  <div class="persona-card">
+    <div class="persona-header">
+      <div class="persona-icon">💼</div>
+      <div>
+        <div class="persona-name">Influential Sales Manager</div>
+        <div class="persona-pain">Impatient — wants results, not process discussions</div>
+      </div>
+    </div>
+    <div class="persona-body">This person's informal authority can make or break adoption in their market. They will test the new process by whether it makes their job easier, not by whether it's strategically aligned. Show them a quick win — a lead that converts faster under the new process. Make them the go-live champion.</div>
+    <div class="invite-script">
+      <div class="invite-script-label">Invitation script</div>
+      <div class="invite-script-text">"[Name], I know you're under pressure to deliver. The pilot is designed to reduce the friction between you and Marketing — and give you leads you can actually close. I need 2 hours from you in week 2. After that, the process works for you."</div>
+    </div>
+    <div class="culture-note">For relationship-led cultures: "I'd rather have your honest read on what's broken than guess from the outside — this is your chance to fix it on your terms."</div>
+  </div>
+
+  <div class="persona-card">
+    <div class="persona-header">
+      <div class="persona-icon">💻</div>
+      <div>
+        <div class="persona-name">IT Lead</div>
+        <div class="persona-pain">Overloaded — every project thinks it's urgent</div>
+      </div>
+    </div>
+    <div class="persona-body">IT's limited capacity is the most fragile dependency in the workplan. They need a locked, minimal scope brief — not an open conversation about possibilities. Treat them as a delivery partner, not a service desk. Protect their time from stakeholder requests arriving outside the PL's channel.</div>
+    <div class="invite-script">
+      <div class="invite-script-label">Invitation script</div>
+      <div class="invite-script-text">"[Name], I'm writing a configuration brief this week that will lock scope before you start. 15 IT days, no scope changes once signed off. Can we align on the brief by end of week 3 so you can plan the sprint?"</div>
+    </div>
+    <div class="culture-note">For IT cultures: include a one-page technical requirements template rather than a narrative brief — engineers prefer structure over prose.</div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-header">
+      <div class="action-title">Governance Model — Comms & Decision Rights</div>
+      <div class="badges"><span class="badge badge-both">All stakeholders</span></div>
+    </div>
+    <div class="action-body">
+      <table class="translation-table">
+        <thead>
+          <tr><th>Stakeholder</th><th>Cadence</th><th>Format</th><th>Decision right</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CCO</td><td>Monthly + ad hoc</td><td>20-min review + live dashboard</td><td>Scale approval, budget escalation, tie-breaking</td></tr>
+          <tr><td>Global Marketing</td><td>Weekly (async)</td><td>Status update email + shared doc</td><td>Process standard ownership, MQL/SQL definition</td></tr>
+          <tr><td>Cluster Heads</td><td>Bi-weekly</td><td>2-page written update</td><td>Market resource allocation</td></tr>
+          <tr><td>Market Heads</td><td>Weekly (during go-live)</td><td>15-min check-in call</td><td>Local resource, escalation to cluster</td></tr>
+          <tr><td>Market Sales/Mktg reps</td><td>Daily (go-live weeks) → weekly</td><td>Slack/Teams + weekly feedback form</td><td>Process feedback, local exceptions flagged</td></tr>
+          <tr><td>IT</td><td>Bi-weekly during Phase 2</td><td>Sprint review meeting</td><td>Configuration decisions within agreed scope</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note note-green"><strong>Success looks like:</strong> No stakeholder is surprised by pilot progress. All decisions are made at the right level without requiring PL to escalate unnecessarily to the CCO.</div>
+  </div>
+</div>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-item"><div class="stat-num">16</div><div class="stat-label">Pilot weeks</div></div>
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Pilot markets</div></div>
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Milestone gates</div></div>
+  <div class="stat-item"><div class="stat-num">10</div><div class="stat-label">New capabilities</div></div>
+  <div class="stat-item"><div class="stat-num">40</div><div class="stat-label">Consultant days</div></div>
+  <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Tabs covered</div></div>
+</div>
+
+<div style="text-align:center;margin-top:24px;font-size:11px;color:var(--f8-grey);">
+  v6 — facilit8 · Digital Transformation Series · 2026 · Password protected
+</div>
+
+</div><!-- /wrap -->
+</div><!-- /main-content -->
+
+<script>
+/* ===== PASSWORD GATE ===== */
+(function() {
+  if (sessionStorage.getItem('f8-unlocked') === '1') {
+    document.getElementById('pw-overlay').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+  }
+})();
+
+function checkPassword() {
+  var val = document.getElementById('pw-input').value;
+  if (val === 'Facilit8Growth') {
+    sessionStorage.setItem('f8-unlocked', '1');
+    var overlay = document.getElementById('pw-overlay');
+    overlay.classList.add('fade-out');
+    overlay.addEventListener('animationend', function() {
+      overlay.style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+    });
+  } else {
+    var input = document.getElementById('pw-input');
+    input.classList.remove('pw-shake');
+    void input.offsetWidth;
+    input.classList.add('pw-shake');
+    input.value = '';
+    input.focus();
+    document.getElementById('pw-error').style.display = 'block';
+  }
+}
+
+document.getElementById('pw-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPassword();
+  document.getElementById('pw-error').style.display = 'none';
+});
+
+/* ===== PLAYBOOK TABS ===== */
+function show(id, el) {
+  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('visible'); });
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  document.getElementById('s-' + id).classList.add('visible');
+  el.classList.add('active');
+}
+
+function toggleReadiness() {
+  document.getElementById('readiness').classList.toggle('open');
+}
+
+var answers = {};
+function answer(qid, val, btn) {
+  answers[qid] = val;
+  var item = document.getElementById(qid);
+  item.classList.remove('yes', 'no');
+  item.classList.add(val);
+  item.querySelectorAll('.rq-btn').forEach(function(b) { b.classList.remove('selected-yes', 'selected-no'); });
+  btn.classList.add(val === 'yes' ? 'selected-yes' : 'selected-no');
+  if (Object.keys(answers).length === 5) { showResult(); }
+}
+
+function showResult() {
+  var yes = Object.values(answers).filter(function(v) { return v === 'yes'; }).length;
+  var el = document.getElementById('r-result');
+  el.className = 'readiness-result show';
+  if (yes >= 4) {
+    el.classList.add('r-green');
+    el.innerHTML = '<div class="readiness-result-title">✅ Ready to launch — proceed to Phase 1</div><div class="readiness-result-text">The key conditions are in place. Start with the CCO kick-off and market as-is workshops in week 1. Do not delay — 16 weeks is tight.</div>';
+  } else if (yes >= 2) {
+    el.classList.add('r-amber');
+    el.innerHTML = '<div class="readiness-result-title">⚠️ Build foundations first — 1–2 gaps need closing</div><div class="readiness-result-text">Identify the No answers and address them in week 1 before committing to the full timeline. Missing sponsor alignment or IT capacity will derail Phase 2.</div>';
+  } else {
+    el.classList.add('r-red');
+    el.innerHTML = '<div class="readiness-result-title">🔴 Stop — critical conditions are missing</div><div class="readiness-result-text">Do not begin the pilot workplan until CCO sponsorship and market resource commitments are formally confirmed. A premature launch will damage trust and make recovery harder.</div>';
+  }
+}
+</script>
+<!-- HubSpot Analytics -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/49059754.js"></script>
+</body>
+</html>

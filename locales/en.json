@@ -1,0 +1,441 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "caseStudies": "Case Studies",
+    "playbooks": "Playbooks",
+    "keystone": "Project Keystone",
+    "about": "About",
+    "contact": "Contact",
+    "bookMeeting": "Book a Meeting"
+  },
+  "footer": {
+    "tagline": "Commercial transformation, delivered hands-on, until it sticks.",
+    "servicesHeading": "Services",
+    "companyHeading": "Company",
+    "basedInHeading": "Based in",
+    "basedInValue": "Switzerland",
+    "workingInternationally": "Working internationally",
+    "languages": "English & Deutsch",
+    "copyright": "© 2026 facilit8 — David Howes",
+    "location": "Switzerland — DACH & International",
+    "cookiesPrivacy": "Cookies & Privacy",
+    "bookMeeting": "Book a meeting"
+  },
+  "deBanner": {
+    "text": "This page is also available in German.",
+    "switchButton": "Switch to German",
+    "dismiss": "×"
+  },
+  "cookieBanner": {
+    "text": "We use cookies to power the meeting booking tool and, if you accept, to understand how visitors use this site.",
+    "managePreferences": "Manage preferences",
+    "essentialOnly": "Essential only",
+    "acceptAll": "Accept all",
+    "ariaLabel": "Cookie notice"
+  },
+  "cookies": {
+    "hero": {
+      "eyebrow": "Cookies & Privacy",
+      "heading": "How this site uses cookies",
+      "sub": "We keep this simple: no advertising cookies, and no analytics or tracking unless you choose it. Use the toggles below to set your preferences at any time."
+    },
+    "whatAreCookiesEyebrow": "What are cookies?",
+    "whatAreCookiesBody": "Cookies are small text files stored in your browser. This site uses them only where needed for core functionality. The meeting booking calendar and contact form are powered by HubSpot and are used solely to respond to your inquiry — they are not shared or used for advertising.",
+    "alwaysOn": "Always on",
+    "tableHeaders": {
+      "cookieService": "Cookie / Service",
+      "purpose": "Purpose",
+      "provider": "Provider",
+      "duration": "Duration",
+      "policy": "Policy"
+    },
+    "viewPolicy": "View policy",
+    "noActiveInCategory": "No cookies in this category are currently active. They will appear here if enabled in future.",
+    "savePreferences": "Save my preferences",
+    "preferencesSaved": "✓ Preferences saved",
+    "adminNote": "This site is operated by David Howes / facilit8, based in Switzerland. For any questions about data handling, contact",
+    "lastUpdated": "Last updated: May 2026.",
+    "categories": {
+      "essential": {
+        "name": "Essential",
+        "description": "Required for the site to work correctly. These cannot be disabled."
+      },
+      "functional": {
+        "name": "Functional",
+        "description": "Enables enhanced features. Without these, parts of the site (such as the meeting booking calendar and contact form) will not be available."
+      },
+      "analytics": {
+        "name": "Analytics & Marketing",
+        "description": "Helps understand how visitors use the site and, if enabled, supports HubSpot click and visit tracking."
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Commercial Transformation",
+      "headline1": "The technology is there.",
+      "headline2": "The results should be too.",
+      "sub": "facilit8 helps businesses unlock the commercial value of technology — through hands-on transformation that sticks.",
+      "primaryCta": "Book a Meeting",
+      "secondaryCta": "About facilit8"
+    },
+    "stats": [
+      { "label": "Years of commercial transformation" },
+      { "label": "Projects delivered" },
+      { "label": "& international" }
+    ],
+    "problem": {
+      "eyebrow": "The problem",
+      "heading": "Most businesses have the tools. Few get the results.",
+      "body": "CRM, sales automation, revenue analytics, customer data platforms — the investment is real. So why aren't the results following? Because technology alone doesn't transform commercial performance. The gap between capability and outcomes comes down to how your people, processes, and systems actually work together. And that's where most programmes fall short."
+    },
+    "whatWeDo": {
+      "eyebrow": "What we do",
+      "heading": "We close the gap between technology and commercial performance.",
+      "body1": "facilit8 works alongside your commercial teams — in your business, not above it — to turn technology investment into measurable results. From go-to-market design to sales and revenue operations, we bring senior expertise and practical delivery to every engagement.",
+      "body2": "We work with mid-market businesses, enterprise organisations, PE-backed companies, and scale-ups that are ready to make their commercial systems perform."
+    },
+    "howWeWork": {
+      "eyebrow": "How we work",
+      "heading": "Three things that make every engagement different.",
+      "card1Title": "Hands-on delivery",
+      "card1Body": "We don't hand over a deck and walk away. We work inside your organisation until the change is real and lasting.",
+      "card2Title": "Senior expertise",
+      "card2Body": "You work directly with experienced practitioners — not junior consultants managed from a distance.",
+      "card3Title": "Outcomes, not outputs",
+      "card3Body": "Every engagement is designed around measurable commercial results, not activity metrics or deliverables for their own sake."
+    },
+    "cta": {
+      "heading": "Ready to make your technology investments pay?",
+      "body": "Let's have a straightforward conversation about where you are and what's possible.",
+      "cta": "Book a Meeting"
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Services",
+      "headline": "Commercial performance, transformed.",
+      "sub": "We work across four interconnected areas — because lasting commercial change rarely comes from pulling a single lever."
+    },
+    "intro": "Technology has changed how businesses grow, sell, and serve customers. But realising that potential requires more than implementation. It requires the right strategy, the right operating model, and people who can make change happen inside a real organisation. That's what facilit8 does — hands-on, working alongside your teams from diagnosis through to measurable results.",
+    "s1heading": "Commercial Transformation",
+    "s1body": "End-to-end transformation of your commercial engine. Growth stagnation rarely has a single cause. When revenue stalls, the problem is usually systemic — disconnected teams, misaligned incentives, unclear ownership, and processes that haven't kept pace with the business.",
+    "s1b1": "Commercial diagnostics and performance reviews",
+    "s1b2": "Operating model redesign for sales and marketing",
+    "s1b3": "Change programmes with embedded delivery support",
+    "s1b4": "Capability building and team enablement",
+    "s2heading": "Technology Enablement",
+    "s2body": "Making your technology investment actually pay off. Most businesses have invested heavily in commercial technology — CRM, sales engagement platforms, customer data tools, marketing automation. Few are extracting full value from them.",
+    "s2b1": "CRM optimisation and adoption programmes",
+    "s2b2": "Sales and marketing technology audits",
+    "s2b3": "Tool consolidation and stack redesign",
+    "s2b4": "Integration of data, workflow, and reporting",
+    "s3heading": "Go-to-Market Strategy",
+    "s3body": "A sharper, more deliberate path to market. Entering a new market, launching a new product, or rethinking how you compete requires more than a slide deck.",
+    "s3b1": "Market segmentation and customer targeting",
+    "s3b2": "Value proposition development and messaging",
+    "s3b3": "Channel and partnership strategy",
+    "s3b4": "Launch planning and commercial readiness",
+    "s4heading": "Revenue Operations",
+    "s4body": "Aligning your commercial systems for predictable growth. When sales, marketing, and customer success operate in silos — with different data, different processes, and different definitions of success — revenue becomes unpredictable and hard to scale.",
+    "s4b1": "RevOps diagnostic and maturity assessment",
+    "s4b2": "Pipeline and forecasting process design",
+    "s4b3": "CRM data governance and reporting architecture",
+    "s4b4": "Cross-functional alignment and operating rhythms",
+    "howWeEngage": {
+      "eyebrow": "How we engage",
+      "heading": "Projects and partnerships — we work the way that suits you.",
+      "card1Title": "Project delivery",
+      "card1Body": "A defined programme with clear scope, milestones, and deliverables.",
+      "card2Title": "Retained partnership",
+      "card2Body": "Ongoing senior commercial and strategic support, on call without the overhead of a full-time hire."
+    },
+    "cta": {
+      "heading": "Not sure which service fits your situation?",
+      "body": "Most engagements start with a conversation. Tell us where you are — we'll be direct about whether and how we can help.",
+      "cta": "Book a Conversation"
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About",
+      "headline": "Strategy without implementation is just a document.",
+      "sub": "Commercial transformation, delivered hands-on, until it sticks."
+    },
+    "problem": {
+      "eyebrow": "The problem with how it usually works",
+      "lead": "Most consulting follows a familiar pattern.",
+      "body": "Senior people diagnose. Junior people deliver. A deck gets presented. A handover happens. And then the organisation is left to make it real — alone.",
+      "highlight": "facilit8 was created to close that gap."
+    },
+    "founder": {
+      "eyebrow": "Founder",
+      "heading": "Why I do what I do",
+      "body1": "After two decades of commercial transformation — at Capgemini, SAP, and Implement Consulting Group, and on the ground at companies like Nestlé, Clariant, and Thomas Cook — I reached a point where the most honest question I could ask myself was: where do I actually create the most value?",
+      "body2": "Over a hundred projects. B2B manufacturing, healthcare, and beyond. That experience shapes everything about how facilit8 works.",
+      "highlight": "Because transformation succeeds when people succeed.",
+      "credit": "David Howes — Founder, facilit8"
+    },
+    "beliefs": {
+      "eyebrow": "Three things I believe",
+      "b1title": "Clarity before action",
+      "b1body": "Every engagement starts with an honest diagnosis — a clear-eyed view of your specific situation.",
+      "b2title": "Implementation is the job",
+      "b2body": "Making strategy real inside a real organisation, with real people, under real pressure — that is where the work happens.",
+      "b3title": "Transformation succeeds when people succeed",
+      "b3body": "Change does not happen because people understand the logic. It happens because people feel the purpose."
+    },
+    "cta": {
+      "heading": "A conversation costs nothing.",
+      "body": "If you are facing a commercial challenge — whether fully formed or still finding its shape — I am happy to talk it through.",
+      "cta": "Book a Conversation with David"
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Contact",
+      "headline": "Let's talk.",
+      "sub": "No pitch. No proposal. Just an honest conversation about where you are and what might be possible."
+    },
+    "intro": "Whether you have a clear brief or a half-formed challenge, the best place to start is a conversation. Pick a time below, or send a message if you'd prefer to write first.",
+    "calendarBlocked": "The meeting calendar uses functional cookies, which you have not yet accepted.",
+    "formBlocked": "The contact form uses functional cookies, which you have not yet accepted.",
+    "manageCookies": "Manage cookie preferences",
+    "writeFirst": {
+      "eyebrow": "Prefer to write first?",
+      "heading": "Send a message."
+    },
+    "details": {
+      "eyebrow": "Details",
+      "founderLabel": "Founder",
+      "basedInLabel": "Based in",
+      "languagesLabel": "Languages",
+      "emailLabel": "Email",
+      "founderValue": "David Howes",
+      "basedInValue": "Switzerland",
+      "languagesValue": "English & Deutsch"
+    }
+  },
+  "projects": {
+    "hero": {
+      "eyebrow": "Projects",
+      "heading": "A track record across industries — and the work behind it.",
+      "sub": "A selection of engagements from over twenty years of commercial transformation. Hover any tile to see the project and what was delivered. Use the filters to narrow by industry or service area."
+    },
+    "filters": {
+      "industryLabel": "Industry",
+      "serviceLabel": "Service",
+      "allIndustries": "All industries",
+      "clearFilters": "Clear filters",
+      "ariaLabel": "Project filters",
+      "industryAriaLabel": "Filter by industry"
+    },
+    "count": {
+      "of": "of",
+      "project": "project",
+      "projects": "projects"
+    },
+    "tile": {
+      "projectLabel": "Project"
+    },
+    "empty": {
+      "heading": "No projects match those filters.",
+      "body": "Try widening the industry or removing a service filter.",
+      "clearFilters": "Clear filters"
+    },
+    "cta": {
+      "heading": "See a project that looks like your situation?",
+      "body": "Most engagements start with a conversation. Tell us where you are — we will be direct about whether and how we can help.",
+      "cta": "Book a Conversation"
+    }
+  },
+  "playbooks": {
+    "hero": {
+      "eyebrow": "Playbooks",
+      "heading": "Practical playbooks for commercial leaders.",
+      "sub": "Short, opinionated guides drawn from twenty years of commercial transformation. Each one is written for a specific role and a specific situation — the kind of work you can actually pick up and use on a Monday morning."
+    },
+    "intro": {
+      "availableNow": "available now",
+      "comingSoon": "coming soon",
+      "author": "Written by David Howes · facilit8"
+    },
+    "comingSoonChip": "Coming soon",
+    "cta": {
+      "heading": "A conversation costs nothing.",
+      "body": "If one of these playbooks reflects a situation you're in — or close to one — book a time to talk it through with David.",
+      "cta": "Book a Conversation"
+    }
+  },
+  "playbookDetail": {
+    "notFound": {
+      "heading": "Playbook not found.",
+      "body": "The link you followed didn't match a playbook we publish.",
+      "backButton": "Back to playbooks"
+    },
+    "comingSoon": {
+      "chip": "Coming soon",
+      "getNotified": "Get notified when it's published",
+      "backLink": "Back to all playbooks"
+    },
+    "meta": {
+      "audience": "Audience",
+      "cadence": "Cadence",
+      "readTime": "Read time",
+      "format": "Format",
+      "horizon": "Horizon",
+      "markets": "Markets",
+      "scope": "Scope",
+      "series": "Series"
+    },
+    "breadcrumb": "Playbooks",
+    "talkThrough": {
+      "heading": "Talk it through",
+      "body": "Most engagements start with a thirty-minute conversation. Tell us where you are and what you're trying to achieve — we'll be direct about whether and how we can help.",
+      "cta": "Book a Conversation"
+    },
+    "requestAccessRail": {
+      "heading": "Request access",
+      "bodyCL": "This playbook is shared privately. Get in touch to receive your access code and talk through how the capability-lens framework applies to your open roles.",
+      "bodyPL": "This playbook is shared privately. Get in touch to receive your access code and talk through how the framework applies to your situation.",
+      "cta": "Contact facilit8"
+    },
+    "writtenBy": "Written by David Howes — Founder, facilit8. Switzerland · DACH & international.",
+    "actions": {
+      "bookConversation": "Book a Conversation",
+      "openPlaybook": "Open Interactive Playbook",
+      "openPlaybookLocked": "Open Playbook 🔒",
+      "readExtract": "Read Extract of Playbook",
+      "requestAccess": "Request Access"
+    },
+    "cioAgileCta": {
+      "heading": "IT delivery that the CFO talks about.",
+      "body": "A conversation costs nothing. We'll tell you straight whether this playbook fits — or whether something else will get you further.",
+      "cta": "Book a Conversation"
+    },
+    "rescueRolloutCta": {
+      "heading": "Programmes are recovered by people, not plans.",
+      "body": "The turnaround actions in this playbook only work if the right people own them. A 30-minute conversation will tell you whether you have them in place — and what to do if you don't.",
+      "cta": "Book a Conversation"
+    },
+    "capabilityLensCta": {
+      "heading": "An open commercial role? Run it through the lens.",
+      "body": "A 30-minute conversation with David can show you how the capability-lens framework applies to your next open role — and how to build a repeatable process around it.",
+      "cta": "Book a Conversation"
+    },
+    "pilotLeadRailBody": "This playbook is shared privately. Get in touch to receive your access code and talk through how the framework applies to your situation.",
+    "pilotLeadCta": {
+      "heading": "Running a lead harmonisation pilot?",
+      "body": "A 30-minute conversation with David can tell you whether this framework fits your situation — or what to adapt for your markets.",
+      "cta": "Book a Conversation"
+    },
+    "cmoFirefighterCta": {
+      "heading": "Have a different cash problem?",
+      "body": "A conversation costs nothing. We'll tell you straight whether this playbook fits — or whether something else will get you further.",
+      "cta": "Book a Conversation"
+    }
+  },
+  "keystone": {
+    "hero": {
+      "eyebrow": "Project Keystone",
+      "headline": "What needs to be true for an SME to operate at full organisational potential?",
+      "sub1": "Most businesses have more potential than they are realising. Not because of poor leadership. Not because of bad people. Because of the invisible gap between what an organisation has — and what it has actually managed to make work together.",
+      "sub2": "Project Keystone is a practitioner-built framework for finding that gap. And compounding past it.",
+      "cta": "Request a conversation"
+    },
+    "diagStrip": {
+      "eyebrow": "The question that opens everything",
+      "question": "\"What percentage of your organisation's potential do you think you are currently realising?\"",
+      "note": "Nobody answers 100%. The gap between their answer and 100% is the entire business case — made by them, before a single slide has been shown. For an SME, where there is no resource to waste, that gap has a real cost, every quarter."
+    },
+    "compoundStrategies": {
+      "eyebrow": "Start here",
+      "heading": "Most approaches help businesses add. Project Keystone helps SME businesses compound unrealised potential.",
+      "lead": "There is a fundamental difference between improving things one at a time — and choosing a thread that runs through everything simultaneously.",
+      "body1": "A Compound Strategy is that thread — the Rote Faden. It connects decisions at the Operating level to the forces that determine whether those decisions actually deliver their expected value: trust, psychological safety, shared ownership. These are the Quantum forces present in every project, every leadership team, every CEO's need for lasting change.",
+      "body2": "Compound Strategies are rare precisely because most organisations are structured to prevent them. Every function optimises for its own results. Every initiative competes for attention. The thread that could run through everything is cut before it is ever chosen. Keystone is designed to find and hold that thread.",
+      "body3": "The result: a series of individual improvements that build on each other, quarter after quarter, rather than resetting to zero each time a new priority arrives.",
+      "pullQuote": "\"Most approaches help businesses add. Project Keystone helps SME businesses compound unrealised potential.\"",
+      "whatMakesHeading": "What makes a strategy compound?",
+      "whatMakesBody1": "The most powerful strategies improve an Operating Enabler and strengthen a Quantum Enabler simultaneously. One move. Two layers. Multiplying effect.",
+      "whatMakesBody2": "A hiring decision that brings in capability and models the psychological safety the organisation is trying to build. A customer feedback process that improves service and strengthens Trust Capital in the leadership team. A technology rollout that unlocks efficiency and demonstrates Purpose Coherence.",
+      "whatMakesBody3": "These are not accidents. They are designed. And designing them requires seeing both layers at once.",
+      "chartEyebrow": "Adding vs. Compounding — over 8 quarters"
+    },
+    "quantumEnablers": {
+      "eyebrow": "Layer 2 — The five forces your P&L doesn't capture",
+      "heading": "What the business is. Not just what it does.",
+      "lead": "Every business has five invisible forces that determine whether its Operating decisions generate enduring returns — or just noise. They are harder to measure than revenue. Impossible to fake when leaders leave the room. And the ultimate determinant of whether your organisation compounds or fragments under pressure.",
+      "intro": "We call them the Quantum Enablers.",
+      "pullQuote": "\"Operating Enablers are the stones in the arch. Quantum Enablers are the forces that determine whether the arch stands for a year — or a century.\"",
+      "orbNote": "The five Quantum Enablers are revealed in the first conversation — not before it.",
+      "resistHeading": "They resist easy measurement",
+      "resistBody1": "Ask a leadership team to score psychological safety in a room where psychological safety is low — and you will get scores that reflect the lack of safety, not the reality. This is the observer effect applied to culture.",
+      "resistBody2": "A room where Governance & Ownership is scored at 8 because scoring it at 4 feels like blame — that room has just shown you its psychological safety level more accurately than any survey instrument could.",
+      "resistBody3": "Keystone reads these Quantum Enablers indirectly — through the pattern of Operating Enabler scores, the quality of the conversation, and the honesty of trade-off choices. The pattern is always honest, even when the scores are not."
+    },
+    "operatingEnablers": {
+      "eyebrow": "Layer 1 — What your business does",
+      "heading": "Ten levers. Most projects pull one at a time.",
+      "lead": "The Keystone framework maps ten Operating Enablers across three clusters: Commercial Operations, Transformation Strategy, and Customer Experience.",
+      "body1": "Each enabler sits on a maturity continuum — from a named low state to a named high state. Together they describe the full operating landscape of an SME: what the business does, how well it does it, and where the unrealised potential is concentrated.",
+      "body2": "Most projects address one or two of these at a time. Keystone works across all ten simultaneously — showing a leader which combination is holding the most energy in their specific organisation, and which single thread, pulled now, would release the most.",
+      "cluster1label": "Cluster 1",
+      "cluster1title": "Commercial Operations",
+      "cluster1body": "How the business generates and retains revenue — the engine room of commercial performance.",
+      "cluster2label": "Cluster 2",
+      "cluster2title": "Transformation Strategy",
+      "cluster2body": "How the business changes — its capacity to adapt, invest, and execute against a strategic direction.",
+      "cluster3label": "Cluster 3",
+      "cluster3title": "Customer Experience",
+      "cluster3body": "How the business serves — the interface between organisational capability and customer outcome.",
+      "clusterNote": "The individual enablers within each cluster are shared in the first session — not before it."
+    },
+    "lego": {
+      "eyebrow": "Worth watching",
+      "heading": "Complexity is the enemy of compounding.",
+      "body1": "Although not an SME, this brings to life what good looks like — what Project Keystone is all about.",
+      "body2": "LEGO lost their operating thread. They over-expanded, created complexity they could not manage, and compounded in the wrong direction. Getting back on track required exactly the kind of honest, cross-functional reckoning that Keystone is designed to surface.",
+      "tip": "Tip: start at 4 minutes to save a little time — that's where it gets to the substance.",
+      "videoCaption": "Opens on the IMD website."
+    },
+    "pulseCheck": {
+      "eyebrow": "The ritual",
+      "heading": "The question we ask every CEO before we design a single session.",
+      "question": "\"If I asked each member of your leadership team to score your business honestly — completely anonymously — how different do you think their answers would be from what they would say in the room together?\"",
+      "questionNote": "The length of the pause before the answer is itself insightful.",
+      "body1": "The Keystone Pulse Check is a quarterly habit that efficiently measures where your organisation sits across all 15 enablers — and surfaces the gaps that are not being talked about in normal business reviews. Where a deeper dive is needed, it provides the diagnostic foundation for laser-focused action.",
+      "body2": "Not because your leaders do not know. But because the conditions for honest conversation do not always exist. And when they do not, even the most capable leadership team produces consensus rather than genuine strategy.",
+      "body3": "The Keystone Pulse Check begins with a private conversation with the CEO or Owner. It results in a leadership team that has sat together, scored honestly, made real trade-offs — and left with Compound Strategies they collectively own.",
+      "pullQuote": "\"An arch does not need every stone to be perfect. It needs the right stone in the right place — and a room honest enough to collectively agree where.\"",
+      "stagesHeading": "Three organisational stages. One direction.",
+      "stage1num": "01", "stage1label": "Activation",
+      "stage2num": "02", "stage2label": "Traction",
+      "stage3num": "03", "stage3label": "Coherence",
+      "stage4num": "04", "stage4label": "Compound Returns"
+    },
+    "aiLens": {
+      "eyebrow": "The AI lens — across all 15 enablers",
+      "heading": "AI is an accelerant. Not a keystone.",
+      "lead": "AI accelerates whatever fitness level your organisation already has. It does not create fitness. It does not create coherence. It does not create trust.",
+      "body1": "A coherent organisation uses AI as part of its Compound Strategies — doing more of what is already working, faster and at greater scale. A fragmented organisation uses AI to accelerate its own distrust, discord, and decoherence.",
+      "body2": "The question for every SME right now is not whether to adopt AI. That question has already been answered. The question is: what does your organisation need so that AI makes you stronger rather than faster at the wrong things?",
+      "pullQuote": "\"A coherent organisation uses AI to compound. A fragmented organisation uses AI to accelerate its own disaster.\"",
+      "path1label": "Coherent organisation + AI",
+      "path1title": "Compound returns",
+      "path1body": "Operating and Quantum Enablers in alignment. AI amplifies what is already working — at speed and at scale.",
+      "path2label": "Fragmented organisation + AI",
+      "path2title": "Accelerated decoherence",
+      "path2body": "Distrust, misalignment, and unclear ownership — moving faster in the wrong direction.",
+      "body3": "Project Keystone applies an AI lens across all 15 enablers — not as a separate module, but as a filter woven through the entire framework. For each enabler, the question is not \"are you using AI here?\" but \"what does high fitness look like in an AI-enabled world — and what happens when AI arrives before that fitness is there?\""
+    },
+    "cta": {
+      "sub": "Are you adding — or compounding?",
+      "heading": "Project Keystone begins with one question and a conversation.",
+      "body": "What comes next depends on what the room reveals.",
+      "note": "Project Keystone is available to a small number of organisations. It is not a programme you buy. It is a conversation you request.",
+      "cta": "Request a conversation"
+    }
+  }
+}

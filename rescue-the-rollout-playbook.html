@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rescue the Rollout — Commercial Transformation Turnaround Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --f8-blue:#0070C0;--f8-blue-bright:#0090E7;--f8-blue-deep:#005896;--f8-blue-tint:#E8F4FC;
+  --f8-navy:#0A1628;--f8-navy-2:#142238;
+  --f8-teal:#007B8A;--f8-teal-tint:#E6F4F6;
+  --f8-amber:#B86A00;--f8-amber-tint:#FFF4E0;
+  --f8-green:#1A6B3A;--f8-green-tint:#EAF6EE;
+  --f8-purple:#5B3FA6;--f8-purple-tint:#F2EFFF;
+  --f8-rose:#9B1D4A;--f8-rose-tint:#FCEEF4;
+  --f8-red:#C0392B;--f8-red-tint:#FDEEEC;
+  --f8-slate:#3D5166;--f8-slate-tint:#EDF1F5;
+  --f8-off-white:#F5F7FA;--f8-fog:#E6ECF2;--f8-mist:#C9D2DD;
+  --f8-grey:#6B7A99;--f8-ink:#1A1A2E;--f8-ink-soft:#3A3F55;
+  --font-sans:'Inter',system-ui,sans-serif;
+  --r-md:8px;--r-lg:12px;--r-xl:16px;
+  --shadow-1:0 1px 3px rgba(10,22,40,0.06);
+  --shadow-2:0 4px 16px rgba(10,22,40,0.08),0 1px 3px rgba(10,22,40,0.04);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-sans);background:var(--f8-off-white);color:var(--f8-ink);padding:36px 24px 60px;-webkit-font-smoothing:antialiased;}
+.header{max-width:920px;margin:0 auto 28px;}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--f8-blue);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--f8-blue-bright);flex-shrink:0;}
+h1{font-size:clamp(26px,4vw,42px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;color:var(--f8-navy);margin-bottom:14px;}
+h1 em{font-style:italic;color:var(--f8-blue);font-weight:700;}
+.subtitle{font-size:15px;color:var(--f8-ink-soft);max-width:680px;line-height:1.7;}
+.role-legend{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;align-items:center;}
+.role-legend-label{font-size:11px;font-weight:600;color:var(--f8-grey);text-transform:uppercase;letter-spacing:0.1em;}
+.role-pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:0.07em;padding:4px 10px;border-radius:20px;text-transform:uppercase;}
+.role-pill-cio{background:#EEF6FF;color:var(--f8-blue-deep);border:1px solid #B3D8F4;}
+.role-pill-po{background:var(--f8-rose-tint);color:var(--f8-rose);border:1px solid #F0B8CE;}
+.role-pill-both{background:var(--f8-purple-tint);color:var(--f8-purple);border:1px solid #C9BFF0;}
+.role-pill-sm{background:var(--f8-slate-tint);color:var(--f8-slate);border:1px solid #B8C8D8;}
+.role-pill-dot{width:6px;height:6px;border-radius:50%;}
+.role-pill-cio .role-pill-dot{background:var(--f8-blue);}
+.role-pill-po .role-pill-dot{background:var(--f8-rose);}
+.role-pill-both .role-pill-dot{background:var(--f8-purple);}
+.role-pill-sm .role-pill-dot{background:var(--f8-slate);}
+.version-tag{font-size:10px;color:var(--f8-grey);margin-top:10px;letter-spacing:0.05em;}
+/* READINESS */
+.readiness-wrap{max-width:920px;margin:0 auto 24px;border:2px solid var(--f8-blue);border-radius:var(--r-xl);overflow:hidden;}
+.readiness-header{background:var(--f8-blue);padding:16px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:12px;}
+.readiness-badge{background:rgba(255,255,255,0.2);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;}
+.readiness-title{font-size:14px;font-weight:700;color:#fff;}
+.readiness-subtitle{font-size:12px;color:rgba(255,255,255,0.75);margin-top:2px;}
+.readiness-chevron{color:#fff;font-size:18px;transition:transform 0.2s;flex-shrink:0;}
+.readiness-wrap.open .readiness-chevron{transform:rotate(180deg);}
+.readiness-body{display:none;background:#fff;padding:22px 24px;}
+.readiness-wrap.open .readiness-body{display:block;}
+.readiness-intro{font-size:13.5px;color:var(--f8-ink-soft);line-height:1.65;margin-bottom:18px;}
+.rq-list{display:grid;gap:10px;margin-bottom:20px;}
+.rq-item{display:flex;align-items:flex-start;gap:14px;padding:12px 16px;border-radius:var(--r-md);border:1.5px solid var(--f8-fog);}
+.rq-item.yes{border-color:var(--f8-green);background:var(--f8-green-tint);}
+.rq-item.no{border-color:var(--f8-red);background:var(--f8-red-tint);}
+.rq-num{font-size:11px;font-weight:700;color:var(--f8-grey);width:18px;flex-shrink:0;padding-top:2px;}
+.rq-text{font-size:13.5px;color:var(--f8-ink);line-height:1.5;flex:1;}
+.rq-btns{display:flex;gap:6px;flex-shrink:0;}
+.rq-btn{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid var(--f8-mist);background:transparent;cursor:pointer;color:var(--f8-grey);font-family:var(--font-sans);transition:all 0.15s;}
+.rq-btn:hover{border-color:var(--f8-blue);color:var(--f8-blue);}
+.rq-btn.selected-yes{background:var(--f8-green);border-color:var(--f8-green);color:#fff;}
+.rq-btn.selected-no{background:var(--f8-red);border-color:var(--f8-red);color:#fff;}
+.readiness-result{display:none;padding:16px 20px;border-radius:var(--r-md);}
+.readiness-result.show{display:block;}
+.readiness-result.r-green{background:var(--f8-green-tint);border-left:4px solid var(--f8-green);}
+.readiness-result.r-amber{background:var(--f8-amber-tint);border-left:4px solid var(--f8-amber);}
+.readiness-result.r-red{background:var(--f8-red-tint);border-left:4px solid var(--f8-red);}
+.readiness-result-title{font-size:13px;font-weight:700;margin-bottom:5px;}
+.r-green .readiness-result-title{color:var(--f8-green);}
+.r-amber .readiness-result-title{color:var(--f8-amber);}
+.r-red .readiness-result-title{color:var(--f8-red);}
+.readiness-result-text{font-size:13px;line-height:1.6;}
+.r-green .readiness-result-text{color:#155c30;}
+.r-amber .readiness-result-text{color:#7a4500;}
+.r-red .readiness-result-text{color:#8b2218;}
+/* PRIMER */
+.primer-banner{max-width:920px;margin:0 auto 28px;background:var(--f8-navy);border-radius:var(--r-lg);padding:20px 26px;display:flex;gap:16px;align-items:flex-start;}
+.primer-icon{font-size:26px;flex-shrink:0;margin-top:2px;}
+.primer-body{flex:1;}
+.primer-title{font-weight:700;font-size:14px;color:#fff;margin-bottom:6px;}
+.primer-text{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;}
+.primer-text strong{color:#fff;font-weight:600;}
+/* TABS */
+.tabs{max-width:920px;margin:0 auto 28px;display:flex;flex-wrap:wrap;gap:8px;}
+.tab{padding:8px 16px;border-radius:40px;border:1.5px solid var(--f8-mist);background:transparent;font-family:var(--font-sans);font-size:13px;font-weight:500;color:var(--f8-grey);cursor:pointer;transition:all 0.18s ease;white-space:nowrap;}
+.tab:hover{border-color:var(--f8-blue);color:var(--f8-blue);}
+.tab.active{background:var(--f8-navy);border-color:var(--f8-navy);color:#fff;}
+.tab.seq-tab{border-color:var(--f8-blue);color:var(--f8-blue);font-weight:600;}
+.tab.seq-tab.active{background:var(--f8-blue);border-color:var(--f8-blue);color:#fff;}
+.tab.sponsor-tab.active{background:var(--f8-teal);border-color:var(--f8-teal);}
+.tab.trust-tab{border-color:var(--f8-rose);color:var(--f8-rose);font-weight:600;}
+.tab.trust-tab.active{background:var(--f8-rose);border-color:var(--f8-rose);color:#fff;}
+/* SECTIONS */
+.sections{max-width:920px;margin:0 auto;}
+.section{display:none;}
+.section.visible{display:block;}
+.section-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid var(--f8-navy);}
+.section-icon{width:44px;height:44px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:var(--f8-navy);}
+.seq-section .section-icon{background:var(--f8-blue);}
+.sponsor-section .section-icon{background:var(--f8-teal);}
+.trust-section .section-icon{background:var(--f8-rose);}
+.section-title{font-size:21px;font-weight:700;color:var(--f8-navy);margin-bottom:3px;letter-spacing:-0.01em;}
+.section-desc{font-size:13px;color:var(--f8-grey);}
+/* CARDS */
+.actions-grid{display:grid;gap:12px;}
+.action-card{background:#fff;border-radius:var(--r-lg);padding:20px 22px;border-left:4px solid var(--f8-blue);box-shadow:var(--shadow-1);transition:box-shadow 0.2s ease;}
+.action-card:hover{box-shadow:var(--shadow-2);}
+.sponsor-section .action-card{border-left-color:var(--f8-teal);}
+.seq-section .action-card{border-left-color:var(--f8-blue-bright);}
+.trust-section .action-card{border-left-color:var(--f8-rose);}
+.action-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.action-title{font-weight:600;font-size:15px;color:var(--f8-navy);line-height:1.3;}
+.badges{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end;}
+.badge{font-size:10px;font-weight:700;letter-spacing:0.07em;padding:3px 8px;border-radius:20px;text-transform:uppercase;white-space:nowrap;}
+.badge-sprint{background:var(--f8-blue-tint);color:var(--f8-blue-deep);}
+.badge-quarter{background:var(--f8-amber-tint);color:var(--f8-amber);}
+.badge-impact{background:var(--f8-purple-tint);color:var(--f8-purple);}
+.badge-cio{background:#EEF6FF;color:var(--f8-blue-deep);border:1px solid #B3D8F4;}
+.badge-po{background:var(--f8-rose-tint);color:var(--f8-rose);border:1px solid #F0B8CE;}
+.badge-both{background:var(--f8-purple-tint);color:var(--f8-purple);border:1px solid #C9BFF0;}
+.badge-sm{background:var(--f8-slate-tint);color:var(--f8-slate);border:1px solid #B8C8D8;}
+.badge-rel{background:var(--f8-red-tint);color:var(--f8-red);border:1px solid #F5C5BF;}
+.action-body{font-size:13.5px;color:#444;line-height:1.7;}
+.action-body strong{font-weight:600;color:var(--f8-navy);}
+/* NOTES */
+.note{margin-top:11px;padding:9px 13px;border-radius:var(--r-md);font-size:12.5px;line-height:1.55;}
+.note strong{font-weight:700;}
+.note-green{background:var(--f8-green-tint);border-left:3px solid var(--f8-green);color:#155c30;}
+.note-green strong{color:var(--f8-green);}
+.note-amber{background:var(--f8-amber-tint);border-left:3px solid var(--f8-amber);color:#7a4500;}
+.note-amber strong{color:var(--f8-amber);}
+.note-red{background:var(--f8-red-tint);border-left:3px solid var(--f8-red);color:#8b2218;}
+.note-red strong{color:var(--f8-red);}
+.note-purple{background:var(--f8-purple-tint);border-left:3px solid var(--f8-purple);color:#3d2880;}
+.note-purple strong{color:var(--f8-purple);}
+.note-slate{background:var(--f8-slate-tint);border-left:3px solid var(--f8-slate);color:#2c3d4f;}
+.note-slate strong{color:var(--f8-slate);}
+/* SEQUENCE */
+.seq-step{background:#fff;border-radius:var(--r-lg);padding:20px 22px;display:flex;gap:18px;align-items:flex-start;box-shadow:var(--shadow-1);}
+.seq-step+.seq-step{margin-top:12px;}
+.seq-num{width:36px;height:36px;border-radius:50%;background:var(--f8-blue);color:#fff;font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.seq-content{flex:1;}
+.seq-meta{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--f8-blue);margin-bottom:5px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.seq-title{font-weight:700;font-size:15px;color:var(--f8-navy);margin-bottom:6px;}
+.seq-body{font-size:13.5px;color:#444;line-height:1.65;}
+.seq-body strong{font-weight:600;color:var(--f8-navy);}
+.timing-tracks{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px;}
+.track{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;}
+.track-sme{background:var(--f8-blue-tint);color:var(--f8-blue-deep);}
+.track-ent{background:var(--f8-slate-tint);color:var(--f8-slate);}
+/* RULE BOX */
+.rule-box{border-radius:var(--r-lg);padding:16px 22px;margin-bottom:22px;display:flex;gap:14px;align-items:center;}
+.rule-box-blue{background:var(--f8-blue);}
+.rule-box-slate{background:var(--f8-slate);}
+.rule-box-teal{background:var(--f8-teal);}
+.rule-box-rose{background:var(--f8-rose);}
+.rule-box-icon{font-size:24px;flex-shrink:0;}
+.rule-box-text{font-size:13.5px;color:#fff;line-height:1.6;}
+.rule-box-text strong{font-weight:700;}
+/* PERSONA CARDS */
+.persona-card{background:#fff;border-radius:var(--r-lg);padding:20px 22px;box-shadow:var(--shadow-1);border-top:3px solid var(--f8-rose);}
+.persona-card+.persona-card{margin-top:12px;}
+.persona-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.persona-icon{width:42px;height:42px;border-radius:50%;background:var(--f8-rose-tint);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.persona-name{font-weight:700;font-size:15px;color:var(--f8-navy);}
+.persona-pain{font-size:12px;color:var(--f8-grey);margin-top:2px;}
+.persona-body{font-size:13.5px;color:#444;line-height:1.65;}
+.persona-body strong{font-weight:600;color:var(--f8-navy);}
+.invite-script{margin-top:12px;padding:13px 16px;background:var(--f8-off-white);border-radius:var(--r-md);border:1px solid var(--f8-fog);}
+.invite-script-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--f8-slate);margin-bottom:7px;}
+.invite-script-text{font-size:13px;color:var(--f8-ink-soft);line-height:1.6;font-style:italic;}
+.invite-script-text em{font-style:normal;font-weight:600;color:var(--f8-navy);}
+.culture-note{margin-top:7px;font-size:12px;color:var(--f8-grey);font-style:italic;}
+/* KEYSTONE TABLE */
+.ks-table{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-1);margin-top:0;}
+.ks-table th{background:var(--f8-navy);color:#fff;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:11px 14px;text-align:left;}
+.ks-table td{padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--f8-fog);vertical-align:top;line-height:1.5;}
+.ks-table tr:last-child td{border-bottom:none;}
+.ks-table tr:hover td{background:var(--f8-off-white);}
+.ks-section-row td{background:var(--f8-navy-2);color:rgba(255,255,255,0.85);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:7px 14px;}
+.ks-q{color:var(--f8-ink);font-weight:500;}
+.ks-freq{color:var(--f8-grey);font-size:11.5px;}
+.ks-who{color:var(--f8-blue-deep);font-size:11.5px;font-weight:600;}
+.ks-el{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:2px 7px;border-radius:10px;}
+.ks-acc{background:var(--f8-blue-tint);color:var(--f8-blue-deep);}
+.ks-out{background:var(--f8-teal-tint);color:var(--f8-teal);}
+.ks-rhy{background:var(--f8-amber-tint);color:var(--f8-amber);}
+.ks-tra{background:var(--f8-slate-tint);color:var(--f8-slate);}
+.ks-ali{background:var(--f8-purple-tint);color:var(--f8-purple);}
+.ks-qw{background:var(--f8-green-tint);color:var(--f8-green);}
+.ks-cap{background:var(--f8-rose-tint);color:var(--f8-rose);}
+/* STAT STRIP */
+.stat-strip{display:flex;margin-top:44px;background:var(--f8-navy);border-radius:var(--r-lg);overflow:hidden;max-width:920px;margin-left:auto;margin-right:auto;}
+.stat-item{flex:1;padding:22px 20px;border-right:1px solid rgba(255,255,255,0.08);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-size:28px;font-weight:800;color:var(--f8-blue-bright);letter-spacing:-0.03em;line-height:1;}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;line-height:1.4;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="eyebrow"><span class="eyebrow-dot"></span>facilit8 · Commercial Transformation · Turnaround Programme Edition</div>
+  <h1>Rescue the <em>Rollout:</em><br>The Programme Director &amp; Sponsor Playbook<br>for Commercial Transformation Recovery</h1>
+  <p class="subtitle">A structured 6-month recovery framework for Programme Directors, PMO and Sponsors turning around a stalled multi-platform CRM, Customer Engagement, integration middleware and ERP programme.</p>
+  <div class="role-legend">
+    <span class="role-legend-label">Role guide:</span>
+    <span class="role-pill role-pill-cio"><span class="role-pill-dot"></span>Programme Director / Sponsor</span>
+    <span class="role-pill role-pill-po"><span class="role-pill-dot"></span>PMO / Analyst / Architect</span>
+    <span class="role-pill role-pill-sm"><span class="role-pill-dot"></span>Change Lead / Scrum Master</span>
+    <span class="role-pill role-pill-both"><span class="role-pill-dot"></span>Shared</span>
+  </div>
+  <div class="version-tag">v1 — facilit8 · Commercial Turnaround Series · 2026</div>
+</div>
+
+<!-- READINESS CHECK -->
+<div class="readiness-wrap" id="readiness">
+  <div class="readiness-header" onclick="toggleReadiness()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span class="readiness-badge">Step 0</span>
+      <div>
+        <div class="readiness-title">Turnaround Readiness Check — Complete Before Deploying Any Action</div>
+        <div class="readiness-subtitle">5 questions · 2 minutes · tells you where to start</div>
+      </div>
+    </div>
+    <span class="readiness-chevron">▾</span>
+  </div>
+  <div class="readiness-body">
+    <p class="readiness-intro">Actions deployed into a broken governance structure accelerate failure, not recovery. Answer these honestly — this is diagnostic, not a scorecard. The result tells you which tab to open first.</p>
+    <div class="rq-list">
+      <div class="rq-item" id="rq1"><div class="rq-num">Q1</div><div class="rq-text">Is there a single named, accountable executive sponsor who can make binding programme decisions without referring upward?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq1','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq1','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq2"><div class="rq-num">Q2</div><div class="rq-text">Has the MVP scope been formally agreed in writing — with a signed scope freeze — by both sponsor and delivery leads?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq2','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq2','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq3"><div class="rq-num">Q3</div><div class="rq-text">Do you have named, confirmed workstream leads for all delivery streams (CRM platform, Customer Engagement platform, integration middleware, ERP system, Data, PMO, Change)?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq3','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq3','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq4"><div class="rq-num">Q4</div><div class="rq-text">Is there a live RAG status dashboard that honestly reflects programme reality — not one persistently amber-green to avoid difficult conversations?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq4','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq4','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq5"><div class="rq-num">Q5</div><div class="rq-text">Has the full delivery team been formally reset — with a visible shared commitment to the turnaround plan — not just told to carry on?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq5','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq5','no',this)">No</button></div></div>
+    </div>
+    <div class="readiness-result" id="r-result"></div>
+  </div>
+</div>
+
+<!-- PRIMER -->
+<div class="primer-banner">
+  <div class="primer-icon">🧭</div>
+  <div class="primer-body">
+    <div class="primer-title">The one truth every turnaround leader must hold before acting</div>
+    <div class="primer-text">Most commercial transformation failures are <strong>governance failures wearing a technology costume.</strong> The code, config and integrations rarely cause the crisis — missing accountability, diffused ownership and undiscussable bad news do. Fix those first. The technical problems become soluble once you can have honest conversations and make binding decisions.</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab seq-tab active" onclick="show('sequence',this)">⚡ Start Here</button>
+  <button class="tab sponsor-tab" onclick="show('sponsors',this)">🏛 Sponsors</button>
+  <button class="tab" onclick="show('users',this)">👥 Users &amp; Change</button>
+  <button class="tab" onclick="show('processes',this)">🔄 Processes</button>
+  <button class="tab" onclick="show('apps',this)">🖥 Applications</button>
+  <button class="tab" onclick="show('data',this)">🗄 Data</button>
+  <button class="tab" onclick="show('team',this)">🧩 Project Team</button>
+  <button class="tab trust-tab" onclick="show('trust',this)">🎯 Rebuild Trust</button>
+</div>
+
+<div class="sections">
+
+<!-- ===== START HERE ===== -->
+<div class="section seq-section visible" id="s-sequence">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div class="section-meta">
+      <div class="section-title">Sequenced Recovery: Your First 30 Days</div>
+      <div class="section-desc">Seven prioritised actions in the order that creates conditions for everything else. Each step unlocks the next — do not skip ahead.</div>
+    </div>
+  </div>
+  <div class="rule-box rule-box-blue">
+    <div class="rule-box-icon">📐</div>
+    <div class="rule-box-text"><strong>The sequence rule:</strong> Do not jump to delivery actions before governance actions are complete. A re-baselined backlog deployed into unresolved accountability gaps will fail for the same reasons the original programme did.</div>
+  </div>
+  <div class="rule-box rule-box-slate">
+    <div class="rule-box-icon">🛑</div>
+    <div class="rule-box-text"><strong>Know when to pause, not just rescue:</strong> If your readiness check scored Red on Q1 and Q2 — no named sponsor, no signed scope — deploying actions below will likely accelerate failure. The honest step may be to stop delivery, convene an emergency steering session and reset the programme charter before returning here. <strong>If governance access is blocked:</strong> Start with the Applications and Data tabs to build the evidence case that earns the sponsor conversation Step 1 requires.</div>
+  </div>
+  <div class="action-card" style="border-left-color:var(--f8-blue-bright);background:var(--f8-blue-tint);">
+    <div class="action-header">
+      <div class="action-title" style="color:var(--f8-blue-deep);">⚡ Week One Only — Three Actions If You're Overwhelmed</div>
+      <div class="badges"><span class="badge badge-sprint">Day 1–5</span><span class="badge badge-impact">Start here</span></div>
+    </div>
+    <div class="action-body">If the scale of the full playbook is daunting, start with just these three: <strong>(1) SP-09</strong> — run the sponsor workshop and name what went wrong; <strong>(2) PT-02</strong> — reset the team with direct sponsor messages; <strong>(3) PT-01</strong> — run the team health assessment so you know what you're working with. Everything else follows from these. The remaining steps below build on this foundation in the order that creates the least rework.</div>
+  </div>
+  <div class="rule-box rule-box-slate">
+    <div class="rule-box-icon">👤</div>
+    <div class="rule-box-text"><strong>Role availability assumption:</strong> All timings in this playbook assume the <strong>Programme Director, Lead Architect and SI team are 100% available from Day 1.</strong> All other roles — Change Lead, Product Owner, Business Analyst, Test Manager, PMO, Business stakeholders — are assumed <strong>part-time and may need replacing or onboarding.</strong> If a role is vacant or changing, add <strong>3–4 weeks</strong> to the start of every action that role owns before committing to a date. Assess all role gaps in Week 1 as part of PT-01 and PT-03 — this determines your actual starting position on this sequence.</div>
+  </div>
+  <div class="seq-step">
+    <div class="seq-num">1</div>
+    <div class="seq-content">
+      <div class="seq-meta">Critical · Day 1–3 · SP-09 + PT-02 <span class="badge badge-cio">Programme Director</span></div>
+      <div class="seq-title">Reset the Room — Sponsor Workshop &amp; Team Kickoff</div>
+      <div class="seq-body">Run two back-to-back facilitated sessions within the first three days. First, the <strong>Sponsor Turnaround Alignment Workshop</strong> — all sponsors acknowledge root causes without blame and publicly sign the turnaround plan. Second, the <strong>Team Reset Kickoff</strong> — the full delivery team hears the same message directly from sponsors, not filtered through management. Psychological safety is the prerequisite for honest status reporting, which is the prerequisite for recovery. Both sessions must happen before any other action. <strong>Target: complete by Day 3.</strong></div>
+      <div class="timing-tracks"><span class="track track-sme">⚡ Non-negotiable: Day 1–3</span><span class="track track-ent">🔄 Sets the tone for every subsequent action</span></div>
+      <div class="note note-green"><strong>Success looks like:</strong> Turnaround plan signed by all sponsors; team charter visible to all members; root causes named openly in both sessions.</div>
+    </div>
+  </div>
+  <div class="seq-step">
+    <div class="seq-num">2</div>
+    <div class="seq-content">
+      <div class="seq-meta">Critical · Week 1–2 · SP-01 + SP-07 + SP-04 <span class="badge badge-cio">Programme Director</span></div>
+      <div class="seq-title">Rebuild the Governance Structure</div>
+      <div class="seq-body">Reconstitute the ESC with a signed Terms of Reference covering quorum, decision rights and attendance commitment. Formally identify and brief a <strong>named Business Champion</strong> (VP Sales or COO) who will attend sprint reviews and unblock business-side issues. Define and publish the RACI matrix and escalation framework. Without this, every subsequent action will stall waiting for a decision nobody is authorised to make. <strong>Target: governance structure live by end of Week 2.</strong></div>
+      <div class="timing-tracks"><span class="track track-sme">⚡ Weeks 1–2</span><span class="track track-ent">🔄 Prerequisite for all delivery actions</span></div>
+      <div class="note note-green"><strong>Success looks like:</strong> ESC ToR signed; Business Champion named and briefed; RACI signed off; escalation path tested with a live scenario before Week 3.</div>
+    </div>
+  </div>
+  <div class="seq-step">
+    <div class="seq-num">3</div>
+    <div class="seq-content">
+      <div class="seq-meta">Critical · Week 1–2 · PT-01 + AP-01 + DA-01 <span class="badge badge-cio">Programme Director</span> <span class="badge badge-po">Lead Architect</span></div>
+      <div class="seq-title">Run Three Health Checks — Team, Technical, Data</div>
+      <div class="seq-body">Before any re-planning, establish a <strong>baseline of reality</strong> across three parallel assessments: (1) Team Health — morale, burnout risk, skills gaps and capacity per workstream; (2) Technical Health — debt, configuration risks and integration gaps across all four systems; (3) Data Quality — completeness, accuracy and duplicates in source systems. You cannot build a credible recovery plan without knowing what you are actually working with. <strong>Target: all three reports complete by end of Week 2.</strong></div>
+      <div class="timing-tracks"><span class="track track-sme">⚡ Weeks 1–2 (run in parallel)</span><span class="track track-ent">🔄 Inputs to re-baselining in Step 5</span></div>
+      <div class="note note-green"><strong>Success looks like:</strong> Three written reports with RAG status; top risks identified per domain; no major surprises after Week 4.</div>
+    </div>
+  </div>
+  <div class="seq-step">
+    <div class="seq-num">4</div>
+    <div class="seq-content">
+      <div class="seq-meta">Critical · Week 2–3 · SP-03 + US-01 <span class="badge badge-po">PMO</span> <span class="badge badge-sm">Change Lead</span></div>
+      <div class="seq-title">Map the Stakeholder &amp; User Landscape</div>
+      <div class="seq-body">Map all key stakeholders — C-Suite, business leads, IT, vendors — on a power/interest matrix and define a tailored engagement strategy per quadrant. Simultaneously, survey and interview user groups across Sales, Operations and Finance to assess <strong>change readiness, resistance levels and current understanding</strong> of the new systems. Stakeholders left unmapped tend to surface as blockers at the worst possible moments. <strong>Target: both maps complete by end of Week 2.</strong></div>
+      <div class="timing-tracks"><span class="track track-sme">⚡ Weeks 1–2</span><span class="track track-ent">🔄 Feeds engagement plan and change strategy</span></div>
+      <div class="note note-green"><strong>Success looks like:</strong> Power/interest map produced; engagement plan active for top 10 stakeholders; user readiness report with resistance hotspots by department.</div>
+    </div>
+  </div>
+  <div class="seq-step">
+    <div class="seq-num">5</div>
+    <div class="seq-content">
+      <div class="seq-meta">Critical · Week 2–3 · SP-02 + SP-06 + AP-04 <span class="badge badge-both">Shared</span></div>
+      <div class="seq-title">Re-baseline the Plan — Charter, Scope &amp; Backlog</div>
+      <div class="seq-body">With health check outputs in hand, redocument the business case with updated costs, benefits and success metrics. Run a re-scoping workshop to agree the <strong>MVP definition, Phase 2 boundary and revised 6-month plan</strong> — produce a signed scope freeze document, not a slide deck. Then re-prioritise both CRM and Customer Engagement platforms backlogs: remove out-of-scope items, re-estimate remaining work and match sprint capacity to the revised backlog. Everything is a guess until the scope is signed. <strong>Target: scope freeze signed by end of Week 3.</strong></div>
+      <div class="timing-tracks"><span class="track track-sme">⚡ Weeks 2–3</span><span class="track track-ent">🔄 Nothing else is credible until scope is frozen</span></div>
+      <div class="note note-green"><strong>Success looks like:</strong> Updated charter signed by sponsor; MVP scope document signed; backlog refined with sprint capacity matched.</div>
+    </div>
+  </div>
+  <div class="seq-step">
+    <div class="seq-num">6</div>
+    <div class="seq-content">
+      <div class="seq-meta">Critical · Week 1–3 · PT-03 + PT-05 + PT-06 <span class="badge badge-both">Programme Director + Sponsor</span></div>
+      <div class="seq-title">Lock the Team Structure</div>
+      <div class="seq-body">Confirm or replace workstream leads for all seven streams (CRM platform, integration middleware, Customer Engagement platform, ERP system, Data, PMO, Change) — each must have clear scope, authority and capacity. Assign a <strong>dedicated named Scrum Master per delivery workstream</strong> empowered to remove blockers. Validate the full resource plan including contractor and SI partner commitments — agree a named resolution for all critical role gaps. A team without clear workstream ownership cannot recover. <strong>Target: all roles confirmed and documented by end of Week 3.</strong></div>
+      <div class="timing-tracks"><span class="track track-sme">⚡ Weeks 1–3</span><span class="track track-ent">🔄 Critical role gaps resolved by Week 4</span></div>
+      <div class="note note-green"><strong>Success looks like:</strong> Named workstream lead and Scrum Master per stream documented; resource plan confirmed; all critical gaps have a named resolution by Week 4.</div>
+    </div>
+  </div>
+  <div class="seq-step">
+    <div class="seq-num">7</div>
+    <div class="seq-content">
+      <div class="seq-meta">High · Week 3–4 · PT-07 + SP-05 + AP-10 <span class="badge badge-cio">Programme Director</span> <span class="badge badge-po">PMO</span></div>
+      <div class="seq-title">Establish Rhythm &amp; Transparency — Then Sustain Both</div>
+      <div class="seq-body">Launch three cadence engines: (1) <strong>Cross-workstream dependency standup</strong> — daily or tri-weekly, focused exclusively on cross-stream blockers and integration risks, not individual sprint status; (2) <strong>Monthly executive health reviews</strong> — RAG dashboard — impact-focused, not status theatre — with a decision required every session; (3) <strong>Live technical risk register</strong> maintained by the Lead Architect and reviewed every sprint. Rhythm without transparency creates blind momentum. Transparency without rhythm creates anxiety without action. <strong>Target: all three operating by end of Week 4.</strong></div>
+      <div class="timing-tracks"><span class="track track-sme">⚡ Weeks 3–4 (launch)</span><span class="track track-ent">🔄 Sustained for all 26 weeks of recovery</span></div>
+      <div class="note note-green"><strong>Success looks like:</strong> Cross-stream standup running with blockers resolved within 48 hours; monthly exec reviews producing at least one decision per session; risk register reviewed every sprint.</div>
+    </div>
+  </div>
+</div><!-- end Start Here -->
+
+<!-- ===== SPONSORS ===== -->
+<div class="section sponsor-section" id="s-sponsors">
+  <div class="section-header">
+    <div class="section-icon">🏛</div>
+    <div class="section-meta">
+      <div class="section-title">Sponsors &amp; Governance</div>
+      <div class="section-desc">Nine actions to rebuild executive accountability, re-baseline commitments and establish the governance rhythm a turnaround demands. Passive sponsorship is the most common reason turnarounds fail twice.</div>
+    </div>
+  </div>
+  <div class="rule-box rule-box-teal">
+    <div class="rule-box-icon">🏛</div>
+    <div class="rule-box-text"><strong>The sponsor rule:</strong> A turnaround cannot be delegated. Sponsors must be present — in workshops, sprint reviews and blocker-removal conversations — not just copied on status reports. Every week a sponsor defers a decision is a week the team cannot move forward.</div>
+  </div>
+  <div class="actions-grid">
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">SP-09 · Run Sponsor Turnaround Alignment Workshop</div><div class="badges"><span class="badge badge-sprint">Week 1</span><span class="badge badge-impact">Start here</span><span class="badge badge-cio">Programme Director</span></div></div>
+      <div class="action-body">A facilitated session where all sponsors align on the turnaround plan and acknowledge root causes without blame. Structure it to make naming what went wrong safe — sponsors who can't say it out loud won't own fixing it. Use an external facilitator if internal dynamics are too charged.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Workshop completed; turnaround plan signed by all sponsors; root causes named and documented; no recurrence of blame language in subsequent sessions.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">SP-01 · Reconstitute Executive Steering Committee</div><div class="badges"><span class="badge badge-sprint">Week 1–2</span><span class="badge badge-cio">Programme Director</span></div></div>
+      <div class="action-body">Reactivate or reform the ESC with a signed Terms of Reference covering attendance, decision rights and quorum. An ESC that defers every decision is a reporting ceremony, not a governance body. The ToR must specify what the ESC owns and what escalates when consensus cannot be reached within 48 hours.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> ESC ToR signed; first meeting held within 2 weeks; quorum reached at every subsequent monthly meeting.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">SP-07 · Activate Project Champion / Business Owner</div><div class="badges"><span class="badge badge-sprint">Week 1–2</span><span class="badge badge-cio">Sponsor</span></div></div>
+      <div class="action-body">Identify and brief a senior business champion — VP Sales, COO or equivalent — who attends sprint reviews and personally resolves business blockers. Without someone with real organisational authority bridging delivery and the business, adoption fails at go-live regardless of technical quality.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Named champion identified and formally briefed; champion has attended at least 2 sprint reviews by end of Month 1.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">SP-04 · Define Escalation Framework &amp; Decision Rights</div><div class="badges"><span class="badge badge-sprint">Week 2–3</span><span class="badge badge-cio">Programme Director</span></div></div>
+      <div class="action-body">Document who decides what — scope, budget, technical and business decisions — with SLA response times and clear escalation paths. Publish and socialise with all leads. Then run a <strong>live test</strong>: present a real in-flight decision and use the RACI to resolve it in real time. A RACI that has never been tested under real conditions is a document, not a governance mechanism.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> RACI matrix signed off; escalation path tested with a live scenario; no decisions stuck in limbo for more than 48 hours from Week 4.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">SP-02 · Re-baseline Project Charter &amp; Business Case</div><div class="badges"><span class="badge badge-sprint">Week 1–3</span><span class="badge badge-both">PMO + Sponsor</span></div></div>
+      <div class="action-body">Redocument the case for change with updated costs, benefits and success metrics reflecting the revised scope. A programme measuring itself against an outdated charter is tracking the wrong targets. Gain formal sponsor sign-off — this document becomes the single version of truth for all subsequent reporting.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Updated charter signed; quantified success metrics agreed and visible to all workstream leads.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">SP-06 · Align Sponsors on Revised Scope, Budget &amp; Timeline</div><div class="badges"><span class="badge badge-sprint">Week 2–4</span><span class="badge badge-cio">Programme Director</span></div></div>
+      <div class="action-body">Facilitate a re-scoping workshop to agree MVP definition, Phase 2 boundary and the revised 6-month plan. Produce a <strong>signed scope freeze document</strong> — not a slide deck, a signed artefact that triggers formal change control for any additions. The workshop must produce explicit in/out decisions with a clear change control process for any future requests.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> MVP scope document signed; 6-month timeline re-baselined and published; change control process operating from Week 4.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">SP-03 · Conduct Stakeholder Power / Interest Mapping</div><div class="badges"><span class="badge badge-sprint">Week 1–2</span><span class="badge badge-po">PMO</span></div></div>
+      <div class="action-body">Map all key stakeholders against power and interest axes and define an engagement strategy per quadrant. <strong>High-power, low-engagement</strong> stakeholders are the biggest latent risk — they surface as blockers at the worst moments. Engage all high-power contacts within Week 3.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Power/interest map produced; tailored engagement plan created for the top 10 stakeholders; all high-power contacts engaged within Week 3.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">SP-08 · Create Executive Communications Plan</div><div class="badges"><span class="badge badge-sprint">Week 2–4</span><span class="badge badge-po">PMO</span></div></div>
+      <div class="action-body">Define the cadence, format and content for executive reporting: a weekly one-pager (5 minutes to read) covering decisions needed, risks and commercial progress — not feature lists; a monthly RAG dashboard; and ad-hoc escalations. Eliminate any report nobody reads or acts on.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Comms plan published; exec one-pager template approved and first issue distributed by Week 3; no unread reports by Week 6.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">SP-05 · Establish Monthly Executive Health Reviews</div><div class="badges"><span class="badge badge-quarter">Month 1 onwards</span><span class="badge badge-po">PMO</span></div></div>
+      <div class="action-body">Schedule and run monthly sponsor health reviews using a concise RAG dashboard — <strong>impact-focused, not status theatre</strong>. Each review must answer three things: What value has been delivered? What is the biggest risk to the next milestone? What does the sponsor need to decide or unblock today? Structure every agenda to force at least one decision per session.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> All 6 monthly reviews completed across the turnaround; at least one sponsor decision or blocker removal documented per review.</div>
+    </div>
+  </div>
+</div><!-- end Sponsors -->
+
+<!-- ===== USERS & CHANGE ===== -->
+<div class="section" id="s-users">
+  <div class="section-header">
+    <div class="section-icon">👥</div>
+    <div class="section-meta">
+      <div class="section-title">Users &amp; Change</div>
+      <div class="section-desc">Ten actions to assess readiness, build the champion network, manage resistance and drive adoption from the business side. Technology without adoption is shelfware.</div>
+    </div>
+  </div>
+  <div class="rule-box rule-box-slate">
+    <div class="rule-box-icon">👥</div>
+    <div class="rule-box-text"><strong>The adoption rule:</strong> If a typical sales rep cannot describe in plain language what CRM platform will do for them personally, adoption will fail regardless of what the system can do technically. Change management is not a workstream — it is a daily practice.</div>
+  </div>
+  <div class="actions-grid">
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">US-01 · Conduct User Impact &amp; Readiness Assessment</div><div class="badges"><span class="badge badge-sprint">Week 3–5</span><span class="badge badge-impact">Start here</span><span class="badge badge-sm">Change Lead</span></div></div>
+      <div class="action-body">Survey and interview key user groups across Sales, Operations and Finance to assess change readiness, resistance levels and current understanding of the new systems. Produce a readiness report that identifies resistance hotspots by department — these are the pressure points where your change investment will deliver the most return. Do not assume readiness; measure it.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Readiness report produced; resistance hotspots identified by department with severity rating; assessment results shared with the Business Champion.</div>
+      <div class="note note-amber"><strong>Role gap:</strong> If the Change Lead role is vacant, this action cannot start until they are onboarded — typically 3–4 weeks from appointment. Interim: ask the Programme Director to run a short pulse survey in Week 1 as a placeholder.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">US-04 · Run Voice of Customer / Business Workshops</div><div class="badges"><span class="badge badge-sprint">Week 5–8</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Product Owner</span></div></div>
+      <div class="action-body">Run structured workshops per business unit to capture pain points, expectations, workarounds and non-negotiable requirements the system must address. Validate with actual users, not just process owners. <strong>Outputs feed directly into the sprint backlog</strong> — this is not a consultation exercise, it is a requirements-gathering mechanism that builds ownership. Users who help shape the system are more likely to adopt it.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Workshops completed for all in-scope business units; outputs incorporated into the sprint backlog; at least one user-identified requirement prioritised into Sprint 3 or earlier.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">US-03 · Establish Change Champion Network</div><div class="badges"><span class="badge badge-sprint">Week 5–8</span><span class="badge badge-sm">Change Lead</span></div></div>
+      <div class="action-body">Recruit and brief business-side change champions per department to act as first-line advocates, feedback channels and peer trainers for the new systems. Champions must be credible with their peers — not just volunteers — and briefed regularly on progress so they can answer questions accurately. At least one champion per business unit is the minimum viable network.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Champion network established with at least one champion per business unit; champions actively used as feedback channels from Month 2.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">US-09 · Develop Resistance Management Plan</div><div class="badges"><span class="badge badge-quarter">Week 7–10</span><span class="badge badge-sm">Change Lead</span></div></div>
+      <div class="action-body">Identify sources of resistance by stakeholder group — passive, vocal and covert. Define targeted interventions: 1-to-1s for high-influence resistors, co-design sessions for those who feel excluded, sponsorship signals for those responding to authority. Update the resistance map monthly and track whether the heat score is improving. Covert resistance is the most dangerous — surface it early through champion network feedback.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Resistance map updated monthly; heat score improving month-on-month from Month 2; no surprise resignation or boycott events at go-live.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">US-02 · Map User Journeys for CRM and Customer Engagement platforms</div><div class="badges"><span class="badge badge-quarter">Week 6–10</span><span class="badge badge-po">Business Analyst</span></div></div>
+      <div class="action-body">Document current vs. future state user journeys for key personas — sales reps, account managers, ops teams. Validate journey maps with actual users, not just process owners, to ensure they reflect reality rather than aspirational process design. Journey maps for the top 5 personas are the foundation for UAT test scripts and training materials.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Journey maps for the top 5 personas completed and validated by real users; maps used as the basis for UAT script design.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">US-06 · Define User Adoption KPIs</div><div class="badges"><span class="badge badge-quarter">Week 7–10</span><span class="badge badge-both">PMO + Business</span></div></div>
+      <div class="action-body">Agree measurable adoption metrics — logins, data completeness, process completion rates, support ticket volumes — as formal go-live success criteria. <strong>Baseline each metric now</strong> so you can demonstrate improvement after go-live. Adoption KPIs agreed before go-live are the only meaningful evidence that the programme delivered its intended business change.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Adoption KPIs defined; baseline measured before go-live; targets agreed with sponsor and tracked from Day 30 post go-live.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">US-08 · Establish UAT Governance &amp; User Involvement Plan</div><div class="badges"><span class="badge badge-quarter">Week 8–12</span><span class="badge badge-po">Test Manager</span></div></div>
+      <div class="action-body">Define how business users participate in testing: tester recruitment, test script reviews, defect triage and formal sign-off ceremonies per sprint. Named business testers — not just IT testers — per module are non-negotiable for go-live sign-off credibility. UAT run without genuine business involvement gives a false pass and surfaces real issues at go-live.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> UAT plan agreed; named business testers confirmed per module; business sign-off recorded and dated for each module before go-live.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">US-05 · Develop Training Needs Analysis (TNA)</div><div class="badges"><span class="badge badge-quarter">Week 10–16</span><span class="badge badge-sm">Change Lead</span></div></div>
+      <div class="action-body">Assess skill gaps per user group against future-state capabilities and produce a role-based training curriculum with dates agreed with business leads. Training too early is forgotten; too late creates go-live panic. The TNA determines both content and timing.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> TNA completed; role-based training plan with dates agreed with business leads; training delivered within 4 weeks of go-live per user group.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">US-10 · Run Co-Design Workshops for Key Workflows</div><div class="badges"><span class="badge badge-quarter">Week 8–14</span><span class="badge badge-po">Product Owner</span></div></div>
+      <div class="action-body">Involve real users in designing key workflows for opportunity management and order processing. Users who shaped the design are far less likely to work around it post go-live. Run at least 3 co-design sessions with all outputs incorporated into the sprint backlog within one sprint.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> At least 3 co-design sessions completed; every output session's requirements incorporated into the sprint backlog within one sprint.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">US-07 · Create User Communication Calendar</div><div class="badges"><span class="badge badge-sprint">Week 5–8</span><span class="badge badge-sm">Change Lead</span></div></div>
+      <div class="action-body">Plan all user-facing communications for the 6-month period: announcements, sprint demo invitations, training dates and go-live countdown — one version, maintained centrally. Users who hear major news first through rumour are harder to win back.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Comms calendar published and visible to business champions; updated at least monthly; no user hearing major news for the first time at go-live.</div>
+    </div>
+  </div>
+</div><!-- end Users -->
+
+<!-- ===== PROCESSES ===== -->
+<div class="section" id="s-processes">
+  <div class="section-header">
+    <div class="section-icon">🔄</div>
+    <div class="section-meta">
+      <div class="section-title">Processes</div>
+      <div class="section-desc">Ten actions to document, align, prioritise and govern the business processes that the systems must support. Process conflicts between platforms are the primary source of integration defects.</div>
+    </div>
+  </div>
+  <div class="rule-box rule-box-slate">
+    <div class="rule-box-icon">🔄</div>
+    <div class="rule-box-text"><strong>The process rule:</strong> The CRM and Customer Engagement platforms configuration teams must share a common, documented understanding of the end-to-end Lead-to-Cash and Order-to-Cash processes. If they don't, integration defects are inevitable, expensive and late to surface.</div>
+  </div>
+  <div class="actions-grid">
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PR-01 · Audit Current-State Process Landscape</div><div class="badges"><span class="badge badge-sprint">Week 2–5</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Business Analyst</span></div></div>
+      <div class="action-body">Document all in-scope business processes across commercial, operations and finance. Identify what is working, what is broken and — critically — what is disputed between teams. A disputed process is a go-live blocker. The audit output must be validated by named process owners, not just the BA who documented it.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Current-state process inventory completed and validated by named process owners; disputed processes flagged with owners assigned to resolve them.</div>
+      <div class="note note-amber"><strong>Role gap:</strong> If the Business Analyst is new or being onboarded, push the start to Week 4 and the completion to Week 7. This delays PR-02, PR-05 and PR-03 by the same margin — adjust those dates accordingly.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PR-04 · Assign Process Owners for Each Business Domain</div><div class="badges"><span class="badge badge-sprint">Week 3–5</span><span class="badge badge-impact">Critical</span><span class="badge badge-cio">Sponsor</span></div></div>
+      <div class="action-body">Formally assign named, accountable business owners per process area — Lead Management, Quoting, Order, Invoice, Reporting. Process owners sign off on design decisions and testing. This is the most commonly absent accountability in transformation projects and the root cause of most design rework. Shared process ownership means no process ownership.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Named process owner for every in-scope process; accountability accepted in writing; process owners attending sprint reviews from Month 2.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PR-05 · Identify and Resolve Process Conflicts</div><div class="badges"><span class="badge badge-quarter">Week 6–10</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Solution Architect</span></div></div>
+      <div class="action-body">Surface conflicts between ERP, CRM and Customer Engagement platforms process requirements — duplicated processes, gaps and contradictions. Convene resolution workshops with named decision-makers from each platform team and the relevant process owner. Maintain a conflict register; all Critical conflicts must be resolved before build freeze or they become go-live blockers.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Conflict register maintained and current; all Critical conflicts resolved before build freeze; no new conflicts surfacing in UAT that existed at process design stage.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PR-02 · Define To-Be Process Maps (L2C &amp; O2C)</div><div class="badges"><span class="badge badge-quarter">Week 6–12</span><span class="badge badge-po">Solution Architect + BA</span></div></div>
+      <div class="action-body">Map the target operating model for Lead-to-Cash and Order-to-Cash with links to system capabilities. Version-control and get sign-off from both process owners and solution architects. "They approved it three months ago" is not sufficient governance for a system that is still changing.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> To-be maps for L2C and O2C completed, version-controlled and signed off by process owners and solution architects; maps used as UAT baseline.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PR-03 · Prioritise Processes for MVP Delivery</div><div class="badges"><span class="badge badge-sprint">Week 5–8</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Product Owner</span></div></div>
+      <div class="action-body">Using MoSCoW and business value scoring, identify the minimum set of processes needed at go-live versus what can be deferred to Phase 2. Freeze the boundary. An unfrozen MVP process list means the team is always adding scope and never finishing. The process MVP list must be signed by the sponsor and treated as a change-controlled document.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> MVP process list agreed, documented and signed off by the sponsor; no uncontrolled additions to the list after sign-off.</div>
+      <div class="note note-amber"><strong>Part-time PO risk:</strong> A Product Owner with less than 50% availability will take twice as long to reach sign-off quality. Budget 60–90 minutes of protected PO time per week minimum for this action, or the MVP scope will drift.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PR-06 · Maintain Live Process Decision Log</div><div class="badges"><span class="badge badge-quarter">Week 3 onwards</span><span class="badge badge-po">PMO</span></div></div>
+      <div class="action-body">Create and maintain a live log of all process design decisions — who approved them, the rationale and downstream impact. Forgotten decisions are one of the most common sources of rework: configurations built months ago that contradict newer business choices. Make past decisions visible before they become expensive surprises.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Decision log maintained and current; reviewed in every sprint review; rework attributable to forgotten decisions near zero from Month 3.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PR-10 · Create Process-to-System Traceability Matrix</div><div class="badges"><span class="badge badge-quarter">Week 8–14</span><span class="badge badge-po">Solution Architect</span></div></div>
+      <div class="action-body">Build a matrix linking each business process step to the specific CRM, Customer Engagement or ERP platform capability delivering it. Use for change impact analysis when scope requests arrive. Without traceability, you cannot quickly determine the downstream impact of a process change — and impact you cannot assess, you cannot price or refuse.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Traceability matrix complete for all MVP processes; maintained throughout the project; used to assess impact of every scope change request.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PR-08 · Define Process KPIs and Measurement Approach</div><div class="badges"><span class="badge badge-quarter">Week 8–12</span><span class="badge badge-both">BA + PMO</span></div></div>
+      <div class="action-body">Define how each business process will be measured post go-live — cycle time, error rate, throughput, cost per transaction. <strong>Baseline each metric now</strong>, before go-live, so you can demonstrate improvement. Process KPIs agreed before go-live are the commercial evidence that the programme delivered its intended value.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> KPI baseline established for all key processes before go-live; measurement plan agreed with business leads; first post-go-live comparison available within 30 days.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PR-09 · Embed Process Reviews in Sprint Ceremonies</div><div class="badges"><span class="badge badge-quarter">Week 7 onwards</span><span class="badge badge-sm">Scrum Master</span></div></div>
+      <div class="action-body">Include business process walkthroughs in every sprint review. The named process owner must attend to validate and sign off process-related stories — not a proxy, not a delegate. Process owner attendance turns sprint reviews from IT demonstrations into business acceptance events. If a process owner cannot attend, the story is not accepted.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Process owner attendance at the majority of sprint reviews; no process rework required after UAT because issues were caught in sprint review.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PR-07 · Define Exception Handling Procedures</div><div class="badges"><span class="badge badge-quarter">Week 10–16</span><span class="badge badge-po">Business Analyst</span></div></div>
+      <div class="action-body">Document how exceptions, workarounds and manual overrides will be handled in the new system landscape for each MVP process. Undocumented exception handling becomes invisible workarounds post go-live — creating data integrity issues and undermining the very automation the programme was meant to deliver. Test all exception procedures in UAT before sign-off.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Exception procedures documented for all MVP processes; every procedure tested in UAT; no undocumented workarounds in place at go-live.</div>
+    </div>
+  </div>
+</div><!-- end Processes -->
+
+<!-- ===== APPLICATIONS ===== -->
+<div class="section" id="s-apps">
+  <div class="section-header">
+    <div class="section-icon">🖥</div>
+    <div class="section-meta">
+      <div class="section-title">Applications &amp; Technology</div>
+      <div class="section-desc">Ten actions to assess, stabilise and re-baseline the technical landscape across CRM, integration middleware, Customer Engagement and ERP platforms. Technical debt discovered late is a go-live crisis.</div>
+    </div>
+  </div>
+  <div class="rule-box rule-box-slate">
+    <div class="rule-box-icon">🖥</div>
+    <div class="rule-box-text"><strong>The technical rule:</strong> Integrations that work in UAT frequently degrade under production load. Without production monitoring and alerting in place before go-live, you will hear about failures from the business, not the system — when it is too late to respond calmly.</div>
+  </div>
+  <div class="actions-grid">
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">AP-01 · Conduct Technical Health Assessment</div><div class="badges"><span class="badge badge-sprint">Week 1–3</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Lead Architect</span></div></div>
+      <div class="action-body">Assess configurations across all four platforms — identify customisations, technical debt, performance risks and security gaps. Produce a RAG status per system with the top 10 risks and named owners. You cannot plan recovery without knowing the technical baseline.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Technical health report produced with RAG status per system; top 10 risks identified with owners; no new critical technical risks discovered after Week 4.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">AP-10 · Implement Live Technical Risk Register</div><div class="badges"><span class="badge badge-sprint">Week 2 onwards</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Lead Architect</span></div></div>
+      <div class="action-body">Maintain a live technical risk log with owners, probability/impact ratings, mitigations and escalation triggers. Review in every sprint review — not just at monthly governance. A stale risk register is worse than no risk register because it creates false confidence. Risks must be reviewed by someone with the authority to act, not just to note them.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Risk register current and reviewed every sprint; no surprise escalations at go-live that were visible in the technical landscape earlier in the programme.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">AP-02 · Review and Rationalise Integration Architecture</div><div class="badges"><span class="badge badge-sprint">Week 2–5</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Integration Architect</span></div></div>
+      <div class="action-body">Validate the API-led connectivity design — identify gaps, remove unnecessary complexity and confirm the ERP connector protocol strategy. Integration between middleware and ERP is high-risk: inexperienced architects create debt that surfaces catastrophically at go-live. Mandate an independent technical review before build freeze.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Integration architecture updated and approved by the solution review board; independent technical review completed; no architectural rework after Week 8.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">AP-03 · Create System Integration Map</div><div class="badges"><span class="badge badge-sprint">Week 2–4</span><span class="badge badge-po">Solution Architect</span></div></div>
+      <div class="action-body">Produce a visual map of all integration points and data flows across the four platforms — direction, frequency and volume. Version-control it and make it accessible to all leads. A team that cannot draw this map does not yet understand the programme.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Integration map complete, versioned and accessible to all technical and business leads; reviewed and updated after every architectural decision.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">AP-04 · Re-baseline Technical Backlog</div><div class="badges"><span class="badge badge-sprint">Week 3–6</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Product Owner</span></div></div>
+      <div class="action-body">Reprioritise the platform backlogs against the agreed MVP scope — remove out-of-scope items, re-estimate remaining effort and match sprint capacity to the revised backlog, not the aspirational one. A backlog that doesn't reflect reality produces sprint commitments nobody believes.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> MVP backlog refined, re-estimated and agreed; sprint capacity matched to backlog velocity; no phantom stories consuming capacity from Sprint 3.</div>
+      <div class="note note-amber"><strong>Part-time PO risk:</strong> The backlog cannot be re-baselined without the Product Owner — but the PO must have seen the scope freeze (SP-06) and VoC findings first. If the PO is part-time, allow a minimum of 3 weeks of protected sessions. Do not start sprint planning on a stale backlog.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">AP-07 · Define Technical Acceptance Criteria (Definition of Done)</div><div class="badges"><span class="badge badge-sprint">Week 2–4</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Tech Lead + Test Manager</span></div></div>
+      <div class="action-body">Agree a clear Definition of Done per workstream covering unit test coverage, integration tests, performance thresholds and security standards. Make it visible on all sprint boards. A DoD that is not enforced is not a DoD — it is a decoration. The DoD must be consistently applied from Sprint 3 and violations must stop a story from being accepted.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> DoD agreed and visible in all sprint boards; consistently enforced from Sprint 3; no stories accepted that do not meet the DoD.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">AP-06 · Resolve Critical Technical Debt Items</div><div class="badges"><span class="badge badge-quarter">Week 3–8</span><span class="badge badge-po">Tech Lead</span></div></div>
+      <div class="action-body">Identify and remediate the top technical debt items blocking delivery — hardcoded values, undocumented customisations, broken configurations, orphaned integrations. Technical debt that is known and unaddressed is a programme risk; leaders who deny it is a governance risk. Resolve the top 10 before build freeze or they become go-live blockers.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Top 10 debt items resolved; technical health score measurably improved; no debt items from this list surfacing as go-live blockers.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">AP-05 · Establish CI/CD Pipeline and DevOps Practices</div><div class="badges"><span class="badge badge-quarter">Week 3–7</span><span class="badge badge-po">DevOps Lead</span></div></div>
+      <div class="action-body">Implement or repair automated build, test and deploy pipelines for the CRM platform (using CRM deployment tooling) and the Customer Engagement platform (using DevOps pipeline tooling). Manual deployment processes introduce error, slow feedback loops and create environment inconsistency. At least 2 deployments per sprint per workstream should be the target cadence once CI/CD is operational.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> CI/CD pipeline operational for both CRM and Customer Engagement platforms; at least 2 automated deployments per sprint per workstream from Month 2.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">AP-08 · Establish Environment Management Strategy</div><div class="badges"><span class="badge badge-quarter">Week 3–5</span><span class="badge badge-po">DevOps Lead</span></div></div>
+      <div class="action-body">Define the dev/test/UAT/prod environment strategy and refresh cycles for all four systems. Environment instability is a testing-phase killer: teams that cannot rely on stable test environments slow to a fraction of their potential velocity. Publish the strategy and assign an owner per environment tier.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Environment strategy published with named owners; environment availability nearly all of the time during active test phases; no lost sprint capacity due to environment outages.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">AP-09 · Create API Inventory and Governance Framework</div><div class="badges"><span class="badge badge-quarter">Week 4–8</span><span class="badge badge-po">Integration Architect</span></div></div>
+      <div class="action-body">Document all integration middleware APIs — owner, version, SLA, consumers — and establish a governance process for new API requests, versioning and deprecation. An undocumented API estate is an integration liability: you cannot manage what you cannot see. The inventory is also the starting point for production monitoring setup.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> API inventory complete; governance process agreed; first API governance review conducted and decisions documented.</div>
+    </div>
+  </div>
+</div><!-- end Applications -->
+
+<!-- ===== DATA ===== -->
+<div class="section" id="s-data">
+  <div class="section-header">
+    <div class="section-icon">🗄</div>
+    <div class="section-meta">
+      <div class="section-title">Data</div>
+      <div class="section-desc">Ten actions to assess quality, establish ownership, define migration strategy and govern the data flowing across all four systems. Data failures at go-live are almost always ownership failures in disguise.</div>
+    </div>
+  </div>
+  <div class="rule-box rule-box-slate">
+    <div class="rule-box-icon">🗄</div>
+    <div class="rule-box-text"><strong>The data rule:</strong> Customer MDM is the most commonly contested ownership issue in multi-system transformations. If ERP, CRM and Customer Engagement platforms teams have not formally agreed the system of record for customer master data in writing, you have a go-live blocker waiting to happen.</div>
+  </div>
+  <div class="actions-grid">
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">DA-01 · Conduct Data Quality Assessment</div><div class="badges"><span class="badge badge-sprint">Week 1–3</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Data Architect</span></div></div>
+      <div class="action-body">Quantify data completeness, accuracy, duplicates and errors across source systems. Produce a quality scorecard with baseline scores per system and entity. Every unfound quality issue at this stage becomes a go-live crisis — measure before you migrate.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Data quality scorecard produced with baseline scores per system and entity; top 5 quality risks identified with owners assigned.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">DA-03 · Define Master Data Management (MDM) Strategy</div><div class="badges"><span class="badge badge-sprint">Week 4–7</span><span class="badge badge-impact">Critical</span><span class="badge badge-both">Data Arch + Business</span></div></div>
+      <div class="action-body">Establish rules for customer, product and financial master data — system of record per domain, conflict resolution rules and golden record management. Every team across all four systems must agree to this in writing. Unresolved MDM at build freeze becomes a configuration conflict; at go-live it becomes data corruption.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> MDM strategy signed off; system of record agreed in writing for each data domain by all four system team leads.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">DA-06 · Map Data Flows Across All Four Systems</div><div class="badges"><span class="badge badge-sprint">Week 2–5</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Integration Architect</span></div></div>
+      <div class="action-body">Trace every key data element from origin to destination across CRM, integration middleware, Customer Engagement and ERP platforms — direction, transformation rules, frequency and volume. Validate the map with all architects. A data flow map that has not been validated is a wishful drawing. Gaps in this map are gaps in the integration design.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Data flow map complete for all in-scope entities; validated and signed off by architects from all four system teams.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">DA-02 · Create Enterprise Data Dictionary</div><div class="badges"><span class="badge badge-sprint">Week 2–6</span><span class="badge badge-po">Data Architect</span></div></div>
+      <div class="action-body">Document all key data entities, field-level definitions, owners and system of record across all platforms. Without a shared dictionary, each team builds to their own interpretation of "customer" or "order" — and the integration layer exposes the difference at runtime.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Dictionary covers all in-scope entities; agreed as the single source of truth by all technical and business leads; maintained throughout the programme.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">DA-04 · Build Data Cleansing and Migration Plan</div><div class="badges"><span class="badge badge-sprint">Week 3–10</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Data Migration Lead</span></div></div>
+      <div class="action-body">Create a detailed plan covering cleansing tools, migration waves, rollback approach, validation gates and business sign-off checkpoints per migration wave. A migration plan without a tested rollback approach is not a plan — it is an optimistic assumption. The first cleansing wave must be completed and validated before go/no-go conversations become credible.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Migration plan agreed and version-controlled; first cleansing wave completed with nearly all records passing validation gates.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">DA-07 · Define Data Validation Rules per Integration Point</div><div class="badges"><span class="badge badge-quarter">Week 4–8</span><span class="badge badge-impact">Critical</span><span class="badge badge-po">Integration Architect</span></div></div>
+      <div class="action-body">Specify field-level validation rules for every integration middleware API to prevent dirty or malformed data propagating downstream into ERP system or triggering process failures. Validation rules defined too late are validation rules that were never tested. Every MVP integration point must have rules defined and implemented before UAT begins.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Validation rules defined and implemented for all MVP integration points; no data propagation failures in UAT attributable to missing validation rules.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">DA-05 · Establish Data Governance Framework</div><div class="badges"><span class="badge badge-quarter">Week 3–8</span><span class="badge badge-both">Data Arch + Sponsor</span></div></div>
+      <div class="action-body">Define data stewards per domain, data quality rules, escalation process and governance meeting cadence. Embed the framework in the business operating model from day one — not as a project deliverable, but as a permanent business function. Data governance that exists only during the project dissolves at go-live and data quality degrades within months.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Framework published; first governance meeting held; all data stewards named and accountability accepted in writing.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">DA-09 · Formally Assign Data Stewards per Domain</div><div class="badges"><span class="badge badge-sprint">Week 4–7</span><span class="badge badge-both">Sponsor + Data Arch</span></div></div>
+      <div class="action-body">Assign a named, accountable data steward per domain — Customer, Product, Order, Finance — responsible for data quality, definitions and issue resolution. Data stewards are the human equivalent of the MDM strategy: without named individuals who have accepted accountability, data quality rules are aspirational rather than enforced.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Named steward confirmed for each domain; accountability formally accepted in writing; stewards participating in data governance meetings from Month 2.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">DA-08 · Create Data Migration Testing Strategy</div><div class="badges"><span class="badge badge-quarter">Week 6–12</span><span class="badge badge-po">Test Manager</span></div></div>
+      <div class="action-body">Define how migration accuracy will be tested: record count reconciliation, field-level spot checks, parallel run approach and business sign-off criteria per wave. A migration rehearsal must be completed and signed off before the live migration begins — migration rehearsals surface issues that no amount of planning will reveal.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Migration test strategy approved; first migration rehearsal completed and signed off; business sign-off criteria met before live migration proceeds.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">DA-10 · Run Data Quality Sprints</div><div class="badges"><span class="badge badge-quarter">Week 6–18</span><span class="badge badge-sm">Scrum Master + Data</span></div></div>
+      <div class="action-body">Dedicate Scrum sprints to data cleansing with measurable quality targets, clear acceptance criteria and business data steward involvement in sign-off. Data quality improvements are highly visible confidence-builders for sponsors — each sprint should produce a before/after comparison that sponsors can see and share. Nearly all MVP entities must reach the quality target before go-live sign-off.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Data quality score reaching target level for nearly all MVP entities before go-live sign-off; before/after comparison available per sprint.</div>
+    </div>
+  </div>
+</div><!-- end Data -->
+
+<!-- ===== PROJECT TEAM ===== -->
+<div class="section" id="s-team">
+  <div class="section-header">
+    <div class="section-icon">🧩</div>
+    <div class="section-meta">
+      <div class="section-title">Project Team</div>
+      <div class="section-desc">Ten actions to assess team health, reset culture, confirm structure, address morale and build the operating rhythm that sustains a 6-month recovery. The team is the delivery mechanism — invest in it.</div>
+    </div>
+  </div>
+  <div class="rule-box rule-box-slate">
+    <div class="rule-box-icon">🧩</div>
+    <div class="rule-box-text"><strong>The team rule:</strong> Psychological safety is the canary in the coal mine for project culture. Programmes where only good news flows upward always fail to the surprise of the sponsor — because the sponsor has been protected from reality by a culture of fear.</div>
+  </div>
+  <div class="actions-grid">
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PT-02 · Run Team Reset &amp; Turnaround Kickoff</div><div class="badges"><span class="badge badge-sprint">Week 1</span><span class="badge badge-impact">Start here</span><span class="badge badge-cio">Programme Director</span></div></div>
+      <div class="action-body">A facilitated all-team session to acknowledge what has gone wrong without blame, align on the turnaround plan, rebuild psychological safety and establish shared commitment to recovery. The session must be safe enough for people to name the real problems — a session that produces only positivity has not reset anything. The team charter produced in this session becomes the social contract for the recovery.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Reset session completed; team charter signed; turnaround plan visible to every team member; no blame language in subsequent retrospectives.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PT-01 · Conduct Team Health &amp; Capability Assessment</div><div class="badges"><span class="badge badge-sprint">Week 1–2</span><span class="badge badge-impact">Critical</span><span class="badge badge-cio">Programme Director</span></div></div>
+      <div class="action-body">Assess current team composition, skills gaps, capacity, morale and burnout risk across all workstreams — CRM platform, integration middleware, Customer Engagement platform, ERP system, PMO and Change. Identify critical gaps per workstream. A team health assessment run honestly will surface uncomfortable truths; a team health assessment run to provide reassurance will surface nothing useful.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Team health report produced with skills gaps and capacity risks identified per workstream; top 3 burnout risks addressed with visible action by Week 4.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PT-03 · Confirm and Restructure Workstream Leadership</div><div class="badges"><span class="badge badge-sprint">Week 1–3</span><span class="badge badge-impact">Critical</span><span class="badge badge-both">Programme Director + Sponsor</span></div></div>
+      <div class="action-body">Review and formally confirm — or replace — workstream leads for CRM platform, integration middleware, Customer Engagement platform, ERP system, Data, PMO and Change. Each lead must have clear scope, authority and capacity. A workstream lead without authority is a coordinator, not a leader. A workstream lead without capacity is a bottleneck. Both will slow recovery.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Named workstream lead confirmed for every stream with authority and scope documented; no ambiguity about who owns what from Week 3.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PT-05 · Assign Dedicated Scrum Masters per Workstream</div><div class="badges"><span class="badge badge-sprint">Week 1–2</span><span class="badge badge-impact">Critical</span><span class="badge badge-cio">Programme Director</span></div></div>
+      <div class="action-body">Confirm or appoint a dedicated, named Scrum Master per delivery workstream — CRM platform, integration middleware, Customer Engagement platform. Each Scrum Master must be empowered to facilitate ceremonies, surface blockers and escalate impediments. A part-time or powerless Scrum Master is not a Scrum Master — they are a meeting organiser with a title.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Named Scrum Master confirmed per workstream; roles and authority documented; retrospective actions visible and acted upon from Sprint 3.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PT-06 · Confirm Resource Plan for 6-Month Turnaround</div><div class="badges"><span class="badge badge-sprint">Week 2–4</span><span class="badge badge-impact">Critical</span><span class="badge badge-both">Programme Director + Sponsor</span></div></div>
+      <div class="action-body">Validate headcount, contractor commitments and SI partner resourcing against the revised plan. Identify gaps and agree a resolution for each critical role — hire, contract uplift or re-scope. A resource gap that is acknowledged but unresolved is a delivery risk that compounds every sprint. All critical role gaps must have a named resolution by Week 4.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Resource plan confirmed; all critical role gaps have a named resolution — hire, contract or re-scope — by Week 4.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PT-04 · Define Team Ways of Working &amp; Ground Rules</div><div class="badges"><span class="badge badge-sprint">Week 2–3</span><span class="badge badge-sm">Scrum Master</span></div></div>
+      <div class="action-body">Agree and document team norms — meeting cadence, communication channels, escalation etiquette, decision-making process, working hours and remote/on-site expectations. Publish and get all workstream leads to sign. Ground rules that are implicit are ground rules that are constantly broken — make them explicit, visible and agreed by the people who must live by them.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Ways of Working document published and signed by all workstream leads; referenced in retrospectives when norms are violated.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PT-07 · Establish Cross-Workstream Dependency Standup</div><div class="badges"><span class="badge badge-quarter">Week 2 onwards</span><span class="badge badge-cio">Programme Director</span></div></div>
+      <div class="action-body">Implement a daily or tri-weekly cross-workstream standup focused exclusively on cross-stream dependencies, blockers and integration risks — not individual sprint status. In a multi-system programme (CRM + integration middleware + Customer Engagement + ERP), cross-stream dependency failures are the primary cause of milestone slippage. Blockers must be resolved within 48 hours or escalated.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Cross-stream standup running consistently; blocker resolution time under 48 hours from Week 4; no cross-stream blockers persisting for more than 3 days.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PT-09 · Address Team Morale, Wellbeing &amp; Burnout Risk</div><div class="badges"><span class="badge badge-sprint">Week 2–4</span><span class="badge badge-cio">Programme Director</span></div></div>
+      <div class="action-body">Run a confidential team pulse survey to assess morale and burnout. Identify individuals at risk. Implement targeted actions — workload relief, 1-to-1 support, recognition programmes. A team in recovery from a failing programme is at elevated burnout risk; the people most at risk are often the most senior and most visible contributors. Act before the resignation letter arrives.</div>
+      <div class="note note-amber"><strong>Warning:</strong> Pulse surveys that produce no visible action are worse than no survey — they confirm to the team that raising concerns is pointless. Respond to the top 3 issues with visible action by Week 6.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Pulse survey completed; top 3 morale issues addressed with visible action by Week 6; no unexpected key-person departures in Months 1–3.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PT-08 · Define Vendor Management &amp; SI Partner Governance</div><div class="badges"><span class="badge badge-sprint">Week 2–5</span><span class="badge badge-cio">Programme Director</span></div></div>
+      <div class="action-body">Establish clear governance, accountability and performance expectations for the System Integrator and all software vendors — CRM platform, Customer Engagement platform, integration middleware and ERP system vendors. Include SLA and escalation process. Vendor contracts written for the original scope may actively obstruct the turnaround; revalidate commercial alignment with the revised scope and timeline.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Vendor governance framework agreed; monthly vendor review cadence established; all vendor SLAs revalidated against revised scope within Month 1.</div>
+    </div>
+    <div class="action-card">
+      <div class="action-header"><div class="action-title">PT-10 · Create Team Onboarding &amp; Knowledge Transfer Process</div><div class="badges"><span class="badge badge-quarter">Week 3–6</span><span class="badge badge-po">Programme Director + PMO</span></div></div>
+      <div class="action-body">Create a documented onboarding pack for any new joiner — context on the programme, key decisions made, RACI, open risks, team norms and environment access. <strong>Budget 3–4 weeks for any new role to reach productive contribution</strong> — this is the minimum even for experienced practitioners joining mid-programme. Any action owned by a role being replaced should be explicitly deferred by this margin in the programme plan. Review which roles are in-flight or vacant every month and flag the downstream impact on dependent activities at the next governance session.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Onboarding pack published; all new starters fully operational within 3 working days; buddy assigned from Day 1.</div>
+    </div>
+  </div>
+</div><!-- end Project Team -->
+
+<!-- ===== REBUILD TRUST ===== -->
+<div class="section trust-section" id="s-trust">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <div class="section-meta">
+      <div class="section-title">Rebuild Trust &amp; Momentum</div>
+      <div class="section-desc">Engagement scripts for the five stakeholder personas most likely to be disengaged in a turnaround — plus the 45 Keystone Questions that signal whether the recovery is genuinely working.</div>
+    </div>
+  </div>
+  <div class="rule-box rule-box-rose">
+    <div class="rule-box-icon">🎯</div>
+    <div class="rule-box-text"><strong>On the invitation scripts below:</strong> Each script is written for direct communication cultures. In relationship-led cultures, add one sentence of context before the ask. Scripts are intentionally short — long, framed invitations read as sales-speak to senior leaders regardless of culture.</div>
+  </div>
+  <div class="persona-card">
+    <div class="persona-header"><div class="persona-icon">👔</div><div><div class="persona-name">The Disengaged Executive Sponsor</div><div class="persona-pain">"I signed up for this but nobody told me it was in this state."</div></div></div>
+    <div class="persona-body">The disengaged sponsor has stopped attending because <strong>the meetings have not been worth their time</strong> — status updates they could have received by email, no decisions made, no value demonstrated. Re-engage by making the next interaction different: structured, short, decision-focused, with something visible to show. Do not start with an apology; start with a concrete outcome and a single decision request.</div>
+    <div class="invite-script"><div class="invite-script-label">Invitation script</div><div class="invite-script-text">"<em>[Name]</em>, the turnaround plan is in place. I want to show you what has changed since the reset — in 20 minutes — and need one decision on the MVP boundary before Sprint 4 starts. No briefing doc needed."</div></div>
+    <div class="note note-amber"><strong>Formal or hierarchical culture:</strong> Use this script as-is only if you have direct access. Otherwise, send a brief written note first to request the meeting. Add: "I know the last few months have been difficult and I want to show you personally what we've done differently."</div>
+    <div class="note note-green"><strong>Success looks like:</strong> Sponsor attends the next governance session without chasing; makes at least one decision in the meeting; asks a follow-up question about progress — without being prompted.</div>
+  </div>
+  <div class="persona-card">
+    <div class="persona-header"><div class="persona-icon">💼</div><div><div class="persona-name">The Resistant Sales User</div><div class="persona-pain">"Another system I didn't ask for and won't use."</div></div></div>
+    <div class="persona-body">Sales resistance is rational when the previous system made their job harder. The only thing that shifts it is <strong>demonstrating a specific, personal productivity gain</strong> — not showing features, not running demos. Find one task they do today that the new system makes faster or less painful, and show that one thing, in their context, on their territory. Then recruit them as a co-designer.</div>
+    <div class="invite-script"><div class="invite-script-label">Invitation script</div><div class="invite-script-text">"<em>[Name]</em>, I want to show you one thing the CRM platform does that saves time on your quoting process. 15 minutes, on your desk, no slides. Tell me when you have a window this week."</div></div>
+    <div class="note note-amber"><strong>Formal or hierarchical culture:</strong> Use this script as-is only if you have direct access. Otherwise, send a brief written note first to request the meeting. Add: "I've been asking the team what specifically would make your day easier, and I think we've found something."</div>
+    <div class="note note-green"><strong>Success looks like:</strong> Sales user attends a co-design session voluntarily within 2 weeks; names one thing in the new system they want to use before training begins.</div>
+  </div>
+  <div class="persona-card">
+    <div class="persona-header"><div class="persona-icon">🔥</div><div><div class="persona-name">The Burnt-Out Tech Lead</div><div class="persona-pain">"We've been told to fix it but given no room to breathe."</div></div></div>
+    <div class="persona-body">The burnt-out tech lead has been carrying disproportionate weight, often covering for absent or inadequate resourcing. They are not resistant — they are exhausted. <strong>The first move is not to ask for more; it is to take something away</strong>. Remove the lowest-value obligation from their plate before asking for renewed commitment. Then give them a Scrum Master with real authority to shield them from non-delivery interruptions.</div>
+    <div class="invite-script"><div class="invite-script-label">Invitation script</div><div class="invite-script-text">"<em>[Name]</em>, I know the last quarter has been unsustainable. I want to remove two things from your plate before we talk about the next phase. Can we have 30 minutes this week — just us?"</div></div>
+    <div class="note note-amber"><strong>Formal or hierarchical culture:</strong> Use this script as-is only if you have direct access. Otherwise, send a brief written note first to request the meeting. Add: "You've kept this programme moving in impossible conditions and I want to make sure we can sustain that for the next six months differently."</div>
+    <div class="note note-green"><strong>Success looks like:</strong> Tech lead's working week returns to a sustainable level within 3 weeks; retrospective actions start addressing team process rather than just technical issues.</div>
+  </div>
+  <div class="persona-card">
+    <div class="persona-header"><div class="persona-icon">📊</div><div><div class="persona-name">The Sceptical Finance Lead</div><div class="persona-pain">"We've spent too much already and I see no clear return."</div></div></div>
+    <div class="persona-body">Finance scepticism is legitimate — the programme has consumed budget and delivered uncertainty. Re-engage by speaking their language: <strong>sunk cost is irrelevant; future ROI is everything</strong>. Bring a revised business case that shows the commercial value of the remaining investment relative to the cost of stopping. Make the CFO a co-author of the go-forward case, not a recipient of it.</div>
+    <div class="invite-script"><div class="invite-script-label">Invitation script</div><div class="invite-script-text">"<em>[Name]</em>, I want to walk you through the revised ROI case for the next six months — not the sunk cost, just what we get for the remaining investment. 30 minutes. I'd rather build it with you than show you a finished slide."</div></div>
+    <div class="note note-amber"><strong>Formal or hierarchical culture:</strong> Use this script as-is only if you have direct access. Otherwise, send a brief written note first to request the meeting. Add: "I know there are questions about value and I want to address them directly before the next board discussion."</div>
+    <div class="note note-green"><strong>Success looks like:</strong> Finance lead co-authors or co-presents the revised business case; stops raising sunk cost in governance conversations and focuses on go-forward value.</div>
+  </div>
+  <div class="persona-card">
+    <div class="persona-header"><div class="persona-icon">🤝</div><div><div class="persona-name">The SI Partner / Vendor</div><div class="persona-pain">"Goalposts keep moving; decisions never get made."</div></div></div>
+    <div class="persona-body">SI partner disengagement happens when scope instability and decision latency make quality delivery impossible. The partner's best people move to other accounts when a programme becomes unmanageable. <strong>Restore the commercial relationship before restoring the delivery relationship</strong> — revalidate contracts against revised scope and establish a joint accountability framework with named contacts and SLA commitments on both sides.</div>
+    <div class="invite-script"><div class="invite-script-label">Invitation script</div><div class="invite-script-text">"<em>[Name]</em>, we've re-baselined the scope and I want to review how our contract reflects the revised plan. Can we meet this week to agree the joint governance model for the next six months?"</div></div>
+    <div class="note note-amber"><strong>Formal or hierarchical culture:</strong> Use this script as-is only if you have direct access. Otherwise, send a brief written note first to request the meeting. Add: "I want to reset the partnership, not just the contract — and I'd like to start with what you need from us to do your best work."</div>
+    <div class="note note-green"><strong>Success looks like:</strong> SI partner re-commits their best available resources; joint governance framework agreed; no unilateral scope interpretations from either side from Month 2.</div>
+  </div>
+
+  <div style="margin-top:32px;padding-bottom:8px;border-bottom:2px solid var(--f8-navy);">
+    <div style="font-size:21px;font-weight:700;color:var(--f8-navy);letter-spacing:-0.01em;">45 Keystone Success Questions</div>
+    <div style="font-size:13px;color:var(--f8-grey);margin-top:3px;">Ask these questions regularly to test whether the turnaround is genuinely working. Each question has a "why it matters" grounding and tells you who should be asking it and how often.</div>
+  </div>
+  <table class="ks-table" style="margin-top:18px;">
+    <thead><tr><th style="width:32px;">#</th><th style="width:90px;">Element</th><th>Question</th><th style="width:130px;">When</th><th style="width:130px;">Ask Who</th></tr></thead>
+    <tbody>
+      <tr class="ks-section-row"><td colspan="5">ACCOUNTABILITY</td></tr>
+      <tr><td>1</td><td><span class="ks-el ks-acc">Accountability</span></td><td class="ks-q">Who is the single, named accountable executive for this programme? Can they make binding decisions without referring upward?</td><td class="ks-freq">Programme Start / Monthly</td><td class="ks-who">Programme Director</td></tr>
+      <tr><td>2</td><td><span class="ks-el ks-acc">Accountability</span></td><td class="ks-q">Has every workstream lead read and signed the RACI matrix? Are there any roles where accountability is shared or genuinely unclear?</td><td class="ks-freq">Monthly</td><td class="ks-who">PMO</td></tr>
+      <tr><td>3</td><td><span class="ks-el ks-acc">Accountability</span></td><td class="ks-q">Can you name the process owner for each in-scope business process? Have they formally accepted that accountability in writing?</td><td class="ks-freq">Monthly</td><td class="ks-who">Business Transformation Lead</td></tr>
+      <tr><td>4</td><td><span class="ks-el ks-acc">Accountability</span></td><td class="ks-q">Who owns data quality in the CRM platform? In the ERP system? In the Customer Engagement platform? Are these roles coordinated and do they have authority to enforce standards?</td><td class="ks-freq">Monthly</td><td class="ks-who">Data Architect</td></tr>
+      <tr><td>5</td><td><span class="ks-el ks-acc">Accountability</span></td><td class="ks-q">If a critical integration defect is found 48 hours before go-live, who makes the final call to proceed or delay? Is this documented and tested?</td><td class="ks-freq">Pre-Go-Live</td><td class="ks-who">Programme Director + Sponsor</td></tr>
+      <tr><td>6</td><td><span class="ks-el ks-acc">Accountability</span></td><td class="ks-q">Has the project been formally re-baselined since the turnaround plan was agreed? Is every team member working from the same, current plan?</td><td class="ks-freq">Turnaround Start</td><td class="ks-who">PMO + Sponsor</td></tr>
+      <tr class="ks-section-row"><td colspan="5">OUTCOMES</td></tr>
+      <tr><td>7</td><td><span class="ks-el ks-out">Outcomes</span></td><td class="ks-q">What is the single most important measurable outcome this project must deliver? How will you know — with a specific number — that it has been achieved?</td><td class="ks-freq">Programme Start / Quarterly</td><td class="ks-who">Sponsor</td></tr>
+      <tr><td>8</td><td><span class="ks-el ks-out">Outcomes</span></td><td class="ks-q">Is there an impact case — not just a business case? Does it describe the specific human and commercial behaviours that will change, beyond financial ROI?</td><td class="ks-freq">Programme Start / Re-baseline</td><td class="ks-who">Sponsor + Programme Director</td></tr>
+      <tr><td>9</td><td><span class="ks-el ks-out">Outcomes</span></td><td class="ks-q">What does successful adoption of CRM platform look like 90 days after go-live? What specific number or observable behaviour confirms success?</td><td class="ks-freq">Monthly from Month 3</td><td class="ks-who">Change Lead + Business Champion</td></tr>
+      <tr><td>10</td><td><span class="ks-el ks-out">Outcomes</span></td><td class="ks-q">Have outcome-based milestones been defined — not just delivery milestones? Can you show a milestone that proves business value, not just project activity?</td><td class="ks-freq">Monthly</td><td class="ks-who">PMO</td></tr>
+      <tr><td>11</td><td><span class="ks-el ks-out">Outcomes</span></td><td class="ks-q">How will integration middleware integration performance be monitored in production? What alerting is in place and who responds when SLAs are breached?</td><td class="ks-freq">Pre-Go-Live / Monthly Post Go-Live</td><td class="ks-who">Integration Architect</td></tr>
+      <tr><td>12</td><td><span class="ks-el ks-out">Outcomes</span></td><td class="ks-q">Is there a formal scope freeze in place for MVP? What is the change control process for new requests — and is it actually being enforced?</td><td class="ks-freq">Every Sprint</td><td class="ks-who">PMO + Change Control Board</td></tr>
+      <tr><td>13</td><td><span class="ks-el ks-out">Outcomes</span></td><td class="ks-q">Has the project defined outcome-based milestones — things that have happened in the business — rather than activity milestones such as documents produced?</td><td class="ks-freq">Monthly</td><td class="ks-who">PMO + Sponsor</td></tr>
+      <tr><td>43</td><td><span class="ks-el ks-out">Outcomes</span></td><td class="ks-q">Has the project defined a clear impact case — beyond ROI — describing what specific human and commercial behaviours will change as a direct result of successful delivery?</td><td class="ks-freq">Programme Start / Quarterly</td><td class="ks-who">Sponsor + Programme Director</td></tr>
+      <tr><td>45</td><td><span class="ks-el ks-out">Outcomes</span></td><td class="ks-q">Has the programme shifted from delivery mode to impact mode? Are team conversations dominated by outcomes — revenue, customer experience, efficiency — or by tickets and sprints?</td><td class="ks-freq">Monthly</td><td class="ks-who">Programme Director + Sponsor</td></tr>
+      <tr class="ks-section-row"><td colspan="5">RHYTHM</td></tr>
+      <tr><td>14</td><td><span class="ks-el ks-rhy">Rhythm</span></td><td class="ks-q">Is there a weekly pulse meeting attended by the sponsor or their delegate? What decisions are made — and what decisions are persistently deferred?</td><td class="ks-freq">Weekly</td><td class="ks-who">PMO</td></tr>
+      <tr><td>15</td><td><span class="ks-el ks-rhy">Rhythm</span></td><td class="ks-q">Are Scrum sprints running to a consistent cadence? When was the last sprint retrospective held and what specifically changed in the team's approach?</td><td class="ks-freq">Every Sprint</td><td class="ks-who">Scrum Master</td></tr>
+      <tr><td>16</td><td><span class="ks-el ks-rhy">Rhythm</span></td><td class="ks-q">How often does the Executive Steering Committee meet? Was the last meeting quorate? How many agenda items were deferred without a decision?</td><td class="ks-freq">Monthly</td><td class="ks-who">Programme Director</td></tr>
+      <tr><td>17</td><td><span class="ks-el ks-rhy">Rhythm</span></td><td class="ks-q">Are workstream leads working in concentrated, co-located bursts rather than dispersed part-time? What proportion of the week are they physically or virtually present together?</td><td class="ks-freq">Monthly</td><td class="ks-who">Programme Director</td></tr>
+      <tr><td>18</td><td><span class="ks-el ks-rhy">Rhythm</span></td><td class="ks-q">When did the business champion last attend a sprint review or walk the delivery floor? Is leadership presence regular and purposeful or ceremonial?</td><td class="ks-freq">Monthly</td><td class="ks-who">Programme Director</td></tr>
+      <tr><td>19</td><td><span class="ks-el ks-rhy">Rhythm</span></td><td class="ks-q">When was the last formal lessons learned session held across the full programme? What specifically changed in the delivery approach as a direct result?</td><td class="ks-freq">Monthly</td><td class="ks-who">Scrum Master + PMO</td></tr>
+      <tr><td>20</td><td><span class="ks-el ks-rhy">Rhythm</span></td><td class="ks-q">Are there bureaucratic or organisational blockers slowing the team right now that a sponsor could remove today? What are they and why have they not been removed?</td><td class="ks-freq">Weekly Pulse</td><td class="ks-who">Business Champion + Programme Director</td></tr>
+      <tr><td>44</td><td><span class="ks-el ks-rhy">Rhythm</span></td><td class="ks-q">Is senior leadership visibly present in sprint reviews, go-live readiness gates and team ceremonies — not just receiving reports about them from a distance?</td><td class="ks-freq">Monthly</td><td class="ks-who">PMO</td></tr>
+      <tr class="ks-section-row"><td colspan="5">TRANSPARENCY</td></tr>
+      <tr><td>21</td><td><span class="ks-el ks-tra">Transparency</span></td><td class="ks-q">Can you show me the current project RAG status right now? Who produces it, when was it last updated, and does it honestly reflect reality?</td><td class="ks-freq">Weekly</td><td class="ks-who">PMO</td></tr>
+      <tr><td>22</td><td><span class="ks-el ks-tra">Transparency</span></td><td class="ks-q">Is the technical risk register current? When were the top 5 risks last reviewed by a decision-maker who had the authority to act on them?</td><td class="ks-freq">Every Sprint</td><td class="ks-who">Lead Architect</td></tr>
+      <tr><td>23</td><td><span class="ks-el ks-tra">Transparency</span></td><td class="ks-q">Do all workstream leads have real-time visibility of each other's cross-stream dependencies? How are blockers that span workstreams surfaced and resolved?</td><td class="ks-freq">Weekly</td><td class="ks-who">Programme Director</td></tr>
+      <tr><td>24</td><td><span class="ks-el ks-tra">Transparency</span></td><td class="ks-q">How does a junior developer raise a technical concern that may impact the go-live date? What happens next and how quickly does leadership respond?</td><td class="ks-freq">Quarterly Culture Check</td><td class="ks-who">Programme Director</td></tr>
+      <tr><td>25</td><td><span class="ks-el ks-tra">Transparency</span></td><td class="ks-q">Are scope changes tracked in real time and communicated to the sponsor immediately? Where is the change log and who has access to it?</td><td class="ks-freq">Weekly</td><td class="ks-who">PMO + Change Control Board</td></tr>
+      <tr class="ks-section-row"><td colspan="5">ALIGNMENT</td></tr>
+      <tr><td>26</td><td><span class="ks-el ks-ali">Alignment</span></td><td class="ks-q">Do the CRM and Customer Engagement platforms configuration teams share a common, documented understanding of the end-to-end Lead-to-Cash and Order-to-Cash processes?</td><td class="ks-freq">Monthly</td><td class="ks-who">Solution Architect</td></tr>
+      <tr><td>27</td><td><span class="ks-el ks-ali">Alignment</span></td><td class="ks-q">Have business process owners formally signed off on the CRM platform data model and Customer Engagement platform entity design? When — and was it the current version they approved?</td><td class="ks-freq">After each major design decision</td><td class="ks-who">Business Analyst + Process Owner</td></tr>
+      <tr><td>28</td><td><span class="ks-el ks-ali">Alignment</span></td><td class="ks-q">Is there a confirmed, documented system of record for customer master data? Have ERP, CRM and Customer Engagement platforms teams all formally agreed to this in writing?</td><td class="ks-freq">Monthly</td><td class="ks-who">Data Architect + All Tech Leads</td></tr>
+      <tr><td>29</td><td><span class="ks-el ks-ali">Alignment</span></td><td class="ks-q">Does the integration middleware integration design align with the current agreed-to business process flows? Has this alignment been revalidated in the last month?</td><td class="ks-freq">Monthly</td><td class="ks-who">Integration Architect + Business Analyst</td></tr>
+      <tr><td>30</td><td><span class="ks-el ks-ali">Alignment</span></td><td class="ks-q">Are the ERP system and CRM/Customer Engagement platform delivery timelines formally synchronised? Who owns the cross-system dependency plan and when was it last updated?</td><td class="ks-freq">Every Sprint</td><td class="ks-who">Programme Director</td></tr>
+      <tr><td>31</td><td><span class="ks-el ks-ali">Alignment</span></td><td class="ks-q">Are vendor contracts (CRM platform, integration middleware, SI partner) still commercially aligned with the revised scope and timeline? Do they incentivise the right delivery behaviours?</td><td class="ks-freq">Quarterly</td><td class="ks-who">Programme Director + Procurement</td></tr>
+      <tr class="ks-section-row"><td colspan="5">QUICK WINS</td></tr>
+      <tr><td>32</td><td><span class="ks-el ks-qw">Quick Wins</span></td><td class="ks-q">What tangible value has been delivered to business users in the last 4 weeks? Can a typical sales rep name one thing they can do now that they could not do before?</td><td class="ks-freq">Monthly</td><td class="ks-who">Product Owner + Change Lead</td></tr>
+      <tr><td>33</td><td><span class="ks-el ks-qw">Quick Wins</span></td><td class="ks-q">Has the MVP been formally agreed, documented and scope-frozen? Has the MVP definition changed in the last 4 weeks — if so, who approved that change?</td><td class="ks-freq">Every Sprint</td><td class="ks-who">Product Owner + Sponsor</td></tr>
+      <tr><td>34</td><td><span class="ks-el ks-qw">Quick Wins</span></td><td class="ks-q">Are there integration components or process improvements that could be deployed ahead of the main go-live to demonstrate value and reduce go-live risk?</td><td class="ks-freq">Monthly</td><td class="ks-who">Solution Architect + Product Owner</td></tr>
+      <tr><td>35</td><td><span class="ks-el ks-qw">Quick Wins</span></td><td class="ks-q">Have measurable data quality improvements been achieved in the last month? Can you show a before/after comparison with a specific metric?</td><td class="ks-freq">Monthly</td><td class="ks-who">Data Migration Lead</td></tr>
+      <tr><td>36</td><td><span class="ks-el ks-qw">Quick Wins</span></td><td class="ks-q">Is the programme team actively celebrating progress and sharing wins with the wider business? What was the last win communicated and to which audience?</td><td class="ks-freq">Monthly</td><td class="ks-who">Programme Director + Change Lead</td></tr>
+      <tr class="ks-section-row"><td colspan="5">CAPABILITY</td></tr>
+      <tr><td>37</td><td><span class="ks-el ks-cap">Capability</span></td><td class="ks-q">Does the integration middleware team include a certified integration architect with enterprise-scale experience? Has the integration design been reviewed by an independent technical authority?</td><td class="ks-freq">Programme Start / Re-baseline</td><td class="ks-who">Lead Architect + Sponsor</td></tr>
+      <tr><td>38</td><td><span class="ks-el ks-cap">Capability</span></td><td class="ks-q">Are there identified skills gaps on the CRM or Customer Engagement platform configuration teams? How are these being addressed — training, contractor uplift, or re-scoping of delivery?</td><td class="ks-freq">Monthly</td><td class="ks-who">Programme Director</td></tr>
+      <tr><td>39</td><td><span class="ks-el ks-cap">Capability</span></td><td class="ks-q">Does the change management lead have direct, personal experience of a CRM or ERP transformation of comparable scale and complexity?</td><td class="ks-freq">Programme Start</td><td class="ks-who">Sponsor</td></tr>
+      <tr><td>40</td><td><span class="ks-el ks-cap">Capability</span></td><td class="ks-q">Can a typical sales rep or account manager describe — in plain language — what CRM and Customer Engagement platforms will do for them personally? If not, why not?</td><td class="ks-freq">Monthly</td><td class="ks-who">Change Lead</td></tr>
+      <tr><td>41</td><td><span class="ks-el ks-cap">Capability</span></td><td class="ks-q">Is there a dedicated, named Product Owner for the CRM platform and a separate one for the Customer Engagement platform? Do they have the authority, availability and mandate to do the role properly?</td><td class="ks-freq">Programme Start / Monthly</td><td class="ks-who">Programme Director</td></tr>
+      <tr><td>42</td><td><span class="ks-el ks-cap">Capability</span></td><td class="ks-q">Does the programme team feel psychologically safe to surface bad news early? Can you name the last time a junior team member escalated a risk that changed the plan?</td><td class="ks-freq">Quarterly Culture Check</td><td class="ks-who">Programme Director</td></tr>
+    </tbody>
+  </table>
+</div><!-- end Rebuild Trust -->
+
+</div><!-- end sections -->
+
+<div class="stat-strip">
+  <div class="stat-item"><div class="stat-num">59</div><div class="stat-label">Turnaround actions across 6 programme domains</div></div>
+  <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Sequenced first-30-day recovery steps</div></div>
+  <div class="stat-item"><div class="stat-num">45</div><div class="stat-label">Keystone success questions to test real progress</div></div>
+  <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Month structured recovery framework</div></div>
+</div>
+
+<script>
+  function show(id,el){document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('s-'+id).classList.add('visible');el.classList.add('active');}
+  function toggleReadiness(){document.getElementById('readiness').classList.toggle('open');}
+  var answers={};
+  function answer(qid,val,btn){answers[qid]=val;var item=document.getElementById(qid);item.classList.remove('yes','no');item.classList.add(val);item.querySelectorAll('.rq-btn').forEach(function(b){b.classList.remove('selected-yes','selected-no');});btn.classList.add(val==='yes'?'selected-yes':'selected-no');if(Object.keys(answers).length===5){showResult();}}
+  function showResult(){var yes=Object.values(answers).filter(function(v){return v==='yes';}).length;var el=document.getElementById('r-result');el.className='readiness-result show';if(yes>=4){el.classList.add('r-green');el.innerHTML='<div class="readiness-result-title">✅ Deploy the full playbook — your foundations are in place.</div><div class="readiness-result-text">Start with the Sequenced Recovery tab and work through domains in order. The Rebuild Trust tab will land well at this stage — use persona scripts to accelerate stakeholder engagement.</div>';}else if(yes>=2){el.classList.add('r-amber');el.innerHTML='<div class="readiness-result-title">⚠️ Fix governance first — then deploy delivery actions.</div><div class="readiness-result-text">Open the Sponsors tab and complete SP-09, SP-01 and SP-04 before anything else. Only return to the Sequenced Recovery sequence once a named sponsor, a signed ESC ToR and a live RACI are in place. Allow 2–3 weeks before deploying delivery tabs.</div>';}else{el.classList.add('r-red');el.innerHTML='<div class="readiness-result-title">🔴 Stop. Open the Sponsors tab. Start with SP-09.</div><div class="readiness-result-text">Do not proceed to any other tab. Run the Sponsor Turnaround Workshop (SP-09) to establish a named, empowered sponsor with a signed turnaround plan. Only once that exists: run PT-02 (Team Reset) and PT-01 (Team Health Assessment). The rest of this playbook is inert until you have cleared those three.</div>';}}
+</script>
+<!-- HubSpot Analytics -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/49059754.js"></script>
+</body>
+</html>

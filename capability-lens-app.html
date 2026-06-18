@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capability Lens — facilit8</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='116' fill='%230A1628'/%3E%3Cg transform='translate(106 106) scale(12.5)' fill='none' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10' stroke='%23FFFFFF'/%3E%3Cline x1='14.31' y1='8' x2='20.05' y2='17.94' stroke='%23FFFFFF'/%3E%3Cline x1='9.69' y1='8' x2='21.17' y2='8' stroke='%233FB1F2'/%3E%3Cline x1='7.38' y1='12' x2='13.12' y2='2.06' stroke='%23FFFFFF'/%3E%3Cline x1='9.69' y1='16' x2='3.95' y2='6.06' stroke='%233FB1F2'/%3E%3Cline x1='14.31' y1='16' x2='2.83' y2='16' stroke='%23FFFFFF'/%3E%3Cline x1='16.62' y1='12' x2='10.88' y2='21.94' stroke='%233FB1F2'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ── Design tokens ── */
+:root {
+  --f8-blue:#0070C0; --f8-blue-bright:#0090E7; --f8-blue-deep:#005896; --f8-blue-tint:#E8F4FC;
+  --f8-navy:#0A1628; --f8-navy-2:#142238;
+  --f8-teal:#007B8A; --f8-teal-tint:#E6F4F6;
+  --f8-amber:#B86A00; --f8-amber-tint:#FFF4E0;
+  --f8-green:#1A6B3A; --f8-green-tint:#EAF6EE;
+  --f8-purple:#5B3FA6; --f8-purple-tint:#F2EFFF;
+  --f8-rose:#9B1D4A; --f8-rose-tint:#FCEEF4;
+  --f8-red:#C0392B; --f8-red-tint:#FDEEEC;
+  --f8-slate:#3D5166; --f8-slate-tint:#EDF1F5;
+  --f8-off-white:#F5F7FA; --f8-fog:#E6ECF2; --f8-mist:#C9D2DD;
+  --f8-grey:#6B7A99; --f8-ink:#1A1A2E; --f8-ink-soft:#3A3F55;
+  --font-sans:'Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --r-sm:6px; --r-md:8px; --r-lg:12px; --r-xl:16px;
+  --shadow-1:0 1px 3px rgba(10,22,40,0.06);
+  --shadow-2:0 4px 16px rgba(10,22,40,0.08),0 1px 3px rgba(10,22,40,0.04);
+  --shadow-3:0 8px 32px rgba(10,22,40,0.12),0 2px 8px rgba(10,22,40,0.06);
+  --dur:0.18s; --ease-out:cubic-bezier(0.2,0,0,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-sans);background:var(--f8-off-white);color:var(--f8-ink);-webkit-font-smoothing:antialiased;}
+
+/* ── App shell ── */
+.app-shell{min-height:100vh;display:flex;flex-direction:column;}
+main{flex:1;}
+
+/* ── App Nav ── */
+.app-nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:saturate(160%) blur(10px);
+  -webkit-backdrop-filter:saturate(160%) blur(10px);
+  border-bottom:1px solid var(--f8-fog);
+}
+.app-nav-inner{
+  max-width:1100px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;gap:24px;height:64px;
+}
+.app-nav-logo{font-size:17px;font-weight:800;color:var(--f8-navy);letter-spacing:-0.02em;text-decoration:none;display:flex;align-items:center;gap:10px;line-height:1;}
+.app-nav-sub{font-size:13px;color:var(--f8-grey);font-weight:500;flex:1;}
+.plan-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px;cursor:pointer;transition:all var(--dur) var(--ease-out);}
+.plan-badge.basic{background:var(--f8-slate-tint);color:var(--f8-slate);border:1px solid var(--f8-mist);}
+.plan-badge.premium{background:linear-gradient(135deg,#f0e8ff,#e8f4fc);color:var(--f8-purple);border:1px solid #c9bff0;}
+
+/* ── Stage Bar ── */
+.stage-bar{background:#fff;border-bottom:1px solid var(--f8-fog);padding:0 24px;}
+.stage-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;}
+.stage-bar-inner::-webkit-scrollbar{display:none;}
+.stage-step{
+  display:flex;align-items:center;gap:8px;padding:14px 16px;
+  border-bottom:2px solid transparent;white-space:nowrap;
+  font-size:13px;font-weight:500;color:var(--f8-grey);
+  cursor:default;transition:all var(--dur) var(--ease-out);user-select:none;
+}
+.stage-step.done{color:var(--f8-green);cursor:pointer;}
+.stage-step.done:hover{color:var(--f8-blue);}
+.stage-step.active{color:var(--f8-navy);font-weight:600;border-bottom-color:var(--f8-blue);}
+.stage-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:var(--f8-fog);color:var(--f8-grey);flex-shrink:0;}
+.stage-step.done .stage-num{background:var(--f8-green-tint);color:var(--f8-green);}
+.stage-step.active .stage-num{background:var(--f8-blue);color:#fff;}
+.stage-sep{color:var(--f8-mist);padding:0 4px;font-size:18px;display:flex;align-items:center;}
+
+/* ── Page wrapper ── */
+.page{max-width:900px;margin:0 auto;padding:40px 24px 80px;}
+
+/* ── Headings ── */
+.page-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--f8-blue);margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+.eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--f8-blue-bright);flex-shrink:0;}
+.page-title{font-size:clamp(22px,3.5vw,32px);font-weight:800;letter-spacing:-0.02em;color:var(--f8-navy);line-height:1.2;margin-bottom:10px;}
+.page-sub{font-size:15px;color:var(--f8-ink-soft);line-height:1.65;max-width:700px;}
+
+/* ── Cards & sections ── */
+.card{background:#fff;border-radius:var(--r-lg);border:1px solid var(--f8-fog);padding:24px;box-shadow:var(--shadow-1);}
+.card+.card{margin-top:16px;}
+.card-title{font-size:15px;font-weight:700;color:var(--f8-navy);margin-bottom:8px;}
+.card-sub{font-size:13.5px;color:var(--f8-ink-soft);line-height:1.6;}
+
+/* ── Form elements ── */
+.field{display:flex;flex-direction:column;gap:6px;}
+.field label{font-size:12px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--f8-grey);}
+.field input,.field textarea,.field select{
+  font-family:var(--font-sans);font-size:15px;color:var(--f8-ink);
+  padding:11px 14px;border-radius:var(--r-md);
+  border:1.5px solid var(--f8-mist);background:#fff;
+  outline:none;transition:border-color var(--dur) var(--ease-out),box-shadow var(--dur) var(--ease-out);
+}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--f8-blue-bright);box-shadow:0 0 0 3px rgba(0,144,231,0.12);}
+.field textarea{resize:vertical;min-height:110px;line-height:1.6;}
+.field-hint{font-size:12px;color:var(--f8-grey);line-height:1.5;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:620px){.form-grid{grid-template-columns:1fr;}}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-sans);font-weight:600;font-size:15px;padding:12px 22px;border-radius:var(--r-md);border:1.5px solid transparent;cursor:pointer;transition:all var(--dur) var(--ease-out);text-decoration:none;line-height:1;}
+.btn-primary{background:var(--f8-blue-bright);color:#fff;border-color:var(--f8-blue-bright);}
+.btn-primary:hover{background:var(--f8-blue);border-color:var(--f8-blue);}
+.btn-primary:disabled{background:var(--f8-mist);border-color:var(--f8-mist);cursor:not-allowed;color:#fff;}
+.btn-ghost{background:transparent;color:var(--f8-navy);border-color:var(--f8-fog);}
+.btn-ghost:hover{border-color:var(--f8-mist);background:var(--f8-off-white);}
+.btn-sm{padding:8px 14px;font-size:13px;}
+.btn-danger{background:var(--f8-red-tint);color:var(--f8-red);border-color:#f5c5bf;}
+.btn-danger:hover{background:var(--f8-red);color:#fff;}
+
+/* ── Badges ── */
+.badge{font-size:10px;font-weight:700;letter-spacing:0.07em;padding:3px 8px;border-radius:20px;text-transform:uppercase;white-space:nowrap;display:inline-block;}
+.badge-ai{background:var(--f8-blue-tint);color:var(--f8-blue-deep);}
+.badge-human{background:var(--f8-green-tint);color:var(--f8-green);}
+.badge-warn{background:var(--f8-amber-tint);color:var(--f8-amber);}
+.badge-premium{background:linear-gradient(135deg,#f0e8ff,#e8f4fc);color:var(--f8-purple);border:1px solid #c9bff0;}
+.badge-impact{background:var(--f8-purple-tint);color:var(--f8-purple);}
+.badge-required{background:var(--f8-red-tint);color:var(--f8-red);}
+.badge-hr{background:#eef6ff;color:var(--f8-blue-deep);border:1px solid #b3d8f4;}
+.badge-commercial{background:var(--f8-rose-tint);color:var(--f8-rose);border:1px solid #f0b8ce;}
+.badge-both{background:var(--f8-purple-tint);color:var(--f8-purple);border:1px solid #c9bff0;}
+
+/* ── Notes / alerts ── */
+.note{padding:11px 14px;border-radius:var(--r-md);font-size:13px;line-height:1.6;margin-top:12px;}
+.note strong{font-weight:700;}
+.note-green{background:var(--f8-green-tint);border-left:3px solid var(--f8-green);color:#155c30;}
+.note-amber{background:var(--f8-amber-tint);border-left:3px solid var(--f8-amber);color:#7a4500;}
+.note-red{background:var(--f8-red-tint);border-left:3px solid var(--f8-red);color:#8b2218;}
+.note-blue{background:var(--f8-blue-tint);border-left:3px solid var(--f8-blue);color:var(--f8-blue-deep);}
+.note-purple{background:var(--f8-purple-tint);border-left:3px solid var(--f8-purple);color:#3d2880;}
+.note-slate{background:var(--f8-slate-tint);border-left:3px solid var(--f8-slate);color:#2c3d4f;}
+
+/* ── Rule box ── */
+.rule-box{border-radius:var(--r-lg);padding:16px 20px;margin-bottom:20px;display:flex;gap:14px;align-items:flex-start;}
+.rule-box-blue{background:var(--f8-blue);}
+.rule-box-navy{background:var(--f8-navy);}
+.rule-box-amber{background:var(--f8-amber);}
+.rule-box-green{background:var(--f8-green);}
+.rule-box-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.rule-box-text{font-size:13.5px;color:#fff;line-height:1.6;}
+.rule-box-text strong{font-weight:700;}
+
+/* ── Action cards ── */
+.action-card{background:#fff;border-radius:var(--r-lg);padding:18px 20px;border-left:4px solid var(--f8-blue);box-shadow:var(--shadow-1);transition:box-shadow var(--dur) var(--ease-out);position:relative;}
+.action-card:hover{box-shadow:var(--shadow-2);}
+.action-card.human{border-left-color:var(--f8-green);}
+.action-card.protect{border-left-color:var(--f8-red);}
+.action-card.account{border-left-color:var(--f8-purple);}
+.action-header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.action-title{font-weight:600;font-size:14.5px;color:var(--f8-navy);line-height:1.3;}
+.action-body{font-size:13.5px;color:#444;line-height:1.65;}
+.badges{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end;}
+.actions-grid{display:grid;gap:12px;}
+
+/* ── Skill chip list ── */
+.skill-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.skill-item{display:flex;align-items:center;gap:10px;background:var(--f8-off-white);border-radius:var(--r-md);padding:10px 14px;border:1px solid var(--f8-fog);}
+.skill-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--f8-blue);flex-shrink:0;cursor:pointer;}
+.skill-item label{font-size:14px;color:var(--f8-ink);line-height:1.5;cursor:pointer;flex:1;}
+.skill-item.accepted{background:var(--f8-green-tint);border-color:#b6dfc5;}
+.skill-item.accepted label{color:#155c30;}
+
+/* ── Caveat box ── */
+.caveat-box{background:var(--f8-amber-tint);border:1.5px solid #e0b870;border-radius:var(--r-lg);padding:16px 18px;margin-top:20px;}
+.caveat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--f8-amber);margin-bottom:6px;}
+.caveat-text{font-size:13px;color:#7a4500;line-height:1.6;font-style:italic;}
+
+/* ── Premium feature panel ── */
+.premium-panel{background:linear-gradient(135deg,#f9f6ff,#f0f8ff);border:1.5px solid #d4c8f8;border-radius:var(--r-xl);padding:22px 24px;position:relative;overflow:hidden;}
+.premium-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--f8-purple),var(--f8-blue-bright));}
+.premium-panel-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.premium-panel-icon{font-size:20px;}
+.premium-panel-title{font-size:15px;font-weight:700;color:var(--f8-navy);}
+.premium-panel-sub{font-size:13px;color:var(--f8-grey);margin-top:2px;}
+.premium-locked{opacity:0.55;pointer-events:none;user-select:none;filter:blur(0.8px);}
+
+/* ── Agent diff view ── */
+.diff-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.diff-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;padding:3px 9px;border-radius:20px;}
+.diff-tag.before{background:#fff3cd;color:#856404;}
+.diff-tag.after{background:var(--f8-green-tint);color:var(--f8-green);}
+.diff-change{display:flex;gap:8px;align-items:flex-start;margin-top:10px;background:#fff;border-radius:var(--r-md);padding:10px 14px;border:1px solid var(--f8-fog);}
+.diff-bullet{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.diff-bullet.add{background:var(--f8-green-tint);color:var(--f8-green);}
+.diff-bullet.change{background:var(--f8-amber-tint);color:var(--f8-amber);}
+.diff-change-text{font-size:13px;color:var(--f8-ink-soft);line-height:1.55;}
+
+/* ── JD Preview ── */
+.jd-preview{background:#fff;border:1.5px solid var(--f8-fog);border-radius:var(--r-xl);padding:32px 36px;font-size:14.5px;line-height:1.75;color:var(--f8-ink-soft);}
+.jd-preview h3{font-size:15px;font-weight:700;color:var(--f8-navy);margin:20px 0 8px;text-transform:uppercase;letter-spacing:0.06em;}
+.jd-preview h3:first-child{margin-top:0;}
+.jd-preview p{margin-bottom:10px;}
+.jd-preview ul{margin-left:20px;margin-bottom:10px;}
+.jd-preview ul li{margin-bottom:4px;}
+.jd-preview .jd-section{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--f8-fog);}
+.jd-preview .jd-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+
+/* ── Sign-off ── */
+.signoff-card{background:#fff;border-radius:var(--r-lg);padding:22px 24px;border:1.5px solid var(--f8-fog);box-shadow:var(--shadow-1);transition:all var(--dur) var(--ease-out);}
+.signoff-card.signed{border-color:var(--f8-green);background:var(--f8-green-tint);}
+.signoff-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.signoff-avatar{width:40px;height:40px;border-radius:50%;background:var(--f8-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0;}
+.signoff-avatar.commercial{background:var(--f8-rose);}
+.signoff-avatar.signed{background:var(--f8-green);}
+.signoff-name{font-weight:700;font-size:15px;color:var(--f8-navy);}
+.signoff-role{font-size:12px;color:var(--f8-grey);margin-top:2px;}
+
+/* ── Equal treatment checklist ── */
+.et-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:var(--r-md);border:1.5px solid var(--f8-fog);background:#fff;transition:all var(--dur) var(--ease-out);}
+.et-item.checked{border-color:var(--f8-green);background:var(--f8-green-tint);}
+.et-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--f8-green);margin-top:2px;flex-shrink:0;cursor:pointer;}
+.et-item label{font-size:13.5px;color:var(--f8-ink);line-height:1.5;cursor:pointer;}
+.et-item.checked label{color:#155c30;}
+.et-list{display:flex;flex-direction:column;gap:8px;}
+
+/* ── Loading state ── */
+.ai-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;gap:16px;text-align:center;}
+.ai-spinner{width:36px;height:36px;border:3px solid var(--f8-blue-tint);border-top-color:var(--f8-blue);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.ai-loading-label{font-size:14px;color:var(--f8-grey);font-weight:500;}
+.ai-loading-model{font-size:11px;color:var(--f8-blue);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-top:-8px;}
+
+/* ── Section headers ── */
+.section-hdr{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid var(--f8-navy);}
+.section-icon-box{width:40px;height:40px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--f8-navy);}
+.section-icon-box.blue{background:var(--f8-blue);}
+.section-icon-box.green{background:var(--f8-green);}
+.section-icon-box.purple{background:var(--f8-purple);}
+.section-icon-box.rose{background:var(--f8-rose);}
+.section-title{font-size:19px;font-weight:700;color:var(--f8-navy);margin-bottom:3px;letter-spacing:-0.01em;}
+.section-desc{font-size:13px;color:var(--f8-grey);}
+
+/* ── Dividers ── */
+.divider{height:1px;background:var(--f8-fog);margin:28px 0;}
+
+/* ── Stat strip ── */
+.stat-strip{display:flex;background:var(--f8-navy);border-radius:var(--r-lg);overflow:hidden;margin-top:28px;}
+.stat-item{flex:1;padding:20px;border-right:1px solid rgba(255,255,255,0.08);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-size:26px;font-weight:800;color:var(--f8-blue-bright);letter-spacing:-0.03em;line-height:1;}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;line-height:1.35;}
+
+/* ── App footer ── */
+.app-footer{background:var(--f8-navy);color:rgba(255,255,255,0.55);font-size:12px;text-align:center;padding:20px 24px;line-height:1.6;margin-top:auto;}
+.app-footer strong{color:rgba(255,255,255,0.78);}
+
+/* ── Utility ── */
+.mt8{margin-top:8px;} .mt12{margin-top:12px;} .mt16{margin-top:16px;} .mt20{margin-top:20px;} .mt24{margin-top:24px;} .mt28{margin-top:28px;} .mt32{margin-top:32px;}
+.flex{display:flex;} .gap8{gap:8px;} .gap12{gap:12px;} .gap16{gap:16px;}
+.items-center{align-items:center;} .justify-between{justify-content:space-between;}
+.text-grey{color:var(--f8-grey);} .text-sm{font-size:13px;}
+.fw700{font-weight:700;}
+
+/* ── Print styles ── */
+@media print{
+  .app-shell{display:none!important;}
+  #print-document{display:block!important;}
+  body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  #print-document .print-sec{page-break-inside:avoid;}
+}
+
+/* ── Gate overlay ── */
+.gate-overlay{position:absolute;inset:0;background:rgba(245,247,250,0.85);border-radius:var(--r-xl);display:flex;align-items:center;justify-content:center;z-index:5;backdrop-filter:blur(2px);}
+.gate-pill{background:#fff;border:1.5px solid #d4c8f8;border-radius:40px;padding:10px 20px;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow-2);}
+.gate-pill-text{font-size:13px;font-weight:600;color:var(--f8-purple);}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+
+<script type="text/babel">
+const { useState, useEffect, useRef, useCallback } = React;
+
+/* ── Dynamic AI response generator (uses Stage 1 input as context) ── */
+/**
+ * Splits a free-text input into individual points.
+ * Handles: newlines, bullets (- • *), numbered lists, semicolons, and sentences.
+ * Deduplicated and capped at maxItems.
+ */
+function splitIntoPoints(text, minLen = 12, maxItems = 6) {
+  if (!text || !text.trim()) return [];
+  // Normalise bullets/numbers at line start, then split
+  const normalised = text
+    .replace(/^\s*[\-\•\*\–]\s*/gm, '\n')   // bullets → newline
+    .replace(/^\s*\d+[\.\)]\s*/gm, '\n');    // "1." or "1)" → newline
+  // Split on newlines and semicolons; also split on sentence boundaries without lookbehind
+  const sentenceSplit = normalised.replace(/([a-z\d])\.\s+([A-Z])/g, '$1.\n$2');
+  const parts = sentenceSplit
+    .split(/[\n;]/)
+    .map(s => s.replace(/[.]+$/, '').trim())     // strip trailing periods
+    .filter(s => s.length >= minLen);
+  // Capitalise first letter, deduplicate, cap
+  const seen = new Set();
+  const result = [];
+  for (const s of parts) {
+    const clean = s.charAt(0).toUpperCase() + s.slice(1);
+    if (!seen.has(clean.toLowerCase())) { seen.add(clean.toLowerCase()); result.push(clean); }
+    if (result.length >= maxItems) break;
+  }
+  return result;
+}
+
+function buildSplit(role) {
+  // Extract keywords from user's actual input to personalise the output
+  const combined = ((role.jdText || '') + ' ' + (role.glueWork || '') + ' ' + (role.accountability || '')).toLowerCase();
+
+  const isMarketing = /market|brand|campaign|content|seo|demand|social/.test(combined);
+  const isService = /service|support|customer success|cs |csm|ticket|escalat/.test(combined);
+  const isOps = /ops|operation|process|revenue ops|revops|project manage/.test(combined);
+  const isStrategy = /strateg|transform|change manag|organisat|talent|people partner|culture|L&D|learning.*develop|HR business/.test(combined);
+  const isGeneric = !isMarketing && !isService && !isOps && !isStrategy;
+
+  // Parse ALL points from each input field
+  const gluePoints = splitIntoPoints(role.glueWork, 15, 5);
+  const accPoints  = splitIntoPoints(role.accountability, 10, 4);
+  const protectLines = splitIntoPoints(role.protectWork, 10, 4);
+
+  const baseAiAble = isMarketing ? [
+    { text: "Draft copy, social posts, and email sequences from briefs", category: "admin" },
+    { text: "Performance reporting — dashboards, attribution summaries, weekly send reports", category: "analysis" },
+    { text: "Competitor monitoring, market trend summaries, and SEO research briefs", category: "analysis" },
+    { text: "First-cut content calendars and campaign timelines from a strategic brief", category: "admin" },
+    { text: "A/B test result analysis and recommendation memos", category: "analysis" },
+  ] : isService ? [
+    { text: "Deflect routine inbound queries with AI-powered self-serve and knowledge base", category: "admin" },
+    { text: "Draft standard replies to common support tickets from response templates", category: "admin" },
+    { text: "CSAT and NPS analysis, ticket trend summaries, and churn-signal dashboards", category: "analysis" },
+    { text: "Meeting prep notes from account history and open ticket context", category: "analysis" },
+    { text: "First-draft renewal proposals and success plan updates", category: "admin" },
+  ] : isOps ? [
+    { text: "Pipeline hygiene, deal-stage tracking, and CRM data cleansing", category: "admin" },
+    { text: "Forecasting models and revenue dashboards from structured data", category: "analysis" },
+    { text: "Process documentation, SOP drafting, and workflow mapping", category: "admin" },
+    { text: "Reporting packs for QBRs — pulling, formatting, and summarising data", category: "analysis" },
+    { text: "Tool configuration, integration checks, and automation rule management", category: "admin" },
+  ] : isStrategy ? [
+    { text: "Research briefs on frameworks, benchmarks, and best practice from published sources", category: "analysis" },
+    { text: "First-draft communication decks, memos, and stakeholder updates from structured input", category: "admin" },
+    { text: "Summarising survey and engagement data into thematic reports", category: "analysis" },
+    { text: "Drafting policy and process documentation from agreed principles", category: "admin" },
+    { text: "Meeting prep notes, agenda structuring, and post-meeting action summaries", category: "admin" },
+  ] : [
+    { text: "Research briefs and background documents from published sources", category: "analysis" },
+    { text: "First-draft documents, templates, and communications from structured input", category: "admin" },
+    { text: "Routine reporting, data summaries, and dashboard population", category: "analysis" },
+    { text: "Meeting prep and follow-up notes from available context", category: "admin" },
+    { text: "Scheduling, coordination tasks, and administrative workflow management", category: "admin" },
+  ];
+
+  const baseHuman = isMarketing ? [
+    { text: "Positioning and brand judgment — knowing what not to say in this market", category: "judgment" },
+    { text: "Campaign strategy — which message, which audience, which moment", category: "judgment" },
+    { text: "Agency and partner relationships — trust, briefing quality, accountability", category: "relationship" },
+    { text: "Budget ownership and trade-off calls — on the hook when results disappoint", category: "judgment" },
+    { text: "Protecting the brand in a small, high-trust market — one misfire lands hard", category: "judgment" },
+  ] : isService ? [
+    { text: "De-escalation of at-risk accounts — the moment that determines whether they stay", category: "relationship" },
+    { text: "Executive-level conversations on renewal risk — judgment, not script", category: "judgment" },
+    { text: "Identifying and developing champions inside the customer organisation", category: "relationship" },
+    { text: "Owning churn accountability — no AI carries the consequences of a lost account", category: "judgment" },
+  ] : isOps ? [
+    { text: "Go-to-market process design — translating strategy into operating rhythm", category: "judgment" },
+    { text: "Stakeholder alignment — making the case across sales, marketing, finance", category: "relationship" },
+    { text: "Prioritisation and trade-off decisions — what gets automated, what doesn't", category: "judgment" },
+    { text: "Vendor and tool evaluation — judgment calls that shape the stack for years", category: "judgment" },
+  ] : isStrategy ? [
+    { text: "Organisational diagnosis — reading what's really going on beneath the stated issue", category: "judgment" },
+    { text: "Senior stakeholder influence — building trust and shaping decisions without authority", category: "relationship" },
+    { text: "Change design — knowing which levers shift culture and which create noise", category: "judgment" },
+    { text: "Ethical judgment — navigating sensitive people situations that carry real consequences", category: "judgment" },
+    { text: "Narrative and framing — making complex or unpopular change land with the right audience", category: "judgment" },
+  ] : [
+    { text: "Contextual judgment — reading the situation and knowing when to escalate vs. act", category: "judgment" },
+    { text: "Stakeholder relationships — the trust that no tool can replicate or substitute", category: "relationship" },
+    { text: "Accountability — owning outcomes, not just activities", category: "judgment" },
+    { text: "Adaptability — navigating ambiguity and changing priorities without losing direction", category: "judgment" },
+    { text: "Internal advocacy — making the case across functions for what matters", category: "relationship" },
+  ];
+
+  // Inject ALL user glue-work points as separate human work items, then pad with base items
+  const glueItems = gluePoints.map(text => ({ text, category: "relationship" }));
+  const humanWork = glueItems.length > 0
+    ? [...glueItems, ...baseHuman.slice(0, Math.max(2, 5 - glueItems.length))]
+    : baseHuman;
+
+  // Inject ALL user accountability points, pad with role-type defaults
+  const accItems = accPoints.map(a => a + ' — named accountability, cannot be delegated to a tool');
+  const accountabilities = accItems.length > 0
+    ? [...accItems, "Decision quality at the critical moments — the calls only a person can own"]
+    : [
+        "Revenue or retention target ownership — no AI can carry this accountability",
+        "Named relationships with key stakeholders or accounts",
+        "Decision quality at the critical moments — the calls only a person can own",
+      ];
+
+  // ALL protect-work points from user, padded with defaults
+  const protect = [
+    ...protectLines,
+    isMarketing ? "Brand stewardship — positioning calls and what not to publish" :
+    isService ? "The loyalty moment — de-escalation of at-risk accounts must be human" :
+    "The relationship and the close — trust built over years, not automatable",
+    "Anything touching legal exceptions, pricing authority, or personnel decisions",
+  ];
+
+  return {
+    aiAble: baseAiAble,
+    humanWork,
+    accountabilities,
+    protect,
+    caveat: {
+      confidence: (role.glueWork && role.glueWork.length > 80) ? "medium-high" : "medium",
+      reasons: [
+        role.jdText && role.jdText.length > 50
+          ? "Based partly on the stated JD, which may not reflect day-to-day reality"
+          : "No JD text provided — analysis is based on your team's description only",
+        "Glue work and institutional memory may still be under-described",
+        ...(isGeneric ? ["Your role didn't match a known function pattern — outputs are intentionally broad. Review and edit before issuing."] : []),
+      ],
+    },
+    isGeneric,
+  };
+}
+
+function buildSkills(role, split) {
+  const combined = ((role.jdText || '') + ' ' + (role.glueWork || '')).toLowerCase();
+  const isMarketing = /market|brand|campaign|content/.test(combined);
+  const isService = /service|support|customer success|cs /.test(combined);
+  const isOps = /ops|operation|process|revops|project manage/.test(combined);
+  const isStrategy = /strateg|transform|change manag|organisat|talent|people partner|culture|L&D|learning.*develop|HR business/.test(combined);
+
+  return {
+    aiSkills: isMarketing ? [
+      "AI content direction: briefs and edits AI-generated copy; owns the brand voice throughout",
+      "Prompt craft: gets useful, on-brand output from generative tools without engineering skills",
+      "Performance analysis: reads AI-generated attribution and reporting critically, spots the gaps",
+      "Tool fluency: adapts as the MarTech/AI stack changes — learning agility matters more than current tools",
+      "Synthetic research: uses AI to accelerate competitor and audience research, then validates",
+    ] : isService ? [
+      "AI-assisted triage: knows what to route to self-serve vs. a human, and when to escalate",
+      "Prompt craft: gets accurate, empathetic draft replies from AI tools, then edits for tone",
+      "Data literacy: reads AI-generated churn signals and health scores critically — acts on the pattern, not the number",
+      "Tool fluency: comfortable as AI features change in CS platforms (Gainsight, Salesforce, etc.)",
+    ] : isOps ? [
+      "Workflow automation: identifies and configures AI-assisted process improvements without engineering support",
+      "Data literacy: reads AI-generated forecasts and dashboards critically — knows what the model misses",
+      "Prompt craft: gets useful first-draft documentation, SOPs, and reporting from AI tools",
+      "Tool evaluation: assesses new AI tools for fit and risk — not just capability",
+      "Change enablement: helps colleagues adopt AI-assisted workflows without losing process integrity",
+    ] : isStrategy ? [
+      "Research acceleration: uses AI to scan literature, synthesise frameworks, and surface benchmarks faster",
+      "Prompt craft: gets useful first-draft communications, policies, and plans from AI tools, then edits for context",
+      "Critical review: identifies where AI outputs flatten nuance or miss organisational context",
+      "Narrative judgment: knows when to use AI-generated language and when the situation demands original voice",
+      "Tool fluency: comfortable evaluating and adopting AI-enabled HR and strategy tools as they mature",
+    ] : [
+      "AI-assisted drafting: reviews and improves AI-generated documents, communications, and reports",
+      "Prompt craft: gets useful, task-specific output from AI tools without engineering skills",
+      "Critical review: spots where AI output is generic, incomplete, or context-blind",
+      "Tool fluency: adapts as the AI stack changes — learning agility, not just current tools",
+      "Workflow integration: incorporates AI assistance into day-to-day work in a way that saves time and maintains quality",
+    ],
+    humanSkills: split ? split.humanWork.slice(0, 4).map(h => h.text) : [
+      "Commercial judgment: reads a situation — when to push, when to wait, when to walk",
+      "Accountability: willing to own the target and the outcome — comfortable being on the hook",
+      "Resilience: handles setbacks, long cycles, and restructuring customers without de-railing",
+      "Internal influence: makes the case for commitments across product, finance, legal",
+    ],
+    caveat: {
+      confidence: "medium-high",
+      reasons: [
+        "Skill balance depends on current team composition — adjust for what's already present",
+        "AI tool landscape is changing; re-assess AI skill requirements every 6 months",
+      ],
+    },
+  };
+}
+
+const MOCK_SKILLS = {
+  aiSkills: [
+    "AI-assisted outreach: can draft, review, and iterate on high-volume email sequences",
+    "Prompt engineering: knows how to get useful output from AI tools without being an engineer",
+    "CRM-as-platform: uses automation rules and AI features, not just data entry",
+    "Insight-from-data: reads AI-generated market and pipeline analysis critically, spots the gaps",
+    "Content direction: briefs and edits AI-generated collateral, owns the brand voice",
+    "Tool fluency: adapts as the AI stack changes — learning agility, not just current skills",
+  ],
+  humanSkills: [
+    "Enterprise trust: builds C-suite relationships over a multi-year horizon",
+    "Commercial judgment: reads a deal — when to push, when to wait, when to walk",
+    "Internal influence: makes the case for customer commitments across product, finance, legal",
+    "Discovery depth: asks the questions that reveal the real problem behind the stated one",
+    "Resilience: handles a lost deal, a restructuring customer, or a long no-decision cycle",
+    "Accountability: willing to own the forecast and the outcome — comfortable being on the hook",
+  ],
+  caveat: {
+    confidence: "medium-high",
+    reasons: ["Skill balance depends on current team composition — adjust for what's already present", "AI tool landscape is changing; re-assess AI skill requirements every 6 months"],
+  }
+};
+
+const MOCK_JD = (project, skills, role) => `
+**${project.title || "Role Title"}**
+*Open Role · Drafted ${new Date().toLocaleDateString('en-GB', {day:'2-digit',month:'short',year:'numeric'})}*
+
+---
+
+**About the Role**
+
+${role?.jdText ? role.jdText.trim() + '\n\nThis role has been reviewed and supplemented using the facilit8 Capability Lens to clarify how AI and human accountability are divided — ensuring the right work goes to the right source.' : 'This role has been designed using the facilit8 Capability Lens. AI carries the codifiable, repeatable work — freeing the person in this role to focus on the judgment, relationships, and accountability that only a person can own.'}
+
+**Key Accountabilities**
+
+${(skills?.humanSkills || []).map(s => `- ${s}`).join('\n') || `- The key relationships and trust that no tool can hold
+- Judgment calls at the moments that matter
+- Accountability for outcomes — on the hook, not the tool
+- Internal advocacy for decisions that cross functions`}
+
+**AI Skills We Are Looking For**
+
+${(skills?.aiSkills || []).map(s => `- ${s}`).join('\n') || `- Ability to direct, review, and improve AI-generated output
+- Comfortable working with AI tools as part of the daily workflow
+- Critical eye: knows when output is wrong or incomplete`}
+
+**What You Will Deliver with Help of AI**
+
+${(skills?.aiSkills || []).slice(0, 4).map(s => `- ${s}`).join('\n') || `- Drafting, summarising, and preparing materials from data and templates
+- Routine reporting, dashboards, and first-cut analysis
+- Meeting prep and follow-up from system context
+- Research briefs and background documents`}
+
+**Key Capabilities to be Successful**
+
+${(skills?.humanSkills || []).map(s => `- ${s}`).join('\n') || `- Sound judgment in ambiguous situations
+- Ownership mindset — accountable for outcomes, not just activity
+- Strong relationships and trust-building across stakeholders
+- Resilience and adaptability as tools and context evolve`}
+
+*This JD was produced using the facilit8 Capability Lens. Decision-support only — not legal advice. Confirm equal-treatment compliance with employment counsel in your jurisdiction before issuing.*
+`;
+
+const MOCK_AGENT_CHANGES = [
+  { type: "change", text: "Strengthened 'Key Accountabilities' section — moved accountability language before the task list, so the ownership signal is unmissable to candidates." },
+  { type: "change", text: "Reordered AI Skills — listed critical-thinking and judgment skills (directing and reviewing AI output) before operational skills, which signals the right seniority." },
+  { type: "add", text: "Tightened 'What You Will Deliver with Help of AI' — removed generic items and replaced with role-specific outputs derived from the capability split." },
+  { type: "add", text: "Added sunset language to the covering note: 'This role design is reviewed at 6 months. The default on review is hire or re-scope, not extend automation.'" },
+];
+
+/* ── Utility components ── */
+function Arrow({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+    </svg>
+  );
+}
+function Check({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  );
+}
+function Lock({ size = 12 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    </svg>
+  );
+}
+function Star({ size = 12 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="none">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </svg>
+  );
+}
+
+/* ── App Nav ── */
+function AppNav({ plan, onCancelPremium }) {
+  return (
+    <header className="app-nav">
+      <div className="app-nav-inner">
+        <span className="app-nav-logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" stroke="#0A1628"/>
+            <line x1="14.31" y1="8" x2="20.05" y2="17.94" stroke="#0A1628"/>
+            <line x1="9.69" y1="8" x2="21.17" y2="8" stroke="#0090E7"/>
+            <line x1="7.38" y1="12" x2="13.12" y2="2.06" stroke="#0A1628"/>
+            <line x1="9.69" y1="16" x2="3.95" y2="6.06" stroke="#0090E7"/>
+            <line x1="14.31" y1="16" x2="2.83" y2="16" stroke="#0A1628"/>
+            <line x1="16.62" y1="12" x2="10.88" y2="21.94" stroke="#0090E7"/>
+          </svg>
+          <span style={{ display:'flex', flexDirection:'column', gap:1 }}>
+            <span style={{ lineHeight:1.1 }}>Capability<span style={{ color:'var(--f8-blue)' }}> Lens</span></span>
+            <span style={{ fontSize:9, fontWeight:700, letterSpacing:'0.18em', color:'var(--f8-grey)', textTransform:'uppercase' }}>A FACILIT8 TOOL</span>
+          </span>
+        </span>
+        <span className="app-nav-sub"></span>
+        <button
+          className="btn btn-ghost btn-sm"
+          style={{ fontSize: 12 }}
+          onClick={() => { if (confirm('Start a new session? Your current progress will be cleared.')) { try{localStorage.removeItem('f8_capability_lens_v1');}catch(e){} window.location.reload(); } }}
+          title="Clear session and start fresh"
+        >
+          + New Role
+        </button>
+        {plan === 'premium' ? (
+          <span
+            className="plan-badge premium"
+            title="Premium active — click to manage"
+            onClick={onCancelPremium}
+            style={{ cursor:'pointer' }}
+          >
+            <Star size={10}/> Premium
+          </span>
+        ) : (
+          <a
+            href={STRIPE_URL}
+            className="plan-badge"
+            style={{ background:'var(--f8-navy)', color:'#fff', border:'none', textDecoration:'none', cursor:'pointer' }}
+            title="Upgrade to Premium"
+          >
+            <Star size={10}/> Upgrade
+          </a>
+        )}
+      </div>
+    </header>
+  );
+}
+
+/* ── Stage Bar ── */
+const STAGES = [
+  { id: 0, label: "Open It", icon: "🔓" },
+  { id: 1, label: "Capture the Role", icon: "📝" },
+  { id: 2, label: "Capability Split", icon: "🔍" },
+  { id: 3, label: "Agree Skills", icon: "✅" },
+  { id: 4, label: "Draft JD", icon: "📄" },
+  { id: 5, label: "Sign Off", icon: "✍️" },
+];
+
+function StageBar({ stage, maxStage, onNavigate }) {
+  return (
+    <div className="stage-bar">
+      <div className="stage-bar-inner">
+        {STAGES.map((s, i) => {
+          const done = s.id < stage;
+          const active = s.id === stage;
+          return (
+            <React.Fragment key={s.id}>
+              {i > 0 && <span className="stage-sep">›</span>}
+              <div
+                className={`stage-step${done ? ' done' : ''}${active ? ' active' : ''}`}
+                onClick={() => done && onNavigate(s.id)}
+              >
+                <span className="stage-num">{done ? '✓' : s.id}</span>
+                {s.icon} {s.label}
+              </div>
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════
+   STAGE 0 — Open It
+══════════════════════════════════════════ */
+const COMMITMENT_ITEMS = [
+  "This is a genuinely open role — no incumbent, and no one being managed out behind it.",
+  "Two people own this review and the decision together: a people/HR lead and the role manager.",
+  "I agree this Capability Lens informs decisions but never makes them.",
+];
+
+function Stage0({ state, setState, onNext }) {
+  const [title, setTitle] = useState(state.project?.title || '');
+  const [checks, setChecks] = useState(state.project?.commitmentChecks || {});
+
+  const allChecked = COMMITMENT_ITEMS.every((_, i) => checks[i]);
+  const canProceed = title.trim() && allChecked;
+
+  function toggleCheck(i) { setChecks(c => ({ ...c, [i]: !c[i] })); }
+
+  function handleNext() {
+    setState(s => ({ ...s, project: { ...s.project, title, commitmentChecks: checks } }));
+    onNext();
+  }
+
+  return (
+    <div className="page">
+      {/* Brand hero */}
+      <div style={{ display:'flex', alignItems:'center', gap:20, marginBottom:32, padding:'28px 32px', background:'var(--f8-navy)', borderRadius:16 }}>
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink:0 }}>
+          <circle cx="12" cy="12" r="10" stroke="#fff"/>
+          <line x1="14.31" y1="8" x2="20.05" y2="17.94" stroke="#fff"/>
+          <line x1="9.69" y1="8" x2="21.17" y2="8" stroke="#3FB1F2"/>
+          <line x1="7.38" y1="12" x2="13.12" y2="2.06" stroke="#fff"/>
+          <line x1="9.69" y1="16" x2="3.95" y2="6.06" stroke="#3FB1F2"/>
+          <line x1="14.31" y1="16" x2="2.83" y2="16" stroke="#fff"/>
+          <line x1="16.62" y1="12" x2="10.88" y2="21.94" stroke="#3FB1F2"/>
+        </svg>
+        <div>
+          <div style={{ fontSize:28, fontWeight:800, letterSpacing:'-0.02em', color:'#fff', lineHeight:1.1 }}>Capability<span style={{ color:'#3FB1F2' }}> Lens</span></div>
+          <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.2em', color:'#9AA7B8', textTransform:'uppercase', marginTop:4 }}>A FACILIT8 TOOL</div>
+        </div>
+      </div>
+
+      <div className="page-eyebrow"><span className="eyebrow-dot"/>Stage 0 of 5</div>
+      <h1 className="page-title">Integrity Check</h1>
+      <p className="page-sub">Three ticks and a role title. This is the structural gate that keeps the lens a role-design tool, not a cost-cutting engine.</p>
+      <p className="page-sub" style={{ marginTop: 8 }}>For HR and line managers: run every open role through this Capability Lens before you post it. Let AI do the AI-able work; ensure people focus on the outcomes, accountabilities and soft skills. A role-design tool, not a layoff tool.</p>
+
+      <div className="card mt24">
+        <div className="card-title">Role Title</div>
+        <div className="field mt12">
+          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="e.g. Customer Success Manager, Head of Marketing, Finance Business Partner…" />
+        </div>
+      </div>
+
+
+      <div className="card mt16">
+        <div className="card-title">Three Commitments</div>
+        <div className="card-sub mt8">Tick all three. These are the conditions that make the lens safe to use.</div>
+        <div className="et-list mt16">
+          {COMMITMENT_ITEMS.map((item, i) => (
+            <div key={i} className={`et-item ${checks[i] ? 'checked' : ''}`}>
+              <input type="checkbox" id={`c-${i}`} checked={!!checks[i]} onChange={() => toggleCheck(i)} />
+              <label htmlFor={`c-${i}`}>{item}</label>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex gap12 mt28 no-print">
+        <button className="btn btn-primary" onClick={handleNext} disabled={!canProceed}>
+          Confirmed — Capture the Role <Arrow />
+        </button>
+      </div>
+      {!canProceed && (
+        <div className="text-sm text-grey mt12">Enter a role title, confirm it's open, and tick all four commitments to proceed.</div>
+      )}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════
+   STAGE 1 — Capture the Real Role
+══════════════════════════════════════════ */
+function Stage1({ state, setState, onNext, onBack }) {
+  const [local, setLocal] = useState(state.role);
+  const set = (k, v) => setLocal(r => ({ ...r, [k]: v }));
+
+  const canProceed = local.jdText.trim() && local.glueWork.trim() && local.accountability.trim();
+
+  function handleNext() {
+    setState(s => ({ ...s, role: local }));
+    onNext();
+  }
+
+  return (
+    <div className="page">
+      <div className="page-eyebrow"><span className="eyebrow-dot"/>Stage 1 of 5</div>
+      <h1 className="page-title">Capture the Real Role</h1>
+      <p className="page-sub">The JD is a recruiting artefact, not the truth. It's stale and it misses the glue work that holds a team together. Get the real picture before the AI sees it — or the lens will inherit the JD's flaws.</p>
+
+      <div className="mt24">
+        <div className="note note-amber">
+          <strong>The step everyone skips — highest leverage in the sequence.</strong> Spend 30 minutes with the people who sat next to the role: "What did this person actually do that isn't written down?" That answer is the real job.
+        </div>
+      </div>
+
+      <div className="card mt20">
+        <div className="card-title">What's in the Job Description?</div>
+        <div className="card-sub mt8">Paste the existing JD or summarise the stated duties. The lens will use this as the starting point — and treat it critically.</div>
+        <div className="field mt12">
+          <label>JD text / stated duties *</label>
+          <textarea
+            value={local.jdText}
+            onChange={e => set('jdText', e.target.value)}
+            placeholder="Paste or summarise: key responsibilities, targets, reporting line, team size..."
+            style={{ minHeight: 140 }}
+          />
+        </div>
+      </div>
+
+      <div className="card mt16">
+        <div className="card-title">What Did This Person <em>Actually</em> Do?</div>
+        <div className="card-sub mt8">The glue work. The invisible connective tissue. The thing that breaks if no one does it for three months. What the JD doesn't mention.</div>
+        <div className="field mt12">
+          <label>Real duties, glue work, context *</label>
+          <textarea
+            value={local.glueWork}
+            onChange={e => set('glueWork', e.target.value)}
+            placeholder={`Ask the team: "What did this person actually do that isn't in the job description? What breaks when they're not here?" Write it here…`}
+            style={{ minHeight: 140 }}
+          />
+          <span className="field-hint">Examples: "They were the person stakeholders called when something was about to go wrong" — "They held the context that stopped us making commitments we couldn't keep."</span>
+        </div>
+      </div>
+
+      <div className="card mt16">
+        <div className="card-title">What's the Role Accountable For?</div>
+        <div className="card-sub">"What breaks, and who carries it, if this role had no human owner for three months?" That's usually more than the JD admits.</div>
+        <div className="field mt12">
+          <label>Accountabilities *</label>
+          <textarea
+            value={local.accountability}
+            onChange={e => set('accountability', e.target.value)}
+            placeholder="Revenue target, named accounts, forecast accuracy, team coverage, partner relationships, compliance area..."
+            style={{ minHeight: 110 }}
+          />
+        </div>
+      </div>
+
+      <div className="card mt16">
+        <div className="card-title">Optional: What Must Never Be Automated?</div>
+        <div className="card-sub mt8">Name it now, before the AI runs. An empty list at the end is a red flag — look harder here first.</div>
+        <div className="field mt12">
+          <label>Human-required work (cannot be automated)</label>
+          <textarea
+            value={local.protectWork || ''}
+            onChange={e => set('protectWork', e.target.value)}
+            placeholder="Relationship with named C-suite contacts — the final negotiation on commercial terms — the de-escalation of at-risk accounts..."
+            style={{ minHeight: 90 }}
+          />
+        </div>
+      </div>
+
+      <div className="flex gap12 mt28 no-print">
+        <button className="btn btn-ghost" onClick={onBack}>← Back</button>
+        <button className="btn btn-primary" onClick={handleNext} disabled={!canProceed}>
+          We have the real role — Run the Lens <Arrow />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════
+   STAGE 2 — AI Capability Split
+══════════════════════════════════════════ */
+function Stage2({ state, setState, plan, onNext, onBack }) {
+  const [loading, setLoading] = useState(!state.split);
+  const [result, setResult] = useState(state.split || null);
+  const [accepted, setAccepted] = useState(state.splitAccepted || {});
+
+  useEffect(() => {
+    if (!result) {
+      const t = setTimeout(() => {
+        const dynamic = buildSplit(state.role);
+        setResult(dynamic);
+        setState(s => ({ ...s, split: dynamic }));
+        setLoading(false);
+      }, 2200);
+      return () => clearTimeout(t);
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  function toggleAccepted(key) {
+    setAccepted(a => {
+      const next = { ...a, [key]: !a[key] };
+      setState(s => ({ ...s, splitAccepted: next }));
+      return next;
+    });
+  }
+
+  const modelLabel = plan === 'premium' ? 'Claude Opus (frontier)' : 'Claude Sonnet';
+
+  return (
+    <div className="page">
+      <div className="page-eyebrow"><span className="eyebrow-dot"/>Stage 2 of 5</div>
+      <h1 className="page-title">AI Capability Split</h1>
+      <p className="page-sub">The lens runs the real role against four questions and produces four outputs — never a verdict. Review, edit, and accept what's right. Reject what's wrong.</p>
+
+      {loading ? (
+        <div className="card mt24">
+          <div className="ai-loading">
+            <div className="ai-spinner"/>
+            <div className="ai-loading-label">Running the capability analysis…</div>
+            <div className="ai-loading-model">Model: {modelLabel}</div>
+          </div>
+        </div>
+      ) : result && (
+        <>
+          {result.isGeneric && (
+            <div className="note note-amber mt16">
+              <strong>Broad output — review carefully.</strong> This role didn't match a known function pattern (marketing, service, ops, strategy/HR). The split and skills are intentionally general. Edit both sections before proceeding.
+            </div>
+          )}
+
+          <div className="mt24 caveat-box">
+            <div className="caveat-label">⚠ Mandatory Caveat — Travels With Every Output</div>
+            <div className="caveat-text">"Based on a JD we know is imperfect. Confidence: <strong>{result.caveat.confidence}</strong>. Top two reasons it's wrong: <em>{result.caveat.reasons[0]}</em>; <em>{result.caveat.reasons[1]}</em>. Informs a decision a named person owns — it does not make one."</div>
+          </div>
+
+          {/* AI-Able */}
+          <div className="mt24">
+            <div className="section-hdr">
+              <div className="section-icon-box blue">🤖</div>
+              <div>
+                <div className="section-title">What AI Can Carry</div>
+                <div className="section-desc">Routine, codifiable work the tools can handle so people can focus on what matters.</div>
+              </div>
+            </div>
+            <div className="actions-grid">
+              {result.aiAble.map((item, i) => (
+                <div key={i} className="action-card" style={{ borderLeftColor: 'var(--f8-blue)' }}>
+                  <div className="action-header">
+                    <div className="action-title">{item.text}</div>
+                    <div className="badges"><span className="badge badge-ai">AI-able</span></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Human Work */}
+          <div className="mt28">
+            <div className="section-hdr">
+              <div className="section-icon-box green">👤</div>
+              <div>
+                <div className="section-title">Human Work — What's Left</div>
+                <div className="section-desc">Accountabilities, judgment, and relationships only a person can own. This is what the role is really about.</div>
+              </div>
+            </div>
+            <div className="actions-grid">
+              {result.humanWork.map((item, i) => (
+                <div key={i} className={`action-card human`}>
+                  <div className="action-header">
+                    <div className="action-title">{item.text}</div>
+                    <div className="badges"><span className="badge badge-human">Human work</span></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Accountabilities */}
+          <div className="mt28">
+            <div className="section-hdr">
+              <div className="section-icon-box purple">⚡</div>
+              <div>
+                <div className="section-title">Accountabilities</div>
+                <div className="section-desc">What this role is on the hook for. AI does tasks; it cannot carry accountability.</div>
+              </div>
+            </div>
+            <div className="actions-grid">
+              {result.accountabilities.map((item, i) => (
+                <div key={i} className="action-card account">
+                  <div className="action-title">{item}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Protect */}
+          <div className="mt28">
+            <div className="section-hdr">
+              <div className="section-icon-box rose">🚫</div>
+              <div>
+                <div className="section-title">Don't Automate This</div>
+                <div className="section-desc">Human-required by design. Naming what you won't touch is what makes the rest credible.</div>
+              </div>
+            </div>
+            <div className="actions-grid">
+              {result.protect.map((item, i) => (
+                <div key={i} className="action-card protect">
+                  <div className="action-title">{item}</div>
+                  <div className="badges" style={{ marginTop: 8 }}><span className="badge badge-required">Human-required</span></div>
+                </div>
+              ))}
+            </div>
+            {result.protect.length === 0 && (
+              <div className="note note-red mt12">
+                <strong>Red flag:</strong> No "don't automate" list means the lens didn't look hard enough. Go back to Stage 1 and look harder at the glue work.
+              </div>
+            )}
+          </div>
+
+          {/* Premium Agent Review */}
+          <div className="mt28">
+            <div className={`premium-panel ${plan !== 'premium' ? '' : ''}`} style={{ position:'relative' }}>
+              <div className="premium-panel-header">
+                <span className="premium-panel-icon">✨</span>
+                <div>
+                  <div className="premium-panel-title">Capability Lens Agent Review</div>
+                  <div className="premium-panel-sub">Frontier model re-runs the split with facilit8.org's encoded expertise + curated network patterns</div>
+                </div>
+                <span className="badge badge-premium" style={{ marginLeft:'auto' }}><Star size={9}/>Premium</span>
+              </div>
+              {plan !== 'premium' ? (
+                <div>
+                  <div className="premium-locked">
+                    <div style={{ background:'#fff', borderRadius:8, padding:'12px 14px', opacity:0.7 }}>
+                      <div style={{ height:10, background:'#e0d8f8', borderRadius:4, marginBottom:8 }}/>
+                      <div style={{ height:10, background:'#e0d8f8', borderRadius:4, width:'60%' }}/>
+                    </div>
+                  </div>
+                  <div className="gate-overlay" style={{ position:'relative', inset:'unset', display:'flex', marginTop:-40, paddingTop:40 }}>
+                    <div className="gate-pill">
+                      <Lock size={13}/><span className="gate-pill-text">Upgrade to Premium to unlock Agent Review</span>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="note note-purple mt8" style={{ marginTop: 0 }}>
+                  <strong>Agent note:</strong> Split looks correct for this role type. One addition: ensure "institutional memory — knowing what the organisation can and can't commit to" is explicitly named under Human Work. It rarely appears in JDs but consistently appears in exit interviews.
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="flex gap12 mt28 no-print">
+            <button className="btn btn-ghost" onClick={onBack}>← Back</button>
+            <button className="btn btn-primary" onClick={onNext}>
+              Accept this split — Agree Skill Sets <Arrow />
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════
+   STAGE 3 — Agree Skill Sets
+══════════════════════════════════════════ */
+function Stage3({ state, setState, plan, onNext, onBack }) {
+  const [loading, setLoading] = useState(!state.skills);
+  const [skills, setSkills] = useState(state.skills || null);
+  const [aiAccepted, setAiAccepted] = useState(state.aiSkillsAccepted || {});
+  const [humanAccepted, setHumanAccepted] = useState(state.humanSkillsAccepted || {});
+  const [comment, setComment] = useState('');
+  const [comments, setComments] = useState(state.comments || []);
+
+  useEffect(() => {
+    if (!skills) {
+      const t = setTimeout(() => {
+        const dynamic = buildSkills(state.role, state.split);
+        setSkills(dynamic);
+        setState(s => ({ ...s, skills: dynamic }));
+        setLoading(false);
+      }, 1800);
+      return () => clearTimeout(t);
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  function toggleAi(i) { setAiAccepted(a => ({ ...a, [i]: !a[i] })); }
+  function toggleHuman(i) { setHumanAccepted(a => ({ ...a, [i]: !a[i] })); }
+
+  function addComment() {
+    if (!comment.trim()) return;
+    const c = { text: comment, author: 'Owner', ts: new Date().toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' }) };
+    const next = [...comments, c];
+    setComments(next);
+    setState(s => ({ ...s, comments: next, skills, aiSkillsAccepted: aiAccepted, humanSkillsAccepted: humanAccepted }));
+    setComment('');
+  }
+
+  function handleNext() {
+    setState(s => ({ ...s, skills, aiSkillsAccepted: aiAccepted, humanSkillsAccepted: humanAccepted, comments }));
+    onNext();
+  }
+
+  return (
+    <div className="page">
+      <div className="page-eyebrow"><span className="eyebrow-dot"/>Stage 3 of 5</div>
+      <h1 className="page-title">Agree the Skill Sets</h1>
+      <p className="page-sub">Two sections: the AI skills the role needs, and the human skills and accountabilities it's built around. Tick what you agree with, leave comments to resolve disagreements. Both owners resolve this together.</p>
+
+      {loading ? (
+        <div className="card mt24">
+          <div className="ai-loading">
+            <div className="ai-spinner"/>
+            <div className="ai-loading-label">Generating skill sets from the capability split…</div>
+            <div className="ai-loading-model">Model: {plan === 'premium' ? 'Claude Opus (frontier)' : 'Claude Sonnet'}</div>
+          </div>
+        </div>
+      ) : skills && (
+        <>
+          <div className="mt24 caveat-box">
+            <div className="caveat-label">⚠ Caveat</div>
+            <div className="caveat-text">Confidence: <strong>{skills.caveat.confidence}</strong>. Watch for: <em>{skills.caveat.reasons[0]}</em>; <em>{skills.caveat.reasons[1]}</em>.</div>
+          </div>
+
+          {/* AI Skills */}
+          <div className="mt24">
+            <div className="section-hdr">
+              <div className="section-icon-box blue">🤖</div>
+              <div>
+                <div className="section-title">AI Skills This Role Needs</div>
+                <div className="section-desc">Not just "can use AI tools" — the specific capabilities that matter for this role. Tick what belongs in the JD.</div>
+              </div>
+            </div>
+            <div className="skill-list">
+              {skills.aiSkills.map((s, i) => (
+                <div key={i} className={`skill-item ${aiAccepted[i] ? 'accepted' : ''}`}>
+                  <input type="checkbox" id={`ai-${i}`} checked={!!aiAccepted[i]} onChange={() => toggleAi(i)} />
+                  <label htmlFor={`ai-${i}`}>{s}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Human Skills */}
+          <div className="mt28">
+            <div className="section-hdr">
+              <div className="section-icon-box green">👤</div>
+              <div>
+                <div className="section-title">Key Capabilities to be Successful</div>
+                <div className="section-desc">What this role is really about. The work only a person can do and own. Tick what's right for this specific role.</div>
+              </div>
+            </div>
+            <div className="skill-list">
+              {skills.humanSkills.map((s, i) => (
+                <div key={i} className={`skill-item ${humanAccepted[i] ? 'accepted' : ''}`}>
+                  <input type="checkbox" id={`h-${i}`} checked={!!humanAccepted[i]} onChange={() => toggleHuman(i)} />
+                  <label htmlFor={`h-${i}`}>{s}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Premium agent */}
+          <div className="mt28">
+            <div className={`premium-panel`} style={{ position:'relative' }}>
+              <div className="premium-panel-header">
+                <span className="premium-panel-icon">✨</span>
+                <div>
+                  <div className="premium-panel-title">Agent Skill Review</div>
+                  <div className="premium-panel-sub">Checks skill balance against facilit8.org's encoded expertise and curated patterns from similar roles</div>
+                </div>
+                <span className="badge badge-premium" style={{ marginLeft:'auto' }}><Star size={9}/>Premium</span>
+              </div>
+              {plan !== 'premium' ? (
+                <div className="gate-pill" style={{ margin:'12px auto 0', width:'fit-content', position:'relative' }}>
+                  <Lock size={13}/><span className="gate-pill-text">Upgrade to Premium to unlock Agent Skill Review</span>
+                </div>
+              ) : (
+                <div className="note note-purple mt8" style={{ marginTop: 8 }}>
+                  <strong>Agent note:</strong> Skill balance looks right for a senior hunter-farmer hybrid. One flag: "Tool fluency" is listed as a skill but should be framed as a minimum (table stakes), not a differentiator. Add instead: "Coaches the team on AI use" — at this seniority, that's where the leverage lives.
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Comments */}
+          <div className="mt28">
+            <div className="card-title mb-8">💬 Owner Comments</div>
+            <div className="card-sub text-sm mt8">Use this to resolve disagreements about specific skills. Both owners see every comment.</div>
+            {comments.length > 0 && (
+              <div style={{ marginTop: 14, display:'flex', flexDirection:'column', gap: 8 }}>
+                {comments.map((c, i) => (
+                  <div key={i} style={{ background:'#fff', border:'1px solid var(--f8-fog)', borderRadius:8, padding:'10px 14px' }}>
+                    <div style={{ display:'flex', justifyContent:'space-between', marginBottom: 4 }}>
+                      <span style={{ fontSize: 12, fontWeight: 700, color:'var(--f8-blue)' }}>{c.author}</span>
+                      <span style={{ fontSize: 11, color:'var(--f8-grey)' }}>{c.ts}</span>
+                    </div>
+                    <div style={{ fontSize: 13.5, color:'var(--f8-ink)' }}>{c.text}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div className="field mt12">
+              <textarea value={comment} onChange={e => setComment(e.target.value)} placeholder="Add a comment or flag a disagreement…" style={{ minHeight: 70 }} />
+            </div>
+            <button className="btn btn-ghost btn-sm mt8" onClick={addComment}>Post comment</button>
+          </div>
+
+          <div className="flex gap12 mt28 no-print">
+            <button className="btn btn-ghost" onClick={onBack}>← Back</button>
+            <button className="btn btn-primary" onClick={handleNext}>
+              Skills agreed — Draft the JD <Arrow />
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════
+   STAGE 4 — Draft JD
+══════════════════════════════════════════ */
+function Stage4({ state, setState, plan, onNext, onBack }) {
+  const [loading, setLoading] = useState(!state.jdDraft);
+  const [jd, setJd] = useState(state.jdDraft || null);
+  const [agentLoading, setAgentLoading] = useState(false);
+  const [agentDone, setAgentDone] = useState(state.agentReviewed || false);
+  const [showAgent, setShowAgent] = useState(false);
+
+  useEffect(() => {
+    if (!jd) {
+      const t = setTimeout(() => {
+        const draft = MOCK_JD(state.project, state.skills, state.role);
+        setJd(draft);
+        setState(s => ({ ...s, jdDraft: draft }));
+        setLoading(false);
+      }, 2600);
+      return () => clearTimeout(t);
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  function runAgent() {
+    setAgentLoading(true);
+    setTimeout(() => {
+      setAgentLoading(false);
+      setAgentDone(true);
+      setShowAgent(true);
+      setState(s => ({ ...s, agentReviewed: true }));
+    }, 3000);
+  }
+
+  function handleNext() {
+    setState(s => ({ ...s, jdDraft: jd, agentReviewed: agentDone }));
+    onNext();
+  }
+
+  function renderJD(text) {
+    if (!text) return null;
+    return text.trim().split('\n').map((line, i) => {
+      if (line.startsWith('**') && line.endsWith('**') && !line.includes('|')) {
+        const content = line.replace(/\*\*/g, '');
+        return <h3 key={i}>{content}</h3>;
+      }
+      if (line.startsWith('*') && line.endsWith('*') && !line.startsWith('**')) {
+        return <p key={i} style={{ color:'var(--f8-grey)', fontStyle:'italic', fontSize:13 }}>{line.replace(/\*/g,'')}</p>;
+      }
+      if (line.startsWith('---')) return <hr key={i} style={{ border:'none', borderTop:'1px solid var(--f8-fog)', margin:'12px 0' }}/>;
+      if (line.startsWith('- ')) return <li key={i} style={{ marginBottom: 3 }}>{line.slice(2)}</li>;
+      if (line.trim() === '') return <div key={i} style={{ height: 8 }}/>;
+      return <p key={i}>{line}</p>;
+    });
+  }
+
+  return (
+    <div className="page">
+      <div className="page-eyebrow"><span className="eyebrow-dot"/>Stage 4 of 5</div>
+      <h1 className="page-title">Draft the Job Description</h1>
+      <p className="page-sub">The JD is built from the real role, the capability split, and the agreed skill sets — not the original posting. Both AI and human sections travel together.</p>
+
+      {loading ? (
+        <div className="card mt24">
+          <div className="ai-loading">
+            <div className="ai-spinner"/>
+            <div className="ai-loading-label">Drafting the full JD from your capability analysis…</div>
+            <div className="ai-loading-model">Model: {plan === 'premium' ? 'Claude Opus (frontier)' : 'Claude Sonnet'}</div>
+          </div>
+        </div>
+      ) : jd && (
+        <>
+          {/* JD Preview */}
+          <div className="mt24">
+            <div className="flex items-center justify-between" style={{ marginBottom: 14 }}>
+              <div className="card-title">Job Description Draft</div>
+              <button className="btn btn-ghost btn-sm no-print" onClick={() => window.print()}>
+                🖨 Print / Export PDF
+              </button>
+            </div>
+            <div className="jd-preview">
+              <ul style={{ display:'contents' }}>
+                {renderJD(jd)}
+              </ul>
+            </div>
+          </div>
+
+          {/* Premium: Agent Review */}
+          <div className="mt28">
+            <div className="premium-panel" style={{ position:'relative' }}>
+              <div className="premium-panel-header">
+                <span className="premium-panel-icon">✨</span>
+                <div>
+                  <div className="premium-panel-title">Capability Lens Agent — Quality Review</div>
+                  <div className="premium-panel-sub">Agent reviews the draft, improves it, and tells you exactly what changed and why. Quality made visible.</div>
+                </div>
+                <span className="badge badge-premium" style={{ marginLeft:'auto' }}><Star size={9}/>Premium</span>
+              </div>
+
+              {plan !== 'premium' ? (
+                <div className="gate-pill" style={{ margin:'12px auto 0', width:'fit-content', position:'relative' }}>
+                  <Lock size={13}/><span className="gate-pill-text">Upgrade to Premium to unlock Agent JD Review</span>
+                </div>
+              ) : !agentDone ? (
+                <div className="mt12">
+                  {agentLoading ? (
+                    <div className="ai-loading" style={{ padding: '24px 0' }}>
+                      <div className="ai-spinner"/>
+                      <div className="ai-loading-label">Agent reviewing the draft…</div>
+                      <div className="ai-loading-model">Claude Opus + Capability Lens rules + network patterns</div>
+                    </div>
+                  ) : (
+                    <button className="btn btn-primary btn-sm" onClick={runAgent}>
+                      <Star size={11}/> Run Agent Review
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <div className="mt12">
+                  <button
+                    className="btn btn-ghost btn-sm"
+                    style={{ marginBottom: 12 }}
+                    onClick={() => setShowAgent(s => !s)}
+                  >
+                    {showAgent ? '▲ Hide' : '▼ Show'} Agent Changes ({MOCK_AGENT_CHANGES.length})
+                  </button>
+                  {showAgent && (
+                    <div>
+                      <div className="diff-header">
+                        <span className="diff-tag before">Raw Draft</span>
+                        <span style={{ color:'var(--f8-grey)', fontSize: 12 }}>→</span>
+                        <span className="diff-tag after">Agent-Improved</span>
+                      </div>
+                      {MOCK_AGENT_CHANGES.map((c, i) => (
+                        <div key={i} className="diff-change">
+                          <div className={`diff-bullet ${c.type}`}>{c.type === 'add' ? '+' : '↻'}</div>
+                          <div className="diff-change-text">{c.text}</div>
+                        </div>
+                      ))}
+                      <div className="note note-green" style={{ marginTop: 12 }}>
+                        <strong>Agent summary:</strong> 4 improvements. Accountability language strengthened. Caveat format enforced. Skill ordering re-prioritised. Sunset clause added to cover note. The improved version is ready for sign-off.
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Expert add-on */}
+          <div className="mt20">
+            <div className="card">
+              <div className="flex items-center gap8">
+                <span className="badge badge-premium"><Star size={9}/>Premium</span>
+                <div className="card-title">Optional Expert Validation</div>
+              </div>
+              <div className="card-sub mt8">A facilit8 consultant reviews the draft JD, returns a written note with any material improvements, and confirms the lens was applied correctly. Within 24 hours. Uses one Expert Validation credit.</div>
+              {plan !== 'premium' ? (
+                <div className="note note-blue mt12">Available on Premium plan.</div>
+              ) : (
+                <button className="btn btn-ghost btn-sm mt12" onClick={() => window.location.href = STRIPE_URL}>Request Expert Validation (1 credit)</button>
+              )}
+            </div>
+          </div>
+
+          <div className="flex gap12 mt28 no-print">
+            <button className="btn btn-ghost" onClick={onBack}>← Back</button>
+            <button className="btn btn-primary" onClick={handleNext}>
+              Looks right — Review &amp; Sign Off <Arrow />
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════
+   PRINT DOCUMENT — Full Role Design Record
+   Hidden in browser; revealed in @media print
+══════════════════════════════════════════ */
+function PrintDocument({ appState, printValues }) {
+  const p       = appState.project || {};
+  const r       = appState.role    || {};
+  const split   = appState.split;
+  const skills  = appState.skills;
+  const jd      = appState.jdDraft || '';
+  const email   = printValues?.email || appState.signoffEmail || '—';
+  const rawTs   = printValues?.ts   || appState.signedAt;
+  const ts      = rawTs
+    ? new Date(rawTs).toLocaleString('en-GB', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' })
+    : new Date().toLocaleString('en-GB',      { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+
+  function mdToHtml(text) {
+    if (!text) return '';
+    return text
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g,     '<em>$1</em>')
+      .replace(/^---$/gm, '<hr style="border:none;border-top:1px solid #d8e2ef;margin:10px 0"/>')
+      .replace(/^- (.+)/gm, '<li style="margin-bottom:5px">$1</li>')
+      .replace(/(<li[^>]*>[\s\S]*?<\/li>\n?)+/g, m => '<ul style="padding-left:20px;margin:6px 0">' + m + '</ul>')
+      .replace(/\n\n/g, '</p><p style="margin:8px 0">')
+      .replace(/^(?![\s]*<)([^\n]+)/gm, '<p style="margin:6px 0">$1</p>');
+  }
+
+  const lbl = { fontSize:10.5, fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', color:'#6b7a99', display:'block', marginBottom:4 };
+  const val = { fontSize:13, color:'#1a2740', lineHeight:1.65, marginBottom:12, whiteSpace:'pre-wrap' };
+  const sec = { marginTop:22, paddingTop:16, borderTop:'1.5px solid #e6ecf2' };
+  const h2s = { fontSize:11.5, fontWeight:800, textTransform:'uppercase', letterSpacing:'0.12em', color:'#0A1628', marginBottom:12 };
+  const li  = { fontSize:13, color:'#1a2740', lineHeight:1.65, marginBottom:5 };
+
+  return (
+    <div id="print-document" style={{ display:'none', fontFamily:"Inter,'Helvetica Neue',Arial,sans-serif", padding:'44px 52px', maxWidth:800, margin:'0 auto', color:'#1a2740', fontSize:13 }}>
+
+      {/* ── Header ── */}
+      <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', paddingBottom:16, borderBottom:'2.5px solid #0A1628' }}>
+        <div>
+          <div style={{ fontSize:21, fontWeight:800, letterSpacing:'-0.02em', color:'#0A1628' }}>{p.title || 'Role Design Record'}</div>
+          <div style={{ fontSize:10, fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', color:'#9AA7B8', marginTop:4 }}>Capability Lens · A facilit8 Tool</div>
+        </div>
+        <div style={{ textAlign:'right', fontSize:12, color:'#6b7a99', lineHeight:1.6 }}>
+          <div>Generated {new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' })}</div>
+          <div style={{ marginTop:3 }}>Sign-off: <strong style={{ color:'#1a2740' }}>{email}</strong></div>
+          <div>{ts}</div>
+        </div>
+      </div>
+
+      {/* ── Stage 0 ── */}
+      <div className="print-sec" style={sec}>
+        <div style={h2s}>Stage 0 — Integrity Check</div>
+        <span style={lbl}>Role Title</span>
+        <div style={{ ...val, fontSize:15, fontWeight:700, marginBottom:14 }}>{p.title || '—'}</div>
+        <span style={lbl}>Open Role Confirmed</span>
+        <div style={{ ...val, marginBottom:12 }}>Yes — this is a genuinely open role with no incumbent.</div>
+        <span style={lbl}>Commitments Confirmed</span>
+        <ul style={{ paddingLeft:20, margin:'4px 0 0' }}>
+          {COMMITMENT_ITEMS.map((item, i) => <li key={i} style={li}>☑ {item}</li>)}
+        </ul>
+      </div>
+
+      {/* ── Stage 1 ── */}
+      {(r.jdText || r.glueWork || r.accountability || r.protectWork) && (
+        <div className="print-sec" style={sec}>
+          <div style={h2s}>Stage 1 — Role Context</div>
+          {r.jdText        && <><span style={lbl}>Existing job description / context provided</span><div style={val}>{r.jdText}</div></>}
+          {r.glueWork      && <><span style={lbl}>Work the role currently carries that AI could handle</span><div style={val}>{r.glueWork}</div></>}
+          {r.accountability && <><span style={lbl}>Core accountability of this role</span><div style={val}>{r.accountability}</div></>}
+          {r.protectWork   && <><span style={lbl}>Work that must remain human</span><div style={val}>{r.protectWork}</div></>}
+        </div>
+      )}
+
+      {/* ── Stage 2 ── */}
+      {split && (
+        <div className="print-sec" style={sec}>
+          <div style={h2s}>Stage 2 — Capability Split</div>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:24 }}>
+            <div>
+              <span style={lbl}>What AI Can Handle</span>
+              <ul style={{ paddingLeft:20, margin:'4px 0 0' }}>
+                {(split.aiAble || []).map((item, i) => <li key={i} style={li}>{item.text || item}</li>)}
+              </ul>
+            </div>
+            <div>
+              <span style={lbl}>What Humans Own</span>
+              <ul style={{ paddingLeft:20, margin:'4px 0 0' }}>
+                {(split.humanWork || []).map((item, i) => <li key={i} style={li}>{item.text || item}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Stage 3 ── */}
+      {skills && (
+        <div className="print-sec" style={sec}>
+          <div style={h2s}>Stage 3 — Agreed Skills</div>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:24 }}>
+            <div>
+              <span style={lbl}>AI Skills Required</span>
+              <ul style={{ paddingLeft:20, margin:'4px 0 0' }}>
+                {(skills.aiSkills || []).map((s, i) => <li key={i} style={li}>{s}</li>)}
+              </ul>
+            </div>
+            <div>
+              <span style={lbl}>Key Capabilities for Success</span>
+              <ul style={{ paddingLeft:20, margin:'4px 0 0' }}>
+                {(skills.humanSkills || []).map((s, i) => <li key={i} style={li}>{s}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Stage 4 ── */}
+      {jd && (
+        <div className="print-sec" style={sec}>
+          <div style={h2s}>Stage 4 — Recommended Role Description</div>
+          <div style={{ fontSize:13, lineHeight:1.7, color:'#1a2740' }}
+            dangerouslySetInnerHTML={{ __html: mdToHtml(jd) }}
+          />
+        </div>
+      )}
+
+      {/* ── Stage 5 / Sign-off ── */}
+      <div className="print-sec" style={{ ...sec, background:'#f5f7fa', padding:'16px 20px', borderRadius:8 }}>
+        <div style={h2s}>Stage 5 — Sign-Off & Legal Disclaimer</div>
+        <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16, marginBottom:12 }}>
+          <div><span style={lbl}>Signed off by</span><div style={{ ...val, fontWeight:600, marginBottom:0 }}>{email}</div></div>
+          <div><span style={lbl}>Date & Time</span><div style={{ ...val, marginBottom:0 }}>{ts}</div></div>
+        </div>
+        <ul style={{ paddingLeft:20, margin:'8px 0 12px' }}>
+          <li style={li}>☑ I acknowledge this output is decision-support only and not legal advice.</li>
+          <li style={li}>☑ I confirm an Equal Treatment Review will be completed before this job description is used for any hiring decision.</li>
+          <li style={li}>☑ I confirm this Capability Lens informs decisions but never makes them.</li>
+        </ul>
+        <div style={{ fontSize:11, color:'#6b7a99', borderTop:'1px solid #e6ecf2', paddingTop:10 }}>
+          facilit8 · Capability Lens · Decision-support only — not legal advice. Confirm employment-law questions with counsel in your jurisdiction. The client owns every hiring decision; the lens informs it, it never makes it.
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════
+   STAGE 5 — Sign Off & Export
+══════════════════════════════════════════ */
+function Stage5({ state, setState, plan, onBack, onPrint }) {
+  const [disclaimer, setDisclaimer] = useState(state.disclaimerChecked || false);
+  const [email,      setEmail]      = useState(state.signoffEmail      || '');
+  const [emailError, setEmailError] = useState(false);
+  const [exported,   setExported]   = useState(false);
+
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const canExport    = disclaimer && isValidEmail;
+
+  function handleExport() {
+    if (!isValidEmail) { setEmailError(true); return; }
+    if (!disclaimer)   return;
+    const ts = new Date().toISOString();
+    setState(s => ({ ...s, signoffEmail: email.trim(), signedAt: ts, disclaimerChecked: true, hrSigned: true }));
+    setExported(true);
+    onPrint({ email: email.trim(), ts });
+  }
+
+  function handleWordExport() {
+    if (!canExport) { setEmailError(!isValidEmail); return; }
+    const ts2  = new Date().toLocaleString('en-GB', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+    const p    = state.project || {};
+    const r    = state.role    || {};
+    const sp   = state.split;
+    const sk   = state.skills;
+    const jdTx = state.jdDraft || '';
+
+    const esc  = s => (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const li2  = arr => (arr || []).map(i => `<li>${esc(i.text || i)}</li>`).join('');
+    const li3  = arr => (arr || []).map(s => `<li>${esc(s)}</li>`).join('');
+    const jdHtml = esc(jdTx)
+      .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
+      .replace(/^- (.+)/gm, '<li>$1</li>')
+      .replace(/\n\n/g,'</p><p>');
+
+    const html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'><title>${esc(p.title||'Role Design Record')}</title>
+<style>
+  body{font-family:Calibri,sans-serif;font-size:11pt;color:#1a2740;margin:2cm;}
+  h1{font-size:18pt;font-weight:bold;color:#0A1628;}
+  h2{font-size:12pt;font-weight:bold;color:#0A1628;border-bottom:1pt solid #ccc;padding-bottom:3pt;margin-top:18pt;}
+  p{margin:4pt 0;line-height:1.5;}ul{margin:4pt 0 8pt 18pt;}li{margin-bottom:3pt;}
+  .lbl{font-size:9pt;font-weight:bold;text-transform:uppercase;color:#666;}
+  .footer{font-size:9pt;color:#888;border-top:1pt solid #ccc;margin-top:18pt;padding-top:6pt;}
+</style></head><body>
+<h1>${esc(p.title||'Role Design Record')}</h1>
+<p><span class='lbl'>Capability Lens · A facilit8 Tool</span></p>
+<p>Generated: ${new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})} &nbsp;|&nbsp; Sign-off: ${esc(email)} &nbsp;|&nbsp; ${ts2}</p>
+
+<h2>Stage 0 — Integrity Check</h2>
+<p class='lbl'>Role Title</p><p><b>${esc(p.title||'—')}</b></p>
+<p class='lbl'>Commitments Confirmed</p>
+<ul>${COMMITMENT_ITEMS.map(i=>`<li>☑ ${esc(i)}</li>`).join('')}</ul>
+
+${(r.jdText||r.glueWork||r.accountability||r.protectWork)?`
+<h2>Stage 1 — Role Context</h2>
+${r.jdText?`<p class='lbl'>Existing job description / context</p><p>${esc(r.jdText).replace(/\n/g,'<br/>')}</p>`:''}
+${r.glueWork?`<p class='lbl'>Work AI could handle</p><p>${esc(r.glueWork).replace(/\n/g,'<br/>')}</p>`:''}
+${r.accountability?`<p class='lbl'>Core accountability</p><p>${esc(r.accountability).replace(/\n/g,'<br/>')}</p>`:''}
+${r.protectWork?`<p class='lbl'>Work that must remain human</p><p>${esc(r.protectWork).replace(/\n/g,'<br/>')}</p>`:''}
+`:''}
+
+${sp?`<h2>Stage 2 — Capability Split</h2>
+<p class='lbl'>What AI Can Handle</p><ul>${li2(sp.aiAble)}</ul>
+<p class='lbl'>What Humans Own</p><ul>${li2(sp.humanWork)}</ul>`:''}
+
+${sk?`<h2>Stage 3 — Agreed Skills</h2>
+<p class='lbl'>AI Skills Required</p><ul>${li3(sk.aiSkills)}</ul>
+<p class='lbl'>Key Capabilities for Success</p><ul>${li3(sk.humanSkills)}</ul>`:''}
+
+${jdTx?`<h2>Stage 4 — Recommended Role Description</h2><p>${jdHtml}</p>`:''}
+
+<h2>Stage 5 — Sign-Off &amp; Legal Disclaimer</h2>
+<p class='lbl'>Signed off by</p><p>${esc(email)}</p>
+<p class='lbl'>Date &amp; Time</p><p>${ts2}</p>
+<ul>
+  <li>☑ I acknowledge this output is decision-support only and not legal advice.</li>
+  <li>☑ I confirm an Equal Treatment Review will be completed before this job description is used.</li>
+  <li>☑ I confirm this Capability Lens informs decisions but never makes them.</li>
+</ul>
+<p class='footer'>facilit8 · Capability Lens · Decision-support only — not legal advice. Confirm employment-law questions with counsel in your jurisdiction. The client owns every hiring decision; the lens informs it, it never makes it.</p>
+</body></html>`;
+
+    const blob = new Blob([html], { type:'application/msword' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = `${(p.title||'Role-Design-Record').replace(/\s+/g,'-')}-Capability-Lens.doc`;
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+  }
+
+  return (
+    <div className="page">
+      <div className="page-eyebrow"><span className="eyebrow-dot"/>Stage 5 of 5</div>
+      <h1 className="page-title">Sign Off &amp; Export</h1>
+      <p className="page-sub">Acknowledge the legal disclaimer, enter your email address, and export the complete Role Design Record — covering every stage from role title to recommended job description.</p>
+
+      {/* Legal Disclaimer */}
+      <div className="card mt24">
+        <div className="card-title">Legal Disclaimer &amp; Commitments</div>
+        <div className="card-sub mt8">Read and acknowledge before you export. Your confirmation is recorded in the exported document.</div>
+        <div style={{ background:'var(--f8-amber-tint)', border:'1px solid #f5d08a', borderRadius:8, padding:'16px 20px', marginTop:16, lineHeight:1.7, fontSize:14, color:'#5a3e00' }}>
+          <strong>Not legal advice.</strong> The Capability Lens is a role-design aid. Outputs are decision-support only. Confirm employment-law and equal-treatment compliance with qualified counsel in your jurisdiction before issuing any job description. The hiring decision belongs entirely to the organisation — this tool informs it; it never makes it.
+        </div>
+        <div className="et-list mt16">
+          <div className={`et-item ${disclaimer ? 'checked' : ''}`}>
+            <input type="checkbox" id="disclaimer-chk" checked={disclaimer} onChange={e => setDisclaimer(e.target.checked)} />
+            <label htmlFor="disclaimer-chk">
+              I acknowledge this output is decision-support only and not legal advice. I confirm an Equal Treatment Review will be completed before this job description is used for any hiring decision. I agree this Capability Lens informs decisions but never makes them.
+            </label>
+          </div>
+        </div>
+      </div>
+
+      {/* Email sign-off */}
+      <div className="card mt16">
+        <div className="card-title">Sign-Off Email Address</div>
+        <div className="card-sub mt8">Your email is recorded as the responsible sign-off and included in the exported document.</div>
+        <div className="field mt12" style={{ maxWidth:420 }}>
+          <label>Email address</label>
+          <input
+            type="email"
+            value={email}
+            onChange={e => { setEmail(e.target.value); setEmailError(false); }}
+            placeholder="you@organisation.com"
+          />
+        </div>
+        {emailError && <div className="note note-red mt8">Please enter a valid email address.</div>}
+        {isValidEmail && disclaimer && (
+          <div className="note note-green mt8">
+            Ready to export. <strong>{email}</strong> will be recorded as sign-off.
+          </div>
+        )}
+      </div>
+
+      {/* Export */}
+      <div className="mt28">
+        <div className="section-hdr">
+          <div className="section-icon-box blue">📤</div>
+          <div>
+            <div className="section-title">Export Role Design Record</div>
+            <div className="section-desc">The export includes all stages: role context, capability split, agreed skills, recommended role description, and this sign-off.</div>
+          </div>
+        </div>
+
+        <div className="form-grid">
+          <div className="card">
+            <div className="card-title">PDF Export</div>
+            <div className="card-sub mt8">Complete role design record — all stages — as a print-ready PDF. Includes facilit8 decision-support footer.</div>
+            <button className="btn btn-primary mt12 btn-sm" onClick={handleExport} disabled={!canExport} style={{ opacity: canExport ? 1 : 0.5 }}>
+              Export Full PDF
+            </button>
+            {!canExport && <div className="text-sm text-grey mt8">Acknowledge the disclaimer and enter your email to unlock.</div>}
+          </div>
+
+          <div className="card" style={{ position:'relative' }}>
+            <div className="flex items-center gap8" style={{ marginBottom:6 }}>
+              <span className="badge badge-premium"><Star size={9}/>Premium</span>
+              <div className="card-title">Word Export</div>
+            </div>
+            <div className="card-sub mt8">Editable Word document with the full record. No facilit8 footer. Available in multiple languages.</div>
+            {plan !== 'premium' ? (
+              <button
+                className="btn btn-primary mt12 btn-sm"
+                style={{ background:'var(--f8-navy)', borderColor:'var(--f8-navy)' }}
+                onClick={() => window.location.href = STRIPE_URL}
+              >
+                <Star size={11}/> Upgrade to Premium
+              </button>
+            ) : (
+              <button className="btn btn-ghost mt12 btn-sm" onClick={handleWordExport} disabled={!canExport} style={{ opacity: canExport ? 1 : 0.5 }}>
+                Export Word (EN)
+              </button>
+            )}
+          </div>
+        </div>
+
+        {exported && (
+          <div className="note note-green mt16">
+            <strong>Exported.</strong> The complete Role Design Record is ready. The decision — and all of its consequences — belongs to the organisation. The Capability Lens informed it; it never made it.
+          </div>
+        )}
+      </div>
+
+      {/* Stat strip */}
+      {exported && (
+        <div className="stat-strip mt28">
+          <div className="stat-item"><div className="stat-num">5</div><div className="stat-label">Stages completed</div></div>
+          <div className="stat-item"><div className="stat-num">1</div><div className="stat-label">Sign-off recorded</div></div>
+          <div className="stat-item"><div className="stat-num">0</div><div className="stat-label">Verdicts, scores, or "don't hire" outputs</div></div>
+          <div className="stat-item"><div className="stat-num">1</div><div className="stat-label">Scope fence: open role confirmed</div></div>
+        </div>
+      )}
+
+      <div className="flex gap12 mt28 no-print">
+        <button className="btn btn-ghost" onClick={onBack}>← Back</button>
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════
+   ROOT APP
+══════════════════════════════════════════ */
+const LS_KEY        = 'f8_capability_lens_v1';
+const PREMIUM_KEY   = 'f8_capability_lens_premium';
+const STRIPE_URL    = 'https://buy.stripe.com/7sY14ncrt8dA4oabyG4F200';
+// After payment Stripe redirects to your success URL — append ?session_id={CHECKOUT_SESSION_ID}
+// Configure this in Stripe Dashboard → Payment Links → After Payment → Redirect to URL
+
+function loadSaved() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
+/**
+ * Reads Stripe session_id from URL params, persists premium status,
+ * and cleans the URL so refreshing doesn't re-trigger.
+ * Returns { isPremium, justUpgraded, sessionId }
+ */
+function readPremiumStatus() {
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');       // Stripe Checkout success
+  const premiumParam = params.get('premium');       // manual override / test
+
+  if (sessionId || premiumParam === 'true') {
+    const record = {
+      premium: true,
+      sessionId: sessionId || 'manual',
+      activatedAt: new Date().toISOString(),
+    };
+    try { localStorage.setItem(PREMIUM_KEY, JSON.stringify(record)); } catch(e) {}
+    // Remove params from URL so reload doesn't re-trigger
+    const clean = window.location.pathname + window.location.hash;
+    window.history.replaceState({}, '', clean);
+    return { isPremium: true, justUpgraded: true, sessionId };
+  }
+
+  try {
+    const raw = localStorage.getItem(PREMIUM_KEY);
+    if (raw) {
+      const rec = JSON.parse(raw);
+      if (rec?.premium) return { isPremium: true, justUpgraded: false, sessionId: rec.sessionId };
+    }
+  } catch(e) {}
+
+  return { isPremium: false, justUpgraded: false, sessionId: null };
+}
+
+function App() {
+  const saved = loadSaved();
+  const { isPremium, justUpgraded } = readPremiumStatus();
+
+  const [stage, setStage] = useState(saved?.stage || 0);
+  const [plan, setPlan] = useState(isPremium ? 'premium' : 'basic');
+  const [showUpgradedBanner, setShowUpgradedBanner] = useState(justUpgraded);
+  const [appState, setAppState] = useState(saved?.appState || {
+    project: { title: '', isOpen: null, commitmentChecks: {} },
+    role: { jdText: '', glueWork: '', accountability: '', protectWork: '' },
+    split: null, splitAccepted: {},
+    skills: null, aiSkillsAccepted: {}, humanSkillsAccepted: {}, comments: [],
+    jdDraft: null, agentReviewed: false,
+    disclaimerChecked: false, hrSigned: false, signoffEmail: '', signedAt: null,
+  });
+  const [showRestoreBanner, setShowRestoreBanner] = useState(!!saved && !justUpgraded);
+
+  // Persist to localStorage whenever state or stage changes
+  useEffect(() => {
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ stage, appState })); } catch(e) {}
+  }, [stage, appState]);
+
+  function clearSession() {
+    try { localStorage.removeItem(LS_KEY); } catch(e) {}
+    window.location.reload();
+  }
+
+  function cancelPremium() {
+    if (confirm('Remove Premium access from this browser? You will need to re-purchase to restore it.')) {
+      try { localStorage.removeItem(PREMIUM_KEY); } catch(e) {}
+      setPlan('basic');
+    }
+  }
+
+  const maxStage = stage;
+
+  const [printValues, setPrintValues] = useState(null);
+  const [shouldPrint, setShouldPrint] = useState(false);
+
+  // Delay print slightly so React can flush state before window.print() blocks
+  useEffect(() => {
+    if (!shouldPrint) return;
+    const t = setTimeout(() => { window.print(); setShouldPrint(false); }, 150);
+    return () => clearTimeout(t);
+  }, [shouldPrint]);
+
+  function handlePrint(values) {
+    setPrintValues(values);
+    setShouldPrint(true);
+  }
+
+  function next() { setStage(s => Math.min(s + 1, 5)); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function back() { setStage(s => Math.max(s - 1, 0)); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function goTo(s) { if (s < stage) { setStage(s); window.scrollTo({ top: 0, behavior: 'smooth' }); } }
+
+  const stageProps = { state: appState, setState: setAppState, plan, onNext: next, onBack: back, onPrint: handlePrint };
+
+  return (
+    <>
+    <div className="app-shell">
+      <AppNav plan={plan} onCancelPremium={cancelPremium} />
+      <StageBar stage={stage} maxStage={maxStage} onNavigate={goTo} />
+
+      {/* Payment confirmed banner */}
+      {showUpgradedBanner && (
+        <div style={{ background:'#0f7a3c', borderBottom:'1px solid #0a5c2d', padding:'12px 24px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:12, fontSize:13 }}>
+          <span style={{ color:'#fff' }}>🎉 <strong>Premium activated.</strong> All features are now unlocked — export without branding, multi-language Word output, and Expert Validation.</span>
+          <button className="btn btn-ghost btn-sm" style={{ color:'#fff', borderColor:'rgba(255,255,255,0.4)' }} onClick={() => setShowUpgradedBanner(false)}>Dismiss</button>
+        </div>
+      )}
+
+      {/* Session restore banner */}
+      {showRestoreBanner && (
+        <div style={{ background:'var(--f8-blue-tint)', borderBottom:'1px solid #b3d8f4', padding:'10px 24px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:12, fontSize:13 }}>
+          <span style={{ color:'var(--f8-blue-deep)' }}>🔁 <strong>Session restored{appState.project?.title ? ` — "${appState.project.title}"` : ''}</strong> · Stage {stage}: {['Open It','Capture the Role','Capability Split','Agree Skills','Draft JD','Sign Off'][stage]}. If this isn't your session, click Start fresh.</span>
+          <div style={{ display:'flex', gap:8, flexShrink:0 }}>
+            <button className="btn btn-ghost btn-sm" onClick={() => setShowRestoreBanner(false)}>Continue</button>
+            <button className="btn btn-ghost btn-sm" style={{ color:'var(--f8-red)' }} onClick={clearSession}>Start fresh</button>
+          </div>
+        </div>
+      )}
+      <main>
+        {stage === 0 && <Stage0 {...stageProps} />}
+        {stage === 1 && <Stage1 {...stageProps} />}
+        {stage === 2 && <Stage2 {...stageProps} />}
+        {stage === 3 && <Stage3 {...stageProps} />}
+        {stage === 4 && <Stage4 {...stageProps} />}
+        {stage === 5 && <Stage5 {...stageProps} />}
+      </main>
+      <footer className="app-footer">
+        <span style={{ display:'flex', alignItems:'center', gap:10, flexWrap:'wrap' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink:0 }}>
+            <circle cx="12" cy="12" r="10" stroke="#fff"/>
+            <line x1="14.31" y1="8" x2="20.05" y2="17.94" stroke="#fff"/>
+            <line x1="9.69" y1="8" x2="21.17" y2="8" stroke="#3FB1F2"/>
+            <line x1="7.38" y1="12" x2="13.12" y2="2.06" stroke="#fff"/>
+            <line x1="9.69" y1="16" x2="3.95" y2="6.06" stroke="#3FB1F2"/>
+            <line x1="14.31" y1="16" x2="2.83" y2="16" stroke="#fff"/>
+            <line x1="16.62" y1="12" x2="10.88" y2="21.94" stroke="#3FB1F2"/>
+          </svg>
+          <strong>Capability Lens · A facilit8 Tool</strong> · Decision-support only — not legal advice. Confirm employment-law questions with counsel in your jurisdiction. The client owns every hiring decision; the lens informs it, it never makes it.
+        </span>
+      </footer>
+    </div>
+    <PrintDocument appState={appState} printValues={printValues} />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

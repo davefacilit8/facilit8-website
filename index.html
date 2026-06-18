@@ -1,0 +1,3392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>facilit8 — Commercial Transformation enabled by Technology</title>
+<meta name="description" content="facilit8 helps businesses unlock the commercial value of their technology — through hands-on transformation that actually sticks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   facilit8 — Design Tokens
+   ============================================================ */
+:root {
+  --f8-blue:        #0070C0;
+  --f8-blue-bright: #0090E7;
+  --f8-blue-deep:   #005896;
+  --f8-navy:        #0A1628;
+  --f8-navy-2:      #142238;
+  --f8-white:       #FFFFFF;
+  --f8-off-white:   #F5F7FA;
+  --f8-fog:         #E6ECF2;
+  --f8-mist:        #C9D2DD;
+  --f8-grey:        #6B7A99;
+  --f8-ink:         #1A1A2E;
+  --f8-ink-soft:    #3A3F55;
+  --fg-1: var(--f8-ink);
+  --fg-2: var(--f8-ink-soft);
+  --fg-3: var(--f8-grey);
+  --fg-on-dark:  var(--f8-white);
+  --fg-on-dark-2: rgba(255,255,255,0.78);
+  --fg-on-dark-3: rgba(255,255,255,0.56);
+  --bg-1: var(--f8-white);
+  --bg-2: var(--f8-off-white);
+  --bg-dark: var(--f8-navy);
+  --bg-dark-2: var(--f8-navy-2);
+  --link:        var(--f8-blue);
+  --link-hover:  var(--f8-blue-deep);
+  --border:      var(--f8-fog);
+  --border-strong: var(--f8-mist);
+  --border-on-dark: rgba(255,255,255,0.12);
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --t-display:    clamp(2.5rem, 4vw + 1rem, 4rem);
+  --t-h1:         clamp(2rem, 2.4vw + 1rem, 3rem);
+  --t-h2:         clamp(1.6rem, 1.4vw + 0.8rem, 2.1rem);
+  --t-h3:         1.4rem;
+  --t-h4:         1.2rem;
+  --t-lead:       1.2rem;
+  --t-body:       1rem;
+  --t-small:      0.9375rem;
+  --t-meta:       0.8125rem;
+  --t-eyebrow:    0.75rem;
+  --lh-tight:   1.1;
+  --lh-snug:    1.25;
+  --lh-normal:  1.5;
+  --lh-body:    1.6;
+  --tracking-tight:  -0.02em;
+  --tracking-wide:   0.08em;
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 10px;
+  --r-xl: 16px;
+  --r-pill: 999px;
+  --shadow-1: 0 1px 2px rgba(10,22,40,0.04), 0 1px 1px rgba(10,22,40,0.04);
+  --shadow-2: 0 2px 8px rgba(10,22,40,0.06), 0 1px 2px rgba(10,22,40,0.04);
+  --shadow-3: 0 12px 32px rgba(10,22,40,0.10), 0 2px 6px rgba(10,22,40,0.05);
+  --shadow-focus: 0 0 0 3px rgba(0,144,231,0.35);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 200ms;
+  --dur-fast: 120ms;
+  --dur-slow: 320ms;
+  --container: 1200px;
+  --container-narrow: 880px;
+  --gutter: clamp(20px, 4vw, 40px);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--fg-1);
+  background: var(--bg-1);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1,h2,h3,h4,h5,h6 { margin: 0 0 16px; }
+p { margin: 0 0 16px; }
+p:last-child { margin-bottom: 0; }
+a { color: var(--link); text-decoration: none; transition: color var(--dur) var(--ease-out); }
+a:hover { color: var(--link-hover); }
+em { font-style: italic; }
+strong { font-weight: 700; }
+img { display: block; max-width: 100%; }
+
+/* ============================================================
+   Typography utilities
+   ============================================================ */
+.f8-display {
+  font-weight: 800; font-size: var(--t-display);
+  line-height: var(--lh-tight); letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+.f8-h1 { font-weight: 700; font-size: var(--t-h1); line-height: var(--lh-tight); letter-spacing: var(--tracking-tight); }
+.f8-h2 { font-weight: 700; font-size: var(--t-h2); line-height: var(--lh-snug); letter-spacing: var(--tracking-tight); }
+.f8-h3 { font-weight: 600; font-size: var(--t-h3); line-height: var(--lh-snug); }
+.f8-lead { font-size: var(--t-lead); line-height: var(--lh-normal); color: var(--fg-2); text-wrap: pretty; }
+.f8-eyebrow {
+  font-size: var(--t-eyebrow); font-weight: 600;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--f8-blue);
+}
+.section-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--f8-blue); margin-bottom: 14px;
+}
+
+/* ============================================================
+   Layout
+   ============================================================ */
+.site-shell { min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1; }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+.container-narrow { max-width: var(--container-narrow); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding: clamp(56px, 8vw, 96px) 0; }
+.section--alt { background: var(--bg-2); }
+.section--dark { background: var(--bg-dark); color: var(--fg-on-dark); }
+.section--dark .f8-lead, .section--dark p { color: var(--fg-on-dark-2); }
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner { display: flex; align-items: center; gap: 32px; height: 72px; }
+.nav-logo img { height: 30px; display: block; }
+.nav-links { display: flex; gap: 28px; flex: 1; margin-left: 16px; }
+.nav-link {
+  font-size: 14px; font-weight: 500; color: var(--fg-1);
+  text-decoration: none; padding: 6px 0;
+  transition: color var(--dur) var(--ease-out);
+  background: none; border: none; cursor: pointer;
+}
+.nav-link:hover, .nav-link.is-active { color: var(--f8-blue); }
+.nav-link.is-active { font-weight: 600; }
+.nav-right { display: flex; gap: 14px; align-items: center; margin-left: auto; }
+.nav-hamburger {
+  display: none; background: none; border: none; cursor: pointer;
+  padding: 8px; color: var(--fg-1);
+}
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  .nav-right .btn { display: none; }
+  .nav-links.is-open {
+    display: flex; flex-direction: column; gap: 0;
+    position: absolute; top: 72px; left: 0; right: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0 16px;
+    box-shadow: var(--shadow-2);
+  }
+  .nav-links.is-open .nav-link { padding: 14px var(--gutter); }
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-sans); font-weight: 600; font-size: 15px;
+  padding: 12px 22px; border-radius: var(--r-md);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+  text-decoration: none; line-height: 1;
+}
+.btn--primary { background: var(--f8-blue-bright); color: #fff; }
+.btn--primary:hover { background: var(--f8-blue); color: #fff; }
+.btn--primary:active { transform: translateY(1px); }
+.btn--primary:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+.btn--ghost-dark { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
+.btn--ghost-dark:hover { background: rgba(255,255,255,0.08); }
+.text-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-weight: 600; font-size: 15px; text-decoration: none;
+  background: none; border: none; cursor: pointer; padding: 0;
+  transition: color var(--dur) var(--ease-out);
+}
+.text-link--on-dark { color: #fff; }
+.text-link--on-dark:hover { color: var(--f8-blue-bright); }
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  position: relative; color: #fff;
+  padding: clamp(96px, 14vw, 180px) 0 clamp(80px, 10vw, 140px);
+  overflow: hidden; isolation: isolate;
+  background: var(--bg-dark);
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: -2;
+  background-size: cover; background-position: center;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(10,22,40,0.55), rgba(10,22,40,0.78));
+}
+.hero h1, .hero .f8-display { color: #fff; max-width: 900px; margin-bottom: 0; }
+.hero .f8-lead { color: rgba(255,255,255,0.86); margin-top: 22px; max-width: 720px; }
+.hero-eyebrow { color: var(--f8-blue-bright); margin-bottom: 18px; }
+.hero-cta-row { margin-top: 36px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+
+/* ============================================================
+   Stat strip
+   ============================================================ */
+.stat-strip {
+  background: #fff;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.stat-strip-inner { display: grid; grid-template-columns: repeat(3, 1fr); }
+.stat { padding: 36px 24px; text-align: center; }
+.stat + .stat { border-left: 1px solid var(--border); }
+.stat-num {
+  font-size: clamp(2rem, 3vw + 0.5rem, 2.75rem);
+  font-weight: 700; color: var(--f8-blue);
+  letter-spacing: -0.02em; line-height: 1;
+}
+.stat-label { margin-top: 8px; font-size: 14px; color: var(--f8-grey); }
+
+/* ============================================================
+   Value cards
+   ============================================================ */
+.value-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 40px;
+}
+@media (max-width: 860px) { .value-grid { grid-template-columns: 1fr; } }
+.value-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 28px;
+  transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+.value-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+.value-card .icon {
+  width: 40px; height: 40px;
+  border: 1px solid var(--border); border-radius: var(--r-md);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--f8-blue); margin-bottom: 18px;
+}
+.value-card .icon svg { width: 20px; height: 20px; }
+.value-card h3 { margin: 0 0 8px; font-size: 1.1rem; }
+.value-card p { color: var(--fg-2); margin: 0; font-size: 15px; }
+
+/* ============================================================
+   Service blocks
+   ============================================================ */
+.service { padding: clamp(48px, 7vw, 80px) 0; border-top: 1px solid var(--border); }
+.service:first-of-type { border-top: none; padding-top: clamp(56px, 8vw, 80px); }
+.service-grid { display: grid; grid-template-columns: 200px 1fr; gap: 48px; }
+@media (max-width: 860px) { .service-grid { grid-template-columns: 1fr; gap: 16px; } }
+.service-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--f8-blue); }
+.service-num { font-family: var(--font-mono); font-size: 44px; color: var(--f8-blue); line-height: 1; font-weight: 600; margin-top: 16px; }
+.service h2 { margin: 0 0 16px; }
+.service-bullets { margin: 24px 0 0; padding: 0; list-style: none; }
+.service-bullets li {
+  padding: 14px 0; border-top: 1px solid var(--border);
+  font-size: 16px; display: flex; gap: 12px; align-items: flex-start;
+}
+.service-bullets li::before {
+  content: ''; flex: 0 0 6px; height: 6px;
+  background: var(--f8-blue); border-radius: 50%;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   Founder section
+   ============================================================ */
+.founder-grid {
+  display: grid; grid-template-columns: 1fr 1.5fr; gap: 56px; align-items: start;
+}
+@media (max-width: 860px) { .founder-grid { grid-template-columns: 1fr; } }
+.founder-photo {
+  aspect-ratio: 4/5; background: var(--f8-off-white);
+  border-radius: var(--r-xl); background-size: cover; background-position: center top;
+  border: 1px solid var(--border);
+  max-width: 340px;
+}
+@media (max-width: 860px) { .founder-photo { max-width: 240px; aspect-ratio: 1/1; } }
+
+/* ============================================================
+   Beliefs (numbered cards)
+   ============================================================ */
+.beliefs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+@media (max-width: 860px) { .beliefs { grid-template-columns: 1fr; } }
+.belief { border-top: 2px solid var(--f8-blue); padding: 28px 4px 0; }
+.belief-num { font-size: 12px; color: var(--f8-grey); font-family: var(--font-mono); margin-bottom: 12px; }
+.belief h3 { margin: 0 0 10px; font-size: 1.2rem; }
+.belief p { margin: 0; color: var(--fg-2); font-size: 15px; }
+
+/* ============================================================
+   Closing CTA
+   ============================================================ */
+.closing {
+  background: var(--bg-dark); color: #fff;
+  text-align: center; padding: clamp(72px, 10vw, 120px) 0;
+}
+.closing h2 { color: #fff; margin: 0 0 16px; max-width: 700px; margin-inline: auto; }
+.closing p { color: rgba(255,255,255,0.78); max-width: 580px; margin: 0 auto 32px; font-size: 18px; }
+
+/* ============================================================
+   Contact form
+   ============================================================ */
+.form-grid { display: grid; gap: 14px; max-width: 520px; }
+.form-grid input, .form-grid textarea, .form-grid select {
+  font-family: var(--font-sans); font-size: 15px;
+  padding: 12px 14px; border-radius: var(--r-sm);
+  border: 1px solid var(--f8-mist); color: var(--f8-ink);
+  background: #fff; outline: none; width: 100%;
+  transition: border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+.form-grid input:focus, .form-grid textarea:focus {
+  border-color: var(--f8-blue-bright); box-shadow: var(--shadow-focus);
+}
+.form-grid textarea { resize: vertical; min-height: 120px; }
+.form-success {
+  padding: 32px 28px; background: #fff;
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+}
+.form-success h3 { margin: 0 0 8px; }
+.form-success p { margin: 0; color: var(--fg-2); }
+
+/* ============================================================
+   Contact details grid
+   ============================================================ */
+.contact-details {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px; margin-top: 16px;
+}
+.detail-label { font-size: 12px; color: var(--f8-grey); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+.detail-value { margin-top: 6px; font-size: 16px; }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.footer {
+  background: var(--bg-dark); color: #fff;
+  padding: 56px 0 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.footer-top {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 32px; padding-bottom: 32px;
+  border-bottom: 1px solid var(--border-on-dark);
+}
+@media (max-width: 860px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .footer-top { grid-template-columns: 1fr; } }
+.footer-col h4 {
+  color: #fff; margin: 0 0 14px;
+  font-size: 13px; letter-spacing: 0.06em;
+  text-transform: uppercase; font-weight: 600;
+}
+.footer-col a, .footer-col p {
+  display: block; color: rgba(255,255,255,0.78);
+  font-size: 14px; margin: 0 0 8px; text-decoration: none;
+}
+.footer-col a:hover { color: #fff; }
+.footer-bot {
+  padding-top: 24px; display: flex;
+  justify-content: space-between;
+  color: rgba(255,255,255,0.56); font-size: 12px;
+}
+.footer-logo img { height: 26px; filter: brightness(0) invert(1); margin-bottom: 14px; }
+
+/* ============================================================
+   How We Engage
+   ============================================================ */
+.engage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+@media (max-width: 640px) { .engage-grid { grid-template-columns: 1fr; } }
+.engage-card {
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+  padding: 28px; background: #fff;
+}
+.engage-card h3 { margin: 0 0 10px; font-size: 1.1rem; color: var(--f8-blue); }
+.engage-card p { margin: 0; color: var(--fg-2); font-size: 15px; }
+
+/* ============================================================
+   Keystone-specific styles
+   ============================================================ */
+.ks-pull-quote {
+  margin: 32px 0;
+  padding: 28px 32px;
+  background: var(--f8-navy);
+  border-left: 4px solid var(--f8-blue-bright);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+.ks-pull-quote p {
+  margin: 0;
+  color: #fff;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.ks-diag-question {
+  margin: 28px 0;
+  padding: 28px 36px;
+  background: var(--f8-off-white);
+  border-left: 5px solid var(--f8-blue-bright);
+}
+.ks-diag-question p {
+  margin: 0;
+  color: var(--f8-navy);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+.ks-cluster-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+@media (max-width: 760px) { .ks-cluster-grid { grid-template-columns: 1fr; } }
+
+.ks-cluster-card {
+  padding: 28px 24px;
+  background: var(--f8-off-white);
+  border-top: 3px solid var(--f8-blue-bright);
+}
+.ks-cluster-card .cluster-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--f8-blue); margin-bottom: 10px;
+}
+.ks-cluster-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  color: var(--f8-navy);
+}
+.ks-cluster-card p {
+  margin: 0;
+  color: var(--f8-grey);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.ks-stage-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 32px;
+  gap: 0;
+}
+.ks-stage {
+  padding: 24px 20px;
+  text-align: center;
+  background: var(--f8-off-white);
+  border-right: 1px solid var(--f8-fog);
+  position: relative;
+}
+.ks-stage:last-child {
+  border-right: none;
+  background: var(--f8-navy);
+}
+.ks-stage::after {
+  content: '→';
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--f8-blue-bright);
+  font-size: 18px;
+  font-weight: 700;
+  z-index: 1;
+}
+.ks-stage:last-child::after { display: none; }
+.ks-stage-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--f8-blue);
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.ks-stage:last-child .ks-stage-num { color: var(--f8-blue-bright); }
+.ks-stage-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--f8-navy);
+}
+.ks-stage:last-child .ks-stage-label { color: #fff; }
+@media (max-width: 640px) {
+  .ks-stage-bar { grid-template-columns: 1fr 1fr; }
+  .ks-stage::after { display: none; }
+  .ks-stage { border-right: none; border-bottom: 1px solid var(--f8-fog); }
+}
+
+.qe-row {
+  display: flex; gap: 32px; justify-content: center; align-items: flex-start;
+  flex-wrap: wrap; margin: 36px 0;
+}
+.qe-step { display: flex; flex-direction: column; align-items: center; gap: 14px; flex: 1; min-width: 120px; max-width: 180px; }
+.qe-orb {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background-image: url('assets/orb.jpg');
+  background-size: 260% 260%;
+  background-position: center;
+  box-shadow: 0 0 24px rgba(0,144,231,0.45), 0 0 60px rgba(0,144,231,0.25);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.qe-num {
+  color: #fff; font-weight: 800; font-size: 36px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6), 0 0 20px rgba(0,144,231,0.8);
+  letter-spacing: -0.02em; line-height: 1;
+}
+.qe-label-text {
+  color: #C9D2DD; font-size: 14px; font-weight: 500;
+  letter-spacing: 0.04em; text-align: center; line-height: 1.4;
+}
+@media (max-width: 640px) { .qe-row { gap: 24px; } .qe-orb { width: 90px; height: 90px; } .qe-num { font-size: 28px; } }
+
+.ks-ai-paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 36px;
+}
+@media (max-width: 640px) { .ks-ai-paths { grid-template-columns: 1fr; } }
+.ks-ai-path {
+  padding: 28px 24px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+}
+.ks-ai-path.positive {
+  border-color: var(--f8-blue);
+  background: linear-gradient(135deg, rgba(0,112,192,0.04), rgba(0,144,231,0.08));
+}
+.ks-ai-path.negative {
+  border-color: var(--f8-fog);
+  background: var(--f8-off-white);
+}
+.ks-ai-path .path-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.ks-ai-path.positive .path-label { color: var(--f8-blue); }
+.ks-ai-path.negative .path-label { color: var(--f8-grey); }
+.ks-ai-path h4 { margin: 0 0 10px; font-size: 1.05rem; color: var(--f8-ink); }
+.ks-ai-path p { margin: 0; color: var(--fg-2); font-size: 15px; line-height: 1.55; }
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+.mt-0 { margin-top: 0 !important; }
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-40 { margin-top: 40px; }
+.text-muted { color: var(--f8-grey); }
+.book-row { margin-top: 32px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.book-note { color: var(--f8-grey); font-size: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* ============================================================
+   Language toggle
+   ============================================================ */
+.lang-toggle {
+  display: flex; align-items: center; gap: 2px;
+  font-size: 13px; font-weight: 600; font-family: var(--font-sans);
+}
+.lang-btn {
+  background: none; border: 1px solid transparent; cursor: pointer;
+  padding: 4px 7px; border-radius: var(--r-sm);
+  font-size: 13px; font-weight: 600; font-family: var(--font-sans);
+  color: var(--f8-grey); line-height: 1;
+  transition: color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+}
+.lang-btn.is-active { color: var(--f8-blue); border-color: var(--f8-fog); }
+.lang-btn:hover:not(.is-active) { color: var(--f8-ink); }
+.lang-sep { color: var(--f8-mist); font-weight: 400; user-select: none; }
+
+/* DE suggestion banner */
+.de-banner {
+  position: relative; z-index: 60;
+  background: var(--f8-navy);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 10px var(--gutter);
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; font-size: 14px;
+  color: rgba(255,255,255,0.88);
+  animation: slideDown 300ms var(--ease-out) both;
+}
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+.de-banner-btn {
+  background: var(--f8-blue-bright); color: #fff;
+  border: none; padding: 5px 14px; border-radius: var(--r-sm);
+  font-size: 13px; font-weight: 600; font-family: var(--font-sans);
+  cursor: pointer; white-space: nowrap;
+}
+.de-banner-dismiss {
+  position: absolute; right: var(--gutter);
+  background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,0.4); font-size: 18px; line-height: 1;
+  padding: 0 4px;
+}
+.de-banner-dismiss:hover { color: rgba(255,255,255,0.8); }
+@media (max-width: 480px) {
+  .de-banner { flex-wrap: wrap; justify-content: center; }
+  .de-banner-dismiss { position: static; }
+}
+
+/* ============================================================
+   Video thumbnail
+   ============================================================ */
+.ks-video-wrap {
+  border-radius: var(--r-lg); overflow: hidden;
+  border: 1px solid var(--border); box-shadow: var(--shadow-2);
+}
+.ks-video-thumb {
+  display: block; position: relative; aspect-ratio: 16/9;
+  background: var(--f8-navy); text-decoration: none; overflow: hidden;
+}
+.ks-video-thumb:hover .ks-video-play { transform: translate(-50%,-50%) scale(1.08); }
+.ks-video-thumb-text {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 28px 32px;
+  background: linear-gradient(to top, rgba(10,22,40,0.88) 40%, rgba(10,22,40,0.30) 100%);
+}
+.ks-video-play {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(0,144,231,0.92);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform var(--dur) var(--ease-out);
+}
+.ks-video-play svg { margin-left: 4px; }
+.ks-video-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--f8-blue-bright); margin-bottom: 8px;
+}
+.ks-video-title {
+  font-size: clamp(1rem,2vw + 0.5rem,1.3rem);
+  font-weight: 700; color: #fff; line-height: 1.3; margin: 0;
+}
+.ks-video-source { margin-top: 8px; font-size: 13px; color: rgba(255,255,255,0.5); }
+.ks-video-caption {
+  padding: 14px 20px; background: var(--f8-off-white);
+  border-top: 1px solid var(--border); font-size: 14px; color: var(--f8-grey);
+  display: flex; align-items: center; gap: 8px;
+}
+.ks-video-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 32px; margin-top: 28px; align-items: start;
+}
+@media (max-width: 760px) { .ks-video-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   Cookie Banner
+   ============================================================ */
+.cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: var(--f8-navy);
+  border-top: 1px solid rgba(255,255,255,0.14);
+  padding: 16px var(--gutter);
+  animation: slideUp 300ms var(--ease-out) both;
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.cookie-banner-inner {
+  max-width: var(--container); margin: 0 auto;
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+}
+.cookie-banner-text {
+  flex: 1; min-width: 220px;
+  color: rgba(255,255,255,0.78); font-size: 14px; margin: 0;
+}
+.cookie-banner-text a { color: var(--f8-blue-bright); }
+.cookie-banner-text a:hover { color: #fff; }
+.cookie-banner-actions { display: flex; gap: 10px; flex-wrap: wrap; flex-shrink: 0; }
+.cookie-btn {
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+  padding: 9px 18px; border-radius: var(--r-md); cursor: pointer;
+  border: 1px solid transparent;
+  transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+  white-space: nowrap;
+}
+.cookie-btn--accept { background: var(--f8-blue-bright); color: #fff; border-color: var(--f8-blue-bright); }
+.cookie-btn--accept:hover { background: var(--f8-blue); }
+.cookie-btn--essential { background: transparent; color: rgba(255,255,255,0.78); border-color: rgba(255,255,255,0.3); }
+.cookie-btn--essential:hover { background: rgba(255,255,255,0.08); }
+.cookie-btn--manage {
+  background: none; border: none; padding: 9px 4px;
+  color: rgba(255,255,255,0.5); font-size: 13px; font-weight: 500;
+  text-decoration: underline; cursor: pointer;
+}
+.cookie-btn--manage:hover { color: #fff; }
+
+/* ============================================================
+   Cookies Page
+   ============================================================ */
+.cookie-category {
+  margin-top: 40px; padding: 28px 32px;
+  border: 1px solid var(--border); border-radius: var(--r-lg); background: #fff;
+}
+.cookie-category + .cookie-category { margin-top: 24px; }
+.cookie-category-header {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 12px;
+}
+.cookie-category-title { margin: 0 0 4px; font-size: 1.1rem; }
+.cookie-category-desc { color: var(--fg-2); font-size: 15px; margin: 0; }
+.cookie-required-badge {
+  flex-shrink: 0; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--f8-grey); border: 1px solid var(--border);
+  border-radius: 20px; padding: 4px 10px; white-space: nowrap; align-self: flex-start;
+}
+.cookie-toggle {
+  position: relative; display: inline-block;
+  width: 44px; height: 24px; cursor: pointer; flex-shrink: 0; align-self: flex-start;
+}
+.cookie-toggle input { opacity: 0; width: 0; height: 0; }
+.cookie-toggle-track {
+  position: absolute; inset: 0; border-radius: 24px;
+  background: var(--f8-fog); transition: background var(--dur) var(--ease-out);
+}
+.cookie-toggle input:checked + .cookie-toggle-track { background: var(--f8-blue-bright); }
+.cookie-toggle-thumb {
+  position: absolute; top: 3px; left: 3px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform var(--dur) var(--ease-out);
+}
+.cookie-toggle input:checked ~ .cookie-toggle-thumb { transform: translateX(20px); }
+.cookie-table-wrap { margin-top: 20px; overflow-x: auto; }
+.cookie-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.cookie-table th {
+  text-align: left; padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--f8-grey);
+}
+.cookie-table td {
+  padding: 10px 12px; border-bottom: 1px solid var(--border);
+  vertical-align: top; color: var(--fg-2); line-height: 1.5;
+}
+.cookie-table tr:last-child td { border-bottom: none; }
+.cookie-table td:first-child { font-weight: 600; color: var(--fg-1); white-space: nowrap; }
+.cookie-table a { color: var(--f8-blue); font-size: 13px; }
+.cookie-save-row { margin-top: 32px; display: flex; align-items: center; gap: 16px; }
+.cookie-save-note { font-size: 13px; color: var(--f8-grey); }
+.cookie-empty-note {
+  margin-top: 16px; padding: 14px 16px;
+  background: var(--f8-off-white); border-radius: var(--r-md);
+  font-size: 14px; color: var(--f8-grey); font-style: italic;
+}
+.iframe-blocked {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; text-align: center;
+  background: var(--f8-off-white); border-radius: var(--r-lg);
+  border: 1px solid var(--border); padding: 48px 32px; min-height: 320px;
+}
+.iframe-blocked p { color: var(--fg-2); font-size: 15px; max-width: 420px; margin: 0; }
+
+/* ============================================================
+   Projects page — hyper-tile grid with filters
+   ============================================================ */
+.projects-hero {
+  padding: clamp(72px, 10vw, 120px) 0 clamp(40px, 6vw, 64px);
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--border);
+}
+.projects-hero h1 { margin: 0 0 16px; max-width: 820px; }
+.projects-hero .f8-lead { max-width: 720px; margin: 0; }
+
+.filter-bar {
+  position: sticky; top: 72px; z-index: 20;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+}
+.filter-bar-inner { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.filter-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.filter-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--f8-grey); margin-right: 4px;
+}
+.filter-pill {
+  font-family: var(--font-sans); font-size: 13px; font-weight: 500;
+  padding: 8px 14px; border-radius: 999px;
+  background: #fff; color: var(--f8-ink);
+  border: 1px solid var(--border-strong); cursor: pointer;
+  transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+  white-space: nowrap;
+}
+.filter-pill:hover { border-color: var(--f8-blue); color: var(--f8-blue); }
+.filter-pill.is-active { background: var(--f8-blue); color: #fff; border-color: var(--f8-blue); }
+.filter-select {
+  font-family: var(--font-sans); font-size: 13px; font-weight: 500;
+  padding: 8px 32px 8px 14px; border-radius: 999px;
+  background: #fff; color: var(--f8-ink);
+  border: 1px solid var(--border-strong); cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7A99' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat; background-position: right 12px center;
+}
+.filter-select.has-value {
+  background-color: var(--f8-blue); color: #fff; border-color: var(--f8-blue);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+}
+.filter-clear {
+  background: none; border: none; cursor: pointer;
+  font-size: 13px; color: var(--f8-grey); font-family: var(--font-sans);
+  text-decoration: underline; text-underline-offset: 3px; padding: 8px 8px;
+}
+.filter-clear:hover { color: var(--f8-blue); }
+.filter-count {
+  font-size: 13px; color: var(--f8-grey); margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px; padding: 32px 0 96px;
+}
+
+.tile {
+  position: relative; aspect-ratio: 4 / 3;
+  border-radius: var(--r-lg); overflow: hidden; cursor: pointer;
+  background: #fff; border: 1px solid var(--border);
+  transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+.tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+
+.tile-face {
+  position: absolute; inset: 0; padding: 20px 22px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  transition: opacity 200ms var(--ease-out), transform 260ms var(--ease-out);
+  backface-visibility: hidden;
+}
+.tile-front { background: #fff; }
+.tile-front .tile-industry {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--f8-blue);
+}
+.tile-front .tile-company {
+  font-size: 19px; font-weight: 600; line-height: 1.25;
+  color: var(--f8-ink); letter-spacing: -0.01em; text-wrap: balance;
+}
+.tile-front .tile-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+.tile-chip {
+  font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 999px;
+  background: var(--f8-off-white); color: var(--f8-grey);
+  border: 1px solid var(--border); letter-spacing: 0.02em;
+}
+.tile-chip.is-strong {
+  background: rgba(0,112,192,0.08); color: var(--f8-blue); border-color: transparent;
+}
+
+.tile-back {
+  background: var(--f8-navy); color: #fff;
+  opacity: 0; transform: translateY(8px);
+}
+.tile:hover .tile-back,
+.tile.is-flipped .tile-back,
+.tile:focus-visible .tile-back { opacity: 1; transform: translateY(0); }
+.tile:hover .tile-front,
+.tile.is-flipped .tile-front,
+.tile:focus-visible .tile-front { opacity: 0; }
+.tile-back .tile-back-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--f8-blue-bright);
+}
+.tile-back .tile-project {
+  font-size: 18px; font-weight: 600; line-height: 1.3; color: #fff; text-wrap: balance;
+}
+.tile-back .tile-comment {
+  font-size: 12px; line-height: 1.45; color: rgba(255,255,255,0.78);
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.projects-empty {
+  text-align: center; padding: 64px 20px; color: var(--f8-grey); grid-column: 1 / -1;
+}
+.projects-empty h3 { color: var(--f8-ink); margin: 0 0 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-face { transition: opacity var(--dur) ease !important; transform: none !important; }
+}
+
+/* ============================================================
+   Playbooks — index + detail
+   ============================================================ */
+.playbooks-hero {
+  background: var(--bg-dark); color: #fff;
+  padding: clamp(96px, 12vw, 140px) 0 clamp(56px, 7vw, 88px);
+}
+.playbooks-hero .section-eyebrow { color: var(--f8-blue-bright); }
+.playbooks-hero h1 { color: #fff; max-width: 880px; margin: 0; }
+.playbooks-hero .f8-lead { color: rgba(255,255,255,0.78); max-width: 720px; margin-top: 22px; }
+
+.playbooks-intro { border-bottom: 1px solid var(--border); background: #fff; padding: 28px 0; }
+.playbooks-intro-inner {
+  display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap;
+  color: var(--f8-grey); font-size: 14px;
+}
+.playbooks-intro-inner strong { color: var(--f8-ink); font-weight: 600; }
+
+.pb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+@media (max-width: 980px) { .pb-grid { grid-template-columns: 1fr; } }
+
+.pb-tile {
+  display: grid; grid-template-columns: 240px 1fr;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--r-lg); overflow: hidden;
+  text-decoration: none; color: inherit;
+  transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+  cursor: pointer;
+}
+.pb-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); border-color: var(--f8-mist); }
+.pb-tile:hover .pb-arrow { transform: translateX(4px); color: var(--f8-blue); }
+.pb-tile:hover .pb-img { transform: scale(1.03); }
+
+.pb-img-wrap { position: relative; overflow: hidden; background: var(--f8-off-white); }
+.pb-img {
+  width: 100%; height: 100%;
+  background-size: cover; background-position: center;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.pb-img-wrap::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,22,40,0) 60%, rgba(10,22,40,0.18));
+  pointer-events: none;
+}
+.pb-body {
+  padding: 28px 28px 24px;
+  display: flex; flex-direction: column; gap: 12px; min-width: 0;
+}
+.pb-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--f8-blue);
+}
+.pb-tile h3 {
+  margin: 0; font-size: 22px; line-height: 1.25; font-weight: 700;
+  letter-spacing: -0.01em; color: var(--f8-ink); text-wrap: balance;
+}
+.pb-sub {
+  margin: 0; font-size: 15px; line-height: 1.55; color: var(--fg-2); text-wrap: pretty;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.pb-meta {
+  margin-top: auto; display: flex; align-items: center;
+  justify-content: space-between; padding-top: 14px;
+  border-top: 1px solid var(--border); font-size: 13px; color: var(--f8-grey);
+}
+.pb-meta-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.pb-meta-tag { font-size: 12px; font-weight: 600; color: var(--f8-ink-soft); letter-spacing: 0.02em; }
+.pb-meta-tag + .pb-meta-tag::before { content: '·'; margin-right: 8px; color: var(--f8-mist); }
+.pb-arrow {
+  display: inline-flex; color: var(--f8-ink);
+  transition: transform var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+.pb-arrow svg { display: block; }
+
+.pb-tile.is-soon { cursor: default; }
+.pb-tile.is-soon:hover { transform: none; box-shadow: none; border-color: var(--border); }
+.pb-tile.is-soon:hover .pb-img { transform: none; }
+.pb-tile.is-soon:hover .pb-arrow { transform: none; color: var(--f8-grey); }
+.pb-tile.is-soon .pb-img { filter: grayscale(0.9) brightness(1.04) contrast(0.92); opacity: 0.55; }
+.pb-tile.is-soon .pb-body { opacity: 0.92; }
+.pb-tile.is-soon h3 { color: var(--f8-ink-soft); }
+.pb-tile.is-soon .pb-eyebrow { color: var(--f8-grey); }
+.pb-tile.is-soon .pb-sub { color: var(--f8-grey); }
+.pb-tile.is-soon .pb-arrow { color: var(--f8-mist); }
+.pb-soon-chip {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  background: rgba(255,255,255,0.95); color: var(--f8-ink-soft);
+  font-size: 11px; font-weight: 600; padding: 5px 10px;
+  border-radius: var(--r-pill); letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+  .pb-tile { grid-template-columns: 1fr; }
+  .pb-img-wrap { aspect-ratio: 16 / 9; }
+}
+
+/* Detail hero */
+.pb-detail-hero {
+  background: var(--bg-dark); color: #fff;
+  position: relative; overflow: hidden; isolation: isolate;
+}
+.pb-detail-hero .container {
+  display: grid; grid-template-columns: 1.05fr 1fr;
+  gap: 56px;
+  padding-top: clamp(72px, 9vw, 120px);
+  padding-bottom: clamp(72px, 9vw, 120px);
+  align-items: center;
+}
+@media (max-width: 960px) { .pb-detail-hero .container { grid-template-columns: 1fr; } }
+.pb-detail-crumbs {
+  display: flex; gap: 8px; align-items: center;
+  font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 24px;
+}
+.pb-detail-crumbs a { color: rgba(255,255,255,0.78); text-decoration: none; }
+.pb-detail-crumbs a:hover { color: var(--f8-blue-bright); }
+.pb-detail-crumbs .sep { color: rgba(255,255,255,0.3); }
+.pb-detail-hero h1 {
+  color: #fff; font-size: clamp(2rem, 3.2vw + 1rem, 3.25rem);
+  line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 20px; text-wrap: balance;
+}
+.pb-detail-hero .pb-detail-sub {
+  color: rgba(255,255,255,0.82); font-size: 19px; line-height: 1.55;
+  margin: 0 0 32px; max-width: 560px; text-wrap: pretty;
+}
+.pb-detail-cta-row { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.pb-detail-hero-img {
+  width: 100%; aspect-ratio: 5 / 4; border-radius: var(--r-xl);
+  background-size: cover; background-position: center;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+}
+
+/* Meta strip */
+.pb-meta-strip { background: #fff; border-bottom: 1px solid var(--border); }
+.pb-meta-strip-inner {
+  display: grid; grid-template-columns: repeat(4, 1fr); padding: 24px 0;
+}
+@media (max-width: 720px) { .pb-meta-strip-inner { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+.pb-meta-strip .item { padding: 0 8px; }
+.pb-meta-strip .item + .item { border-left: 1px solid var(--border); }
+.pb-meta-strip .label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--f8-grey);
+}
+.pb-meta-strip .value { font-size: 16px; font-weight: 600; color: var(--f8-ink); margin-top: 6px; }
+
+/* Detail body */
+.pb-detail-body {
+  display: grid; grid-template-columns: 1fr 280px;
+  gap: 72px; padding: clamp(56px, 8vw, 96px) 0;
+}
+@media (max-width: 960px) { .pb-detail-body { grid-template-columns: 1fr; gap: 32px; } }
+.pb-detail-prose { max-width: 720px; }
+.pb-detail-prose h2 { margin: 56px 0 16px; font-size: 28px; letter-spacing: -0.015em; }
+.pb-detail-prose h2:first-child { margin-top: 0; }
+.pb-detail-prose p { font-size: 17px; line-height: 1.7; color: var(--fg-2); margin: 0 0 18px; }
+.pb-detail-prose .lead-p { font-size: 19px; line-height: 1.6; color: var(--f8-ink); }
+
+/* Module list */
+.pb-modules { list-style: none; padding: 0; margin: 24px 0 0; }
+.pb-modules li {
+  display: grid; grid-template-columns: 56px 1fr; gap: 20px;
+  padding: 22px 0; border-top: 1px solid var(--border);
+}
+.pb-modules li:last-child { border-bottom: 1px solid var(--border); }
+.pb-modules .num {
+  font-family: var(--font-mono); color: var(--f8-blue); font-size: 14px;
+  font-weight: 600; padding-top: 4px;
+}
+.pb-modules .mod-title { font-size: 18px; font-weight: 600; color: var(--f8-ink); margin: 0 0 6px; }
+.pb-modules .mod-body { margin: 0; font-size: 15px; line-height: 1.55; color: var(--fg-2); }
+
+/* Side rail */
+.pb-rail {
+  position: sticky; top: 96px; align-self: start;
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+  padding: 24px; background: #fff;
+}
+.pb-rail h4 {
+  margin: 0 0 8px; font-size: 13px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--f8-blue);
+}
+.pb-rail p { margin: 0 0 18px; font-size: 14px; line-height: 1.55; color: var(--fg-2); }
+.pb-rail .btn { width: 100%; justify-content: center; }
+.pb-rail .meta-line {
+  font-size: 13px; color: var(--f8-grey);
+  border-top: 1px solid var(--border); padding-top: 14px; margin-top: 14px;
+}
+
+/* Pull quote */
+.pb-quote { margin: 40px 0; padding: 24px 0; border-top: 2px solid var(--f8-blue); border-bottom: 1px solid var(--border); }
+.pb-quote p { font-size: 22px; line-height: 1.4; color: var(--f8-ink); font-weight: 500; margin: 0; text-wrap: balance; }
+
+/* Coming soon / not found stub */
+.pb-stub { background: var(--bg-2); padding: clamp(80px, 12vw, 140px) 0; text-align: center; }
+.pb-stub .container-narrow { text-align: center; }
+.pb-stub .chip {
+  display: inline-block; background: #fff; border: 1px solid var(--border);
+  border-radius: var(--r-pill); padding: 6px 14px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--f8-grey); margin-bottom: 20px;
+}
+.pb-stub h1 { margin: 0 0 16px; }
+.pb-stub p { color: var(--fg-2); font-size: 18px; max-width: 560px; margin: 0 auto 28px; }
+</style>
+<!-- HubSpot: _hsq queue initialised here; consent gate in React controls tracking -->
+<script>var _hsq = window._hsq = window._hsq || [];</script>
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/49059754.js"></script>
+<!-- End of HubSpot Embed Code -->
+<!-- hreflang for bilingual site -->
+<link rel="alternate" hreflang="en" href="https://www.facilit8.org/"/>
+<link rel="alternate" hreflang="de" href="https://www.facilit8.org/?lang=de"/>
+<link rel="alternate" hreflang="x-default" href="https://www.facilit8.org/"/>
+<!-- i18n: language detection and translations (must load before React) -->
+<script src="/js/i18n.js"></script>
+<script>document.documentElement.lang = window.F8_I18N.lang;</script>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+<script type="text/babel">
+/* ============================================================
+   CONFIGURATION
+   ============================================================ */
+const CONFIG = {
+  meetingsUrl: 'https://www.facilit8.org/meetings/david-howes/facilit8results',
+
+  email: 'david@facilit8.org',
+};
+
+/* ── i18n React context & hook ── */
+const I18nContext = React.createContext(window.F8_I18N.lang);
+
+function useTranslation() {
+  React.useContext(I18nContext); // subscribe so component re-renders on lang change
+  return (key) => window.F8_I18N.t(key);
+}
+
+/* ── Language toggle pill ── */
+function LangToggle() {
+  const lang = React.useContext(I18nContext);
+  return (
+    <div className="lang-toggle" aria-label="Language">
+      <button className={`lang-btn${lang === 'en' ? ' is-active' : ''}`}
+        onClick={() => window.F8_I18N.setLang('en')} aria-pressed={lang === 'en'}>EN</button>
+      <span className="lang-sep">|</span>
+      <button className={`lang-btn${lang === 'de' ? ' is-active' : ''}`}
+        onClick={() => window.F8_I18N.setLang('de')} aria-pressed={lang === 'de'}>DE</button>
+    </div>
+  );
+}
+
+/* ── German-language suggestion banner (shown only when browser lang is DE and user is in EN) ── */
+function DeBanner() {
+  const lang = React.useContext(I18nContext);
+  const [dismissed, setDismissed] = React.useState(
+    () => { try { return sessionStorage.getItem('f8_de_banner') === '1'; } catch { return false; } }
+  );
+  if (lang === 'de' || !window.F8_I18N.browserDe || dismissed) return null;
+  const dismiss = () => {
+    try { sessionStorage.setItem('f8_de_banner', '1'); } catch {}
+    setDismissed(true);
+  };
+  return (
+    <div className="de-banner" role="note">
+      <span>{window.F8_I18N.t('deBanner.text')}</span>
+      <button className="de-banner-btn" onClick={() => { window.F8_I18N.setLang('de'); dismiss(); }}>
+        {window.F8_I18N.t('deBanner.switchButton')}
+      </button>
+      <button className="de-banner-dismiss" onClick={dismiss} aria-label="Dismiss">
+        {window.F8_I18N.t('deBanner.dismiss')}
+      </button>
+    </div>
+  );
+}
+
+/*
+ * COOKIE_CONFIG — single source of truth for all cookies.
+ * To add a cookie: add an entry to the relevant category's `cookies` array.
+ * To add a new category: add an object to the `categories` array.
+ * required:true  → always on, no toggle.
+ * required:false → user can accept or decline.
+ */
+const COOKIE_CONFIG = {
+  categories: [
+    {
+      id: 'essential',
+      name: 'Essential',
+      required: true,
+      description: 'Required for the site to work correctly. These cannot be disabled.',
+      cookies: [
+        {
+          name: 'Cookie preferences',
+          purpose: 'Stores your cookie consent choices so you are not asked again on every visit.',
+          provider: 'facilit8 (this site)',
+          duration: '1 year',
+        },
+      ],
+    },
+    {
+      id: 'functional',
+      name: 'Functional',
+      required: false,
+      description: 'Enables enhanced features. Without these, parts of the site (such as the meeting booking calendar and contact form) will not be available.',
+      cookies: [
+        {
+          name: 'HubSpot — meeting embed',
+          purpose: 'Powers the interactive meeting booking calendar on the Contact page.',
+          provider: 'HubSpot, Inc.',
+          duration: 'Session / up to 13 months',
+          policyUrl: 'https://legal.hubspot.com/cookie-policy',
+        },
+        {
+          name: 'HubSpot — contact form',
+          purpose: 'Powers the contact form so message submissions are received and stored in HubSpot CRM.',
+          provider: 'HubSpot, Inc.',
+          duration: 'Session / up to 13 months',
+          policyUrl: 'https://legal.hubspot.com/cookie-policy',
+        },
+        {
+          name: 'Google Fonts',
+          purpose: "Loads the Inter typeface from Google's CDN. Google may log the request.",
+          provider: 'Google LLC',
+          duration: 'Up to 1 year',
+          policyUrl: 'https://policies.google.com/privacy',
+        },
+      ],
+    },
+    {
+      id: 'analytics',
+      name: 'Analytics & Marketing',
+      required: false,
+      description: 'Helps understand how visitors use the site and, if enabled, supports HubSpot click and visit tracking.',
+      cookies: [
+        {
+          name: 'HubSpot — tracking pixel',
+          purpose: 'Records page visits and link clicks for marketing attribution.',
+          provider: 'HubSpot, Inc.',
+          duration: '13 months',
+          policyUrl: 'https://legal.hubspot.com/cookie-policy',
+        },
+      ],
+    },
+  ],
+};
+
+/* ── Consent helpers ── */
+const CONSENT_KEY = 'f8_cookie_consent';
+
+function buildDefaultConsent() {
+  return Object.fromEntries(COOKIE_CONFIG.categories.map(c => [c.id, c.required]));
+}
+function loadConsent() {
+  try { const r = localStorage.getItem(CONSENT_KEY); return r ? JSON.parse(r) : null; }
+  catch { return null; }
+}
+function saveConsent(c) {
+  try { localStorage.setItem(CONSENT_KEY, JSON.stringify({ ...c, _ts: Date.now() })); }
+  catch {}
+}
+
+function useConsent() {
+  const [consent, setConsentState] = React.useState(() => loadConsent());
+  const [bannerVisible, setBannerVisible] = React.useState(() => loadConsent() === null);
+
+  const applyConsent = React.useCallback((c) => {
+    saveConsent(c); setConsentState(c); setBannerVisible(false);
+  }, []);
+
+  const acceptAll = React.useCallback(() =>
+    applyConsent(Object.fromEntries(COOKIE_CONFIG.categories.map(c => [c.id, true]))), [applyConsent]);
+
+  const essentialOnly = React.useCallback(() =>
+    applyConsent(buildDefaultConsent()), [applyConsent]);
+
+  const has = React.useCallback((id) => !!(consent && consent[id]), [consent]);
+
+  return { consent, bannerVisible, acceptAll, essentialOnly, applyConsent, has };
+}
+
+const ConsentContext = React.createContext(null);
+
+function CookieBanner({ navigate }) {
+  const { bannerVisible, acceptAll, essentialOnly } = React.useContext(ConsentContext);
+  const t = useTranslation();
+  if (!bannerVisible) return null;
+  return (
+    <div className="cookie-banner" role="region" aria-label={t('cookieBanner.ariaLabel')}>
+      <div className="cookie-banner-inner">
+        <p className="cookie-banner-text">
+          {t('cookieBanner.text')}{' '}
+          <button className="cookie-btn--manage" onClick={() => navigate('cookies')}>{t('cookieBanner.managePreferences')}</button>
+        </p>
+        <div className="cookie-banner-actions">
+          <button className="cookie-btn cookie-btn--essential" onClick={essentialOnly}>{t('cookieBanner.essentialOnly')}</button>
+          <button className="cookie-btn cookie-btn--accept" onClick={acceptAll}>{t('cookieBanner.acceptAll')}</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VideoThumbnail({ href, eyebrow, title, source, caption }) {
+  return (
+    <div className="ks-video-wrap">
+      <a className="ks-video-thumb" href={href} target="_blank" rel="noopener noreferrer">
+        <div className="ks-video-thumb-text">
+          {eyebrow && <div className="ks-video-eyebrow">{eyebrow}</div>}
+          <p className="ks-video-title">{title}</p>
+          {source && <div className="ks-video-source">{source}</div>}
+        </div>
+        <div className="ks-video-play">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+            <polygon points="5,3 19,12 5,21"/>
+          </svg>
+        </div>
+      </a>
+      {caption && (
+        <div className="ks-video-caption">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          {caption}
+        </div>
+      )}
+    </div>
+  );
+}
+
+const HERO_HOME     = 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1920&q=80&auto=format&fit=crop';
+const HERO_SERVICES = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1920&q=80&auto=format&fit=crop';
+const HERO_ABOUT    = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80&auto=format&fit=crop';
+const HERO_CONTACT  = 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1920&q=80&auto=format&fit=crop';
+const HERO_KEYSTONE = 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=1920&q=80&auto=format&fit=crop';
+const LOGO          = 'assets/facilit8-logo.png';
+const FOUNDER_PHOTO = 'assets/david-howes.jpg';
+
+/* ============================================================
+   Icons
+   ============================================================ */
+function Arrow({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="5" y1="12" x2="19" y2="12"/>
+      <polyline points="12 5 19 12 12 19"/>
+    </svg>
+  );
+}
+
+function LineIcon({ name }) {
+  const icons = {
+    hands: <><path d="M9 11V6.5a1.5 1.5 0 0 1 3 0V11"/><path d="M12 11V5a1.5 1.5 0 0 1 3 0v6"/><path d="M15 11V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-1.5a4 4 0 0 1-3.6-2.2L4 13a1.5 1.5 0 0 1 2.7-1.3L9 14"/></>,
+    users: <><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></>,
+    target: <><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></>,
+  };
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {icons[name] || null}
+    </svg>
+  );
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+function PrimaryButton({ children, onClick, href }) {
+  if (href) return <a className="btn btn--primary" href={href} target="_blank" rel="noopener noreferrer">{children}<Arrow/></a>;
+  return <button className="btn btn--primary" onClick={onClick}>{children}<Arrow/></button>;
+}
+
+function GhostButton({ children, onClick }) {
+  return <button className="btn btn--ghost-dark" onClick={onClick}>{children}<Arrow/></button>;
+}
+
+function TextLink({ children, onClick, dark }) {
+  const cls = `text-link${dark ? ' text-link--on-dark' : ''}`;
+  return <button className={cls} onClick={onClick}>{children}<Arrow/></button>;
+}
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+function Nav({ page, navigate }) {
+  const t = useTranslation();
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const links = [
+    { id: 'home', label: t('nav.home') },
+    { id: 'services', label: t('nav.services') },
+    { id: 'projects', label: t('nav.caseStudies') },
+    { id: 'playbooks', label: t('nav.playbooks') },
+    { id: 'keystone', label: t('nav.keystone') },
+    { id: 'about', label: t('nav.about') },
+    { id: 'contact', label: t('nav.contact') },
+  ];
+  const go = (id) => { navigate(id); setMenuOpen(false); };
+  const activeId = page && page.startsWith('playbook/') ? 'playbooks' : page;
+  return (
+    <header className="nav">
+      <div className="container nav-inner">
+        <button className="nav-logo" style={{background:'none',border:'none',cursor:'pointer',padding:0}} onClick={() => go('home')}>
+          <img src={LOGO} alt="facilit8"/>
+        </button>
+        <nav className={`nav-links${menuOpen ? ' is-open' : ''}`}>
+          {links.map(l => (
+            <button key={l.id} className={`nav-link${activeId === l.id ? ' is-active' : ''}`}
+              onClick={() => go(l.id)}>{l.label}</button>
+          ))}
+        </nav>
+        <div className="nav-right">
+          <LangToggle/>
+          <PrimaryButton onClick={() => go('contact')}>{t('nav.bookMeeting')}</PrimaryButton>
+        </div>
+        <button className="nav-hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            {menuOpen
+              ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>
+              : <><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></>}
+          </svg>
+        </button>
+      </div>
+    </header>
+  );
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+function Footer({ navigate }) {
+  const t = useTranslation();
+  const go = (id) => navigate(id);
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-top">
+          <div className="footer-col footer-logo">
+            <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:14}}>
+              <span style={{fontFamily:'Inter, system-ui, sans-serif',fontWeight:700,fontSize:22,letterSpacing:'-0.02em',color:'#fff',lineHeight:1}}>facilit8</span>
+              <svg viewBox="0 0 130 110" width="30" height="25" fill="none" stroke="#fff" strokeWidth="11" strokeLinecap="square" strokeLinejoin="miter" aria-hidden="true">
+                <rect x="8" y="74" width="22" height="30"/>
+                <rect x="40" y="54" width="22" height="50"/>
+                <rect x="72" y="24" width="22" height="80"/>
+                <line x1="14" y1="64" x2="116" y2="8"/>
+                <polyline points="86,8 116,8 116,38"/>
+              </svg>
+            </div>
+            <p>{t('footer.tagline')}</p>
+          </div>
+          <div className="footer-col">
+            <h4>{t('footer.servicesHeading')}</h4>
+            <a href="#" onClick={e => { e.preventDefault(); go('services'); }}>Commercial Transformation</a>
+            <a href="#" onClick={e => { e.preventDefault(); go('services'); }}>Technology Enablement</a>
+            <a href="#" onClick={e => { e.preventDefault(); go('services'); }}>Go-to-Market Strategy</a>
+            <a href="#" onClick={e => { e.preventDefault(); go('services'); }}>Revenue Operations</a>
+            <a href="/capability-lens-app.html">Capability Lens</a>
+          </div>
+          <div className="footer-col">
+            <h4>{t('footer.companyHeading')}</h4>
+            <a href="#" onClick={e => { e.preventDefault(); go('about'); }}>{t('nav.about')}</a>
+            <a href="#" onClick={e => { e.preventDefault(); go('projects'); }}>Case Studies</a>
+            <a href="#" onClick={e => { e.preventDefault(); go('playbooks'); }}>Playbooks</a>
+            <a href="#" onClick={e => { e.preventDefault(); go('keystone'); }}>Project Keystone</a>
+            <a href="#" onClick={e => { e.preventDefault(); go('contact'); }}>{t('nav.contact')}</a>
+            <a href={CONFIG.meetingsUrl} target="_blank" rel="noopener noreferrer">{t('footer.bookMeeting')}</a>
+          </div>
+          <div className="footer-col">
+            <h4>{t('footer.basedInHeading')}</h4>
+            <p>{t('footer.basedInValue')}</p>
+            <p>{t('footer.workingInternationally')}</p>
+            <p>{t('footer.languages')}</p>
+            <p><a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a></p>
+          </div>
+        </div>
+        <div className="footer-bot">
+          <span>{t('footer.copyright')}</span>
+          <span style={{display:'flex',gap:16,alignItems:'center'}}>
+            <span>{t('footer.location')}</span>
+            <a href="#cookies" onClick={e => { e.preventDefault(); navigate('cookies'); }}
+              style={{color:'rgba(255,255,255,0.4)',fontSize:12,textDecoration:'underline'}}>
+              {t('footer.cookiesPrivacy')}
+            </a>
+          </span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ============================================================
+   Layout primitives
+   ============================================================ */
+function Section({ children, alt, dark, narrow }) {
+  const cls = ['section', alt ? 'section--alt' : '', dark ? 'section--dark' : ''].filter(Boolean).join(' ');
+  const inner = narrow ? 'container-narrow' : 'container';
+  return <section className={cls}><div className={inner}>{children}</div></section>;
+}
+
+function Hero({ eyebrow, headline, sub, primaryCta, secondaryCta, image, navigate }) {
+  return (
+    <section className="hero">
+      <div className="hero-bg" style={{ backgroundImage: `url(${image})` }}/>
+      <div className="hero-overlay"/>
+      <div className="container">
+        {eyebrow && <div className="section-eyebrow hero-eyebrow">{eyebrow}</div>}
+        <h1 className="f8-display">{headline}</h1>
+        {sub && <p className="f8-lead">{sub}</p>}
+        {(primaryCta || secondaryCta) && (
+          <div className="hero-cta-row">
+            {primaryCta && <PrimaryButton onClick={() => navigate(primaryCta.to)}>{primaryCta.label}</PrimaryButton>}
+            {secondaryCta && <TextLink dark onClick={() => navigate(secondaryCta.to)}>{secondaryCta.label}</TextLink>}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function ClosingCTA({ heading, sub, body, cta, note, navigate }) {
+  return (
+    <section className="closing">
+      <div className="container">
+        {sub && <div className="section-eyebrow" style={{color:'var(--f8-blue-bright)',marginBottom:16}}>{sub}</div>}
+        <h2 className="f8-h1">{heading}</h2>
+        {body && <p>{body}</p>}
+        {note && <p style={{fontSize:15,fontStyle:'italic',opacity:0.7,marginBottom:32}}>{note}</p>}
+        <PrimaryButton onClick={() => navigate(cta.to)}>{cta.label}</PrimaryButton>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================
+   Keystone sub-components
+   ============================================================ */
+function PullQuote({ children }) {
+  return (
+    <div className="ks-pull-quote">
+      <p>{children}</p>
+    </div>
+  );
+}
+
+function DiagQuestion({ children }) {
+  return (
+    <div className="ks-diag-question">
+      <p>{children}</p>
+    </div>
+  );
+}
+
+/* ============================================================
+   Modules (reused across pages)
+   ============================================================ */
+function StatStrip({ stats }) {
+  return (
+    <div className="stat-strip">
+      <div className="container">
+        <div className="stat-strip-inner">
+          {stats.map((s, i) => (
+            <div className="stat" key={i}>
+              <div className="stat-num">{s.num}</div>
+              <div className="stat-label">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ValueCards({ items }) {
+  return (
+    <div className="value-grid">
+      {items.map((v, i) => (
+        <div className="value-card" key={i}>
+          <span className="icon" aria-hidden="true">{v.icon}</span>
+          <h3>{v.title}</h3>
+          <p>{v.body}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ServiceBlock({ num, eyebrow, heading, body, bullets }) {
+  return (
+    <div className="service">
+      <div className="container">
+        <div className="service-grid">
+          <div>
+            <div className="service-eyebrow">{eyebrow}</div>
+            <div className="service-num">{num}</div>
+          </div>
+          <div>
+            <h2 className="f8-h2">{heading}</h2>
+            <p className="f8-lead mt-0">{body}</p>
+            <ul className="service-bullets">
+              {bullets.map((b, i) => <li key={i}>{b}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Beliefs({ items }) {
+  return (
+    <div className="beliefs">
+      {items.map((b, i) => (
+        <div className="belief" key={i}>
+          <div className="belief-num">0{i + 1}</div>
+          <h3>{b.title}</h3>
+          <p>{b.body}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ============================================================
+   PROJECT KEYSTONE PAGE
+   ============================================================ */
+function KeystonePage({ navigate }) {
+  const t = useTranslation();
+  return (
+    <>
+      {/* ── HERO ── */}
+      <section className="hero">
+        <div className="hero-bg" style={{ backgroundImage: `url(${HERO_KEYSTONE})` }}/>
+        <div className="hero-overlay"/>
+        <div className="container">
+          <div className="section-eyebrow hero-eyebrow">{t('keystone.hero.eyebrow')}</div>
+          <h1 className="f8-display">{t('keystone.hero.headline')}</h1>
+          <p className="f8-lead">{t('keystone.hero.sub1')}</p>
+          <p className="f8-lead">{t('keystone.hero.sub2')}</p>
+          <div className="hero-cta-row">
+            <PrimaryButton onClick={() => navigate('contact')}>{t('keystone.hero.cta')}</PrimaryButton>
+          </div>
+        </div>
+      </section>
+
+      {/* ── DIAGNOSTIC QUESTION STRIP ── */}
+      <div style={{ background: 'var(--f8-navy-2)', padding: 'clamp(40px,6vw,64px) 0' }}>
+        <div className="container-narrow">
+          <div className="section-eyebrow" style={{ color: 'var(--f8-blue-bright)', marginBottom: 20 }}>
+            {t('keystone.diagStrip.eyebrow')}
+          </div>
+          <div className="ks-diag-question" style={{ background: 'rgba(255,255,255,0.05)', borderLeftColor: 'var(--f8-blue-bright)' }}>
+            <p style={{ color: '#fff' }}>{t('keystone.diagStrip.question')}</p>
+          </div>
+          <p style={{ color: 'rgba(255,255,255,0.6)', fontStyle: 'italic', fontSize: 15, marginTop: 16, marginBottom: 0 }}>
+            {t('keystone.diagStrip.note')}
+          </p>
+        </div>
+      </div>
+
+      {/* ── SECTION 1: COMPOUND STRATEGIES ── */}
+      <section className="section section--alt">
+        <div className="container-narrow">
+          <div className="section-eyebrow">{t('keystone.compoundStrategies.eyebrow')}</div>
+          <h2 className="f8-h2">{t('keystone.compoundStrategies.heading')}</h2>
+          <p className="f8-lead mt-20">{t('keystone.compoundStrategies.lead')}</p>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.compoundStrategies.body1')}</p>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.compoundStrategies.body2')}</p>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.compoundStrategies.body3')}</p>
+
+          <PullQuote>{t('keystone.compoundStrategies.pullQuote')}</PullQuote>
+
+          <h3 className="f8-h3" style={{ marginTop: 40 }}>{t('keystone.compoundStrategies.whatMakesHeading')}</h3>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.compoundStrategies.whatMakesBody1')}</p>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.compoundStrategies.whatMakesBody2')}</p>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.compoundStrategies.whatMakesBody3')}</p>
+
+          {/* Adding vs Compounding visual */}
+          <div style={{ marginTop: 40, padding: '32px', background: '#fff', border: '1px solid var(--f8-fog)', borderRadius: 'var(--r-lg)' }}>
+            <div className="section-eyebrow" style={{ marginBottom: 16 }}>{t('keystone.compoundStrategies.chartEyebrow')}</div>
+            <svg viewBox="0 0 560 200" width="100%" style={{ display: 'block' }} aria-label="Chart showing adding (linear) vs compounding (exponential) growth over 8 quarters">
+              {[0,1,2,3].map(i => (
+                <line key={i} x1="60" y1={40 + i * 48} x2="540" y2={40 + i * 48} stroke="#E6ECF2" strokeWidth="1"/>
+              ))}
+              <line x1="60" y1="180" x2="540" y2="180" stroke="#C9D2DD" strokeWidth="1.5"/>
+              <line x1="60" y1="20" x2="60" y2="180" stroke="#C9D2DD" strokeWidth="1.5"/>
+              {['Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8'].map((q, i) => (
+                <text key={q} x={102 + i * 63} y="195" textAnchor="middle" fontSize="10" fill="#6B7A99" fontFamily="Inter, sans-serif">{q}</text>
+              ))}
+              <polyline points="60,165 123,150 186,135 249,120 312,105 375,90 438,75 501,60" fill="none" stroke="#C9D2DD" strokeWidth="2" strokeDasharray="5,3"/>
+              <polyline points="60,165 123,158 186,146 249,128 312,104 375,74 438,46 501,28" fill="none" stroke="#0090E7" strokeWidth="2.5"/>
+              <line x1="70" y1="18" x2="95" y2="18" stroke="#C9D2DD" strokeWidth="2" strokeDasharray="4,3"/>
+              <text x="100" y="22" fontSize="10" fill="#6B7A99" fontFamily="Inter, sans-serif">Adding (linear)</text>
+              <line x1="200" y1="18" x2="225" y2="18" stroke="#0090E7" strokeWidth="2.5"/>
+              <text x="230" y="22" fontSize="10" fill="#0070C0" fontFamily="Inter, sans-serif" fontWeight="600">Compounding</text>
+              <line x1="501" y1="28" x2="501" y2="60" stroke="#0090E7" strokeWidth="1" strokeDasharray="3,2"/>
+              <text x="508" y="46" fontSize="10" fill="#0090E7" fontFamily="Inter, sans-serif" fontWeight="600">Gap</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 2: QUANTUM ENABLERS ── */}
+      <section className="section section--dark">
+        <div className="container-narrow">
+          <div className="section-eyebrow" style={{ color: 'var(--f8-blue-bright)' }}>{t('keystone.quantumEnablers.eyebrow')}</div>
+          <h2 className="f8-h2" style={{ color: '#fff', marginTop: 12 }}>{t('keystone.quantumEnablers.heading')}</h2>
+          <p className="f8-lead" style={{ color: 'rgba(255,255,255,0.82)', marginTop: 20 }}>{t('keystone.quantumEnablers.lead')}</p>
+          <p style={{ color: '#fff', fontWeight: 600, marginBottom: 0 }}>{t('keystone.quantumEnablers.intro')}</p>
+
+          <PullQuote>{t('keystone.quantumEnablers.pullQuote')}</PullQuote>
+
+          {/* QE orbs */}
+          <div className="qe-row">
+            {[
+              'Psychological Safety',
+              'Purpose Coherence',
+              'Trust Capital',
+              'Adaptive Capacity',
+              'Innovation Vitality',
+            ].map((label, i) => (
+              <div className="qe-step" key={i}>
+                <div className="qe-orb"><span className="qe-num">{i + 1}</span></div>
+                <div className="qe-label-text">{label}</div>
+              </div>
+            ))}
+          </div>
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 13, fontStyle: 'italic', textAlign: 'center', marginTop: 8 }}>
+            {t('keystone.quantumEnablers.orbNote')}
+          </p>
+
+          <h3 className="f8-h3" style={{ color: '#fff', marginTop: 48 }}>{t('keystone.quantumEnablers.resistHeading')}</h3>
+          <p style={{ color: 'rgba(255,255,255,0.78)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.quantumEnablers.resistBody1')}</p>
+          <p style={{ color: 'rgba(255,255,255,0.78)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.quantumEnablers.resistBody2')}</p>
+          <p style={{ color: 'rgba(255,255,255,0.78)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.quantumEnablers.resistBody3')}</p>
+        </div>
+      </section>
+
+      {/* ── SECTION 3: OPERATING ENABLERS ── */}
+      <section className="section">
+        <div className="container-narrow">
+          <div className="section-eyebrow">{t('keystone.operatingEnablers.eyebrow')}</div>
+          <h2 className="f8-h2" style={{ marginTop: 12 }}>{t('keystone.operatingEnablers.heading')}</h2>
+          <p className="f8-lead mt-20">{t('keystone.operatingEnablers.lead')}</p>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.operatingEnablers.body1')}</p>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.operatingEnablers.body2')}</p>
+
+          <div className="ks-cluster-grid">
+            <div className="ks-cluster-card">
+              <div className="cluster-label">{t('keystone.operatingEnablers.cluster1label')}</div>
+              <h3>{t('keystone.operatingEnablers.cluster1title')}</h3>
+              <p>{t('keystone.operatingEnablers.cluster1body')}</p>
+            </div>
+            <div className="ks-cluster-card">
+              <div className="cluster-label">{t('keystone.operatingEnablers.cluster2label')}</div>
+              <h3>{t('keystone.operatingEnablers.cluster2title')}</h3>
+              <p>{t('keystone.operatingEnablers.cluster2body')}</p>
+            </div>
+            <div className="ks-cluster-card">
+              <div className="cluster-label">{t('keystone.operatingEnablers.cluster3label')}</div>
+              <h3>{t('keystone.operatingEnablers.cluster3title')}</h3>
+              <p>{t('keystone.operatingEnablers.cluster3body')}</p>
+            </div>
+          </div>
+          <p style={{ color: 'var(--f8-grey)', fontSize: 14, fontStyle: 'italic', marginTop: 20 }}>
+            {t('keystone.operatingEnablers.clusterNote')}
+          </p>
+        </div>
+      </section>
+
+      {/* ── VIDEO: LEGO COMPLEXITY ── */}
+      <section className="section">
+        <div className="container-narrow">
+          <div className="section-eyebrow">{t('keystone.lego.eyebrow')}</div>
+          <h2 className="f8-h2" style={{ marginTop: 12 }}>{t('keystone.lego.heading')}</h2>
+          <div className="ks-video-grid">
+            <div>
+              <VideoThumbnail
+                href="https://www.imd.org/ibyimd/videos/ceo-dialogue-series/lego-built-too-much-complexity-this-is-how-we-got-back-on-track/"
+                eyebrow="CEO Dialogue Series — IMD"
+                title="LEGO built too much complexity. This is how we got back on track."
+                source="imd.org"
+                caption={t('keystone.lego.videoCaption')}
+              />
+            </div>
+            <div style={{ paddingTop: 4 }}>
+              <p style={{ color: 'var(--fg-2)', lineHeight: 1.75, fontSize: 16, marginBottom: 16 }}>{t('keystone.lego.body1')}</p>
+              <p style={{ color: 'var(--fg-2)', lineHeight: 1.75, fontSize: 16, marginBottom: 16 }}>{t('keystone.lego.body2')}</p>
+              <div className="ks-diag-question" style={{ marginTop: 0, marginBottom: 0 }}>
+                <p style={{ fontWeight: 600, fontStyle: 'normal', fontSize: '0.95rem' }}>{t('keystone.lego.tip')}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 4: KEYSTONE PULSE CHECK ── */}
+      <section className="section section--alt">
+        <div className="container-narrow">
+          <div className="section-eyebrow">{t('keystone.pulseCheck.eyebrow')}</div>
+          <h2 className="f8-h2" style={{ marginTop: 12 }}>{t('keystone.pulseCheck.heading')}</h2>
+
+          <DiagQuestion>{t('keystone.pulseCheck.question')}</DiagQuestion>
+          <p style={{ color: 'var(--f8-grey)', fontStyle: 'italic', fontSize: 15, marginTop: -8, marginBottom: 24 }}>
+            {t('keystone.pulseCheck.questionNote')}
+          </p>
+
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.pulseCheck.body1')}</p>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.pulseCheck.body2')}</p>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.pulseCheck.body3')}</p>
+
+          <PullQuote>{t('keystone.pulseCheck.pullQuote')}</PullQuote>
+
+          <h3 className="f8-h3" style={{ marginTop: 40 }}>{t('keystone.pulseCheck.stagesHeading')}</h3>
+          <div className="ks-stage-bar">
+            {[
+              { num: t('keystone.pulseCheck.stage1num'), label: t('keystone.pulseCheck.stage1label') },
+              { num: t('keystone.pulseCheck.stage2num'), label: t('keystone.pulseCheck.stage2label') },
+              { num: t('keystone.pulseCheck.stage3num'), label: t('keystone.pulseCheck.stage3label') },
+              { num: t('keystone.pulseCheck.stage4num'), label: t('keystone.pulseCheck.stage4label') },
+            ].map((s, i) => (
+              <div className="ks-stage" key={i}>
+                <div className="ks-stage-num">{s.num}</div>
+                <div className="ks-stage-label">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 5: AI LENS ── */}
+      <section className="section">
+        <div className="container-narrow">
+          <div className="section-eyebrow">{t('keystone.aiLens.eyebrow')}</div>
+          <h2 className="f8-h2" style={{ marginTop: 12 }}>{t('keystone.aiLens.heading')}</h2>
+          <p className="f8-lead mt-20">{t('keystone.aiLens.lead')}</p>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.aiLens.body1')}</p>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.aiLens.body2')}</p>
+
+          <PullQuote>{t('keystone.aiLens.pullQuote')}</PullQuote>
+
+          <div className="ks-ai-paths">
+            <div className="ks-ai-path positive">
+              <div className="path-label">{t('keystone.aiLens.path1label')}</div>
+              <h4>{t('keystone.aiLens.path1title')}</h4>
+              <p>{t('keystone.aiLens.path1body')}</p>
+            </div>
+            <div className="ks-ai-path negative">
+              <div className="path-label">{t('keystone.aiLens.path2label')}</div>
+              <h4>{t('keystone.aiLens.path2title')}</h4>
+              <p>{t('keystone.aiLens.path2body')}</p>
+            </div>
+          </div>
+
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 32, marginBottom: 0 }}>{t('keystone.aiLens.body3')}</p>
+        </div>
+      </section>
+
+      {/* ── CLOSING CTA ── */}
+      <ClosingCTA
+        navigate={navigate}
+        sub={t('keystone.cta.sub')}
+        heading={t('keystone.cta.heading')}
+        body={t('keystone.cta.body')}
+        note={t('keystone.cta.note')}
+        cta={{ label: t('keystone.cta.cta'), to: 'contact' }}
+      />
+    </>
+  );
+}
+
+/* ============================================================
+   COOKIES PAGE — fully rendered from COOKIE_CONFIG
+   ============================================================ */
+function CookiesPage({ navigate }) {
+  const t = useTranslation();
+  const { consent, applyConsent } = React.useContext(ConsentContext);
+
+  const initial = React.useMemo(() => {
+    const base = consent || Object.fromEntries(COOKIE_CONFIG.categories.map(c => [c.id, c.required]));
+    return Object.fromEntries(COOKIE_CONFIG.categories.map(c => [c.id, base[c.id] ?? c.required]));
+  }, [consent]);
+
+  const [draft, setDraft] = React.useState(initial);
+  const [saved, setSaved] = React.useState(false);
+
+  const toggle = (id) => setDraft(d => ({ ...d, [id]: !d[id] }));
+
+  const handleSave = () => {
+    applyConsent(draft);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 3000);
+  };
+
+  return (
+    <>
+      <section className="hero" style={{ padding: 'clamp(72px,10vw,120px) 0 clamp(48px,6vw,80px)' }}>
+        <div className="hero-bg" style={{ backgroundImage: `url(${HERO_CONTACT})` }}/>
+        <div className="hero-overlay"/>
+        <div className="container">
+          <div className="section-eyebrow hero-eyebrow">{t('cookies.hero.eyebrow')}</div>
+          <h1 className="f8-h1">{t('cookies.hero.heading')}</h1>
+          <p className="f8-lead" style={{ maxWidth: 640 }}>{t('cookies.hero.sub')}</p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-narrow">
+          <div className="section-eyebrow">{t('cookies.whatAreCookiesEyebrow')}</div>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12 }}>{t('cookies.whatAreCookiesBody')}</p>
+
+          {COOKIE_CONFIG.categories.map(cat => (
+            <div className="cookie-category" key={cat.id}>
+              <div className="cookie-category-header">
+                <div style={{ flex: 1 }}>
+                  <h3 className="cookie-category-title">{t(`cookies.categories.${cat.id}.name`)}</h3>
+                  <p className="cookie-category-desc">{t(`cookies.categories.${cat.id}.description`)}</p>
+                </div>
+                {cat.required ? (
+                  <span className="cookie-required-badge">{t('cookies.alwaysOn')}</span>
+                ) : (
+                  <label className="cookie-toggle" aria-label={`Toggle ${t(`cookies.categories.${cat.id}.name`)} cookies`}>
+                    <input type="checkbox" checked={draft[cat.id] || false} onChange={() => toggle(cat.id)}/>
+                    <span className="cookie-toggle-track"/>
+                    <span className="cookie-toggle-thumb"/>
+                  </label>
+                )}
+              </div>
+
+              {cat.cookies.length === 0 ? (
+                <p className="cookie-empty-note">{t('cookies.noActiveInCategory')}</p>
+              ) : (
+                <div className="cookie-table-wrap">
+                  <table className="cookie-table">
+                    <thead>
+                      <tr>
+                        <th>{t('cookies.tableHeaders.cookieService')}</th>
+                        <th>{t('cookies.tableHeaders.purpose')}</th>
+                        <th>{t('cookies.tableHeaders.provider')}</th>
+                        <th>{t('cookies.tableHeaders.duration')}</th>
+                        <th>{t('cookies.tableHeaders.policy')}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {cat.cookies.map((ck, i) => (
+                        <tr key={i}>
+                          <td>{ck.name}</td>
+                          <td>{ck.purpose}</td>
+                          <td>{ck.provider}</td>
+                          <td>{ck.duration}</td>
+                          <td>{ck.policyUrl ? <a href={ck.policyUrl} target="_blank" rel="noopener noreferrer">{t('cookies.viewPolicy')}</a> : '—'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          ))}
+
+          <div className="cookie-save-row">
+            <button className="btn btn--primary" onClick={handleSave}>
+              {t('cookies.savePreferences')}<Arrow/>
+            </button>
+            {saved && <span className="cookie-save-note">{t('cookies.preferencesSaved')}</span>}
+          </div>
+
+          <p style={{ color: 'var(--f8-grey)', fontSize: 13, marginTop: 32, lineHeight: 1.6 }}>
+            {t('cookies.adminNote')} <a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a>.
+            {' '}{t('cookies.lastUpdated')}
+          </p>
+        </div>
+      </section>
+    </>
+  );
+}
+
+/* ============================================================
+   HOME PAGE
+   ============================================================ */
+function HomePage({ navigate }) {
+  const t = useTranslation();
+  const stats = t('home.stats');
+  return (
+    <>
+      <Hero
+        navigate={navigate}
+        eyebrow={<span style={{display:'inline-flex',alignItems:'center',background:'#0090E7',color:'#fff',padding:'12px 22px',borderRadius:'6px',fontWeight:600,fontSize:'15px',letterSpacing:'normal',textTransform:'none',lineHeight:1}}>{t('home.hero.eyebrow')}</span>}
+        headline={<>{t('home.hero.headline1')}<br/>{t('home.hero.headline2')}</>}
+        sub={t('home.hero.sub')}
+        primaryCta={{ label: t('home.hero.primaryCta'), to: 'contact' }}
+        secondaryCta={{ label: t('home.hero.secondaryCta'), to: 'about' }}
+        image={HERO_HOME}
+      />
+      <StatStrip stats={[
+        { num: '20+', label: stats[0].label },
+        { num: '50+', label: stats[1].label },
+        { num: 'CH, DE', label: stats[2].label },
+      ]}/>
+      <Section alt narrow>
+        <div className="section-eyebrow">{t('home.problem.eyebrow')}</div>
+        <h2 className="f8-h2">{t('home.problem.heading')}</h2>
+        <p className="f8-lead mt-20">{t('home.problem.body')}</p>
+      </Section>
+      <Section narrow>
+        <div className="section-eyebrow">{t('home.whatWeDo.eyebrow')}</div>
+        <h2 className="f8-h2">{t('home.whatWeDo.heading')}</h2>
+        <p className="f8-lead mt-20">{t('home.whatWeDo.body1')}</p>
+        <p className="f8-lead">{t('home.whatWeDo.body2')}</p>
+      </Section>
+      <Section alt>
+        <div className="container-narrow">
+          <div className="section-eyebrow">{t('home.howWeWork.eyebrow')}</div>
+          <h2 className="f8-h2">{t('home.howWeWork.heading')}</h2>
+        </div>
+        <div className="container">
+          <ValueCards items={[
+            { icon: <LineIcon name="hands"/>, title: t('home.howWeWork.card1Title'), body: t('home.howWeWork.card1Body') },
+            { icon: <LineIcon name="users"/>, title: t('home.howWeWork.card2Title'), body: t('home.howWeWork.card2Body') },
+            { icon: <LineIcon name="target"/>, title: t('home.howWeWork.card3Title'), body: t('home.howWeWork.card3Body') },
+          ]}/>
+        </div>
+      </Section>
+      <ClosingCTA
+        navigate={navigate}
+        heading={t('home.cta.heading')}
+        body={t('home.cta.body')}
+        cta={{ label: t('home.cta.cta'), to: 'contact' }}
+      />
+    </>
+  );
+}
+
+/* ============================================================
+   SERVICES PAGE
+   ============================================================ */
+function ServicesPage({ navigate }) {
+  const t = useTranslation();
+  return (
+    <>
+      <Hero
+        navigate={navigate}
+        eyebrow={t('services.hero.eyebrow')}
+        headline={t('services.hero.headline')}
+        sub={t('services.hero.sub')}
+        image={HERO_SERVICES}
+      />
+      <Section narrow>
+        <p className="f8-lead">{t('services.intro')}</p>
+      </Section>
+      <section style={{background: 'var(--bg-2)'}}>
+        <ServiceBlock num="01" eyebrow="Service" heading={t('services.s1heading')}
+          body={t('services.s1body')}
+          bullets={[t('services.s1b1'),t('services.s1b2'),t('services.s1b3'),t('services.s1b4')]}/>
+        <ServiceBlock num="02" eyebrow="Service" heading={t('services.s2heading')}
+          body={t('services.s2body')}
+          bullets={[t('services.s2b1'),t('services.s2b2'),t('services.s2b3'),t('services.s2b4')]}/>
+        <ServiceBlock num="03" eyebrow="Service" heading={t('services.s3heading')}
+          body={t('services.s3body')}
+          bullets={[t('services.s3b1'),t('services.s3b2'),t('services.s3b3'),t('services.s3b4')]}/>
+        <ServiceBlock num="04" eyebrow="Service" heading={t('services.s4heading')}
+          body={t('services.s4body')}
+          bullets={[t('services.s4b1'),t('services.s4b2'),t('services.s4b3'),t('services.s4b4')]}/>
+      </section>
+      <Section narrow>
+        <div className="section-eyebrow">{t('services.howWeEngage.eyebrow')}</div>
+        <h2 className="f8-h2">{t('services.howWeEngage.heading')}</h2>
+        <div className="engage-grid" style={{marginTop:24}}>
+          <div className="engage-card"><h3>{t('services.howWeEngage.card1Title')}</h3><p>{t('services.howWeEngage.card1Body')}</p></div>
+          <div className="engage-card"><h3>{t('services.howWeEngage.card2Title')}</h3><p>{t('services.howWeEngage.card2Body')}</p></div>
+        </div>
+      </Section>
+      <ClosingCTA navigate={navigate}
+        heading={t('services.cta.heading')}
+        body={t('services.cta.body')}
+        cta={{ label: t('services.cta.cta'), to: 'contact' }}/>
+    </>
+  );
+}
+
+/* ============================================================
+   ABOUT PAGE
+   ============================================================ */
+function AboutPage({ navigate }) {
+  const t = useTranslation();
+  return (
+    <>
+      <Hero navigate={navigate} eyebrow={t('about.hero.eyebrow')}
+        headline={t('about.hero.headline')}
+        sub={t('about.hero.sub')}
+        image={HERO_ABOUT}/>
+      <Section narrow>
+        <div className="section-eyebrow">{t('about.problem.eyebrow')}</div>
+        <p className="f8-lead" style={{fontSize:'1.3rem',fontWeight:600,color:'var(--f8-ink)',marginBottom:20}}>{t('about.problem.lead')}</p>
+        <p className="f8-lead">{t('about.problem.body')} <strong style={{color:'var(--f8-ink)'}}>{t('about.problem.highlight')}</strong></p>
+      </Section>
+      <Section alt>
+        <div className="container">
+          <div className="founder-grid">
+            <div className="founder-photo" style={{ backgroundImage: `url(${FOUNDER_PHOTO})` }}/>
+            <div>
+              <div className="section-eyebrow">{t('about.founder.eyebrow')}</div>
+              <h2 className="f8-h2">{t('about.founder.heading')}</h2>
+              <p style={{marginTop:20,fontSize:17,lineHeight:1.65,color:'var(--fg-2)'}}>{t('about.founder.body1')}</p>
+              <p style={{fontSize:17,lineHeight:1.65,color:'var(--fg-2)'}}>{t('about.founder.body2')}</p>
+              <p style={{fontSize:17,lineHeight:1.65,fontWeight:600,color:'var(--f8-ink)'}}>{t('about.founder.highlight')}</p>
+              <div style={{marginTop:16,color:'var(--f8-grey)',fontSize:14}}>{t('about.founder.credit')}</div>
+            </div>
+          </div>
+        </div>
+      </Section>
+      <Section narrow>
+        <div className="section-eyebrow">{t('about.beliefs.eyebrow')}</div>
+        <Beliefs items={[
+          { title: t('about.beliefs.b1title'), body: t('about.beliefs.b1body') },
+          { title: t('about.beliefs.b2title'), body: t('about.beliefs.b2body') },
+          { title: t('about.beliefs.b3title'), body: t('about.beliefs.b3body') },
+        ]}/>
+      </Section>
+      <ClosingCTA navigate={navigate}
+        heading={t('about.cta.heading')}
+        body={t('about.cta.body')}
+        cta={{ label: t('about.cta.cta'), to: 'contact' }}/>
+    </>
+  );
+}
+
+/* ============================================================
+   CONTACT PAGE
+   ============================================================ */
+function ContactPage({ navigate }) {
+  const { has } = React.useContext(ConsentContext);
+  const functionalAllowed = has('functional');
+
+  // Load HubSpot meeting embed when functional cookies are accepted.
+  React.useEffect(() => {
+    if (!functionalAllowed) return;
+    const existing = document.querySelector('script[src*="MeetingsEmbedCode"]');
+    if (existing) existing.remove();
+    const s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+    document.body.appendChild(s);
+  }, [functionalAllowed]);
+
+  // Load HubSpot contact form when functional cookies are accepted.
+  React.useEffect(() => {
+    if (!functionalAllowed) return;
+    const FORM_SCRIPT_ID = 'hs-forms-script';
+    const initForm = () => {
+      if (window.hbspt && document.getElementById('hs-contact-form')) {
+        window.hbspt.forms.create({
+          region: 'eu1',
+          portalId: '49059754',
+          formId: '27e04b2d-76cb-4d9b-a861-cda73a6c9576',
+          target: '#hs-contact-form',
+        });
+      }
+    };
+    const existing = document.getElementById(FORM_SCRIPT_ID);
+    if (existing) {
+      initForm();
+    } else {
+      const s = document.createElement('script');
+      s.id = FORM_SCRIPT_ID;
+      s.charset = 'utf-8';
+      s.type = 'text/javascript';
+      s.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
+      s.onload = initForm;
+      document.body.appendChild(s);
+    }
+  }, [functionalAllowed]);
+
+  const t = useTranslation();
+  return (
+    <>
+      <Hero navigate={navigate} eyebrow={t('contact.hero.eyebrow')} headline={t('contact.hero.headline')}
+        sub={t('contact.hero.sub')}
+        image={HERO_CONTACT}/>
+      <Section narrow>
+        <p className="f8-lead">{t('contact.intro')}</p>
+        <div style={{marginTop:32}}>
+          {functionalAllowed ? (
+            <div className="meetings-iframe-container" data-src="https://app-eu1.hubspot.com/meetings/dmjhowes/facilit8results?embed=true"></div>
+          ) : (
+            <div className="iframe-blocked">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--f8-grey)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <p>{t('contact.calendarBlocked')}</p>
+              <button className="btn btn--primary" onClick={() => navigate('cookies')}>
+                {t('contact.manageCookies')}<Arrow/>
+              </button>
+            </div>
+          )}
+        </div>
+      </Section>
+      <Section alt narrow>
+        <div className="section-eyebrow">{t('contact.writeFirst.eyebrow')}</div>
+        <h2 className="f8-h2" style={{marginBottom:24}}>{t('contact.writeFirst.heading')}</h2>
+        {functionalAllowed ? (
+          <div id="hs-contact-form"></div>
+        ) : (
+          <div className="iframe-blocked">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--f8-grey)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <p>{t('contact.formBlocked')}</p>
+            <button className="btn btn--primary" onClick={() => navigate('cookies')}>
+              {t('contact.manageCookies')}<Arrow/>
+            </button>
+          </div>
+        )}
+      </Section>
+      <Section narrow>
+        <div className="section-eyebrow">{t('contact.details.eyebrow')}</div>
+        <div className="contact-details">
+          <div><div className="detail-label">{t('contact.details.founderLabel')}</div><div className="detail-value">{t('contact.details.founderValue')}</div></div>
+          <div><div className="detail-label">{t('contact.details.basedInLabel')}</div><div className="detail-value">{t('contact.details.basedInValue')}</div></div>
+          <div><div className="detail-label">{t('contact.details.languagesLabel')}</div><div className="detail-value">{t('contact.details.languagesValue')}</div></div>
+          <div><div className="detail-label">{t('contact.details.emailLabel')}</div><div className="detail-value"><a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a></div></div>
+        </div>
+      </Section>
+    </>
+  );
+}
+
+/* ============================================================
+   PROJECTS PAGE
+   ============================================================ */
+const PROJECTS_DATA = [
+  { company: "Swiss Cancer Research Institute", industry: "Healthcare & Life Sciences", project: "Cancer Clinical Trial Setup Optimisation", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Used Design Thinking and LEAN to reduce cancer clinical trial setup & activation time by 20%." },
+  { company: "Swiss E-commerce Photo & Print Platform", industry: "Retail & Consumer Goods", project: "Copilot AI Agent Implementation", ct:false, te:true, gtm:false, ro:true, po:true, comment:"Implemented Microsoft Copilot AI Agent to reduce customer service costs at peak season by 30%." },
+  { company: "Swiss Pharma Retail & Distribution Group", industry: "Healthcare & Life Sciences", project: "Pharmacy Retail 360 View (Dynamics CI)", ct:false, te:true, gtm:false, ro:true, po:false, comment:"Supported customer experience projects using Microsoft Dynamics Customer Insights for a Pharmacy Retail 360-degree customer view." },
+  { company: "Swiss Energy & Fuels Retailer", industry: "Energy & Clean Tech", project: "Value from CRM (Dynamics)", ct:false, te:true, gtm:false, ro:false, po:false, comment:"Impact from CRM with what needs to be true to set up commercial operations from marketing, sales, technical sales, installation and service. Agreement on creating two new roles — commercial architect and delivery engineer — to look across all energy solutions and not in product silos." },
+  { company: "Swiss Pharmacy Cooperative", industry: "Healthcare & Life Sciences", project: "Commercialising Cooperative Data to Insights", ct:false, te:true, gtm:false, ro:false, po:false, comment:"Led feasibility workshop for paid services using retail point of sale and in-store data to drive greater insights and RoI for stores and suppliers, using the IMD Data Analytics framework." },
+  { company: "Swiss Solar Energy Start-up", industry: "Energy & Clean Tech", project: "CX Transformation using HubSpot", ct:true, te:true, gtm:true, ro:false, po:false, comment:"Led customer experience transformation using HubSpot for a Swiss Solar energy start-up, engaging new installers to improve brand awareness and develop reference cases for sales growth." },
+  { company: "Global Specialty Pigments Manufacturer", industry: "Manufacturing & Chemicals", project: "Customer Portal (Heubach Connect)", ct:true, te:true, gtm:false, ro:true, po:true, comment:"Led Agile delivery of an eCommerce customer portal covering 350+ customers to improve self-service and reduce costs. Now live at sudarshan.com/sudarshan-connect/." },
+  { company: "Global Specialty Pigments Manufacturer", industry: "Manufacturing & Chemicals", project: "Decision Intelligence", ct:false, te:true, gtm:false, ro:true, po:true, comment:"Directed channel integration and decision intelligence optimisation projects using Aera Technologies to improve commercial decision-making at scale." },
+  { company: "Swiss Specialty Chemicals Corporation", industry: "Manufacturing & Chemicals", project: "Inside Sales Commercial Operations", ct:true, te:false, gtm:true, ro:false, po:false, comment:"Established 4 Regional Inside Sales teams, achieving 10% growth in low-growth customer segments as part of a new Go-to-Market approach." },
+  { company: "Swiss Specialty Chemicals Corporation", industry: "Manufacturing & Chemicals", project: "Channel Partner Consolidation", ct:true, te:false, gtm:true, ro:true, po:true, comment:"Consolidated 150+ distributors to fewer than 70 strategic partners, implementing new analytics to support 360-degree performance management." },
+  { company: "Swiss High-Precision X-Ray & RF Technology Firm", industry: "Technology & Industrial", project: "Digital Strategy — SMART products, processes, factory", ct:true, te:true, gtm:true, ro:false, po:false, comment:"Led digital strategy to implement SMART products and processes for a Swiss precision instruments firm, using Playing to Win and Design Thinking frameworks." },
+  { company: "Global Pharma & Diabetes Care Company", industry: "Healthcare & Life Sciences", project: "Digital Health App — Patient Adherence", ct:false, te:true, gtm:true, ro:false, po:false, comment:"Delivered a digital health application for a pharmaceutical company to improve patient adherence to treatment programmes." },
+  { company: "Global Facilities Management Provider", industry: "Facilities Management", project: "IoT Go-to-Market Strategy", ct:false, te:true, gtm:true, ro:false, po:false, comment:"Developed an IoT-led Go-to-Market approach for a global facilities management services company, defining market entry and channel strategy." },
+  { company: "IoT Data Marketplace Platform", industry: "Technology & Industrial", project: "Blockchain Go-to-Market Strategy", ct:false, te:false, gtm:true, ro:false, po:false, comment:"Facilitated Go-to-Market workshops for an open-source decentralised data network using the Business Model Canvas." },
+  { company: "Swiss Global Pharma", industry: "Healthcare & Life Sciences", project: "Go-to-Market Strategy — Ecosystem", ct:false, te:false, gtm:true, ro:false, po:false, comment:"Final-year Executive MBA project looking into 'Beyond the Pill', concluding by linking touchpoints to value generation and capture." },
+  { company: "Global Biosolutions Company", industry: "Healthcare & Life Sciences", project: "Revenue Defence — Patent Expiry", ct:true, te:false, gtm:true, ro:false, po:false, comment:"Protected revenue at a life science company prior to patent expiry through a strategic commercial defence project." },
+  { company: "Global Shipping & Port Terminal Operator", industry: "Travel, Transport & Logistics", project: "Service Growth — NPS Increase", ct:true, te:false, gtm:true, ro:false, po:false, comment:"Service growth project for a global logistics provider to improve employee and customer engagement, increasing service revenue." },
+  { company: "Global Specialty Adhesives Manufacturer", industry: "Manufacturing & Chemicals", project: "Account-Based Marketing", ct:false, te:false, gtm:true, ro:true, po:true, comment:"Developed an account-based marketing approach for a chemical firm to reach decision makers beyond procurement, improving pipeline quality." },
+  { company: "International Tour Operator", industry: "Travel, Transport & Logistics", project: "Digital Marketing & Online Revenue", ct:true, te:true, gtm:false, ro:true, po:true, comment:"Led the digital marketing team generating €110m revenue through customer engagement and online services. App team delivered a 2 percentage-point increase in customer retention and ancillary up-sales." },
+  { company: "International Tour Operator", industry: "Travel, Transport & Logistics", project: "One View of Customer — CRM Programme", ct:false, te:true, gtm:false, ro:true, po:true, comment:"Directed the cross-functional 'One View of the Customer' programme using CRM to deliver improved experiences at the most important customer touchpoints." },
+  { company: "International Tour Operator", industry: "Travel, Transport & Logistics", project: "€15m Digital Cost Reduction Programme", ct:true, te:true, gtm:false, ro:false, po:false, comment:"Managed a €15m cost reduction programme including moving paper-based brochures online and improving customer complaints handling processes." },
+  { company: "Abu Dhabi Bank", industry: "Financial Services", project: "BPO Process Mapping Workshops", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Led the consulting team implementing CRM and business analytics solutions across UAE, Saudi Arabia and Qatar." },
+  { company: "International Airport Authority", industry: "Travel, Transport & Logistics", project: "Risk Management Workshops", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Initial set up of risk management processes including role-modelling risk management in team meetings and facilitating cross-functional and partner workshops." },
+  { company: "Abu Dhabi Government Authority", industry: "Public Sector / Education", project: "New Document Management System", ct:false, te:true, gtm:false, ro:false, po:false, comment:"Supported initial user stories and process design workshops for a SharePoint-based end-to-end Executive Meeting planning and documentation system." },
+  { company: "Qatar LNG Energy Producer", industry: "Energy & Clean Tech", project: "Capacity & Berth Optimisation using SAP", ct:false, te:true, gtm:false, ro:false, po:true, comment:"Business process optimisation workshops prior to detailed design of SAP Planning." },
+  { company: "Islamic Development Finance Bank", industry: "Financial Services", project: "Change Management for SAP Implementation", ct:false, te:true, gtm:false, ro:false, po:false, comment:"Change management for SAP HR, Finance and Procurement, with an innovative approach to building Role-Specific Playbooks used for testing and training." },
+  { company: "Qatar Industrial Group", industry: "Technology & Industrial", project: "Business Intelligence using SAP Business Objects", ct:false, te:true, gtm:false, ro:false, po:false, comment:"Implementation of real-time Executive Dashboards with KPIs cascading throughout the organisation." },
+  { company: "UAE Automotive & Retail Conglomerate", industry: "Retail & Consumer Goods", project: "UAE Automotive — Single View of Customer", ct:false, te:true, gtm:false, ro:true, po:true, comment:"Engagement Manager leading 20 consultants and solution architects for CRM, Business Analytics and ERP design to deliver a single view of the customer." },
+  { company: "Dubai Government Real Estate Conglomerate", industry: "Real Estate / Investment", project: "Post-Merger Integration", ct:true, te:false, gtm:false, ro:false, po:false, comment:"Client lead for post-merger integration and business improvement project for a major Dubai Government investment and real estate conglomerate." },
+  { company: "UK Rail Infrastructure Project", industry: "Travel, Transport & Logistics", project: "Programme Workshop Facilitation", ct:true, te:false, gtm:false, ro:false, po:false, comment:"Client lead for post-merger integration and business improvement at London St Pancras station. Won the 2007 Property Sector Award for Innovation, using Continuums to facilitate executive alignment." },
+  { company: "UK / Dutch Bank Merger", industry: "Financial Services", project: "Post-Merger Integration — Facilities Mgt", ct:true, te:false, gtm:false, ro:false, po:false, comment:"Client lead for post-merger integration and business improvement project." },
+  { company: "Top-4 UK Grocery Retailer", industry: "Retail & Consumer Goods", project: "Facilities Management Optimisation", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Client lead for post-merger integration and business improvement for a major UK grocer following its acquisition by a US parent." },
+  { company: "Global Crop Protection Company", industry: "Manufacturing & Chemicals", project: "CRM Implementation — 5 Countries", ct:false, te:true, gtm:false, ro:true, po:true, comment:"Led $12m CRM implementation project across 5 countries." },
+  { company: "Global Crop Protection Company", industry: "Manufacturing & Chemicals", project: "Creating a New Crop Science Major — Post-Merger", ct:true, te:false, gtm:false, ro:false, po:false, comment:"Led the business case and supported an Accelerated Solutions Environment with a 3-day event covering 100 Board and senior leadership members for Scan, Focus and Action post-merger planning." },
+  { company: "Global Diabetes Pharma", industry: "Healthcare & Life Sciences", project: "Patient Adherence App — Go-to-Market", ct:false, te:false, gtm:true, ro:false, po:false, comment:"Prototype build and testing together with an external app partner." },
+  { company: "UK Insurance Group", industry: "Financial Services", project: "Risk Premium Reduction — UK Schools", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Supported decision on whether the UK Government should self-insure or continue with high premiums. Resulted in playbooks to prove that reduction in risk equals reduction in premiums." },
+  { company: "UK Steel Company", industry: "Manufacturing & Chemicals", project: "Balanced Scorecard Implementation", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Full organisation KPI realignment, facilitating customer, financial, process and people workshops." },
+  { company: "Largest UK Grocery Retailer", industry: "Retail & Consumer Goods", project: "Retail Store Optimisation", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Hothouse lead trialling continuous improvement solutions self-generated by in-store retail teams. Developed to include Home Delivery optimisation." },
+  { company: "Premium UK Food Retailer", industry: "Retail & Consumer Goods", project: "Retail Store Optimisation", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Hothouse lead trialling continuous improvement solutions generated by in-store retail teams." },
+  { company: "Middle East Architecture & Urban Planning Firm", industry: "Architecture / Engineering", project: "Family Firm Restructuring — Career Families", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Implementation of career families and new approaches to employee performance management — appraisals, incentives and training." },
+  { company: "Global Semiconductor Manufacturer", industry: "Technology & Industrial", project: "Risk Management Workshops", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Facilitated risk management workshops for a potential semiconductor giga-factory in the Middle East." },
+  { company: "UK Fashion & Homewares Retailer", industry: "Retail & Consumer Goods", project: "Markdown Reduction", ct:true, te:false, gtm:false, ro:false, po:true, comment:"Commercial transformation and solution design project for a major UK retailer to reduce markdown." },
+  { company: "Global TelCo", industry: "Telecommunications", project: "Continuous Improvement at UK Service Centres", ct:false, te:true, gtm:false, ro:true, po:true, comment:"Hothouse lead for a Customer Service centre, trialling self-generated solutions to improve customer service and reduce call volumes." },
+  { company: "UK TelCo", industry: "Telecommunications", project: "Retail Store Optimisation", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Hothouse lead for retail store, trialling self-generated solutions to improve sales and stock management accuracy." },
+  { company: "UK Rail Operator", industry: "Travel, Transport & Logistics", project: "Continuous Improvement Implementation", ct:false, te:false, gtm:false, ro:false, po:true, comment:"Hothouse lead for continuous improvement, implementing self-generated solutions to rail maintenance operations." },
+  { company: "Global Chemical Tanker Shipping Company", industry: "Manufacturing & Chemicals", project: "Commercial Transformation", ct:true, te:false, gtm:true, ro:false, po:false, comment:"Stakeholder interviews and programme set-up, including CRM as enabler." },
+  { company: "Global Pump & Water Solutions Manufacturer", industry: "Technology & Industrial", project: "Helping Sales Sell — Commercial Transformation", ct:true, te:true, gtm:false, ro:false, po:false, comment:"Set-up and coaching for UK, Germany, Austria and Switzerland for a new performance management approach enabled by CRM." },
+  { company: "Global Food & Beverage Corporation", industry: "Retail & Consumer Goods", project: "Customer & Channel Insights", ct:true, te:false, gtm:false, ro:true, po:true, comment:"Customer and Channel Insights — consumer product range reviews, channel optimisation and category reporting." },
+  { company: "Global Medical Devices Company", industry: "Healthcare & Life Sciences", project: "Move from BPCS (Infor LX) to SAP", ct:true, te:false, gtm:false, ro:false, po:false, comment:"Change management for ERP transition from BPCS (Infor LX) to SAP." },
+];
+
+const SERVICE_FILTERS = [
+  { key: 'ct',  label: 'Commercial Transformation' },
+  { key: 'te',  label: 'Technology Enablement' },
+  { key: 'gtm', label: 'Go-to-Market Strategy' },
+  { key: 'ro',  label: 'Revenue Operations' },
+  { key: 'po',  label: 'Process Optimisation' },
+];
+
+function shortLabel(l) {
+  return l
+    .replace('Commercial Transformation', 'Commercial')
+    .replace('Technology Enablement', 'Tech')
+    .replace('Go-to-Market Strategy', 'GTM')
+    .replace('Revenue Operations', 'RevOps')
+    .replace('Process Optimisation', 'Process');
+}
+
+function ProjectTile({ p }) {
+  const [flipped, setFlipped] = React.useState(false);
+  const tags = SERVICE_FILTERS.filter(f => p[f.key]);
+  return (
+    <article
+      className={`tile${flipped ? ' is-flipped' : ''}`}
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
+      onFocus={() => setFlipped(true)}
+      onBlur={() => setFlipped(false)}
+      onClick={() => setFlipped(f => !f)}
+      tabIndex={0}
+      aria-label={`${p.company} — ${p.project}`}
+    >
+      <div className="tile-face tile-front">
+        <div className="tile-industry">{p.industry}</div>
+        <div className="tile-company">{p.company}</div>
+        <div className="tile-meta">
+          {tags.length === 0 && <span className="tile-chip">Engagement</span>}
+          {tags.slice(0, 3).map(t => (
+            <span key={t.key} className="tile-chip is-strong">{shortLabel(t.label)}</span>
+          ))}
+          {tags.length > 3 && <span className="tile-chip">+{tags.length - 3}</span>}
+        </div>
+      </div>
+      <div className="tile-face tile-back">
+        <div className="tile-back-label">Project</div>
+        <div className="tile-project">{p.project}</div>
+        <div className="tile-comment">{p.comment}</div>
+      </div>
+    </article>
+  );
+}
+
+function ProjectsPage({ navigate }) {
+  const t = useTranslation();
+  const [industry, setIndustry] = React.useState('');
+  const [active, setActive] = React.useState({});
+
+  const industries = React.useMemo(() =>
+    Array.from(new Set(PROJECTS_DATA.map(p => p.industry))).sort(), []);
+
+  const toggle = (key) => setActive(prev => {
+    const next = { ...prev };
+    if (next[key]) delete next[key]; else next[key] = true;
+    return next;
+  });
+
+  const clearAll = () => { setIndustry(''); setActive({}); };
+
+  const activeKeys = Object.keys(active);
+  const hasFilters = !!industry || activeKeys.length > 0;
+
+  const visible = PROJECTS_DATA.filter(p => {
+    if (industry && p.industry !== industry) return false;
+    for (const k of activeKeys) { if (!p[k]) return false; }
+    return true;
+  });
+
+  return (
+    <>
+      <section className="projects-hero">
+        <div className="container">
+          <div className="section-eyebrow">{t('projects.hero.eyebrow')}</div>
+          <h1 className="f8-h1">{t('projects.hero.heading')}</h1>
+          <p className="f8-lead">{t('projects.hero.sub')}</p>
+        </div>
+      </section>
+
+      <div className="filter-bar" role="region" aria-label={t('projects.filters.ariaLabel')}>
+        <div className="container filter-bar-inner">
+          <div className="filter-group">
+            <span className="filter-label">{t('projects.filters.industryLabel')}</span>
+            <select
+              className={`filter-select${industry ? ' has-value' : ''}`}
+              value={industry}
+              onChange={e => setIndustry(e.target.value)}
+              aria-label={t('projects.filters.industryAriaLabel')}
+            >
+              <option value="">{t('projects.filters.allIndustries')}</option>
+              {industries.map(i => <option key={i} value={i}>{i}</option>)}
+            </select>
+          </div>
+          <div className="filter-group">
+            <span className="filter-label">{t('projects.filters.serviceLabel')}</span>
+            {SERVICE_FILTERS.map(f => (
+              <button
+                key={f.key}
+                type="button"
+                className={`filter-pill${active[f.key] ? ' is-active' : ''}`}
+                aria-pressed={!!active[f.key]}
+                onClick={() => toggle(f.key)}
+              >{f.label}</button>
+            ))}
+          </div>
+          {hasFilters && (
+            <button type="button" className="filter-clear" onClick={clearAll}>{t('projects.filters.clearFilters')}</button>
+          )}
+          <div className="filter-count" aria-live="polite">
+            {visible.length} {t('projects.count.of')} {PROJECTS_DATA.length} {visible.length === 1 ? t('projects.count.project') : t('projects.count.projects')}
+          </div>
+        </div>
+      </div>
+
+      <section className="section">
+        <div className="container">
+          <div className="projects-grid">
+            {visible.map((p, i) => (
+              <ProjectTile key={`${p.company}-${i}`} p={p} />
+            ))}
+            {visible.length === 0 && (
+              <div className="projects-empty">
+                <h3>{t('projects.empty.heading')}</h3>
+                <p>{t('projects.empty.body')}</p>
+                <button type="button" className="filter-clear" onClick={clearAll}>{t('projects.empty.clearFilters')}</button>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <ClosingCTA
+        navigate={navigate}
+        heading={t('projects.cta.heading')}
+        body={t('projects.cta.body')}
+        cta={{ label: t('projects.cta.cta'), to: 'contact' }}
+      />
+    </>
+  );
+}
+
+/* ============================================================
+   PLAYBOOKS PAGE
+   ============================================================ */
+const PLAYBOOKS = [
+  {
+    id: 'cmo-revenue-firefighter',
+    status: 'live',
+    eyebrow: 'For the CMO',
+    title: 'The CMO as Revenue Firefighter: Driving Short-Term Cash When It Matters Most',
+    sub: 'A practical guide to the marketing levers, cross-functional plays, and quick wins that put money in the door fast.',
+    tags: ['Cash', 'Marketing', '90 days'],
+    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1400&q=80&auto=format&fit=crop',
+  },
+  {
+    id: 'cio-po-agile-playbook',
+    status: 'live',
+    eyebrow: 'For the CIO & Product Owner',
+    title: 'Speak the Same Language: The CIO & Product Owner Playbook for Agile Commercial Delivery',
+    sub: 'Practical actions for CIOs and Product Owners who want IT delivery measured by commercial outcomes, not sprint velocity. Built around Scrum cadences.',
+    tags: ['Agile', 'CIO', 'Outcomes'],
+    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1400&q=80&auto=format&fit=crop',
+  },
+  {
+    id: 'cio-platform-turnaround',
+    status: 'live',
+    eyebrow: 'For the Programme Director & Sponsor',
+    title: "Rescue the Rollout: The Programme Director's Playbook for CRM Transformation Recovery",
+    sub: 'A structured 6-month recovery framework for turning around a stalled multi-platform CRM, Customer Engagement and ERP programme — starting in the first 30 days.',
+    tags: ['CRM', 'Recovery', '6 months'],
+    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1400&q=80&auto=format&fit=crop',
+  },
+  {
+    id: 'tool-overload-90-day-reset',
+    status: 'soon',
+    eyebrow: 'For the CEO & CFO',
+    title: 'From Tool Overload to Commercial Advantage: Your 90-Day AI & Digital Reset',
+    sub: 'Cut through the noise. A step-by-step leadership playbook for turning digital investment into measurable commercial results.',
+    tags: ['AI', 'Digital', '90 days'],
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1400&q=80&auto=format&fit=crop',
+  },
+  {
+    id: 'pitch-to-partner',
+    status: 'soon',
+    eyebrow: 'For the CSO',
+    title: 'From Pitch to Partner: The C-Suite Guide to Consultative Selling',
+    sub: 'How Swiss B2B teams stop selling products and start solving problems — building the trust, tools, and techniques that turn buyers into long-term partners.',
+    tags: ['Sales', 'B2B', 'Trust'],
+    image: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=1400&q=80&auto=format&fit=crop',
+  },
+  {
+    id: 'commercial-capability-lens',
+    status: 'live',
+    eyebrow: 'For HR & Commercial Leaders',
+    title: 'The Commercial Capability-Lens Playbook',
+    sub: 'For HR and commercial leaders: run every open sales, marketing or service role through a capability lens before you repost it. Let AI do the AI-able work; put people on the accountabilities and soft skills. A role-design tool, not a layoff tool.',
+    tags: ['AI', 'Role Design', 'Commercial', '🔒 Protected'],
+    image: 'https://images.unsplash.com/photo-1552581234-26160f608093?w=1400&q=80&auto=format&fit=crop',
+  },
+  {
+    id: 'pilot-lead-harmonisation',
+    status: 'live',
+    eyebrow: 'For the Senior Project Leader',
+    title: 'Harmonise the Lead: The Senior Project Leader Playbook for Lead Generation & Market Adoption',
+    sub: 'A structured 16-week pilot framework covering problem approach, workplan, stakeholder engagement, impact case, and sustainable integration across 3 markets.',
+    tags: ['Lead Gen', 'CRM', '16 weeks', '🔒 Protected'],
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1400&q=80&auto=format&fit=crop',
+  },
+];
+
+function PlaybookTile({ p, navigate }) {
+  const isSoon = p.status === 'soon';
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (!isSoon) navigate(`playbook/${p.id}`);
+  };
+  return (
+    <a
+      className={`pb-tile${isSoon ? ' is-soon' : ''}`}
+      href={isSoon ? '#' : `#playbook/${p.id}`}
+      onClick={handleClick}
+      aria-label={`${p.title}${isSoon ? ' (coming soon)' : ''}`}
+    >
+      <div className="pb-img-wrap">
+        {isSoon && <span className="pb-soon-chip">Coming soon</span>}
+        <div className="pb-img" style={{ backgroundImage: `url(${p.image})` }} />
+      </div>
+      <div className="pb-body">
+        <div className="pb-eyebrow">{p.eyebrow}</div>
+        <h3>{p.title}</h3>
+        <p className="pb-sub">{p.sub}</p>
+        <div className="pb-meta">
+          <div className="pb-meta-tags">
+            {p.tags.map(t => <span key={t} className="pb-meta-tag">{t}</span>)}
+          </div>
+          <span className="pb-arrow" aria-hidden="true"><Arrow size={16} /></span>
+        </div>
+      </div>
+    </a>
+  );
+}
+
+function PlaybooksPage({ navigate }) {
+  const t = useTranslation();
+  return (
+    <>
+      <section className="playbooks-hero">
+        <div className="container">
+          <div className="section-eyebrow">{t('playbooks.hero.eyebrow')}</div>
+          <h1 className="f8-h1">{t('playbooks.hero.heading')}</h1>
+          <p className="f8-lead">{t('playbooks.hero.sub')}</p>
+        </div>
+      </section>
+
+      <div className="playbooks-intro">
+        <div className="container">
+          <div className="playbooks-intro-inner">
+            <span><strong>{PLAYBOOKS.filter(p => p.status === 'live').length}</strong> {t('playbooks.intro.availableNow')}</span>
+            <span><strong>{PLAYBOOKS.filter(p => p.status === 'soon').length}</strong> {t('playbooks.intro.comingSoon')}</span>
+            <span style={{ marginLeft: 'auto' }}>{t('playbooks.intro.author')}</span>
+          </div>
+        </div>
+      </div>
+
+      <section className="section">
+        <div className="container">
+          <div className="pb-grid">
+            {PLAYBOOKS.map(p => <PlaybookTile key={p.id} p={p} navigate={navigate} />)}
+          </div>
+        </div>
+      </section>
+
+      <ClosingCTA
+        navigate={navigate}
+        heading={t('playbooks.cta.heading')}
+        body={t('playbooks.cta.body')}
+        cta={{ label: t('playbooks.cta.cta'), to: 'contact' }}
+      />
+    </>
+  );
+}
+
+function PlaybookDetailPage({ id, navigate }) {
+  const t = useTranslation();
+  const p = PLAYBOOKS.find(x => x.id === id);
+  if (!p) return (
+    <section className="pb-stub">
+      <div className="container-narrow">
+        <h1 className="f8-h1">{t('playbookDetail.notFound.heading')}</h1>
+        <p>{t('playbookDetail.notFound.body')}</p>
+        <PrimaryButton onClick={() => navigate('playbooks')}>{t('playbookDetail.notFound.backButton')}</PrimaryButton>
+      </div>
+    </section>
+  );
+  if (p.status === 'soon') return (
+    <>
+      <section className="pb-stub">
+        <div className="container-narrow">
+          <span className="chip">{t('playbookDetail.comingSoon.chip')}</span>
+          <div className="section-eyebrow" style={{marginTop:8}}>{p.eyebrow}</div>
+          <h1 className="f8-h1">{p.title}</h1>
+          <p>{p.sub}</p>
+          <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.comingSoon.getNotified')}</PrimaryButton>
+          <div style={{ marginTop: 28 }}>
+            <TextLink onClick={() => navigate('playbooks')}>{t('playbookDetail.comingSoon.backLink')}</TextLink>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+
+  // Live playbook — CIO & Product Owner Agile Playbook
+  if (p.id === 'cio-po-agile-playbook') return (
+    <>
+      <section className="pb-detail-hero">
+        <div className="container">
+          <div>
+            <div className="pb-detail-crumbs">
+              <a href="#playbooks" onClick={e => { e.preventDefault(); navigate('playbooks'); }}>{t('playbookDetail.breadcrumb')}</a>
+              <span className="sep">/</span>
+              <span>{p.eyebrow}</span>
+            </div>
+            <div className="section-eyebrow" style={{color:'var(--f8-blue-bright)'}}>{p.eyebrow}</div>
+            <h1>{p.title}</h1>
+            <p className="pb-detail-sub">{p.sub}</p>
+            <div className="pb-detail-cta-row">
+              <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.actions.bookConversation')}</PrimaryButton>
+              <PrimaryButton onClick={() => { window.location.href = 'cio-po-agile-playbook.html'; }}>{t('playbookDetail.actions.openPlaybook')}</PrimaryButton>
+            </div>
+          </div>
+          <div className="pb-detail-hero-img" style={{ backgroundImage: `url(${p.image})` }} />
+        </div>
+      </section>
+
+      <div className="pb-meta-strip">
+        <div className="container">
+          <div className="pb-meta-strip-inner">
+            <div className="item"><div className="label">{t('playbookDetail.meta.audience')}</div><div className="value">CIO &amp; Product Owner</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.cadence')}</div><div className="value">Sprint-by-sprint</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.readTime')}</div><div className="value">25 minutes</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.format')}</div><div className="value">Interactive Playbook</div></div>
+          </div>
+        </div>
+      </div>
+
+      <section className="section">
+        <div className="container">
+          <div className="pb-detail-body">
+            <article className="pb-detail-prose" id="pb-prose-top">
+              <p className="lead-p">
+                IT and business teams fail to align because they speak different languages about the same reality.
+                This playbook gives CIOs and Product Owners a sprint-by-sprint system for turning IT delivery into
+                measurable commercial outcomes — not just velocity charts and story-point reports.
+              </p>
+
+              <h2>Why this playbook exists</h2>
+              <p>
+                Most agile teams are excellent at delivering software. Far fewer are excellent at connecting that
+                software to commercial results. The gap is not a technical problem — it is a language problem, a
+                relationship problem, and a prioritisation problem. This playbook addresses all three.
+              </p>
+              <p>
+                Built around Scrum cadences, it gives CIOs and Product Owners specific, sequenced actions that
+                produce visible commercial contribution within 30 days — without replacing your existing delivery
+                process or alienating your development team.
+              </p>
+
+              <div className="pb-quote">
+                <p>"Alignment first, tooling second. OKR templates, metric dashboards, and ceremony redesigns are useless until business stakeholders trust that IT is on the same side."</p>
+              </div>
+
+              <h2>What's inside</h2>
+              <ol className="pb-modules">
+                <li><div><span className="num">01</span></div><div>
+                  <h4 className="mod-title">Relationship Readiness Check</h4>
+                  <p className="mod-body">Five questions that tell you exactly where to start — and which actions will land before you have the relationships to support them.</p>
+                </div></li>
+                <li><div><span className="num">02</span></div><div>
+                  <h4 className="mod-title">Alignment-First Sequence</h4>
+                  <p className="mod-body">Four specific actions — including a Data Access Sprint Zero — that deliver visible commercial contribution within 30 days, in the right order.</p>
+                </div></li>
+                <li><div><span className="num">03</span></div><div>
+                  <h4 className="mod-title">Commercial Language &amp; Translation</h4>
+                  <p className="mod-body">How to reframe every IT report, sprint goal, and status update so the CFO can read it without a follow-up question. Includes a full IT → Business translation table.</p>
+                </div></li>
+                <li><div><span className="num">04</span></div><div>
+                  <h4 className="mod-title">Backlog &amp; Prioritisation</h4>
+                  <p className="mod-body">Commercial Value Scoring, outcome-framed epics, and a Stakeholder Priority Conflict Protocol that removes the "loudest voice wins" dynamic from sprint planning.</p>
+                </div></li>
+                <li><div><span className="num">05</span></div><div>
+                  <h4 className="mod-title">Sprint-to-Value Rituals</h4>
+                  <p className="mod-body">Specific ceremony redesigns — planning, review, retrospective — that embed commercial outcomes without replacing your existing process or bypassing the Scrum Master.</p>
+                </div></li>
+                <li><div><span className="num">06</span></div><div>
+                  <h4 className="mod-title">Metrics &amp; Dashboards</h4>
+                  <p className="mod-body">Replace velocity with Time-to-Commercial-Value, quantify technical debt in £/$ terms, and build the one dashboard a CFO will actually reference at board level.</p>
+                </div></li>
+                <li><div><span className="num">07</span></div><div>
+                  <h4 className="mod-title">Business Sponsor Delight</h4>
+                  <p className="mod-body">How to produce an IT Commercial ROI Statement, co-author business cases with the CFO, and present a Revenue at Risk map that accelerates investment decisions.</p>
+                </div></li>
+                <li><div><span className="num">08</span></div><div>
+                  <h4 className="mod-title">Making Participation Stick</h4>
+                  <p className="mod-body">Persona-specific invitation scripts for CFO, COO, Head of Sales, and CMO — with cultural guidance for direct vs. relationship-led contexts.</p>
+                </div></li>
+              </ol>
+
+              <h2>Who this is for</h2>
+              <p>
+                Written for CIOs and Product Owners in mid-market and enterprise organisations who are already
+                running Scrum — and who want to move the conversation from sprint velocity to commercial value.
+                Equally useful for CTOs, Engineering Directors, and Scrum Masters who want to bring their
+                business stakeholders into the delivery process without disrupting the team.
+              </p>
+
+              <h2>How to use it</h2>
+              <p>
+                Start with the Relationship Readiness Check — five questions that take two minutes and tell you
+                exactly where your alignment gaps are. Then follow the Alignment-First Sequence in order.
+                The interactive version of this playbook opens directly in your browser with all eight tabs
+                fully navigable — no login required.
+              </p>
+            </article>
+
+            <aside>
+              <div className="pb-rail">
+                <h4>{t('playbookDetail.talkThrough.heading')}</h4>
+                <p>{t('playbookDetail.talkThrough.body')}</p>
+                <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.talkThrough.cta')}</PrimaryButton>
+                <div className="meta-line">{t('playbookDetail.writtenBy')}</div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <ClosingCTA
+        navigate={navigate}
+        heading={t('playbookDetail.cioAgileCta.heading')}
+        body={t('playbookDetail.cioAgileCta.body')}
+        cta={{ label: t('playbookDetail.cioAgileCta.cta'), to: 'contact' }}
+      />
+    </>
+  );
+
+  // Live playbook — Rescue the Rollout
+  if (p.id === 'cio-platform-turnaround') return (
+    <>
+      <section className="pb-detail-hero">
+        <div className="container">
+          <div>
+            <div className="pb-detail-crumbs">
+              <a href="#playbooks" onClick={e => { e.preventDefault(); navigate('playbooks'); }}>{t('playbookDetail.breadcrumb')}</a>
+              <span className="sep">/</span>
+              <span>{p.eyebrow}</span>
+            </div>
+            <div className="section-eyebrow" style={{color:'var(--f8-blue-bright)'}}>{p.eyebrow}</div>
+            <h1>{p.title}</h1>
+            <p className="pb-detail-sub">{p.sub}</p>
+            <div className="pb-detail-cta-row">
+              <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.actions.bookConversation')}</PrimaryButton>
+              <PrimaryButton onClick={() => { window.location.href = 'rescue-the-rollout-playbook.html'; }}>{t('playbookDetail.actions.openPlaybook')}</PrimaryButton>
+            </div>
+          </div>
+          <div className="pb-detail-hero-img" style={{ backgroundImage: `url(${p.image})` }} />
+        </div>
+      </section>
+
+      <div className="pb-meta-strip">
+        <div className="container">
+          <div className="pb-meta-strip-inner">
+            <div className="item"><div className="label">{t('playbookDetail.meta.audience')}</div><div className="value">Programme Director &amp; Sponsor</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.horizon')}</div><div className="value">6-month framework</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.readTime')}</div><div className="value">30 minutes</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.format')}</div><div className="value">Interactive Playbook</div></div>
+          </div>
+        </div>
+      </div>
+
+      <section className="section">
+        <div className="container">
+          <div className="pb-detail-body">
+            <article className="pb-detail-prose" id="pb-prose-top">
+              <p className="lead-p">
+                Most commercial transformation failures are governance failures wearing a technology costume.
+                The code, configuration and integrations rarely cause the crisis — missing accountability,
+                diffused ownership and undiscussable bad news do. This playbook fixes those first, then
+                sequences the 59 delivery actions that follow in the right order.
+              </p>
+
+              <h2>Why this playbook exists</h2>
+              <p>
+                A stalled CRM, Customer Engagement or ERP programme has usually not failed because of the technology.
+                It has failed because the governance structure collapsed under the weight of scope creep, absent sponsors,
+                and a team that stopped feeling safe enough to surface bad news. By the time most Programme Directors
+                inherit the problem, those failures are months old and deeply embedded.
+              </p>
+              <p>
+                This playbook gives you a structured, sequenced framework for the first 30 days and the full
+                6-month recovery — starting with the actions that create conditions for all the others, and building
+                through sponsors, users, processes, applications, data and project team in the right order.
+              </p>
+
+              <div className="pb-quote">
+                <p>"A re-baselined backlog deployed into unresolved accountability gaps will fail for the same reasons the original programme did."</p>
+              </div>
+
+              <h2>What's inside</h2>
+              <ol className="pb-modules">
+                <li><div><span className="num">01</span></div><div>
+                  <h4 className="mod-title">Turnaround Readiness Check</h4>
+                  <p className="mod-body">Five questions that tell you whether to deploy the playbook now — or whether governance is too broken to act. Includes a hard stop for programmes where the honest step is to pause delivery before anything else.</p>
+                </div></li>
+                <li><div><span className="num">02</span></div><div>
+                  <h4 className="mod-title">First 30 Days: Sequenced Recovery</h4>
+                  <p className="mod-body">Seven prioritised steps in the exact order that creates conditions for everything else — from resetting the room with a sponsor workshop on Day 1, through rebuilding governance and running parallel health checks, to locking team structure and establishing programme rhythm by Week 4.</p>
+                </div></li>
+                <li><div><span className="num">03</span></div><div>
+                  <h4 className="mod-title">Sponsors &amp; Governance</h4>
+                  <p className="mod-body">Nine actions to rebuild executive accountability — including reconstituting the ESC with signed Terms of Reference, activating a named Business Champion, re-baselining the programme charter with updated costs and success metrics, and establishing monthly executive health reviews that force at least one decision per session.</p>
+                </div></li>
+                <li><div><span className="num">04</span></div><div>
+                  <h4 className="mod-title">Users &amp; Change Management</h4>
+                  <p className="mod-body">Ten actions covering readiness assessment, champion network, resistance management and UAT governance — including how to involve real users in co-designing key workflows so they stop working around the system at go-live.</p>
+                </div></li>
+                <li><div><span className="num">05</span></div><div>
+                  <h4 className="mod-title">Processes</h4>
+                  <p className="mod-body">Ten actions to audit, align and govern the business processes the systems must support — including how to resolve conflicts between CRM, Customer Engagement and ERP process requirements before they surface as integration defects in UAT.</p>
+                </div></li>
+                <li><div><span className="num">06</span></div><div>
+                  <h4 className="mod-title">Applications &amp; Technology</h4>
+                  <p className="mod-body">Ten actions to assess, stabilise and re-baseline the technical landscape — including a live technical risk register, independent review of integration architecture, and the specific checks that prevent integrations that pass UAT from failing under production load.</p>
+                </div></li>
+                <li><div><span className="num">07</span></div><div>
+                  <h4 className="mod-title">Data</h4>
+                  <p className="mod-body">Actions to assess data quality, establish a system of record for customer master data, and run the data migration activities in the order that prevents go-live data disasters — including the baseline metrics you must capture before migration starts.</p>
+                </div></li>
+                <li><div><span className="num">08</span></div><div>
+                  <h4 className="mod-title">Project Team</h4>
+                  <p className="mod-body">Team health assessment, workstream lead confirmation, Scrum Master empowerment and the psychological safety checks that determine whether bad news reaches the Programme Director in time to act — not after it becomes a crisis.</p>
+                </div></li>
+                <li><div><span className="num">09</span></div><div>
+                  <h4 className="mod-title">Rebuild Trust: 45 Keystone Questions</h4>
+                  <p className="mod-body">A structured diagnostic across seven dimensions — Accountability, Outcomes, Rhythm, Transparency, Alignment, Quick Wins and Capability — with 45 specific questions to test whether recovery is real or just optimistic RAG reporting.</p>
+                </div></li>
+              </ol>
+
+              <h2>Who this is for</h2>
+              <p>
+                Written for Programme Directors, executive sponsors and PMO leads in mid-market and enterprise
+                organisations who have inherited a stalled multi-platform commercial transformation — CRM,
+                Customer Engagement, integration middleware and ERP. Equally useful for the CIO, CFO or CEO
+                trying to understand why the programme stalled and what a credible recovery looks like.
+              </p>
+
+              <h2>How to use it</h2>
+              <p>
+                Complete the Turnaround Readiness Check first — it takes two minutes and determines whether
+                to open the Start Here tab or the Sponsors tab. Do not skip to delivery actions before governance
+                actions are complete. The interactive playbook opens directly in your browser with all tabs fully
+                navigable, including the full 45-question Keystone diagnostic.
+              </p>
+            </article>
+
+            <aside>
+              <div className="pb-rail">
+                <h4>{t('playbookDetail.talkThrough.heading')}</h4>
+                <p>{t('playbookDetail.talkThrough.body')}</p>
+                <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.talkThrough.cta')}</PrimaryButton>
+                <div className="meta-line">{t('playbookDetail.writtenBy')}</div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <ClosingCTA
+        navigate={navigate}
+        heading={t('playbookDetail.rescueRolloutCta.heading')}
+        body={t('playbookDetail.rescueRolloutCta.body')}
+        cta={{ label: t('playbookDetail.rescueRolloutCta.cta'), to: 'contact' }}
+      />
+    </>
+  );
+
+  // Live playbook — Commercial Capability-Lens (access-protected)
+  if (p.id === 'commercial-capability-lens') return (
+    <>
+      <section className="pb-detail-hero">
+        <div className="container">
+          <div>
+            <div className="pb-detail-crumbs">
+              <a href="#playbooks" onClick={e => { e.preventDefault(); navigate('playbooks'); }}>{t('playbookDetail.breadcrumb')}</a>
+              <span className="sep">/</span>
+              <span>{p.eyebrow}</span>
+            </div>
+            <div className="section-eyebrow" style={{color:'var(--f8-blue-bright)'}}>{p.eyebrow}</div>
+            <h1>{p.title}</h1>
+            <p className="pb-detail-sub">{p.sub}</p>
+            <div className="pb-detail-cta-row">
+              <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.actions.requestAccess')}</PrimaryButton>
+              <PrimaryButton onClick={() => { window.location.href = 'commercial-capability-lens.html'; }}>{t('playbookDetail.actions.openPlaybookLocked')}</PrimaryButton>
+            </div>
+          </div>
+          <div className="pb-detail-hero-img" style={{ backgroundImage: `url(${p.image})` }} />
+        </div>
+      </section>
+
+      <div className="pb-meta-strip">
+        <div className="container">
+          <div className="pb-meta-strip-inner">
+            <div className="item"><div className="label">{t('playbookDetail.meta.audience')}</div><div className="value">HR &amp; Commercial Leaders</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.scope')}</div><div className="value">Open roles only</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.series')}</div><div className="value">Capability-Lens Series</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.format')}</div><div className="value">Interactive Playbook · Access protected</div></div>
+          </div>
+        </div>
+      </div>
+
+      <section className="section">
+        <div className="container">
+          <div className="pb-detail-body">
+            <article className="pb-detail-prose" id="pb-prose-top">
+              <p className="lead-p">
+                Every open commercial role is a decision point. The question isn't "who do we recruit?" —
+                it's "what does this role actually need to do, and who's the right person for the work
+                that only a person can do?" This playbook gives HR and commercial leaders a structured lens
+                for answering that question before they repost.
+              </p>
+
+              <h2>Why this playbook exists</h2>
+              <p>
+                AI can handle outreach drafts, CRM hygiene, routine service tickets, and first-cut reporting.
+                That's not a threat to your team — it's a transfer. The work that remains — the accountability,
+                the trust, the judgment, the relationship — is where your people become more valuable, not less.
+                But only if you design the role around that work before you advertise it.
+              </p>
+              <p>
+                The Capability-Lens Playbook gives you a repeatable four-question framework — what AI can carry,
+                what's human work, who's the right person for it, and what must never be automated — with structural
+                guardrails that stop the tool from being misused as a cost-cutting engine.
+              </p>
+
+              <div className="pb-quote">
+                <p>"The same engine produces two completely different outcomes. Framing decides which one you get."</p>
+              </div>
+
+              <h2>What's inside</h2>
+              <ol className="pb-modules">
+                <li><div><span className="num">01</span></div><div>
+                  <h4 className="mod-title">Integrity Check</h4>
+                  <p className="mod-body">Five questions that tell you whether conditions are right to run the lens — or whether the foundation needs work first. A hard gate before anything else.</p>
+                </div></li>
+                <li><div><span className="num">02</span></div><div>
+                  <h4 className="mod-title">The First-30-Days Sequence</h4>
+                  <p className="mod-body">Four steps — confirm the fence, read the real job, run the lens, decide together — with timing tracks for Mittelstand and works-council contexts.</p>
+                </div></li>
+                <li><div><span className="num">03</span></div><div>
+                  <h4 className="mod-title">The Capability Lens</h4>
+                  <p className="mod-body">How to look at an open role properly: accountability before tasks, the glue work the JD never mentions, the four questions, and why the caveat must travel with every output.</p>
+                </div></li>
+                <li><div><span className="num">04</span></div><div>
+                  <h4 className="mod-title">Reshape the Work</h4>
+                  <p className="mod-body">Role-by-role guidance for Sales, Marketing, and Service — what AI takes, what stays human, and how to stop "reshape" losing by default to cost and delay.</p>
+                </div></li>
+                <li><div><span className="num">05</span></div><div>
+                  <h4 className="mod-title">Develop Your People</h4>
+                  <p className="mod-body">How to turn an open role into a development opportunity — with a funded growth plan, the AI-as-floor principle, and how to protect the roles where people build judgment.</p>
+                </div></li>
+                <li><div><span className="num">06</span></div><div>
+                  <h4 className="mod-title">Don't Automate This</h4>
+                  <p className="mod-body">Hard carve-outs for Sales, Marketing, and Service: the relationship and the close, brand judgment, de-escalation, accountability, and institutional memory.</p>
+                </div></li>
+                <li><div><span className="num">07</span></div><div>
+                  <h4 className="mod-title">Guardrails</h4>
+                  <p className="mod-body">Five structural controls — the tool refuses to decide, the scope fence, mandatory equal-treatment review, forced sunset on every bridge, and pricing on decision quality.</p>
+                </div></li>
+                <li><div><span className="num">08</span></div><div>
+                  <h4 className="mod-title">Bringing People With You</h4>
+                  <p className="mod-body">Stakeholder-specific scripts for the CEO/Owner, CCO, HR Lead, and worried team member — written for direct, low-spin cultures with cultural adaptation notes.</p>
+                </div></li>
+              </ol>
+
+              <h2>Who this is for</h2>
+              <p>
+                Written for HR leaders and commercial managers — heads of Sales, Marketing, or Customer Service
+                — in Mittelstand and mid-market B2B businesses, particularly in DACH. Equally useful for
+                facilitit8 facilitators running role-design workshops, and for any leader who wants to move
+                beyond reflexive backfilling.
+              </p>
+
+              <h2>Access</h2>
+              <p>
+                This playbook is access-protected. The interactive version is shared privately with intended
+                recipients. Use the button above to open it — you will be prompted for an access code.
+                Contact facilit8 to request access.
+              </p>
+            </article>
+
+            <aside>
+              <div className="pb-rail">
+                <h4>{t('playbookDetail.requestAccessRail.heading')}</h4>
+                <p>{t('playbookDetail.requestAccessRail.bodyCL')}</p>
+                <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.requestAccessRail.cta')}</PrimaryButton>
+                <div className="meta-line">{t('playbookDetail.writtenBy')}</div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <ClosingCTA
+        navigate={navigate}
+        heading={t('playbookDetail.capabilityLensCta.heading')}
+        body={t('playbookDetail.capabilityLensCta.body')}
+        cta={{ label: t('playbookDetail.capabilityLensCta.cta'), to: 'contact' }}
+      />
+    </>
+  );
+
+  // Live playbook — Pilot Lead Harmonisation (access-protected)
+  if (p.id === 'pilot-lead-harmonisation') return (
+    <>
+      <section className="pb-detail-hero">
+        <div className="container">
+          <div>
+            <div className="pb-detail-crumbs">
+              <a href="#playbooks" onClick={e => { e.preventDefault(); navigate('playbooks'); }}>{t('playbookDetail.breadcrumb')}</a>
+              <span className="sep">/</span>
+              <span>{p.eyebrow}</span>
+            </div>
+            <div className="section-eyebrow" style={{color:'var(--f8-blue-bright)'}}>{p.eyebrow}</div>
+            <h1>{p.title}</h1>
+            <p className="pb-detail-sub">{p.sub}</p>
+            <div className="pb-detail-cta-row">
+              <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.actions.requestAccess')}</PrimaryButton>
+              <PrimaryButton onClick={() => { window.location.href = 'pilot-lead-harmonisation-playbook.html'; }}>{t('playbookDetail.actions.openPlaybookLocked')}</PrimaryButton>
+            </div>
+          </div>
+          <div className="pb-detail-hero-img" style={{ backgroundImage: `url(${p.image})` }} />
+        </div>
+      </section>
+
+      <div className="pb-meta-strip">
+        <div className="container">
+          <div className="pb-meta-strip-inner">
+            <div className="item"><div className="label">{t('playbookDetail.meta.audience')}</div><div className="value">Senior Project Leader</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.horizon')}</div><div className="value">16-week pilot</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.markets')}</div><div className="value">3 pilot markets</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.format')}</div><div className="value">Interactive Playbook · Access protected</div></div>
+          </div>
+        </div>
+      </div>
+
+      <section className="section">
+        <div className="container">
+          <div className="pb-detail-body">
+            <article className="pb-detail-prose" id="pb-prose-top">
+              <p className="lead-p">
+                Inconsistent lead management is a process and culture problem first, a technology problem second.
+                This playbook gives the Senior Project Leader a structured, sequenced framework for running a
+                3-market pilot that aligns Sales and Marketing on a single lead process — and builds the
+                organisational infrastructure to scale it.
+              </p>
+
+              <h2>Why this playbook exists</h2>
+              <p>
+                Pilots that lead with CRM configuration before resolving the handover definition rarely achieve
+                lasting adoption. The sequence that works is: align on process, agree the data model, configure
+                lightly, train and embed. Simple and used beats sophisticated and ignored.
+              </p>
+              <p>
+                Built around a 16-week pilot structure with clear phase gates, this playbook gives Project Leaders
+                specific, sequenced actions — from market selection through to scale-ready handover — without the
+                complexity that derails most transformation programmes before they start.
+              </p>
+
+              <div className="pb-quote">
+                <p>"Change that sticks is change that people chose. Make the new way the easier way, not just the mandated way."</p>
+              </div>
+
+              <h2>What's inside</h2>
+              <ol className="pb-modules">
+                <li><div><span className="num">01</span></div><div>
+                  <h4 className="mod-title">Conceptual Approach</h4>
+                  <p className="mod-body">Problem framing at three layers — definition, behaviour, visibility — and the 6 principles that separate programmes that stick from those that revert within a quarter.</p>
+                </div></li>
+                <li><div><span className="num">02</span></div><div>
+                  <h4 className="mod-title">Workplan</h4>
+                  <p className="mod-body">3-phase structure (Discover &amp; Design, Build &amp; Pilot, Embed &amp; Scale-Prep) with defined work packages, phase gates, and entry criteria for each milestone.</p>
+                </div></li>
+                <li><div><span className="num">03</span></div><div>
+                  <h4 className="mod-title">Impact Case — Half Double KPI Cascade</h4>
+                  <p className="mod-body">A 4-level cascade from revenue ambition down to the 10 new capabilities that must be built — and what needs to be true at each level for the results to hold.</p>
+                </div></li>
+                <li><div><span className="num">04</span></div><div>
+                  <h4 className="mod-title">Resourcing</h4>
+                  <p className="mod-body">Internal and external resource allocation across 40 consultant days and CHF 75k — with a rate stress-test and partner investment rate guidance.</p>
+                </div></li>
+                <li><div><span className="num">05</span></div><div>
+                  <h4 className="mod-title">16-Week Timeline</h4>
+                  <p className="mod-body">Week-by-week milestone view with 5 phase gates, go/no-go criteria, and the one dependency (IT configuration) that can derail all three market launches if it slips.</p>
+                </div></li>
+                <li><div><span className="num">06</span></div><div>
+                  <h4 className="mod-title">Sustainable Integration</h4>
+                  <p className="mod-body">HOPs (Harmonised Operating Procedures), performance management cadence, local Process Owner model, and a Community of Practice structure that survives the PL exit.</p>
+                </div></li>
+                <li><div><span className="num">07</span></div><div>
+                  <h4 className="mod-title">Risk Register</h4>
+                  <p className="mod-body">7 pilot-level risks — rated by likelihood and impact — with mitigations that address the structural root cause, not just the symptom.</p>
+                </div></li>
+                <li><div><span className="num">08</span></div><div>
+                  <h4 className="mod-title">Stakeholder Engagement</h4>
+                  <p className="mod-body">Persona-specific engagement strategies and invitation scripts for the CCO, sceptical Market Head, influential Sales Manager, and IT Lead — with cultural adaptation notes.</p>
+                </div></li>
+              </ol>
+
+              <h2>Who this is for</h2>
+              <p>
+                Written for Senior Project Leaders, Programme Directors, and commercial transformation leads
+                managing a multi-market CRM and lead process harmonisation pilot — particularly in DACH and
+                European mid-market and enterprise B2B businesses. Equally useful for the CCO or Cluster Head
+                briefing a new PL on what good looks like.
+              </p>
+
+              <h2>Access</h2>
+              <p>
+                This playbook is access-protected. The interactive version is shared privately with intended
+                recipients. Use the button above to open it — you will be prompted for an access code.
+                Contact facilit8 to request access.
+              </p>
+            </article>
+
+            <aside>
+              <div className="pb-rail">
+                <h4>{t('playbookDetail.requestAccessRail.heading')}</h4>
+                <p>{t('playbookDetail.requestAccessRail.bodyPL')}</p>
+                <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.requestAccessRail.cta')}</PrimaryButton>
+                <div className="meta-line">{t('playbookDetail.writtenBy')}</div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <ClosingCTA
+        navigate={navigate}
+        heading={t('playbookDetail.pilotLeadCta.heading')}
+        body={t('playbookDetail.pilotLeadCta.body')}
+        cta={{ label: t('playbookDetail.pilotLeadCta.cta'), to: 'contact' }}
+      />
+    </>
+  );
+
+  // Live playbook — CMO Revenue Firefighter
+  return (
+    <>
+      <section className="pb-detail-hero">
+        <div className="container">
+          <div>
+            <div className="pb-detail-crumbs">
+              <a href="#playbooks" onClick={e => { e.preventDefault(); navigate('playbooks'); }}>{t('playbookDetail.breadcrumb')}</a>
+              <span className="sep">/</span>
+              <span>{p.eyebrow}</span>
+            </div>
+            <div className="section-eyebrow" style={{color:'var(--f8-blue-bright)'}}>{p.eyebrow}</div>
+            <h1>{p.title}</h1>
+            <p className="pb-detail-sub">{p.sub}</p>
+            <div className="pb-detail-cta-row">
+              <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.actions.bookConversation')}</PrimaryButton>
+              <PrimaryButton onClick={() => {
+                window.location.href = 'cmo-playbook-extract.html';
+              }}>{t('playbookDetail.actions.readExtract')}</PrimaryButton>
+            </div>
+          </div>
+          <div className="pb-detail-hero-img" style={{ backgroundImage: `url(${p.image})` }} />
+        </div>
+      </section>
+
+      <div className="pb-meta-strip">
+        <div className="container">
+          <div className="pb-meta-strip-inner">
+            <div className="item"><div className="label">{t('playbookDetail.meta.audience')}</div><div className="value">CMO &amp; CRO</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.horizon')}</div><div className="value">Next 90 days</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.readTime')}</div><div className="value">18 minutes</div></div>
+            <div className="item"><div className="label">{t('playbookDetail.meta.format')}</div><div className="value">Playbook</div></div>
+          </div>
+        </div>
+      </div>
+
+      <section className="section">
+        <div className="container">
+          <div className="pb-detail-body">
+            <article className="pb-detail-prose" id="pb-prose-top">
+              <p className="lead-p">
+                When the board calls and asks where the cash is, the CMO has more levers than most people think —
+                and far less time than they'd like. This playbook is a working manual for the marketing leader who
+                has been handed a short-term revenue problem and has one quarter to put points on the board.
+              </p>
+
+              <h2>Why this playbook exists</h2>
+              <p>
+                Most marketing teams plan in quarters and measure in years. That works in steady weather. It does
+                not work when revenue stalls, a major deal slips, or a transformation programme misses its window.
+                In those moments the CMO is asked to perform a different job — one most marketing teams aren't organised for.
+              </p>
+              <p>
+                The good news: there are a small number of plays that reliably move cash inside ninety days, and
+                they are almost never the plays a marketing team runs first. This playbook lays them out, in order,
+                with the cross-functional conditions each one needs to work.
+              </p>
+
+              <div className="pb-quote">
+                <p>"Anyone can write a strategy. Making it real inside a real organisation, with real people, under real pressure — that is where the work happens."</p>
+              </div>
+
+              <h2>What's inside</h2>
+              <ol className="pb-modules">
+                <li><div><span className="num">01</span></div><div>
+                  <h4 className="mod-title">Diagnose the cash gap honestly</h4>
+                  <p className="mod-body">A one-page diagnostic to separate pipeline problems from conversion problems from pricing problems — and a five-question conversation with the CFO that you should have before anything else.</p>
+                </div></li>
+                <li><div><span className="num">02</span></div><div>
+                  <h4 className="mod-title">The eight short-horizon marketing levers</h4>
+                  <p className="mod-body">From dormant-account reactivation to bundling, contract acceleration, and price action — ranked by speed-to-cash and the conditions each requires.</p>
+                </div></li>
+                <li><div><span className="num">03</span></div><div>
+                  <h4 className="mod-title">Working with Sales when the room is hot</h4>
+                  <p className="mod-body">How to win the cross-functional argument without losing the relationship. Specific operating-rhythm changes that make a 90-day push survivable.</p>
+                </div></li>
+                <li><div><span className="num">04</span></div><div>
+                  <h4 className="mod-title">Quick wins that don't borrow from tomorrow</h4>
+                  <p className="mod-body">The plays that pull revenue forward without destroying next quarter's pipeline — and the ones that do, so you can avoid them under pressure.</p>
+                </div></li>
+                <li><div><span className="num">05</span></div><div>
+                  <h4 className="mod-title">Reporting up: what the board actually needs</h4>
+                  <p className="mod-body">A one-slide weekly update that survives a hostile board meeting — and the three numbers you must commit to before you start.</p>
+                </div></li>
+              </ol>
+
+              <h2>Who this is for</h2>
+              <p>
+                Written for CMOs and revenue leaders in mid-market and enterprise B2B businesses — particularly
+                in DACH and Europe — facing a near-term cash or growth challenge. Equally useful for the CFO
+                or CEO trying to brief their marketing leader on what good looks like inside ninety days.
+              </p>
+
+              <h2>How to use it</h2>
+              <p>
+                Read straight through in one sitting — it's deliberately short. Then circle two of the eight levers
+                that fit your situation and walk them across to Sales and Finance the same week. The playbook is
+                structured so each section gives you a working artefact: a diagnostic, a one-pager, a script.
+              </p>
+            </article>
+
+            <aside>
+              <div className="pb-rail">
+                <h4>{t('playbookDetail.talkThrough.heading')}</h4>
+                <p>{t('playbookDetail.talkThrough.body')}</p>
+                <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.talkThrough.cta')}</PrimaryButton>
+                <div className="meta-line">{t('playbookDetail.writtenBy')}</div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <ClosingCTA
+        navigate={navigate}
+        heading={t('playbookDetail.cmoFirefighterCta.heading')}
+        body={t('playbookDetail.cmoFirefighterCta.body')}
+        cta={{ label: t('playbookDetail.cmoFirefighterCta.cta'), to: 'contact' }}
+      />
+    </>
+  );
+}
+
+/* ============================================================
+   ROOT
+   ============================================================ */
+const VALID_PAGES = ['home','services','projects','playbooks','keystone','about','contact','cookies'];
+
+function Site() {
+  const consentApi = useConsent();
+
+  const [page, setPage] = React.useState(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (VALID_PAGES.includes(hash)) return hash;
+    if (hash.startsWith('playbook/')) return hash;
+    return 'home';
+  });
+
+  const [lang, setLangState] = React.useState(window.F8_I18N.lang);
+
+  const navigate = (id) => {
+    setPage(id);
+    window.location.hash = id === 'home' ? '' : id;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  React.useEffect(() => {
+    const onHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      setPage(VALID_PAGES.includes(hash) ? hash : hash.startsWith('playbook/') ? hash : 'home');
+    };
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  React.useEffect(() => {
+    const onLangChange = () => {
+      setLangState(window.F8_I18N.lang);
+      document.documentElement.lang = window.F8_I18N.lang;
+    };
+    window.addEventListener('f8langchange', onLangChange);
+    return () => window.removeEventListener('f8langchange', onLangChange);
+  }, []);
+
+  // Enable/disable HubSpot analytics based on consent.
+  const analyticsAllowed = consentApi.has('analytics');
+  React.useEffect(() => {
+    const _hsq = window._hsq = window._hsq || [];
+    if (analyticsAllowed) {
+      _hsq.push(['doNotTrack', { track: true }]);
+      _hsq.push(['trackPageView']);
+    } else {
+      _hsq.push(['doNotTrack']);
+    }
+  });
+
+  React.useEffect(() => {
+    const F8t = window.F8_I18N.t;
+    const titles = {
+      home:      'facilit8 — ' + F8t('home.hero.sub'),
+      services:  F8t('nav.services') + ' — facilit8',
+      projects:  F8t('nav.projects') + ' — facilit8',
+      playbooks: 'Playbooks — facilit8',
+      keystone:  'Project Keystone — facilit8',
+      about:     F8t('nav.about') + ' — facilit8',
+      contact:   F8t('nav.contact') + ' — facilit8',
+      cookies:   F8t('cookies.hero.eyebrow') + ' — facilit8',
+    };
+    if (page.startsWith('playbook/')) {
+      const pb = PLAYBOOKS.find(x => x.id === page.replace('playbook/',''));
+      document.title = pb ? `${pb.title} — facilit8` : 'Playbooks — facilit8';
+    } else {
+      document.title = titles[page] || titles.home;
+    }
+  }, [page, lang]);
+
+  let body;
+  if      (page === 'services')           body = <ServicesPage navigate={navigate}/>;
+  else if (page === 'projects')           body = <ProjectsPage navigate={navigate}/>;
+  else if (page === 'playbooks')          body = <PlaybooksPage navigate={navigate}/>;
+  else if (page.startsWith('playbook/')) body = <PlaybookDetailPage id={page.replace('playbook/','')} navigate={navigate}/>;
+  else if (page === 'keystone')           body = <KeystonePage navigate={navigate}/>;
+  else if (page === 'about')             body = <AboutPage navigate={navigate}/>;
+  else if (page === 'contact')           body = <ContactPage navigate={navigate}/>;
+  else if (page === 'cookies')           body = <CookiesPage navigate={navigate}/>;
+  else                                    body = <HomePage navigate={navigate}/>;
+
+  return (
+    <I18nContext.Provider value={lang}>
+      <ConsentContext.Provider value={consentApi}>
+        <div className="site-shell">
+          <DeBanner/>
+          <Nav page={page} navigate={navigate}/>
+          <main>{body}</main>
+          <Footer navigate={navigate}/>
+          <CookieBanner navigate={navigate}/>
+        </div>
+      </ConsentContext.Provider>
+    </I18nContext.Provider>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Site/>);
+</script>
+</body>
+</html>

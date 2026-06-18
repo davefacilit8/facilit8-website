@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A capability-lens playbook for open commercial roles: let AI do the AI-able work so people focus on the accountabilities and soft skills only they can do. For HR and commercial leaders. By facilit8.">
+<meta name="robots" content="noindex, nofollow">
+<title>Look Before You Backfill — The Capability-Lens Playbook for Open Commercial Roles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --f8-blue:        #0070C0; --f8-blue-bright: #0090E7; --f8-blue-deep: #005896; --f8-blue-tint: #E8F4FC;
+  --f8-navy:        #0A1628; --f8-navy-2: #142238;
+  --f8-teal:        #007B8A; --f8-teal-tint: #E6F4F6;
+  --f8-amber:       #B86A00; --f8-amber-tint: #FFF4E0;
+  --f8-green:       #1A6B3A; --f8-green-tint: #EAF6EE;
+  --f8-purple:      #5B3FA6; --f8-purple-tint: #F2EFFF;
+  --f8-rose:        #9B1D4A; --f8-rose-tint: #FCEEF4;
+  --f8-red:         #C0392B; --f8-red-tint: #FDEEEC;
+  --f8-slate:       #3D5166; --f8-slate-tint: #EDF1F5;
+  --f8-off-white:   #F5F7FA; --f8-fog: #E6ECF2; --f8-mist: #C9D2DD;
+  --f8-grey:        #6B7A99; --f8-ink: #1A1A2E; --f8-ink-soft: #3A3F55;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --r-md: 8px; --r-lg: 12px; --r-xl: 16px;
+  --shadow-1: 0 1px 3px rgba(10,22,40,0.06);
+  --shadow-2: 0 4px 16px rgba(10,22,40,0.08), 0 1px 3px rgba(10,22,40,0.04);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); background: var(--f8-off-white); color: var(--f8-ink); padding: 36px 24px 60px; -webkit-font-smoothing: antialiased; }
+
+/* HEADER */
+.header { max-width: 920px; margin: 0 auto 28px; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--f8-blue); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--f8-blue-bright); flex-shrink: 0; }
+h1 { font-size: clamp(26px, 4vw, 42px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--f8-navy); margin-bottom: 14px; }
+h1 em { font-style: italic; color: var(--f8-blue); font-weight: 700; }
+.subtitle { font-size: 15px; color: var(--f8-ink-soft); max-width: 700px; line-height: 1.7; }
+.role-legend { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; align-items: center; }
+.role-legend-label { font-size: 11px; font-weight: 600; color: var(--f8-grey); text-transform: uppercase; letter-spacing: 0.1em; }
+.role-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; }
+.role-pill-cio  { background: #EEF6FF; color: var(--f8-blue-deep); border: 1px solid #B3D8F4; }
+.role-pill-po   { background: var(--f8-rose-tint); color: var(--f8-rose); border: 1px solid #F0B8CE; }
+.role-pill-both { background: var(--f8-purple-tint); color: var(--f8-purple); border: 1px solid #C9BFF0; }
+.role-pill-sm   { background: var(--f8-slate-tint); color: var(--f8-slate); border: 1px solid #B8C8D8; }
+.role-pill-dot  { width: 6px; height: 6px; border-radius: 50%; }
+.role-pill-cio .role-pill-dot  { background: var(--f8-blue); }
+.role-pill-po .role-pill-dot   { background: var(--f8-rose); }
+.role-pill-both .role-pill-dot { background: var(--f8-purple); }
+.role-pill-sm .role-pill-dot   { background: var(--f8-slate); }
+.version-tag { font-size: 10px; color: var(--f8-grey); margin-top: 10px; letter-spacing: 0.05em; }
+
+/* READINESS CHECK */
+.readiness-wrap { max-width: 920px; margin: 0 auto 24px; border: 2px solid var(--f8-blue); border-radius: var(--r-xl); overflow: hidden; }
+.readiness-header { background: var(--f8-blue); padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; gap: 12px; }
+.readiness-badge { background: rgba(255,255,255,0.2); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; }
+.readiness-title { font-size: 14px; font-weight: 700; color: #fff; }
+.readiness-subtitle { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+.readiness-chevron { color: #fff; font-size: 18px; transition: transform 0.2s; flex-shrink: 0; }
+.readiness-wrap.open .readiness-chevron { transform: rotate(180deg); }
+.readiness-body { display: none; background: #fff; padding: 22px 24px; }
+.readiness-wrap.open .readiness-body { display: block; }
+.readiness-intro { font-size: 13.5px; color: var(--f8-ink-soft); line-height: 1.65; margin-bottom: 18px; }
+.rq-list { display: grid; gap: 10px; margin-bottom: 20px; }
+.rq-item { display: flex; align-items: flex-start; gap: 14px; padding: 12px 16px; border-radius: var(--r-md); border: 1.5px solid var(--f8-fog); }
+.rq-item.yes { border-color: var(--f8-green); background: var(--f8-green-tint); }
+.rq-item.no  { border-color: var(--f8-red);   background: var(--f8-red-tint); }
+.rq-num { font-size: 11px; font-weight: 700; color: var(--f8-grey); width: 18px; flex-shrink: 0; padding-top: 2px; }
+.rq-text { font-size: 13.5px; color: var(--f8-ink); line-height: 1.5; flex: 1; }
+.rq-btns { display: flex; gap: 6px; flex-shrink: 0; }
+.rq-btn { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; border: 1.5px solid var(--f8-mist); background: transparent; cursor: pointer; color: var(--f8-grey); font-family: var(--font-sans); transition: all 0.15s; }
+.rq-btn:hover { border-color: var(--f8-blue); color: var(--f8-blue); }
+.rq-btn.selected-yes { background: var(--f8-green); border-color: var(--f8-green); color: #fff; }
+.rq-btn.selected-no  { background: var(--f8-red);   border-color: var(--f8-red);   color: #fff; }
+.readiness-result { display: none; padding: 16px 20px; border-radius: var(--r-md); }
+.readiness-result.show { display: block; }
+.readiness-result.r-green { background: var(--f8-green-tint); border-left: 4px solid var(--f8-green); }
+.readiness-result.r-amber { background: var(--f8-amber-tint); border-left: 4px solid var(--f8-amber); }
+.readiness-result.r-red   { background: var(--f8-red-tint);   border-left: 4px solid var(--f8-red); }
+.readiness-result-title { font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+.r-green .readiness-result-title { color: var(--f8-green); }
+.r-amber .readiness-result-title { color: var(--f8-amber); }
+.r-red   .readiness-result-title { color: var(--f8-red); }
+.readiness-result-text { font-size: 13px; line-height: 1.6; }
+.r-green .readiness-result-text { color: #155c30; }
+.r-amber .readiness-result-text { color: #7a4500; }
+.r-red   .readiness-result-text { color: #8b2218; }
+
+/* PRIMER */
+.primer-banner { max-width: 920px; margin: 0 auto 28px; background: var(--f8-navy); border-radius: var(--r-lg); padding: 20px 26px; display: flex; gap: 16px; align-items: flex-start; }
+.primer-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+.primer-body { flex: 1; }
+.primer-title { font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 6px; }
+.primer-text { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+.primer-text strong { color: #fff; font-weight: 600; }
+
+/* TABS */
+.tabs { max-width: 920px; margin: 0 auto 28px; display: flex; flex-wrap: wrap; gap: 8px; }
+.tab { padding: 8px 16px; border-radius: 40px; border: 1.5px solid var(--f8-mist); background: transparent; font-family: var(--font-sans); font-size: 13px; font-weight: 500; color: var(--f8-grey); cursor: pointer; transition: all 0.18s ease; white-space: nowrap; }
+.tab:hover { border-color: var(--f8-blue); color: var(--f8-blue); }
+.tab.active { background: var(--f8-navy); border-color: var(--f8-navy); color: #fff; }
+.tab.seq-tab { border-color: var(--f8-blue); color: var(--f8-blue); font-weight: 600; }
+.tab.seq-tab.active { background: var(--f8-blue); border-color: var(--f8-blue); color: #fff; }
+.tab.sponsor-tab.active { background: var(--f8-teal); border-color: var(--f8-teal); }
+.tab.buyin-tab { border-color: var(--f8-rose); color: var(--f8-rose); font-weight: 600; }
+.tab.buyin-tab.active { background: var(--f8-rose); border-color: var(--f8-rose); color: #fff; }
+
+/* SECTIONS */
+.sections { max-width: 920px; margin: 0 auto; }
+.section { display: none; }
+.section.visible { display: block; }
+.section-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--f8-navy); }
+.section-icon { width: 44px; height: 44px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; background: var(--f8-navy); }
+.seq-section .section-icon     { background: var(--f8-blue); }
+.sponsor-section .section-icon { background: var(--f8-teal); }
+.buyin-section .section-icon   { background: var(--f8-rose); }
+.section-title { font-size: 21px; font-weight: 700; color: var(--f8-navy); margin-bottom: 3px; letter-spacing: -0.01em; }
+.section-desc  { font-size: 13px; color: var(--f8-grey); }
+
+/* ACTION CARDS */
+.actions-grid { display: grid; gap: 12px; }
+.action-card { background: #fff; border-radius: var(--r-lg); padding: 20px 22px; border-left: 4px solid var(--f8-blue); box-shadow: var(--shadow-1); transition: box-shadow 0.2s ease; }
+.action-card:hover { box-shadow: var(--shadow-2); }
+.sponsor-section .action-card { border-left-color: var(--f8-teal); }
+.seq-section .action-card     { border-left-color: var(--f8-blue-bright); }
+.buyin-section .action-card   { border-left-color: var(--f8-rose); }
+.action-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.action-title  { font-weight: 600; font-size: 15px; color: var(--f8-navy); line-height: 1.3; }
+.badges { display: flex; gap: 5px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+.badge { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; padding: 3px 8px; border-radius: 20px; text-transform: uppercase; white-space: nowrap; }
+.badge-sprint  { background: var(--f8-blue-tint);   color: var(--f8-blue-deep); }
+.badge-quarter { background: var(--f8-amber-tint);  color: var(--f8-amber); }
+.badge-impact  { background: var(--f8-purple-tint); color: var(--f8-purple); }
+.badge-cio     { background: #EEF6FF;               color: var(--f8-blue-deep); border: 1px solid #B3D8F4; }
+.badge-po      { background: var(--f8-rose-tint);   color: var(--f8-rose);      border: 1px solid #F0B8CE; }
+.badge-both    { background: var(--f8-purple-tint); color: var(--f8-purple);    border: 1px solid #C9BFF0; }
+.badge-sm      { background: var(--f8-slate-tint);  color: var(--f8-slate);     border: 1px solid #B8C8D8; }
+.badge-rel     { background: var(--f8-red-tint);    color: var(--f8-red);       border: 1px solid #F5C5BF; }
+.action-body { font-size: 13.5px; color: #444; line-height: 1.7; }
+.action-body strong { font-weight: 600; color: var(--f8-navy); }
+.action-body + .action-body { margin-top: 10px; }
+
+/* INLINE NOTES — max 2 per card */
+.note { margin-top: 11px; padding: 9px 13px; border-radius: var(--r-md); font-size: 12.5px; font-weight: 400; line-height: 1.55; }
+.note strong { font-weight: 700; }
+.note-green  { background: var(--f8-green-tint); border-left: 3px solid var(--f8-green);  color: #155c30; }
+.note-green strong  { color: var(--f8-green); }
+.note-purple { background: var(--f8-purple-tint); border-left: 3px solid var(--f8-purple); color: #3d2880; }
+.note-purple strong { color: var(--f8-purple); }
+.note-slate  { background: var(--f8-slate-tint);  border-left: 3px solid var(--f8-slate);  color: #2c3d4f; }
+.note-slate strong  { color: var(--f8-slate); }
+.note-red    { background: var(--f8-red-tint);    border-left: 3px solid var(--f8-red);    color: #8b2218; }
+.note-red strong    { color: var(--f8-red); }
+.note-amber  { background: var(--f8-amber-tint);  border-left: 3px solid var(--f8-amber);  color: #7a4500; }
+.note-amber strong  { color: var(--f8-amber); }
+
+/* SEQUENCE */
+.seq-step { background: #fff; border-radius: var(--r-lg); padding: 20px 22px; display: flex; gap: 18px; align-items: flex-start; box-shadow: var(--shadow-1); }
+.seq-step + .seq-step { margin-top: 12px; }
+.seq-num { width: 36px; height: 36px; border-radius: 50%; background: var(--f8-blue); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.seq-content { flex: 1; }
+.seq-meta { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--f8-blue); margin-bottom: 5px; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.seq-title { font-weight: 700; font-size: 15px; color: var(--f8-navy); margin-bottom: 6px; }
+.seq-body  { font-size: 13.5px; color: #444; line-height: 1.65; }
+.seq-body strong { font-weight: 600; color: var(--f8-navy); }
+
+/* TIMING TRACKS */
+.timing-tracks { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
+.track { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.track-sme { background: var(--f8-blue-tint);  color: var(--f8-blue-deep); }
+.track-ent { background: var(--f8-slate-tint); color: var(--f8-slate); }
+
+/* RULE BOX */
+.rule-box { border-radius: var(--r-lg); padding: 16px 22px; margin-bottom: 22px; display: flex; gap: 14px; align-items: center; }
+.rule-box-blue  { background: var(--f8-blue); }
+.rule-box-slate { background: var(--f8-slate); }
+.rule-box-rose  { background: var(--f8-rose); }
+.rule-box-navy  { background: var(--f8-navy); }
+.rule-box-icon { font-size: 24px; flex-shrink: 0; }
+.rule-box-text { font-size: 13.5px; color: #fff; line-height: 1.6; }
+.rule-box-text strong { font-weight: 700; }
+
+/* DATA PREREQ */
+.data-prereq { background: #fff; border-radius: var(--r-lg); padding: 18px 22px; margin-bottom: 22px; border: 2px dashed var(--f8-purple); box-shadow: var(--shadow-1); }
+.data-prereq-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.data-prereq-icon  { width: 36px; height: 36px; border-radius: var(--r-md); background: var(--f8-purple-tint); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+.data-prereq-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--f8-purple); margin-bottom: 2px; }
+.data-prereq-title { font-size: 15px; font-weight: 700; color: var(--f8-navy); }
+.data-prereq-body  { font-size: 13.5px; color: #444; line-height: 1.65; }
+.data-prereq-body strong { font-weight: 600; color: var(--f8-navy); }
+.access-template { margin-top: 12px; background: var(--f8-off-white); border-radius: var(--r-md); padding: 12px 15px; border: 1px solid var(--f8-fog); }
+.access-template-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--f8-purple); margin-bottom: 7px; }
+.access-template-text  { font-size: 13px; color: var(--f8-ink-soft); line-height: 1.65; font-style: italic; }
+.access-template-text em { font-style: normal; font-weight: 600; color: var(--f8-navy); }
+
+/* COMPARISON TABLE */
+.translation-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-1); margin-top: 0; }
+.translation-table th { background: var(--f8-navy); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 18px; text-align: left; }
+.translation-table td { padding: 12px 18px; font-size: 13px; border-bottom: 1px solid var(--f8-fog); vertical-align: top; line-height: 1.5; }
+.translation-table tr:last-child td { border-bottom: none; }
+.translation-table tr:hover td { background: var(--f8-off-white); }
+.it-col  { color: var(--f8-grey); font-style: italic; }
+.biz-col { color: var(--f8-navy); font-weight: 600; }
+.why-col { color: var(--f8-ink-soft); font-size: 12.5px; }
+
+/* PERSONA CARDS */
+.persona-card { background: #fff; border-radius: var(--r-lg); padding: 20px 22px; box-shadow: var(--shadow-1); border-top: 3px solid var(--f8-rose); }
+.persona-card + .persona-card { margin-top: 12px; }
+.persona-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.persona-icon { width: 42px; height: 42px; border-radius: 50%; background: var(--f8-rose-tint); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.persona-name { font-weight: 700; font-size: 15px; color: var(--f8-navy); }
+.persona-pain { font-size: 12px; color: var(--f8-grey); margin-top: 2px; }
+.persona-body { font-size: 13.5px; color: #444; line-height: 1.65; }
+.persona-body strong { font-weight: 600; color: var(--f8-navy); }
+.invite-script { margin-top: 12px; padding: 13px 16px; background: var(--f8-off-white); border-radius: var(--r-md); border: 1px solid var(--f8-fog); }
+.invite-script-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--f8-slate); margin-bottom: 7px; }
+.invite-script-text  { font-size: 13px; color: var(--f8-ink-soft); line-height: 1.6; font-style: italic; }
+.invite-script-text em { font-style: normal; font-weight: 600; color: var(--f8-navy); }
+.culture-note { margin-top: 7px; font-size: 12px; color: var(--f8-grey); font-style: italic; }
+
+/* CAPACITY / DEVELOP BLOCK */
+.capacity-audit { margin-top: 12px; padding: 12px 15px; background: var(--f8-green-tint); border-radius: var(--r-md); border-left: 3px solid var(--f8-green); }
+.capacity-audit-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--f8-green); margin-bottom: 7px; }
+.capacity-audit-body  { font-size: 13px; color: #155c30; line-height: 1.6; }
+.capacity-audit-body strong { font-weight: 700; color: #0f4423; }
+
+/* STAT STRIP */
+.stat-strip { display: flex; margin-top: 44px; background: var(--f8-navy); border-radius: var(--r-lg); overflow: hidden; max-width: 920px; margin-left: auto; margin-right: auto; }
+.stat-item { flex: 1; padding: 22px 20px; border-right: 1px solid rgba(255,255,255,0.08); }
+.stat-item:last-child { border-right: none; }
+.stat-num   { font-size: 28px; font-weight: 800; color: var(--f8-blue-bright); letter-spacing: -0.03em; line-height: 1; }
+.stat-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; line-height: 1.4; }
+
+/* GATED FOOTER */
+.gate-foot { max-width: 920px; margin: 22px auto 0; font-size: 11px; color: var(--f8-grey); text-align: center; line-height: 1.6; }
+.gate-foot strong { color: var(--f8-slate); }
+
+/* ===== PASSWORD OVERLAY ===== */
+#pw-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: linear-gradient(135deg, var(--f8-navy) 0%, #0d1f3c 60%, #0a1628 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+#pw-overlay.fade-out { animation: pwFade 0.4s ease forwards; }
+@keyframes pwFade { to { opacity: 0; pointer-events: none; } }
+#pw-box {
+  width: 100%; max-width: 420px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px; padding: 48px 44px 44px;
+  text-align: center; box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+}
+.pw-wordmark { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--f8-blue-bright); margin-bottom: 32px; }
+.pw-lock { width: 52px; height: 52px; border-radius: 14px; background: rgba(0,144,231,0.15); border: 1px solid rgba(0,144,231,0.25); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 22px; }
+.pw-title { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: -0.01em; margin-bottom: 8px; }
+.pw-sub { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 32px; }
+#pw-input { width: 100%; padding: 13px 16px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.07); color: #fff; font-size: 15px; font-family: var(--font-sans); outline: none; margin-bottom: 12px; letter-spacing: 0.06em; transition: border-color 0.15s; }
+#pw-input::placeholder { color: rgba(255,255,255,0.3); letter-spacing: 0; }
+#pw-input:focus { border-color: var(--f8-blue-bright); }
+#pw-input.pw-shake { animation: shake 0.35s ease; border-color: #e05252; }
+@keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-7px); } 40% { transform: translateX(7px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(5px); } }
+#pw-btn { width: 100%; padding: 13px; background: var(--f8-blue); color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; font-family: var(--font-sans); cursor: pointer; letter-spacing: 0.04em; transition: background 0.15s, transform 0.1s; }
+#pw-btn:hover { background: var(--f8-blue-bright); }
+#pw-btn:active { transform: scale(0.98); }
+#pw-error { display: none; margin-top: 14px; font-size: 12.5px; color: #f4a4a4; background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.25); border-radius: 8px; padding: 9px 14px; }
+.pw-footer { margin-top: 32px; font-size: 11px; color: rgba(255,255,255,0.2); }
+#main-content { display: none; }
+</style>
+</head>
+<body>
+
+<!-- ===== PASSWORD OVERLAY ===== -->
+<div id="pw-overlay">
+  <div id="pw-box">
+    <div class="pw-wordmark">facilit8</div>
+    <div class="pw-lock">🔒</div>
+    <div class="pw-title">Protected Playbook</div>
+    <p class="pw-sub">This document is confidential.<br>Enter your access code to continue.</p>
+    <input type="password" id="pw-input" placeholder="Access code" autocomplete="off" />
+    <button id="pw-btn" onclick="checkPassword()">Unlock →</button>
+    <div id="pw-error">Incorrect code — please try again.</div>
+    <div class="pw-footer">facilit8 · Capability-Lens Series · 2026</div>
+  </div>
+</div>
+
+<div id="main-content">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="eyebrow"><span class="eyebrow-dot"></span>facilit8 · Capability-Lens for Open Roles · Commercial Edition</div>
+  <h1>Look Before You <em>Backfill:</em><br>The Capability-Lens Playbook<br>for Open Commercial Roles</h1>
+  <p class="subtitle">For HR and commercial leaders. Run every open sales, marketing or service role through the lens before you repost it. Let AI do the AI-able work. Free your people for the work only people can do — the accountabilities and the soft skills — and put the right person on it. A role-design tool, not a layoff tool.</p>
+  <div class="role-legend">
+    <span class="role-legend-label">Owner guide:</span>
+    <span class="role-pill role-pill-cio"><span class="role-pill-dot"></span>HR / People</span>
+    <span class="role-pill role-pill-po"><span class="role-pill-dot"></span>Commercial</span>
+    <span class="role-pill role-pill-both"><span class="role-pill-dot"></span>Both</span>
+    <span class="role-pill role-pill-sm"><span class="role-pill-dot"></span>Facilitator</span>
+  </div>
+  <div class="version-tag">v2 — facilit8 · Capability-Lens Series · 2026</div>
+</div>
+
+<!-- READINESS CHECK -->
+<div class="readiness-wrap" id="readiness">
+  <div class="readiness-header" onclick="toggleReadiness()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span class="readiness-badge">Step 0</span>
+      <div>
+        <div class="readiness-title">Integrity Check — Run This Before You Use the Lens</div>
+        <div class="readiness-subtitle">5 questions · 2 minutes · tells you whether this is safe to use yet</div>
+      </div>
+    </div>
+    <span class="readiness-chevron">▾</span>
+  </div>
+  <div class="readiness-body">
+    <p class="readiness-intro">The same tool that redesigns a role well can be misused to justify never filling it. These five questions tell you which one you're about to build. Answer honestly — the result is for you, not your board.</p>
+    <div class="rq-list">
+      <div class="rq-item" id="rq1"><div class="rq-num">Q1</div><div class="rq-text">Is this role genuinely <strong>open</strong> — no incumbent, and nobody being quietly managed out behind it?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq1','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq1','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq2"><div class="rq-num">Q2</div><div class="rq-text">Do <strong>both</strong> an HR lead and the commercial manager own this review and the decision together?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq2','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq2','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq3"><div class="rq-num">Q3</div><div class="rq-text">Do you have a real picture of what the team <strong>actually does</strong> — not just the job description?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq3','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq3','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq4"><div class="rq-num">Q4</div><div class="rq-text">Is there real permission to <strong>reshape the role and develop people</strong> — not only to fill it or freeze it?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq4','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq4','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq5"><div class="rq-num">Q5</div><div class="rq-text">Have you agreed <strong>in writing</strong> that the lens informs the decision but never makes it?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq5','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq5','no',this)">No</button></div></div>
+    </div>
+    <div class="readiness-result" id="r-result"></div>
+  </div>
+</div>
+
+<!-- PRIMER -->
+<div class="primer-banner">
+  <div class="primer-icon">🧭</div>
+  <div class="primer-body">
+    <div class="primer-title">One truth before you start: same engine, two outcomes. Framing decides which.</div>
+    <div class="primer-text">Used well, the lens hands the AI-able work to AI. That <strong>frees people for the accountabilities and soft skills only they can do</strong> — and puts the right person on that work. Used badly, it becomes a way to justify not hiring. <strong>Open roles only. Output questions, never verdicts. A person owns every decision.</strong></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab seq-tab active" onclick="show('sequence', this)">⚡ Start Here</button>
+  <button class="tab" onclick="show('lens', this)">🔍 The Capability Lens</button>
+  <button class="tab" onclick="show('redesign', this)">🧭 Reshape the Work</button>
+  <button class="tab" onclick="show('develop', this)">🌱 Develop Your People</button>
+  <button class="tab" onclick="show('protect', this)">🚫 Don't Automate This</button>
+  <button class="tab sponsor-tab" onclick="show('govern', this)">⚖️ Guardrails</button>
+  <button class="tab buyin-tab" onclick="show('buyin', this)">🎯 Bringing People With You</button>
+</div>
+
+<div class="sections">
+
+  <!-- START HERE -->
+  <div class="section seq-section visible" id="s-sequence">
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <div class="section-meta">
+        <div class="section-title">Start Here: The First-30-Days Sequence</div>
+        <div class="section-desc">When a commercial role opens, work these four steps before you repost. They turn a reflex backfill into a deliberate decision.</div>
+      </div>
+    </div>
+
+    <div class="rule-box rule-box-blue">
+      <div class="rule-box-icon">📐</div>
+      <div class="rule-box-text"><strong>The rule:</strong> the lens asks questions; it never says "don't hire." Every run gives four outputs — what AI can carry, the human work that's left, who's the right person for it, and a bridge with a decision date. People decide.</div>
+    </div>
+
+    <div class="data-prereq">
+      <div class="data-prereq-header">
+        <div class="data-prereq-icon">🚧</div>
+        <div>
+          <div class="data-prereq-label">Prerequisite — The Scope Fence</div>
+          <div class="data-prereq-title">Open roles only — never a role with a person attached</div>
+        </div>
+      </div>
+      <div class="data-prereq-body">Open means no incumbent: no displacement, no consultation trigger. If someone is behind the vacancy — retiring, resigning under pressure, being restructured — <strong>stop</strong>. That is a different, governed conversation, and the wrong job for this lens. In Switzerland it can trigger consultation and mass-dismissal duties (Code of Obligations Art. 335d ff. and the Participation Act). Keep open-role and filled-role work as separate engagements.</div>
+      <div class="access-template">
+        <div class="access-template-label">Record this before you begin</div>
+        <div class="access-template-text">"This covers an <em>open</em> role with no incumbent. It informs — it does not make — the decision, which <em>[HR lead]</em> and <em>[commercial manager]</em> own jointly."</div>
+      </div>
+    </div>
+
+    <div class="seq-step">
+      <div class="seq-num">1</div>
+      <div class="seq-content">
+        <div class="seq-meta">Zero cost · sets the integrity of everything after it <span class="badge badge-both">Both</span></div>
+        <div class="seq-title">Confirm the fence and name two owners</div>
+        <div class="seq-body">Confirm in writing the role is open. Name both owners: HR and the commercial manager. One owner drifts — commercial toward cost, HR toward process; the pair holds the line. Treat the <strong>Integrity Check</strong> above as a hard gate: red means stop, amber means fix the foundation first. <strong>Target: Day 2.</strong></div>
+        <div class="timing-tracks">
+          <span class="track track-sme">⚡ Smaller Mittelstand: Day 1–2</span>
+          <span class="track track-ent">🏢 Works-council context: Week 1, loop in HR</span>
+        </div>
+        <div class="note note-green"><strong>Success looks like:</strong> Every open role has two named owners and a recorded scope-fence confirmation before recruiting spend starts.</div>
+      </div>
+    </div>
+
+    <div class="seq-step">
+      <div class="seq-num">2</div>
+      <div class="seq-content">
+        <div class="seq-meta">The step everyone skips · highest leverage in the sequence <span class="badge badge-po">Commercial</span></div>
+        <div class="seq-title">Read the job description assuming it lies</div>
+        <div class="seq-body">The JD is a recruiting artefact, not the truth. It's stale and it misses the <strong>glue work</strong> that holds a team together. Spend 30 minutes with the people who sat next to the role: <strong>"What did this person actually do that isn't written down?"</strong> That answer is the real job. <strong>Target: Day 8.</strong></div>
+        <div class="note note-amber"><strong>Watch for:</strong> Analysis built on the JD alone inherits its flaws. No lived picture of the role means a confident, wrong output.</div>
+      </div>
+    </div>
+
+    <div class="seq-step">
+      <div class="seq-num">3</div>
+      <div class="seq-content">
+        <div class="seq-meta">Where the four outputs are produced <span class="badge badge-both">Both</span></div>
+        <div class="seq-title">Run the role through the capability lens</div>
+        <div class="seq-body">Take the <em>real</em> role through the lens (next tab). It gives four outputs, never a verdict: <strong>(1)</strong> what AI can carry; <strong>(2)</strong> the human work that's left — the accountabilities and soft skills; <strong>(3)</strong> who's the right person for that work; <strong>(4)</strong> a bridge with a decision date. The caveat travels with every output. <strong>Target: Day 18.</strong></div>
+        <div class="note note-green"><strong>Success looks like:</strong> Each role leaves the lens with four written outputs and a confidence note — and none of them reads "don't hire."</div>
+      </div>
+    </div>
+
+    <div class="seq-step">
+      <div class="seq-num">4</div>
+      <div class="seq-content">
+        <div class="seq-meta">The decision · owned by people, with a date <span class="badge badge-cio">HR</span> <span class="badge badge-po">Commercial</span></div>
+        <div class="seq-title">Decide together and set the sunset</div>
+        <div class="seq-body">The two owners pick a path and write down why. Every bridge gets a <strong>sunset date</strong>; on expiry the default is hire, not keep automating. Aim for a better team in six months — not a smaller one this quarter. <strong>Target: Day 25.</strong></div>
+        <div class="timing-tracks">
+          <span class="track track-sme">⚡ Smaller Mittelstand: Week 3–4</span>
+          <span class="track track-ent">🏢 Works-council context: Week 4–6, HR sign-off</span>
+        </div>
+        <div class="note note-red"><strong>Reversibility warning:</strong> Not-hiring is cheap to decide and expensive to undo. When the lens is ambiguous, hire and keep reshaping — don't freeze.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE CAPABILITY LENS -->
+  <div class="section" id="s-lens">
+    <div class="section-header">
+      <div class="section-icon">🔍</div>
+      <div class="section-meta">
+        <div class="section-title">The Capability Lens</div>
+        <div class="section-desc">How to look at an open role properly. Move from "task list" thinking to "what's AI-able, what's human, who's the right person."</div>
+      </div>
+    </div>
+    <div class="actions-grid">
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">A job is accountability, not a task list</div>
+          <div class="badges"><span class="badge badge-sprint">Step 1</span><span class="badge badge-impact">High impact</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body">Don't read a role as tasks and tick off what AI could do. A job is a bundle of <strong>accountability</strong>. AI drafts, summarises, updates — but it can't be <strong>on the hook</strong> when the forecast is wrong or the customer's furious. Start with what the role is accountable for. Tasks come second.</div>
+        <div class="note note-slate"><strong>Ask:</strong> "What breaks, and who carries it, if this had no human owner for three months?" That's usually more than the JD admits.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Hunt for the glue work the JD never mentions</div>
+          <div class="badges"><span class="badge badge-sprint">Step 2</span><span class="badge badge-impact">High impact</span><span class="badge badge-po">Commercial</span></div>
+        </div>
+        <div class="action-body">The best commercial work is the least documented: sensing a renewal is wobbling, killing a tempting-but-wrong campaign, being the person everyone routes the angry customer to. That's <strong>glue work</strong> — judgment, trust, memory. It's invisible to a JD. Map it before you ask what AI can take, or the lens will quietly cut the most valuable part.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> The team can point to the role's glue work and agree it stays human — named before any automation question.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Ask the four questions</div>
+          <div class="badges"><span class="badge badge-sprint">Step 3</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body">Run the real role against four questions. <strong>(1) Carry:</strong> what can AI do? <strong>(2) Human work:</strong> what's left — the accountabilities and soft skills? <strong>(3) Right person:</strong> who's best placed to own that work? <strong>(4) Protect:</strong> what must never be automated? Four answers — never a recommendation not to hire.</div>
+        <div class="note note-amber"><strong>Capacity check:</strong> A proper run takes a few focused hours across the owners and the team. Twenty minutes gets you the JD's answer, not the real one.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Make the caveat travel with the number</div>
+          <div class="badges"><span class="badge badge-sprint">Step 4</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">HR</span></div>
+        </div>
+        <div class="action-body">The master risk: a conclusion outlives its caveats. The tidy line gets screenshotted into a board deck; the "this JD is unreliable" footnote drops off. Build the caveat in so it <strong>can't be separated</strong> — confidence band plus the top two reasons it's wrong, in the same box. If it can be quoted without the caveat, the format failed.</div>
+        <div class="note note-purple"><strong>Why it matters:</strong> A confident output on a bad input produces industrialised error — one stale JD becoming an org-wide pattern of wrong, certain-looking calls.</div>
+      </div>
+
+    </div>
+
+    <br>
+    <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--f8-blue);margin-bottom:12px;">Same Engine, Opposite Outcomes</div>
+    <table class="translation-table">
+      <thead><tr><th style="width:32%">The misuse</th><th style="width:34%">The good version</th><th style="width:34%">Why the difference holds</th></tr></thead>
+      <tbody>
+        <tr><td class="it-col">Declares the role mostly automatable; recommends no backfill</td><td class="biz-col">Gives four options; a person chooses</td><td class="why-col">Output is questions, never a verdict</td></tr>
+        <tr><td class="it-col">A single score that travels to the board alone</td><td class="biz-col">Every output carries its confidence and top two flaws</td><td class="why-col">The caveat can't be stripped off</td></tr>
+        <tr><td class="it-col">Quietly applied to filled roles and people</td><td class="biz-col">Open roles only — filled roles are a separate track</td><td class="why-col">The scope fence is structural</td></tr>
+        <tr><td class="it-col">A bridge that silently becomes permanent</td><td class="biz-col">Every bridge has a sunset; default on expiry is hire</td><td class="why-col">Drift has a forced stop date</td></tr>
+        <tr><td class="it-col">Automates away the work where people build skill</td><td class="biz-col">Protects the work where capability is grown</td><td class="why-col">Capability outlasts this year's saving</td></tr>
+        <tr><td class="it-col">Priced on headcount saved</td><td class="biz-col">Priced on the quality of the decision</td><td class="why-col">The model removes the incentive to cut</td></tr>
+      </tbody>
+    </table>
+
+    <br>
+    <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--f8-blue);margin-bottom:12px;">The One-Page Lens Worksheet</div>
+    <div class="data-prereq" style="border-style:solid;border-color:var(--f8-blue);">
+      <div class="data-prereq-header">
+        <div class="data-prereq-icon" style="background:var(--f8-blue-tint);">📝</div>
+        <div>
+          <div class="data-prereq-label" style="color:var(--f8-blue-deep);">Run this for each open role</div>
+          <div class="data-prereq-title">Four questions, one caveat — and deliberately no score</div>
+        </div>
+      </div>
+      <div class="data-prereq-body">Fill this in with both owners, from the <strong>real role</strong> — not the JD. There's nothing to total and no box that reads "don't hire," by design. If you start inventing a score, stop: that's the misuse version returning.
+        <br><br>
+        <strong>1 · Carry —</strong> What routine, codifiable work can AI take on?
+        <br><br>
+        <strong>2 · Human work —</strong> What's left that only a person can own — accountability, judgment, relationships, the soft skills?
+        <br><br>
+        <strong>3 · Right person —</strong> Who's best placed for that work, and what support and bridge (with a decision date) gets them there?
+        <br><br>
+        <strong>4 · Protect —</strong> What must never be automated? <em>(Empty list = look harder.)</em>
+      </div>
+      <div class="access-template" style="border-color:var(--f8-amber);">
+        <div class="access-template-label" style="color:var(--f8-amber);">Mandatory caveat — travels with every output</div>
+        <div class="access-template-text">"Based on a JD we know is imperfect. Confidence: <em>low / medium / high</em>. Top two reasons it's wrong: <em>[reason]</em>, <em>[reason]</em>. Informs a decision a named person owns — it does not make one."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESHAPE THE WORK -->
+  <div class="section" id="s-redesign">
+    <div class="section-header">
+      <div class="section-icon">🧭</div>
+      <div class="section-meta">
+        <div class="section-title">Reshape the Work</div>
+        <div class="section-desc">Split the AI-able work from the human work. Then shape the role around the human work — and match it to the right person, whoever that is.</div>
+      </div>
+    </div>
+    <div class="actions-grid">
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Sales — let AI do the codifiable work, people do the trust</div>
+          <div class="badges"><span class="badge badge-sprint">Per open role</span><span class="badge badge-impact">High impact</span><span class="badge badge-po">Commercial</span></div>
+        </div>
+        <div class="action-body">Give AI the codifiable load: outreach drafts, CRM hygiene, first-draft proposals. What's left is human — qualification, discovery, trust, the negotiation. In Mittelstand B2B, that's where deals are won. Shape the role around that work, and put your strongest relationship people on it.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Reps spend most of their time on relationships and judgment, with the routine handled in the background.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Marketing — automate production, keep the judgment human</div>
+          <div class="badges"><span class="badge badge-sprint">Per open role</span><span class="badge badge-po">Commercial</span></div>
+        </div>
+        <div class="action-body">AI drafts and reports fast. The human work is <strong>positioning, brand judgment, and knowing what not to publish</strong>. Shape the role around that — directing and editing AI, owning the calls that protect a precision brand. The right person is whoever has that judgment.</div>
+        <div class="note note-slate"><strong>Nuance:</strong> "Faster drafting" is a capability, not a strategy. Automate production but never the judgment, or you ship more that says less.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Service — automate the routine, keep the saves human</div>
+          <div class="badges"><span class="badge badge-sprint">Per open role</span><span class="badge badge-impact">High impact</span><span class="badge badge-po">Commercial</span></div>
+        </div>
+        <div class="action-body">Let AI deflect routine tickets and draft standard replies. The human work retains revenue: <strong>de-escalation, complex problems, the loyalty moments</strong>. In B2B manufacturing, service is where accounts are saved or lost. Shape the role around the hard cases and route them to the person best at them.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> The team spends far more of its time on retention and complex saves; routine queries resolve on their own.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Don't let "reshape" lose by default</div>
+          <div class="badges"><span class="badge badge-quarter">Every review</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body">Cost (cut a salary) and bridge (delay) are easy to measure. "Work matched to the right person" isn't — so it tends to lose. Counter it: state the reshape option <strong>first</strong>, give it an owner, and put a rough value on the upside. Measure only what's easy and you'll only ever choose what's cheap.</div>
+        <div class="note note-amber"><strong>Watch for:</strong> "We'll reshape it later" is how reshape dies. No owner, no date — then it's a polite no.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DEVELOP YOUR PEOPLE -->
+  <div class="section" id="s-develop">
+    <div class="section-header">
+      <div class="section-icon">🌱</div>
+      <div class="section-meta">
+        <div class="section-title">Develop Your People</div>
+        <div class="section-desc">The point of the whole idea: free people from AI-able work so they can do the work that matters — and put the right person on it.</div>
+      </div>
+    </div>
+
+    <div class="rule-box rule-box-navy">
+      <div class="rule-box-icon">🌱</div>
+      <div class="rule-box-text"><strong>The point of the lens:</strong> an open role is the cheapest moment to develop people. No incumbent, real work to grow into. Ask "who's the right person for the human work, and what would help them?" before "who do we recruit?"</div>
+    </div>
+
+    <div class="actions-grid">
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Free people for the work that matters</div>
+          <div class="badges"><span class="badge badge-sprint">Per open role</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">HR</span></div>
+        </div>
+        <div class="action-body">AI carries the routine load. That frees people for the <strong>accountabilities and soft skills</strong> only they can do. So treat the open role as a chance to give that work to the right person — and develop them into it — rather than recruiting on reflex.</div>
+        <div class="capacity-audit">
+          <div class="capacity-audit-label">Make the growth plan real, not implied</div>
+          <div class="capacity-audit-body">A growth plan that isn't <strong>funded, scheduled and visible</strong> is just extra work with a compliment attached. Name the person, the capability, the mentor, what AI carries, and the review date. Unfunded "development" becomes overload — and the person leaves.</div>
+        </div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Use AI to remove the drudgery, not the work</div>
+          <div class="badges"><span class="badge badge-sprint">Bridge phase</span><span class="badge badge-po">Commercial</span></div>
+        </div>
+        <div class="action-body">Healthy: AI takes the low-judgment, high-volume tasks so people do the human work. Unhealthy: the team quietly shifts to just <em>checking AI output</em> — a reorg nobody approved. Name which one you're doing, out loud, and check back.</div>
+        <div class="note note-amber"><strong>Watch for:</strong> A "humans review the machine" drift de-skills the team and removes your redundancy. That's a reorg — treat it as one, with consultation.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Keep the muscle alive</div>
+          <div class="badges"><span class="badge badge-quarter">Ongoing</span><span class="badge badge-sm">Facilitator</span></div>
+        </div>
+        <div class="action-body">The trap: automate a skill, stop practising it, lose it — then the next review "proves" you can't do it, so you automate more. Break the loop. Keep people doing the judgment work. AI is a floor under the load, not a replacement for the craft.</div>
+        <div class="note note-purple"><strong>Dependency note:</strong> Building around a tool creates a quiet dependency on its price and quality. Keep the human skill alive so a vendor change isn't a capability crisis.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Protect the roles where people learn the work</div>
+          <div class="badges"><span class="badge badge-sprint">Per role</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">HR</span></div>
+        </div>
+        <div class="action-body">Some roles look the most automatable precisely because they're where people <strong>build judgment, relationships and accountability</strong>. Automate them away and you lose the place capability is grown. In the Swiss <em>Lehre</em> system it's also part of who you are as an employer. Protect these as capability investments, not costs.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Learning roles are ring-fenced from automation logic and discussed as investment, not overhead.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DON'T AUTOMATE THIS -->
+  <div class="section" id="s-protect">
+    <div class="section-header">
+      <div class="section-icon">🚫</div>
+      <div class="section-meta">
+        <div class="section-title">Don't Automate This</div>
+        <div class="section-desc">Some commercial work is human-required by design. Name it and protect it — that's what earns the lens its trust.</div>
+      </div>
+    </div>
+
+    <div class="rule-box rule-box-slate">
+      <div class="rule-box-icon">⛔</div>
+      <div class="rule-box-text"><strong>Hard carve-out:</strong> safety-, compliance-, quality- and relationship-critical work gets <strong>no score and no automation call</strong> — it's marked "human-required, not assessed." Naming what you won't touch is what makes the rest credible.</div>
+    </div>
+
+    <div class="actions-grid">
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">The relationship and the close (Sales)</div>
+          <div class="badges"><span class="badge badge-impact">Human-required</span><span class="badge badge-po">Commercial</span></div>
+        </div>
+        <div class="action-body">In Mittelstand B2B, deals run on years of trust and reading the room. The relationship is the asset, not a task. AI can prepare the person; it can't replace them. Over-cut the legible work and under-value the trust, and you make the most expensive mistake the lens allows.</div>
+        <div class="note note-red"><strong>High risk if ignored:</strong> Hollow out relationship ownership to save cost and you learn its value only when the account leaves.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Brand judgment and what not to publish (Marketing)</div>
+          <div class="badges"><span class="badge badge-impact">Human-required</span><span class="badge badge-po">Commercial</span></div>
+        </div>
+        <div class="action-body">A tool will happily produce a clever campaign that's subtly wrong for a conservative brand in a small market. <strong>Positioning, tone, and what not to say</strong> are human-required — the cost of a misstep is trust, not impressions. Protect brand stewardship; let AI speed up production beneath a person who owns the brand.</div>
+        <div class="note note-slate"><strong>Nuance:</strong> Producing assets is easy to automate and easy to over-cut. Knowing which asset is right is where the value sits.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">De-escalation and the loyalty moment (Service)</div>
+          <div class="badges"><span class="badge badge-impact">Human-required</span><span class="badge badge-po">Commercial</span></div>
+        </div>
+        <div class="action-body">The angry customer, the high-stakes complaint, the account on the line — human-required. Routine deflection is fine; routing a furious key customer to a bot turns a recoverable problem into a lost contract. Protect these moments and design the tool to <strong>hand off to a person early</strong>.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Routine queries resolve without a person; high-stakes moments reach a skilled human fast, by design.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Accountability and institutional memory (All)</div>
+          <div class="badges"><span class="badge badge-impact">Human-required</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body">Across all three functions, the connective tissue is human-required. Someone has to be <strong>on the hook</strong> when it goes wrong, hold the context that isn't written down, notice what no dashboard flags. AI does tasks; it can't carry accountability. These are exactly the parts a task-by-task lens makes invisible.</div>
+        <div class="note note-amber"><strong>Watch for:</strong> No "don't automate this" list means the lens didn't look hard enough. An empty list is a red flag, not a clean bill of health.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GUARDRAILS -->
+  <div class="section sponsor-section" id="s-govern">
+    <div class="section-header">
+      <div class="section-icon">⚖️</div>
+      <div class="section-meta">
+        <div class="section-title">Guardrails</div>
+        <div class="section-desc">Structure beats policy — policy doesn't survive budget season. These controls keep the good version from becoming the bad one when you're not in the room.</div>
+      </div>
+    </div>
+    <div class="actions-grid">
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">The tool refuses to decide</div>
+          <div class="badges"><span class="badge badge-impact">Structural</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body">The key control: the lens <strong>outputs questions, never "don't hire."</strong> No verdict, no ranking that implies one, no number presented as a decision. That's the structural line between a role-design tool and a layoff engine. Let it conclude, and you build the bad version by accident.</div>
+        <div class="note note-purple"><strong>Why structural beats policy:</strong> "Please add the caveats" fails under pressure. A tool that can't produce a caveat-free verdict holds when no one's watching.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Architect the scope fence so it can't be crossed</div>
+          <div class="badges"><span class="badge badge-impact">Structural</span><span class="badge badge-cio">HR</span></div>
+        </div>
+        <div class="action-body">Open-role review and filled-role analysis are <strong>separate engagements</strong> — not a toggle. The tool refuses individual and filled-role data. That defuses the displacement and consultation exposure, and protects HR from "while you're at it, look at the team we already have."</div>
+        <div class="note note-amber"><strong>Capacity check:</strong> Budget pressure pushes open → filled. The fence has to be architecture, not willpower.</div>
+        <div class="note note-red"><strong>The pair must be real:</strong> Co-ownership only holds if HR can actually halt a decision. Where HR is outranked and would rubber-stamp, the safeguard is fiction — fix the authority first, or don't run the lens.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Mandatory equal-treatment review before anyone acts</div>
+          <div class="badges"><span class="badge badge-impact">Structural</span><span class="badge badge-cio">HR</span><span class="badge badge-rel">Compliance</span></div>
+        </div>
+        <div class="action-body">Recommendations can skew by age or cluster on certain roles — real non-discrimination exposure. Under Swiss law that includes the Gender Equality Act (GlG) and the personality-protection duties in the Code of Obligations. Run a <strong>mandatory equal-treatment review</strong> before acting. HR owns this gate; it can't be skipped for speed.</div>
+        <div class="note note-red"><strong>Not legal advice:</strong> This is a governance prompt, not a legal opinion. Confirm specific exposure with Swiss employment counsel before acting.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Forced sunset on every bridge</div>
+          <div class="badges"><span class="badge badge-impact">Structural</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body">Every bridge has an <strong>expiry date</strong>, and on expiry the default is hire — not keep automating quietly. That stops the common failure: a temporary bridge becoming a permanent reorg nobody decided on. Extending past the sunset takes a fresh, explicit decision by the same two owners. Drift can't happen by inertia.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> No bridge runs without a visible sunset, and every expiry forces a real decision.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Price on decision quality, and keep the liability clean</div>
+          <div class="badges"><span class="badge badge-impact">Structural</span><span class="badge badge-cio">HR</span><span class="badge badge-po">Commercial</span></div>
+        </div>
+        <div class="action-body">The commercial model is a control. facilit8 prices on the <strong>quality of the decision</strong>, never on headcount removed — so there's no incentive to cut. The liability hygiene is explicit: decision-support only, the client owns every decision in writing, and the lens is never the sole basis for not backfilling. This lives in the engagement letter, not just the conversation.</div>
+        <div class="note note-slate"><strong>Why it's here:</strong> If the fee grows when headcount shrinks, every other safeguard swims against the incentive. Align the money with the good version.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BRINGING PEOPLE WITH YOU -->
+  <div class="section buyin-section" id="s-buyin">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <div class="section-meta">
+        <div class="section-title">Bringing People With You</div>
+        <div class="section-desc">How you introduce this decides whether people see a development tool or a threat. One direct script per stakeholder, with a note on cultural fit.</div>
+      </div>
+    </div>
+
+    <div class="rule-box rule-box-rose">
+      <div class="rule-box-icon">🎯</div>
+      <div class="rule-box-text"><strong>On the scripts below:</strong> each is written for direct, low-spin cultures — Swiss, German, Scandinavian norms where brevity reads as respect. In relationship-led cultures, add one sentence of context first. Keep them short either way: a long, over-framed intro to anything touching jobs reads as suspicious.</div>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">🏛</div>
+        <div>
+          <div class="persona-name">The CEO / Owner (Mittelstand)</div>
+          <div class="persona-pain">"Will this protect what makes us a good employer — or quietly erode it?"</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        The owner's identity is bound up in the social contract — apprenticeships, loyalty, looking after people. They'll like the hiring discipline; the risk is liking it for the wrong reason. Frame it as <strong>discipline plus people development</strong>: AI takes the routine, people get the work that matters. Be clear it never recommends not-hiring. Reputational spillover in a small sector is what they'll feel most.
+      </div>
+      <div class="invite-script">
+        <div class="invite-script-label">Invitation script</div>
+        <div class="invite-script-text">"<em>[Name]</em>, before we repost the next open role, I want to run it through a capability lens — to see what AI could take off the team's plate and which of our people should own the work that's left. It never decides for us. 30 minutes?"</div>
+      </div>
+      <div class="culture-note">For relationship-led cultures, add first: "This came out of wanting to use AI to help our own people grow, not to do without them."</div>
+      <div class="note note-amber"><strong>Watch for:</strong> An owner who wants the number as cover for a decision already made. If it's to win an argument, not inform one, pause — that's the bad version arriving.</div>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">💼</div>
+        <div>
+          <div class="persona-name">The Chief Commercial Officer</div>
+          <div class="persona-pain">"I'm under budget pressure — can this just tell me which roles I can skip?"</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        The CCO is the persona most likely to misuse the lens — to win a budget fight, strip the caveats, push from open to filled roles. Meet the pressure honestly, then hold the line: the lens <strong>builds a better team, not a cheaper one</strong>. Lead with what they want — the right people on the work that wins deals, and retention defended.
+      </div>
+      <div class="invite-script">
+        <div class="invite-script-label">Invitation script</div>
+        <div class="invite-script-text">"<em>[Name]</em>, the next open role is a chance to get AI doing the routine work and our best people on what wins deals. The lens gives four options and a decision we make together — it won't hand you a 'skip this hire.' 20 minutes?"</div>
+      </div>
+      <div class="culture-note">For relationship-led cultures: "I know the budget's tight — I think this gives you a stronger argument than a simple cut would."</div>
+      <div class="note note-red"><strong>Relationship prerequisite:</strong> If the CCO can't hear "this won't justify a cut" without disengaging, you don't yet have the foundation — build trust on a reshape win first.</div>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">👥</div>
+        <div>
+          <div class="persona-name">The HR / People Lead</div>
+          <div class="persona-pain">"Is this a threat to my function and a discrimination risk waiting to happen?"</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        HR often reads a tool like this as a threat and carries the exposure if recommendations skew. Reposition them as <strong>co-owner and guardian of the guardrails</strong> — the equal-treatment review, the scope fence, the protection of learning roles are theirs. Done right, it makes HR more central to commercial decisions, not less.
+      </div>
+      <div class="invite-script">
+        <div class="invite-script-label">Invitation script</div>
+        <div class="invite-script-text">"<em>[Name]</em>, I won't run this on open roles without you co-owning it. You'd hold the equal-treatment check and the scope fence. Can I walk you through how it's built to develop people, not cut them? 30 minutes."</div>
+      </div>
+      <div class="culture-note">This works across cultures — HR responds to being made a co-owner of the safeguards, not a reviewer after the fact.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> HR co-owns the lens and runs the equal-treatment gate as routine — the signal it's seen as protection, not threat.</div>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">🤝</div>
+        <div>
+          <div class="persona-name">The Worried Team Member</div>
+          <div class="persona-pain">"Does 'capability lens' mean you're about to automate my job?"</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        The people next to the role hear "AI" and fear for themselves. Be direct and early: this runs on <strong>open roles only</strong>, never on them, and the point is often to <strong>take the routine off their plate</strong> so they do more of the work that matters. Honesty builds more trust than silence — which they'll fill with the worst version.
+      </div>
+      <div class="invite-script">
+        <div class="invite-script-label">Invitation script</div>
+        <div class="invite-script-text">"<em>[Name]</em>, we're looking at the open role next to you — not your job. Part of the question is whether AI could take some routine load off you, so you take on more of the interesting work. I'd value your honest view on what that role really involves. 20 minutes."</div>
+      </div>
+      <div class="culture-note">For relationship-led cultures: "I wanted to tell you directly rather than have you hear it second-hand — this is about the open role, and your growth."</div>
+      <div class="note note-red"><strong>Relationship prerequisite:</strong> If trust is already low, no script fixes it — be visibly straight about scope and let the first reshape prove intent.</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-item"><div class="stat-num">25</div><div class="stat-label">Specific actions across 7 tabs</div></div>
+  <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Outputs per role — never a "don't hire"</div></div>
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Structural guardrails that beat policy</div></div>
+  <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">Scope fence: open roles only, by design</div></div>
+</div>
+
+<div class="gate-foot">
+  <strong>facilit8 · Commercial Transformation enabled by Technology</strong><br>
+  Decision-support only, and not legal advice — confirm employment-law questions with Swiss counsel. The client owns every hiring decision in writing; the lens is never the sole basis for not backfilling a role. Liability terms live in the engagement letter, not on this page.
+</div>
+
+</div><!-- /main-content -->
+
+<script>
+/* ===== PASSWORD GATE ===== */
+(function() {
+  if (sessionStorage.getItem('f8-ccl-unlocked') === '1') {
+    document.getElementById('pw-overlay').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+  }
+})();
+
+function checkPassword() {
+  var val = document.getElementById('pw-input').value;
+  if (val === 'facilit8AIimpact') {
+    sessionStorage.setItem('f8-ccl-unlocked', '1');
+    var overlay = document.getElementById('pw-overlay');
+    overlay.classList.add('fade-out');
+    overlay.addEventListener('animationend', function() {
+      overlay.style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+    });
+  } else {
+    var input = document.getElementById('pw-input');
+    input.classList.remove('pw-shake');
+    void input.offsetWidth;
+    input.classList.add('pw-shake');
+    input.value = '';
+    input.focus();
+    document.getElementById('pw-error').style.display = 'block';
+  }
+}
+
+document.getElementById('pw-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPassword();
+  document.getElementById('pw-error').style.display = 'none';
+});
+
+  function show(id, el) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('s-' + id).classList.add('visible');
+    el.classList.add('active');
+  }
+  function toggleReadiness() { document.getElementById('readiness').classList.toggle('open'); }
+  var answers = {};
+  function answer(qid, val, btn) {
+    answers[qid] = val;
+    var item = document.getElementById(qid);
+    item.classList.remove('yes','no');
+    item.classList.add(val);
+    item.querySelectorAll('.rq-btn').forEach(function(b){ b.classList.remove('selected-yes','selected-no'); });
+    btn.classList.add(val==='yes' ? 'selected-yes' : 'selected-no');
+    if (Object.keys(answers).length === 5) { showResult(); }
+  }
+  function showResult() {
+    var yes = Object.values(answers).filter(function(v){ return v==='yes'; }).length;
+    var el = document.getElementById('r-result');
+    el.className = 'readiness-result show';
+    if (yes >= 4) {
+      el.classList.add('r-green');
+      el.innerHTML = '<div class="readiness-result-title">✅ Conditions are right — run the lens as a role-design tool.</div><div class="readiness-result-text">Open role, two committed owners, a real picture of the work, permission to reshape, and the decision with people. Work Start Here in order, then use Reshape the Work and Develop Your People as your main outputs. Keep Guardrails open as you go.</div>';
+    } else if (yes >= 2) {
+      el.classList.add('r-amber');
+      el.innerHTML = '<div class="readiness-result-title">⚠️ Fix the foundation first.</div><div class="readiness-result-text">The biggest risks are a missing scope fence (Q1) or single ownership (Q2) — both push the tool toward cost-cutting. Confirm the role is open, secure an HR + commercial pair, and get a real picture of the day-to-day. If permission to reshape (Q4) is missing, the lens defaults to "fill or freeze" — fix that first.</div>';
+    } else {
+      el.classList.add('r-red');
+      el.innerHTML = '<div class="readiness-result-title">🔴 Don\'t run the lens yet.</div><div class="readiness-result-text">Without a scope fence, shared ownership, and a written "this never decides," the tool will most likely justify not-hiring rather than design roles well. Start with the Guardrails tab, put the structural controls in place, and return once Q1, Q2 and Q5 are yes.</div>';
+    }
+  }
+</script>
+<!-- HubSpot Analytics -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/49059754.js"></script>
+</body>
+</html>

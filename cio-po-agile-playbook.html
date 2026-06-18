@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speak the Same Language — CIO & Product Owner Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --f8-blue:        #0070C0; --f8-blue-bright: #0090E7; --f8-blue-deep: #005896; --f8-blue-tint: #E8F4FC;
+  --f8-navy:        #0A1628; --f8-navy-2: #142238;
+  --f8-teal:        #007B8A; --f8-teal-tint: #E6F4F6;
+  --f8-amber:       #B86A00; --f8-amber-tint: #FFF4E0;
+  --f8-green:       #1A6B3A; --f8-green-tint: #EAF6EE;
+  --f8-purple:      #5B3FA6; --f8-purple-tint: #F2EFFF;
+  --f8-rose:        #9B1D4A; --f8-rose-tint: #FCEEF4;
+  --f8-red:         #C0392B; --f8-red-tint: #FDEEEC;
+  --f8-slate:       #3D5166; --f8-slate-tint: #EDF1F5;
+  --f8-off-white:   #F5F7FA; --f8-fog: #E6ECF2; --f8-mist: #C9D2DD;
+  --f8-grey:        #6B7A99; --f8-ink: #1A1A2E; --f8-ink-soft: #3A3F55;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --r-md: 8px; --r-lg: 12px; --r-xl: 16px;
+  --shadow-1: 0 1px 3px rgba(10,22,40,0.06);
+  --shadow-2: 0 4px 16px rgba(10,22,40,0.08), 0 1px 3px rgba(10,22,40,0.04);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); background: var(--f8-off-white); color: var(--f8-ink); padding: 36px 24px 60px; -webkit-font-smoothing: antialiased; }
+
+/* HEADER */
+.header { max-width: 920px; margin: 0 auto 28px; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--f8-blue); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--f8-blue-bright); flex-shrink: 0; }
+h1 { font-size: clamp(26px, 4vw, 42px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--f8-navy); margin-bottom: 14px; }
+h1 em { font-style: italic; color: var(--f8-blue); font-weight: 700; }
+.subtitle { font-size: 15px; color: var(--f8-ink-soft); max-width: 680px; line-height: 1.7; }
+.role-legend { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; align-items: center; }
+.role-legend-label { font-size: 11px; font-weight: 600; color: var(--f8-grey); text-transform: uppercase; letter-spacing: 0.1em; }
+.role-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; }
+.role-pill-cio  { background: #EEF6FF; color: var(--f8-blue-deep); border: 1px solid #B3D8F4; }
+.role-pill-po   { background: var(--f8-rose-tint); color: var(--f8-rose); border: 1px solid #F0B8CE; }
+.role-pill-both { background: var(--f8-purple-tint); color: var(--f8-purple); border: 1px solid #C9BFF0; }
+.role-pill-sm   { background: var(--f8-slate-tint); color: var(--f8-slate); border: 1px solid #B8C8D8; }
+.role-pill-dot  { width: 6px; height: 6px; border-radius: 50%; }
+.role-pill-cio .role-pill-dot  { background: var(--f8-blue); }
+.role-pill-po .role-pill-dot   { background: var(--f8-rose); }
+.role-pill-both .role-pill-dot { background: var(--f8-purple); }
+.role-pill-sm .role-pill-dot   { background: var(--f8-slate); }
+.version-tag { font-size: 10px; color: var(--f8-grey); margin-top: 10px; letter-spacing: 0.05em; }
+
+/* READINESS CHECK */
+.readiness-wrap { max-width: 920px; margin: 0 auto 24px; border: 2px solid var(--f8-blue); border-radius: var(--r-xl); overflow: hidden; }
+.readiness-header { background: var(--f8-blue); padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; gap: 12px; }
+.readiness-badge { background: rgba(255,255,255,0.2); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; }
+.readiness-title { font-size: 14px; font-weight: 700; color: #fff; }
+.readiness-subtitle { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+.readiness-chevron { color: #fff; font-size: 18px; transition: transform 0.2s; flex-shrink: 0; }
+.readiness-wrap.open .readiness-chevron { transform: rotate(180deg); }
+.readiness-body { display: none; background: #fff; padding: 22px 24px; }
+.readiness-wrap.open .readiness-body { display: block; }
+.readiness-intro { font-size: 13.5px; color: var(--f8-ink-soft); line-height: 1.65; margin-bottom: 18px; }
+.rq-list { display: grid; gap: 10px; margin-bottom: 20px; }
+.rq-item { display: flex; align-items: flex-start; gap: 14px; padding: 12px 16px; border-radius: var(--r-md); border: 1.5px solid var(--f8-fog); }
+.rq-item.yes { border-color: var(--f8-green); background: var(--f8-green-tint); }
+.rq-item.no  { border-color: var(--f8-red);   background: var(--f8-red-tint); }
+.rq-num { font-size: 11px; font-weight: 700; color: var(--f8-grey); width: 18px; flex-shrink: 0; padding-top: 2px; }
+.rq-text { font-size: 13.5px; color: var(--f8-ink); line-height: 1.5; flex: 1; }
+.rq-btns { display: flex; gap: 6px; flex-shrink: 0; }
+.rq-btn { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; border: 1.5px solid var(--f8-mist); background: transparent; cursor: pointer; color: var(--f8-grey); font-family: var(--font-sans); transition: all 0.15s; }
+.rq-btn:hover { border-color: var(--f8-blue); color: var(--f8-blue); }
+.rq-btn.selected-yes { background: var(--f8-green); border-color: var(--f8-green); color: #fff; }
+.rq-btn.selected-no  { background: var(--f8-red);   border-color: var(--f8-red);   color: #fff; }
+.readiness-result { display: none; padding: 16px 20px; border-radius: var(--r-md); }
+.readiness-result.show { display: block; }
+.readiness-result.r-green { background: var(--f8-green-tint); border-left: 4px solid var(--f8-green); }
+.readiness-result.r-amber { background: var(--f8-amber-tint); border-left: 4px solid var(--f8-amber); }
+.readiness-result.r-red   { background: var(--f8-red-tint);   border-left: 4px solid var(--f8-red); }
+.readiness-result-title { font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+.r-green .readiness-result-title { color: var(--f8-green); }
+.r-amber .readiness-result-title { color: var(--f8-amber); }
+.r-red   .readiness-result-title { color: var(--f8-red); }
+.readiness-result-text { font-size: 13px; line-height: 1.6; }
+.r-green .readiness-result-text { color: #155c30; }
+.r-amber .readiness-result-text { color: #7a4500; }
+.r-red   .readiness-result-text { color: #8b2218; }
+
+/* PRIMER */
+.primer-banner { max-width: 920px; margin: 0 auto 28px; background: var(--f8-navy); border-radius: var(--r-lg); padding: 20px 26px; display: flex; gap: 16px; align-items: flex-start; }
+.primer-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+.primer-body { flex: 1; }
+.primer-title { font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 6px; }
+.primer-text { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+.primer-text strong { color: #fff; font-weight: 600; }
+
+/* TABS */
+.tabs { max-width: 920px; margin: 0 auto 28px; display: flex; flex-wrap: wrap; gap: 8px; }
+.tab { padding: 8px 16px; border-radius: 40px; border: 1.5px solid var(--f8-mist); background: transparent; font-family: var(--font-sans); font-size: 13px; font-weight: 500; color: var(--f8-grey); cursor: pointer; transition: all 0.18s ease; white-space: nowrap; }
+.tab:hover { border-color: var(--f8-blue); color: var(--f8-blue); }
+.tab.active { background: var(--f8-navy); border-color: var(--f8-navy); color: #fff; }
+.tab.seq-tab { border-color: var(--f8-blue); color: var(--f8-blue); font-weight: 600; }
+.tab.seq-tab.active { background: var(--f8-blue); border-color: var(--f8-blue); color: #fff; }
+.tab.sponsor-tab.active { background: var(--f8-teal); border-color: var(--f8-teal); }
+.tab.buyin-tab { border-color: var(--f8-rose); color: var(--f8-rose); font-weight: 600; }
+.tab.buyin-tab.active { background: var(--f8-rose); border-color: var(--f8-rose); color: #fff; }
+
+/* SECTIONS */
+.sections { max-width: 920px; margin: 0 auto; }
+.section { display: none; }
+.section.visible { display: block; }
+.section-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--f8-navy); }
+.section-icon { width: 44px; height: 44px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; background: var(--f8-navy); }
+.seq-section .section-icon     { background: var(--f8-blue); }
+.sponsor-section .section-icon { background: var(--f8-teal); }
+.buyin-section .section-icon   { background: var(--f8-rose); }
+.section-title { font-size: 21px; font-weight: 700; color: var(--f8-navy); margin-bottom: 3px; letter-spacing: -0.01em; }
+.section-desc  { font-size: 13px; color: var(--f8-grey); }
+
+/* ACTION CARDS */
+.actions-grid { display: grid; gap: 12px; }
+.action-card { background: #fff; border-radius: var(--r-lg); padding: 20px 22px; border-left: 4px solid var(--f8-blue); box-shadow: var(--shadow-1); transition: box-shadow 0.2s ease; }
+.action-card:hover { box-shadow: var(--shadow-2); }
+.sponsor-section .action-card { border-left-color: var(--f8-teal); }
+.seq-section .action-card     { border-left-color: var(--f8-blue-bright); }
+.buyin-section .action-card   { border-left-color: var(--f8-rose); }
+.action-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.action-title  { font-weight: 600; font-size: 15px; color: var(--f8-navy); line-height: 1.3; }
+.badges { display: flex; gap: 5px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+.badge { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; padding: 3px 8px; border-radius: 20px; text-transform: uppercase; white-rap: nowrap; }
+.badge-sprint  { background: var(--f8-blue-tint);   color: var(--f8-blue-deep); }
+.badge-quarter { background: var(--f8-amber-tint);  color: var(--f8-amber); }
+.badge-impact  { background: var(--f8-purple-tint); color: var(--f8-purple); }
+.badge-cio     { background: #EEF6FF;               color: var(--f8-blue-deep); border: 1px solid #B3D8F4; }
+.badge-po      { background: var(--f8-rose-tint);   color: var(--f8-rose);      border: 1px solid #F0B8CE; }
+.badge-both    { background: var(--f8-purple-tint); color: var(--f8-purple);    border: 1px solid #C9BFF0; }
+.badge-sm      { background: var(--f8-slate-tint);  color: var(--f8-slate);     border: 1px solid #B8C8D8; }
+.badge-rel     { background: var(--f8-red-tint);    color: var(--f8-red);       border: 1px solid #F5C5BF; }
+.action-body { font-size: 13.5px; color: #444; line-height: 1.7; }
+.action-body strong { font-weight: 600; color: var(--f8-navy); }
+.action-body + .action-body { margin-top: 10px; }
+
+/* INLINE NOTES — max 2 per card */
+.note { margin-top: 11px; padding: 9px 13px; border-radius: var(--r-md); font-size: 12.5px; font-weight: 400; line-height: 1.55; }
+.note strong { font-weight: 700; }
+.note-green  { background: var(--f8-green-tint); border-left: 3px solid var(--f8-green);  color: #155c30; }
+.note-green strong  { color: var(--f8-green); }
+.note-purple { background: var(--f8-purple-tint); border-left: 3px solid var(--f8-purple); color: #3d2880; }
+.note-purple strong { color: var(--f8-purple); }
+.note-slate  { background: var(--f8-slate-tint);  border-left: 3px solid var(--f8-slate);  color: #2c3d4f; }
+.note-slate strong  { color: var(--f8-slate); }
+.note-red    { background: var(--f8-red-tint);    border-left: 3px solid var(--f8-red);    color: #8b2218; }
+.note-red strong    { color: var(--f8-red); }
+.note-amber  { background: var(--f8-amber-tint);  border-left: 3px solid var(--f8-amber);  color: #7a4500; }
+.note-amber strong  { color: var(--f8-amber); }
+
+/* SEQUENCE */
+.seq-step { background: #fff; border-radius: var(--r-lg); padding: 20px 22px; display: flex; gap: 18px; align-items: flex-start; box-shadow: var(--shadow-1); }
+.seq-step + .seq-step { margin-top: 12px; }
+.seq-num { width: 36px; height: 36px; border-radius: 50%; background: var(--f8-blue); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.seq-content { flex: 1; }
+.seq-meta { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--f8-blue); margin-bottom: 5px; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.seq-title { font-weight: 700; font-size: 15px; color: var(--f8-navy); margin-bottom: 6px; }
+.seq-body  { font-size: 13.5px; color: #444; line-height: 1.65; }
+.seq-body strong { font-weight: 600; color: var(--f8-navy); }
+
+/* TIMING TRACKS */
+.timing-tracks { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
+.track { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.track-sme { background: var(--f8-blue-tint);  color: var(--f8-blue-deep); }
+.track-ent { background: var(--f8-slate-tint); color: var(--f8-slate); }
+
+/* RULE BOX */
+.rule-box { border-radius: var(--r-lg); padding: 16px 22px; margin-bottom: 22px; display: flex; gap: 14px; align-items: center; }
+.rule-box-blue  { background: var(--f8-blue); }
+.rule-box-slate { background: var(--f8-slate); }
+.rule-box-rose  { background: var(--f8-rose); }
+.rule-box-icon { font-size: 24px; flex-shrink: 0; }
+.rule-box-text { font-size: 13.5px; color: #fff; line-height: 1.6; }
+.rule-box-text strong { font-weight: 700; }
+
+/* DATA PREREQ */
+.data-prereq { background: #fff; border-radius: var(--r-lg); padding: 18px 22px; margin-bottom: 22px; border: 2px dashed var(--f8-purple); box-shadow: var(--shadow-1); }
+.data-prereq-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.data-prereq-icon  { width: 36px; height: 36px; border-radius: var(--r-md); background: var(--f8-purple-tint); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+.data-prereq-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--f8-purple); margin-bottom: 2px; }
+.data-prereq-title { font-size: 15px; font-weight: 700; color: var(--f8-navy); }
+.data-prereq-body  { font-size: 13.5px; color: #444; line-height: 1.65; }
+.data-prereq-body strong { font-weight: 600; color: var(--f8-navy); }
+.access-template { margin-top: 12px; background: var(--f8-off-white); border-radius: var(--r-md); padding: 12px 15px; border: 1px solid var(--f8-fog); }
+.access-template-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--f8-purple); margin-bottom: 7px; }
+.access-template-text  { font-size: 13px; color: var(--f8-ink-soft); line-height: 1.65; font-style: italic; }
+.access-template-text em { font-style: normal; font-weight: 600; color: var(--f8-navy); }
+
+/* TRANSLATION TABLE */
+.translation-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-1); margin-top: 0; }
+.translation-table th { background: var(--f8-navy); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 18px; text-align: left; }
+.translation-table td { padding: 12px 18px; font-size: 13px; border-bottom: 1px solid var(--f8-fog); vertical-align: top; line-height: 1.5; }
+.translation-table tr:last-child td { border-bottom: none; }
+.translation-table tr:hover td { background: var(--f8-off-white); }
+.it-col  { color: var(--f8-grey); font-style: italic; }
+.biz-col { color: var(--f8-navy); font-weight: 600; }
+.why-col { color: var(--f8-ink-soft); font-size: 12.5px; }
+
+/* PERSONA CARDS */
+.persona-card { background: #fff; border-radius: var(--r-lg); padding: 20px 22px; box-shadow: var(--shadow-1); border-top: 3px solid var(--f8-rose); }
+.persona-card + .persona-card { margin-top: 12px; }
+.persona-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.persona-icon { width: 42px; height: 42px; border-radius: 50%; background: var(--f8-rose-tint); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.persona-name { font-weight: 700; font-size: 15px; color: var(--f8-navy); }
+.persona-pain { font-size: 12px; color: var(--f8-grey); margin-top: 2px; }
+.persona-body { font-size: 13.5px; color: #444; line-height: 1.65; }
+.persona-body strong { font-weight: 600; color: var(--f8-navy); }
+.invite-script { margin-top: 12px; padding: 13px 16px; background: var(--f8-off-white); border-radius: var(--r-md); border: 1px solid var(--f8-fog); }
+.invite-script-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--f8-slate); margin-bottom: 7px; }
+.invite-script-text  { font-size: 13px; color: var(--f8-ink-soft); line-height: 1.6; font-style: italic; }
+.invite-script-text em { font-style: normal; font-weight: 600; color: var(--f8-navy); }
+.culture-note { margin-top: 7px; font-size: 12px; color: var(--f8-grey); font-style: italic; }
+
+/* CAPACITY AUDIT */
+.capacity-audit { margin-top: 12px; padding: 12px 15px; background: var(--f8-amber-tint); border-radius: var(--r-md); border-left: 3px solid var(--f8-amber); }
+.capacity-audit-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--f8-amber); margin-bottom: 7px; }
+.capacity-audit-body  { font-size: 13px; color: #7a4500; line-height: 1.6; }
+.capacity-audit-body strong { font-weight: 700; color: #5c3300; }
+
+/* STAT STRIP */
+.stat-strip { display: flex; margin-top: 44px; background: var(--f8-navy); border-radius: var(--r-lg); overflow: hidden; max-width: 920px; margin-left: auto; margin-right: auto; }
+.stat-item { flex: 1; padding: 22px 20px; border-right: 1px solid rgba(255,255,255,0.08); }
+.stat-item:last-child { border-right: none; }
+.stat-num   { font-size: 28px; font-weight: 800; color: var(--f8-blue-bright); letter-spacing: -0.03em; line-height: 1; }
+.stat-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="eyebrow"><span class="eyebrow-dot"></span>facilit8 · IT-Business Agile Alignment · CIO &amp; Product Owner Edition</div>
+  <h1>Speak the <em>Same Language:</em><br>The CIO &amp; Product Owner Playbook<br>for Agile Commercial Delivery</h1>
+  <p class="subtitle">Practical actions for CIOs and Product Owners who want IT delivery measured by commercial outcomes, not sprint velocity. Built around Scrum cadences.</p>
+  <div class="role-legend">
+    <span class="role-legend-label">Role guide:</span>
+    <span class="role-pill role-pill-cio"><span class="role-pill-dot"></span>CIO</span>
+    <span class="role-pill role-pill-po"><span class="role-pill-dot"></span>PO</span>
+    <span class="role-pill role-pill-both"><span class="role-pill-dot"></span>Both</span>
+    <span class="role-pill role-pill-sm"><span class="role-pill-dot"></span>SM</span>
+  </div>
+  <div class="version-tag">v4 — facilit8 · Agile Commercial Alignment Series · 2026</div>
+</div>
+
+<!-- READINESS CHECK -->
+<div class="readiness-wrap" id="readiness">
+  <div class="readiness-header" onclick="toggleReadiness()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span class="readiness-badge">Step 0</span>
+      <div>
+        <div class="readiness-title">Relationship Readiness Check — Complete Before Deploying Any Action</div>
+        <div class="readiness-subtitle">5 questions · 2 minutes · tells you where to start</div>
+      </div>
+    </div>
+    <span class="readiness-chevron">▾</span>
+  </div>
+  <div class="readiness-body">
+    <p class="readiness-intro">Several actions in this playbook require existing access to senior business leaders. Deploying them without that foundation produces polite declines, not alignment. Answer these five questions to find out where to begin.</p>
+    <div class="rq-list">
+      <div class="rq-item" id="rq1"><div class="rq-num">Q1</div><div class="rq-text">Can you get 30 minutes with the CFO in the next two weeks — informally, without going through their PA?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq1','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq1','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq2"><div class="rq-num">Q2</div><div class="rq-text">In the last 6 months, has a business leader asked IT for input on a commercial decision — unprompted?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq2','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq2','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq3"><div class="rq-num">Q3</div><div class="rq-text">Does IT currently have read access to any Finance or Sales commercial data — revenue figures, pipeline value, or cost-per-transaction?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq3','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq3','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq4"><div class="rq-num">Q4</div><div class="rq-text">Is there at least one business leader who would advocate for IT at Board level — someone who believes IT has delivered real commercial value?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq4','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq4','no',this)">No</button></div></div>
+      <div class="rq-item" id="rq5"><div class="rq-num">Q5</div><div class="rq-text">In the last quarter, did IT deliver something a business leader referenced positively in a meeting — without being prompted?</div><div class="rq-btns"><button class="rq-btn" onclick="answer('rq5','yes',this)">Yes</button><button class="rq-btn" onclick="answer('rq5','no',this)">No</button></div></div>
+    </div>
+    <div class="readiness-result" id="r-result"></div>
+  </div>
+</div>
+
+<!-- PRIMER -->
+<div class="primer-banner">
+  <div class="primer-icon">🧭</div>
+  <div class="primer-body">
+    <div class="primer-title">Before you change anything — spend Sprint 1 listening.</div>
+    <div class="primer-text">Sit in on <strong>2–3 commercial team meetings</strong> before redesigning any ceremony. Ask the CFO, CMO, and COO one question each: "What does IT deliver that you couldn't run the business without?" Their answers reveal the alignment gaps — and the quick wins.</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab seq-tab active" onclick="show('sequence', this)">⚡ Start Here</button>
+  <button class="tab" onclick="show('language', this)">🗣 Commercial Language</button>
+  <button class="tab" onclick="show('backlog', this)">📋 Backlog &amp; Prioritisation</button>
+  <button class="tab" onclick="show('rituals', this)">🔄 Sprint-to-Value Rituals</button>
+  <button class="tab" onclick="show('stakeholders', this)">🤝 Stakeholder Alignment</button>
+  <button class="tab" onclick="show('metrics', this)">📊 Metrics &amp; Dashboards</button>
+  <button class="tab sponsor-tab" onclick="show('sponsor', this)">🏦 Business Sponsor Delight</button>
+  <button class="tab buyin-tab" onclick="show('buyin', this)">🎯 Making Participation Stick</button>
+</div>
+
+<div class="sections">
+
+  <!-- START HERE -->
+  <div class="section seq-section visible" id="s-sequence">
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <div class="section-meta">
+        <div class="section-title">Start Here: Alignment-First Sequence</div>
+        <div class="section-desc">Complete the Data Access Sprint Zero first, then steps 1–4 in order. These four actions deliver visible commercial contribution within 30 days.</div>
+      </div>
+    </div>
+
+    <div class="rule-box rule-box-blue">
+      <div class="rule-box-icon">📐</div>
+      <div class="rule-box-text"><strong>The rule:</strong> Alignment first, tooling second. OKR templates, metric dashboards, and ceremony redesigns are useless until business stakeholders trust that IT is on the same side. Complete steps 1–4 before restructuring any ceremony or metric.</div>
+    </div>
+
+    <div class="data-prereq">
+      <div class="data-prereq-header">
+        <div class="data-prereq-icon">🗄</div>
+        <div>
+          <div class="data-prereq-label">Prerequisite — Data Access Sprint Zero</div>
+          <div class="data-prereq-title">Secure commercial data access before deploying any metric</div>
+        </div>
+      </div>
+      <div class="data-prereq-body">Every commercial metric in this playbook requires data IT typically does not own — Finance ERP revenue figures, CRM pipeline values, support ticket costs, and retention rates. Gaining access is a <strong>political act, not a technical one</strong>. Before Sprint 1, map the following sources and confirm access status for each: Finance ERP · CRM · Service desk · HR/People · Business OKR document. Any source flagged "no access" becomes a risk item the CIO escalates before the relevant action is deployed.</div>
+      <div class="access-template">
+        <div class="access-template-label">Data access request template</div>
+        <div class="access-template-text">"<em>[Name]</em>, I'm making IT's commercial contribution measurable and need read-only access to <em>[specific dataset]</em> to calculate <em>[specific metric]</em>. I won't change anything in your systems. Can we agree an access approach before <em>[date]</em>?"</div>
+      </div>
+    </div>
+
+    <div class="seq-step">
+      <div class="seq-num">1</div>
+      <div class="seq-content">
+        <div class="seq-meta">Zero cost · fastest trust-building action <span class="badge badge-cio">CIO</span></div>
+        <div class="seq-title">"So What?" Audit of Every Active IT Metric</div>
+        <div class="seq-body">Pull every metric currently reported by IT — velocity, story points, burndown, ticket closure rate, uptime %. For each, ask: <strong>can you connect this directly to a £/$ outcome?</strong> If not, it is an internal IT metric, not a business one. Present the gap — not the solution yet — to the CFO and COO. Have an informal conversation before sending a formal calendar invite. <strong>Target: Day 10.</strong></div>
+        <div class="timing-tracks">
+          <span class="track track-sme">⚡ Scale-up / SME: Week 1–2</span>
+          <span class="track track-ent">🏢 Enterprise: Week 3–5</span>
+        </div>
+        <div class="note note-green"><strong>Success looks like:</strong> Business stakeholders who can describe what IT is working on and why it matters commercially — measured by a 5-question pulse survey at Day 30.</div>
+      </div>
+    </div>
+
+    <div class="seq-step">
+      <div class="seq-num">2</div>
+      <div class="seq-content">
+        <div class="seq-meta">Highest alignment ROI in the first 30 days <span class="badge badge-po">PO</span></div>
+        <div class="seq-title">Commercial Impact Mapping for the Live Sprint Backlog</div>
+        <div class="seq-body">For every item currently in the sprint backlog, write one sentence: <strong>"If we deliver this, what commercial outcome changes and by how much?"</strong> Items that cannot be answered move to the bottom until the business sponsor clarifies the value. Requires the PO to sit with a business stakeholder for 2–3 hours — this is not a desk exercise. Data access from Finance and CRM must be confirmed first. <strong>Target: Day 18.</strong></div>
+        <div class="timing-tracks">
+          <span class="track track-sme">⚡ Scale-up / SME: Week 2–3</span>
+          <span class="track track-ent">🏢 Enterprise: Week 4–6</span>
+        </div>
+        <div class="note note-green"><strong>Success looks like:</strong> Nearly all backlog items have a written commercial outcome statement within 60 days.</div>
+      </div>
+    </div>
+
+    <div class="seq-step">
+      <div class="seq-num">3</div>
+      <div class="seq-content">
+        <div class="seq-meta">No technology required · immediate credibility <span class="badge badge-both">Both</span></div>
+        <div class="seq-title">Invite One Business Sponsor to the Next Sprint Review</div>
+        <div class="seq-body">Identify the most commercially-minded business leader and invite them to the next sprint review. Lead with the business outcome, not the features: <strong>"We reduced quote turnaround from 4 days to same-day — estimated £X in deals unblocked."</strong> Do not send a calendar invite cold — have a brief 1:1 first: "I'd like 20 minutes to show you what this sprint delivered commercially." See the <strong>Making Participation Stick</strong> tab for persona-specific scripts. <strong>Target: next sprint review.</strong></div>
+        <div class="timing-tracks">
+          <span class="track track-sme">⚡ Scale-up / SME: next sprint review</span>
+          <span class="track track-ent">🏢 Enterprise: next sprint review + 1 (allow 2 weeks diary lead time)</span>
+        </div>
+        <div class="note note-red"><strong>Relationship prerequisite:</strong> If the Readiness Check returned amber or red, run an informal "listening meeting" before this step — share audit findings over coffee before any formal presentation. One well-run review turns a sceptic into an advocate; one poorly timed one sets you back a quarter.</div>
+      </div>
+    </div>
+
+    <div class="seq-step">
+      <div class="seq-num">4</div>
+      <div class="seq-content">
+        <div class="seq-meta">Reveals blocked commercial value IT doesn't know about <span class="badge badge-cio">CIO</span></div>
+        <div class="seq-title">Find the Top 3 "IT is Blocking Us" Pain Points</div>
+        <div class="seq-body">Ask Sales, Finance, and Operations leaders one question each: <strong>"What commercial decision are you unable to take today because of an IT constraint?"</strong> Collate the top 3 and bring them into the next sprint planning as a prioritised business pain backlog. Use 30-minute 1:1 conversations, not a group workshop — group settings produce political answers, not honest ones. <strong>Target: Day 25.</strong></div>
+        <div class="timing-tracks">
+          <span class="track track-sme">⚡ Scale-up / SME: Week 3–4</span>
+          <span class="track track-ent">🏢 Enterprise: Week 5–8 — route through existing business review cycles</span>
+        </div>
+        <div class="note note-green"><strong>Success looks like:</strong> At least one "IT is blocking us" item resolved and business leader cited in the sprint review within 45 days of the discovery conversation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMERCIAL LANGUAGE -->
+  <div class="section" id="s-language">
+    <div class="section-header">
+      <div class="section-icon">🗣</div>
+      <div class="section-meta">
+        <div class="section-title">Commercial Language</div>
+        <div class="section-desc">IT and business teams fail to align because they use different languages for the same reality. This closes the translation gap.</div>
+      </div>
+    </div>
+    <div class="actions-grid">
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Replace IT Jargon with Business Outcome Language in All External Reporting</div>
+          <div class="badges"><span class="badge badge-sprint">Sprint 1–2</span><span class="badge badge-impact">High impact</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body">Audit every IT report that goes to a non-technical stakeholder. Replace "what we did" with "what changed commercially." <strong>"We deployed the API integration"</strong> becomes <strong>"Sales can now see real-time stock in CRM — reducing lost orders by an estimated £X per month."</strong> This applies to external communications only — internal tools, velocity tracking, and burndown charts stay exactly as they are. The dev team's engineering metrics are not being replaced; they are being translated for a different audience.</div>
+        <div class="note note-purple"><strong>Language shift — stop saying:</strong> "We completed 47 story points." <strong>Start saying:</strong> "We shipped 3 capabilities that reduced customer onboarding time by 40% — equivalent to £X in reduced support cost per quarter."</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Almost all IT status reports can be read by the CFO without a follow-up question — tested at the next monthly review.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Build a Living IT–Business Glossary</div>
+          <div class="badges"><span class="badge badge-sprint">Sprint 2</span><span class="badge badge-po">PO</span></div>
+        </div>
+        <div class="action-body">Create a one-page glossary mapping IT terms to business equivalents — and business terms to IT implications. Co-author it with one business stakeholder; the act of building it together is as valuable as the document. Publish in the shared project space and reference it when misalignment surfaces in meetings. Key terms to include: Sprint → delivery cycle; Technical debt → accumulated business risk; MVP → first testable commercial version; Definition of Done → business acceptance criteria.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Reduction in meeting time spent re-explaining IT concepts — measured informally at retrospectives over 90 days.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Frame Every Sprint Goal as a Business Outcome Statement</div>
+          <div class="badges"><span class="badge badge-sprint">Every sprint</span><span class="badge badge-impact">High impact</span><span class="badge badge-po">PO</span></div>
+        </div>
+        <div class="action-body">Rewrite sprint goals using this structure: <strong>"By end of this sprint, [stakeholder] will be able to [commercial action], which means [£/$ or customer outcome]."</strong> Example: "By end of Sprint 12, Sales will be able to generate quotes directly in CRM without manual approval — reducing turnaround from 4 days to 4 hours." Write two goals per sprint: an internal one ("what we are building") and an external one ("why the business cares"). Only the external version goes to stakeholders. Invest 30 minutes per sprint in this framing; it pays back in reduced scope creep and faster sign-off. Validate any £/$ estimate with the Sales or Finance lead before it appears in a sprint goal.</div>
+        <div class="note note-slate"><strong>Dev team change management:</strong> Present the external sprint goal as a complement to the internal technical goal — not a replacement. When the team understands the commercial "why," scope creep drops naturally. The SM should co-author the external goal for the first 3 sprints.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Business sponsor can recite the sprint goal in their own words at the review — without reading from the slide.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Create a "Translate This" Standing Agenda Item</div>
+          <div class="badges"><span class="badge badge-sprint">Ongoing</span><span class="badge badge-po">PO</span></div>
+        </div>
+        <div class="action-body">Add a standing 5-minute segment to every IT–business meeting: <strong>"What did IT deliver last fortnight, in one sentence a CFO could tweet?"</strong> The PO drafts it; a business stakeholder reviews before it goes to the CFO. Costs 10 minutes per fortnight. Over time it builds a shared commercial vocabulary that makes prioritisation faster and less political.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> A business stakeholder volunteers to write the "tweet sentence" within 3 months — the signal the language shift has landed beyond IT.</div>
+      </div>
+
+    </div>
+
+    <br>
+    <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--f8-blue);margin-bottom:12px;">IT → Business Translation Table</div>
+    <table class="translation-table">
+      <thead><tr><th style="width:27%">IT Says…</th><th style="width:20%">Business Hears…</th><th style="width:28%">Say Instead…</th><th style="width:25%">Why It Matters</th></tr></thead>
+      <tbody>
+        <tr><td class="it-col">We completed 52 story points</td><td style="color:#c0392b;font-size:13px;">Nothing meaningful</td><td class="biz-col">We delivered 4 capabilities this sprint</td><td class="why-col">Points have no business context</td></tr>
+        <tr><td class="it-col">We have technical debt</td><td style="color:#c0392b;font-size:13px;">IT is behind on housekeeping</td><td class="biz-col">We carry £X in accumulated delivery risk</td><td class="why-col">Debt has a commercial cost when it bites</td></tr>
+        <tr><td class="it-col">We're refactoring the architecture</td><td style="color:#c0392b;font-size:13px;">IT is doing internal work again</td><td class="biz-col">We're removing the cap limiting us to 10k transactions/day</td><td class="why-col">Connects to growth capacity</td></tr>
+        <tr><td class="it-col">Velocity dropped this sprint</td><td style="color:#c0392b;font-size:13px;">IT is falling behind</td><td class="biz-col">We resolved a critical security issue — one sprint lost, two months of risk removed</td><td class="why-col">Context prevents misinterpretation</td></tr>
+        <tr><td class="it-col">We need another sprint on this</td><td style="color:#c0392b;font-size:13px;">IT is late again</td><td class="biz-col">Business acceptance criteria weren't defined — one more sprint to meet them</td><td class="why-col">Shared accountability, not IT blame</td></tr>
+        <tr><td class="it-col">We shipped an MVP</td><td style="color:#c0392b;font-size:13px;">IT sent something half-finished</td><td class="biz-col">We shipped version 1 to test with 50 users before building the rest</td><td class="why-col">MVP is a risk management tool</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BACKLOG -->
+  <div class="section" id="s-backlog">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-meta">
+        <div class="section-title">Backlog &amp; Prioritisation</div>
+        <div class="section-desc">A backlog without commercial value scores is a wish list. These actions connect every item to a business outcome.</div>
+      </div>
+    </div>
+    <div class="actions-grid">
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Introduce Commercial Value Scoring to Backlog Prioritisation</div>
+          <div class="badges"><span class="badge badge-sprint">Sprint 2–3</span><span class="badge badge-impact">High impact</span><span class="badge badge-po">PO</span></div>
+        </div>
+        <div class="action-body">Add a <strong>Commercial Value Score (CVS)</strong> to every backlog item before sprint planning. Score three dimensions 1–5: Revenue Impact, Cost Impact, Risk Impact. Items without a score cannot be prioritised. Takes 15 minutes per refinement session and removes the "loudest stakeholder wins" dynamic. The PO scores it in collaboration with a business stakeholder — a score assigned without business input is a guess. Finance calibrates the baseline figures for scoring before the first session.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> The majority of high-priority sprint items delivered each quarter — a clear upward trend by end of Q2.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Kill the Feature Factory — Link Every Epic to a Business Metric</div>
+          <div class="badges"><span class="badge badge-sprint">Sprint 1</span><span class="badge badge-impact">High impact</span><span class="badge badge-po">PO</span></div>
+        </div>
+        <div class="action-body">For every epic, require a <strong>"Connected Metric" field</strong>: which business KPI does this move? Revenue per customer, CAC, order processing time, churn rate? Epics with no connected metric are flagged "Unvalidated" and iced — not deleted. Spot a feature factory by counting epics with verbs like "build", "add", "create" with no metric attached. Rename each one to start with the outcome: <strong>"Reduce customer onboarding time from 5 days to 1 day."</strong> Finance or BI provides the current KPI baseline values to anchor the metrics.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Outcome epics clearly outnumber feature epics — nearly all epics framed around business results within two quarters.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Run a Quarterly Joint Backlog Replenishment Session</div>
+          <div class="badges"><span class="badge badge-quarter">Quarterly</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">CIO</span></div>
+        </div>
+        <div class="action-body">Once per quarter, schedule a <strong>joint CIO + CFO/COO backlog review</strong>: present last quarter's commercial outcomes, show the proposed backlog with CVS scores, and invite the business to redirect up to 20% of IT capacity. The business leader must present one commercial priority they want IT to solve — not just react to IT's plan. If they arrive without one, ask directly: "What commercial pain would you most like IT to remove next quarter?" Requires an existing CIO–CFO relationship; if the Readiness Check returned amber or red, run a full quarter of commercial sprint reviews first.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Drop in ad-hoc mid-sprint scope changes quarter-on-quarter — a declining trend signals improved alignment.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Create a Stakeholder Priority Conflict Protocol</div>
+          <div class="badges"><span class="badge badge-sprint">Sprint 2</span><span class="badge badge-cio">CIO</span></div>
+        </div>
+        <div class="action-body">Define and publish a simple escalation path: (1) PO identifies conflict, (2) CVS scores compared, (3) if tied, CIO and relevant C-suite sponsor resolve within 48 hours. Makes priority decisions transparent, reduces mid-sprint scope changes, and protects the delivery team from political pressure they cannot navigate alone. Baseline the current frequency of mid-sprint scope changes in the project management tool before launching — you need a before figure to show the improvement.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Reduction in mid-sprint scope changes over 90 days.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RITUALS -->
+  <div class="section" id="s-rituals">
+    <div class="section-header">
+      <div class="section-icon">🔄</div>
+      <div class="section-meta">
+        <div class="section-title">Sprint-to-Value Rituals</div>
+        <div class="section-desc">Scrum ceremonies are where alignment is built or broken. Redesign them around commercial outcomes — with full dev team buy-in from the start.</div>
+      </div>
+    </div>
+
+    <div class="rule-box rule-box-slate">
+      <div class="rule-box-icon">👥</div>
+      <div class="rule-box-text"><strong>Scrum Master prerequisite:</strong> Co-design every ceremony change in this tab with your SM before it goes live. The SM is the ceremony owner — changes imposed without their buy-in will be passively undermined. See the Stakeholder Alignment tab for the SM-specific action card.</div>
+    </div>
+
+    <div class="actions-grid">
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Redesign Sprint Planning to Start with the Business Problem</div>
+          <div class="badges"><span class="badge badge-sprint">Every sprint</span><span class="badge badge-impact">High impact</span><span class="badge badge-po">PO</span></div>
+        </div>
+        <div class="action-body">Add a 15-minute commercial opener before standard sprint planning: the PO states the most important business problem being solved this sprint and what commercial success looks like. Part 2 — the team's technical planning — stays exactly as it is. Features that don't contribute to the stated commercial problem are questioned, not added by default. If the PO cannot clearly answer "what commercial problem are we solving?" — pause for 30 minutes and clarify with the business sponsor before continuing. The SM facilitates the opener for the first 3 sprints until the format feels natural.</div>
+        <div class="note note-slate"><strong>Dev team change management:</strong> Frame this as an addition, not a replacement. "We're adding a 15-minute business context opener — your technical planning process is unchanged." When the team understands the commercial why, scope creep drops naturally.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Business sponsor's satisfaction with sprint outcomes — 1–5 rating tracked over 6 sprints.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Add a "Commercial Acceptance Criterion" to the Definition of Ready</div>
+          <div class="badges"><span class="badge badge-sprint">Sprint 1</span><span class="badge badge-impact">High impact</span><span class="badge badge-po">PO</span></div>
+        </div>
+        <div class="action-body">Add to the Definition of Ready: <strong>"This story has a named commercial outcome confirmed in writing by a business stakeholder."</strong> Stories without this field are returned to refinement. Expect pushback for two sprints. By Sprint 4, business stakeholders arrive to refinement with this information ready. Introduce at the start of a new quarter with CIO backing communicated to business sponsors in advance — without top-cover, POs face resistance they cannot manage alone. Co-design the DoR update with the SM and dev team in a retrospective; when the team understands why (to stop building things nobody values), they almost universally support it.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Almost all stories enter sprint planning with a completed commercial acceptance criterion by Sprint 6.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Restructure the Sprint Review Around a "Value Delivered" Narrative</div>
+          <div class="badges"><span class="badge badge-sprint">Every sprint</span><span class="badge badge-impact">High impact</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body">Restructure the review deck: <strong>(1) Business goal reminder, (2) What we shipped, (3) What changed commercially, (4) What we learned, (5) What comes next.</strong> Keep the traditional demo segment — developers present their work as usual; the change is the commercial framing around it, not the demo itself. Works whether the sprint succeeded or not — a sprint that missed its commercial goal but generated a learning is valuable if communicated honestly. The SM runs the structural redesign; the PO writes the commercial narrative.</div>
+        <div class="note note-slate"><strong>Dev team change management:</strong> Removing the demo would signal that technical craft doesn't matter. Keep it. The commercial framing surrounds the demo — it does not replace it.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Business sponsor leaves having stated a commercial outcome in their own words — without being prompted by IT.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Add a Commercial Retrospective Segment Every 2–3 Sprints</div>
+          <div class="badges"><span class="badge badge-sprint">Every 2–3 sprints</span><span class="badge badge-po">PO</span></div>
+        </div>
+        <div class="action-body">Add a 20-minute optional extension to the standard retro: <strong>"Did our delivery move a business metric this sprint? If yes, which one and by how much? If no, what stopped it?"</strong> Include one business stakeholder. Run it as an optional extension — invite volunteers from the dev team first; attendance will grow as the format proves its value. Facilitated by the PO, not the SM. Kept separate from the technical retro to avoid conflating delivery quality with commercial impact.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Teams begin identifying commercial blockers (no adoption plan, unclear success metric) as first-class retro items — not just technical ones.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- STAKEHOLDERS -->
+  <div class="section" id="s-stakeholders">
+    <div class="section-header">
+      <div class="section-icon">🤝</div>
+      <div class="section-meta">
+        <div class="section-title">Stakeholder Alignment</div>
+        <div class="section-desc">The CIO's commercial credibility is built one conversation at a time. These actions structure the relationships that make agile delivery visible to the business.</div>
+      </div>
+    </div>
+    <div class="actions-grid">
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Establish a Monthly CIO ↔ CFO Commercial Alignment Session</div>
+          <div class="badges"><span class="badge badge-sprint">Monthly</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">CIO</span><span class="badge badge-rel">Relationship required</span></div>
+        </div>
+        <div class="action-body">Set up a <strong>standing 45-minute monthly meeting between CIO and CFO</strong> — agenda owned by the CIO, framed entirely in commercial language: (1) What IT delivered last month in £/$ terms, (2) What IT is delivering next month and its commercial target, (3) What IT investment is at risk without business clarity. Prepare a one-page "IT Commercial Impact Summary" for the first meeting and let the CFO's reaction guide the format for all future sessions. Use the Finance system for IT cost allocation, the project management tool for delivery output, and match the CFO's existing reporting format wherever possible.</div>
+        <div class="note note-red"><strong>Relationship prerequisite:</strong> Requires an existing informal CIO–CFO relationship. If Readiness Check returned amber or red, run a one-off "IT Commercial Impact" breakfast first — position as a one-time briefing, not a standing commitment. Convert to monthly only once the CFO has experienced its value.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> CFO-initiated requests for IT input on commercial decisions within 90 days — the signal the CIO has earned a seat at the commercial table.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Reposition the Product Owner as Commercial Proxy</div>
+          <div class="badges"><span class="badge badge-sprint">Sprint 1</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">CIO</span></div>
+        </div>
+        <div class="action-body">Redefine the PO role: accountable for commercial outcomes, not feature delivery. The PO has authority to say no to requests that cannot be connected to a commercial goal, and attends commercial planning meetings alongside sprint ceremonies. This requires the CIO to back the PO publicly and the business to accept that the PO can push back. New accountability line: <strong>"Responsible for ensuring every sprint delivers measurable commercial value — not just working software."</strong></div>
+        <div class="capacity-audit">
+          <div class="capacity-audit-label">PO Capacity Audit — run before repositioning</div>
+          <div class="capacity-audit-body">The commercial proxy role requires <strong>4–6 hours per sprint</strong> of additional time. Create that capacity before assigning the responsibility — not on top of a full existing workload. Delegate: backlog entry and formatting (to a Business Analyst or senior developer), stakeholder scheduling (to a project coordinator), technical acceptance testing (to QA lead). Also run a <strong>2-hour commercial literacy workshop</strong> for the PO — basic P&amp;L reading and how to hold a business value conversation with a CFO. The CFO's finance team typically delivers this better than an external trainer.</div>
+        </div>
+        <div class="note note-green"><strong>Success looks like:</strong> Almost all sprint items personally connected to a commercial outcome before sprint planning — the signal the PO is operating as a true commercial proxy.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Bring the Scrum Master Into the Commercial Alignment Agenda</div>
+          <div class="badges"><span class="badge badge-sprint">Sprint 1</span><span class="badge badge-impact">High impact</span><span class="badge badge-sm">SM</span></div>
+        </div>
+        <div class="action-body">The SM is the ceremony owner and the most important person in this playbook who is not the CIO or PO. Brief them first — before any ceremony is redesigned, before any business stakeholder is invited, before any language shift is announced. Start with a 1:1 between CIO and SM: present the commercial alignment vision and ask: <strong>"What's your biggest concern about this?"</strong> Their answer tells you exactly where to build safeguards. The SM's role: (1) co-design all ceremony changes, (2) facilitate the first 3 iterations of any new format, (3) protect the dev team from commercial pressure that bypasses agreed process, (4) give the CIO honest feedback when something is not landing. "The SM and I designed this together" is the sentence that makes ceremony changes stick.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> SM proactively suggests a commercial alignment improvement within 90 days — the signal they have internalised the agenda rather than merely complying.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Design Cross-Functional Squads Around Commercial Journeys</div>
+          <div class="badges"><span class="badge badge-quarter">Quarterly review</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">CIO</span></div>
+        </div>
+        <div class="action-body">Restructure squads around <strong>commercial journeys</strong> — Quote-to-Cash, Customer Onboarding, Renewal &amp; Retention — rather than IT systems (the CRM squad, the ERP squad). Each squad owns an end-to-end business outcome, not a technology component. Before reorganising, map current squad structure to commercial journeys — often the structure is right but naming and accountability are wrong; fix those first. Use HR/org chart, service desk data, and Sales or CS ops to map the journeys accurately.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Business stakeholder satisfaction with IT responsiveness at 90 days post-restructure — quarterly pulse survey.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Send a Weekly "IT Is Working On This For You" Digest</div>
+          <div class="badges"><span class="badge badge-sprint">Weekly</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body">Send a <strong>weekly 5-bullet digest to all C-suite and business leadership</strong> — what IT is delivering this week, one sentence per item, commercial language only. No ticket numbers, no story points. Example: "(1) Sales can see customer order history in CRM without switching systems — saving ~20 min per rep per day. (2) Finance automated month-end reconciliation for product category X — 8 hours of manual work removed." Costs 30 minutes per week. Have a business stakeholder validate time-saving estimates before they go to the CFO.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> C-suite leaders who reference the digest in other meetings within 60 days.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="section" id="s-metrics">
+    <div class="section-header">
+      <div class="section-icon">📊</div>
+      <div class="section-meta">
+        <div class="section-title">Metrics &amp; Dashboards</div>
+        <div class="section-desc">If your IT dashboard is full of green RAG statuses and zero £/$ figures, you are measuring delivery health — not commercial contribution.</div>
+      </div>
+    </div>
+    <div class="actions-grid">
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Replace Velocity with Time-to-Commercial-Value as the Primary Delivery Metric</div>
+          <div class="badges"><span class="badge badge-sprint">Sprint 3</span><span class="badge badge-impact">High impact</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body"><strong>Time-to-Commercial-Value (TtCV)</strong> measures how quickly IT turns a business problem into a live outcome — from "problem identified in sprint planning" to "commercial outcome confirmed live by business stakeholder." A team with low velocity but fast TtCV outperforms a high-velocity team shipping features nobody uses. Report TtCV alongside velocity initially; within 2 quarters it becomes the metric business stakeholders track. Introduce it to the dev team as an addition, not a replacement — some teams find it motivating; others find it adds pressure. Run a retro discussion first: "What does this metric mean for how we work?" before adding it to any stakeholder dashboard. Initially manual — log until a pattern is established using the project management tool and stakeholder sign-off dates.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Average time-to-commercial-value clearly and measurably shorter per product team — a consistent reduction across two quarters.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Build a Commercial Outcomes Dashboard — Not an IT Operations Dashboard</div>
+          <div class="badges"><span class="badge badge-quarter">Quarter 1</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">CIO</span></div>
+        </div>
+        <div class="action-body">Create one dashboard for business stakeholders showing: <strong>Revenue impact this quarter (£/$ estimate), Cost savings confirmed, Customer outcome improvements (NPS delta, onboarding time, support reduction), and Risk items resolved.</strong> Exclude uptime %, incident counts, and deployment frequency — those are IT operations metrics. Build it with the CFO's input: "If you could see one IT-driven commercial metric every week, what would it be?" Build that first. Use Finance ERP, CRM, Customer Success data, and the BI tool the CFO already trusts — match their existing format.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> CFO uses this dashboard in board reporting within 90 days.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Quantify Technical Debt in Business £/$ Terms</div>
+          <div class="badges"><span class="badge badge-quarter">Quarter 1</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">CIO</span></div>
+        </div>
+        <div class="action-body">For each major debt item, calculate: <strong>what is the likelihood of a business-facing failure in 12 months, and what would that cost</strong> in downtime, lost revenue, regulatory fine, or churn? Present the top 5 as a business risk investment case, not an IT modernisation request. Data required: Finance for downtime cost model and revenue-per-hour-of-unavailability; Legal/Compliance for regulatory fine exposure; Service desk for historical incident data; SLA contracts for customer churn penalty clauses. CFOs approve risk mitigation budgets far more readily than "platform upgrades."</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Technical debt investment approved as a risk mitigation budget line within 2 quarters.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Align Product Team OKRs Directly to Business OKRs</div>
+          <div class="badges"><span class="badge badge-quarter">Quarterly</span><span class="badge badge-impact">High impact</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body">Business OKRs are set first; product team OKRs are written as contributing sub-goals. If the business OKR is "Increase customer retention by 15%," a product team OKR should be: <strong>"Reduce time-to-onboard from 5 days to 1 day — supporting retention target."</strong> Block 2 hours of joint CIO and business planning time in the first week of every quarter for OKR alignment — not the last week when OKRs are already drafted. IT must receive the business OKR document before setting its own. Use Finance for KPI baseline values and whatever OKR tracking tool is already in place.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Every product team OKR directly linked to a parent business OKR by end of Q2.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SPONSOR DELIGHT -->
+  <div class="section sponsor-section" id="s-sponsor">
+    <div class="section-header">
+      <div class="section-icon">🏦</div>
+      <div class="section-meta">
+        <div class="section-title">Business Sponsor Delight</div>
+        <div class="section-desc">IT earns its budget when it speaks in commercial impact. These actions make the CIO indispensable to the CFO and board.</div>
+      </div>
+    </div>
+    <div class="actions-grid">
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Produce an IT Commercial ROI Statement — Quarterly</div>
+          <div class="badges"><span class="badge badge-quarter">Quarterly</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">CIO</span></div>
+        </div>
+        <div class="action-body">Publish a one-page <strong>IT Commercial ROI Statement</strong>: total IT investment this quarter vs. estimated commercial value delivered (revenue supported, cost removed, risk mitigated). It will be imprecise at first — and that is fine. Be transparent: present ranges ("between £X and £Y depending on adoption rate") and offer to work with Finance to refine. A conservative, honest ROI claim builds more trust than a precise one that gets challenged. Data required: Finance ERP for IT cost allocation; CRM for revenue pipeline influenced; Operations for cost savings; Legal/Compliance for risk exposure values resolved.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> CFO references the IT ROI Statement in a board meeting or business case within 6 months.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Model the Commercial Impact of a 2-Week Reduction in Cycle Time</div>
+          <div class="badges"><span class="badge badge-sprint">Sprint 2</span><span class="badge badge-impact">High impact</span><span class="badge badge-both">Both</span></div>
+        </div>
+        <div class="action-body">Take the current average cycle time from "business problem identified" to "feature live." Calculate what a <strong>2-week reduction</strong> means commercially: faster time to market, more customer feedback cycles per year, reduced cost of delayed decisions. Present the model alongside the specific agile improvement investments required. Data required: project management tool for historic cycle time data (at least 6 sprints); Finance and Sales for cost of delayed features; product team for capacity model for proposed improvements.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> IT capability investment approved by CFO within one quarter of the model being presented.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Present a "Revenue at Risk from IT Constraints" Map</div>
+          <div class="badges"><span class="badge badge-quarter">Quarterly</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">CIO</span><span class="badge badge-rel">Relationship required</span></div>
+        </div>
+        <div class="action-body">Identify the <strong>top 5 commercial opportunities the business cannot pursue</strong> due to IT constraints — missing integrations, platform limitations, data quality gaps, capacity bottlenecks. Quantify the revenue or cost impact. Present as a "Revenue at Risk" map to CFO and Board. Validate the framing with the CFO in private before taking it to the Board — make the CFO a co-presenter, not a surprised recipient. Data required: Sales pipeline for stalled deals attributable to IT gaps; Finance for cost of manual workarounds; business leads for qualitative input.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> IT investment decisions accelerated as a direct result of the Revenue at Risk framing — vs. historical multi-quarter approval cycles.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Proactively Eliminate Low-Commercial-Value IT Spend</div>
+          <div class="badges"><span class="badge badge-sprint">Sprint 1</span><span class="badge badge-impact">High impact</span><span class="badge badge-cio">CIO</span></div>
+        </div>
+        <div class="action-body">Cut IT spend that cannot be tied to a business outcome — legacy licences, unused integrations, low-adoption platforms, maintenance contracts with no commercial owner — and reallocate to high-ROI delivery. More credibility is built by cutting £50k of wasteful IT spend than by delivering a £200k project on time. Data required: Finance for IT cost allocation and licence inventory; IT asset management for SaaS usage analytics; Procurement for contract renewal dates and exit clauses.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> £ of IT spend reallocated from low to high commercial value within 60 days; CFO acknowledgement in writing.</div>
+      </div>
+
+      <div class="action-card">
+        <div class="action-header">
+          <div class="action-title">Co-Author the Next Major IT Business Case With the CFO</div>
+          <div class="badges"><span class="badge badge-quarter">Next investment cycle</span><span class="badge badge-cio">CIO</span><span class="badge badge-rel">Relationship required</span></div>
+        </div>
+        <div class="action-body">Move from IT writing a business case that Finance challenges, to <strong>CIO and CFO co-authoring it together</strong> — commercial rationale written by Finance, delivery commitment written by IT. A CFO who has co-authored a business case is invested in its success, not looking for reasons to cut the budget at year-end. Data required: Finance for investment appraisal model and hurdle rates; IT delivery team for capacity and timeline estimates; historic project ROI data to benchmark expected returns.</div>
+        <div class="note note-green"><strong>Success looks like:</strong> Business case approved faster than the organisational average — and CFO listed as a co-sponsor in the approval documentation.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MAKING PARTICIPATION STICK -->
+  <div class="section buyin-section" id="s-buyin">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <div class="section-meta">
+        <div class="section-title">Making Business Participation Stick</div>
+        <div class="section-desc">Business leaders won't engage with IT ceremonies unless they see what's in it for them. A direct invitation script per persona — with a note on cultural adaptation.</div>
+      </div>
+    </div>
+
+    <div class="rule-box rule-box-rose">
+      <div class="rule-box-icon">🎯</div>
+      <div class="rule-box-text"><strong>On the invitation scripts below:</strong> Each script is written for direct-communication cultures — German, Swiss, Scandinavian contexts where brevity and low-spin language are the norm. In relationship-led cultures (UK, US, Australia), add one sentence of context before the ask. The scripts are intentionally short: long, framed invitations read as sales-speak to most senior leaders regardless of culture.</div>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">💼</div>
+        <div>
+          <div class="persona-name">The CFO</div>
+          <div class="persona-pain">"Is IT spend generating a return, or is it a sunk cost?"</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        The CFO engages when IT gives them <strong>earlier visibility of financial risk and return.</strong> They do not care about sprint velocity. Frame every interaction as a financial conversation, not a technology update. Make them leave knowing the £ value of what IT delivered and what is at financial risk if next sprint's priority slips.
+        <br><br>
+        <strong>What kills engagement immediately:</strong> Opening with a burndown chart, mentioning story points, or showing any slide that uses the word "infrastructure" without a cost or revenue number attached.
+      </div>
+      <div class="invite-script">
+        <div class="invite-script-label">Invitation script</div>
+        <div class="invite-script-text">"<em>[Name]</em>, sprint review is <em>[date]</em>. I'll show you what IT delivered this fortnight in £ terms and need your view on one priority decision. 20 minutes. No prep needed."</div>
+      </div>
+      <div class="culture-note">For relationship-led cultures, add one sentence of context first: "We've been working on aligning IT delivery to your commercial targets — I'd like to show you the first results."</div>
+      <div class="note note-green"><strong>Success looks like:</strong> CFO attends at least 1 in 3 sprint reviews within 90 days and initiates a follow-up conversation about IT priorities without being asked.</div>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">⚙️</div>
+        <div>
+          <div class="persona-name">The COO / Head of Operations</div>
+          <div class="persona-pain">"IT keeps promising efficiency gains that never show up in my cost base."</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        The COO's scepticism is rational — they have watched features ship and nothing change. Show before-and-after data on a specific operational metric before asking for anything. Even a directional change ("order processing time dropped from 3.2 to 2.8 days") is more compelling than any feature demo. Rather than pulling them into an IT meeting, ask for 10 minutes on their Ops review call — on their turf, in their language.
+      </div>
+      <div class="invite-script">
+        <div class="invite-script-label">Invitation script</div>
+        <div class="invite-script-text">"<em>[Name]</em>, can I have 10 minutes at your Ops review on <em>[date]</em>? I have before-and-after data on <em>[metric]</em> from this sprint and one question for you."</div>
+      </div>
+      <div class="culture-note">This script works across cultures — COOs respond to specificity over framing regardless of geography.</div>
+      <div class="note note-green"><strong>Success looks like:</strong> COO proactively raises an operational pain point for IT to solve within 60 days.</div>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">📈</div>
+        <div>
+          <div class="persona-name">The Head of Sales / CRO</div>
+          <div class="persona-pain">"Every IT project creates work for my team before it speeds us up."</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        The key is <strong>proof before promise.</strong> Show a small, fast win that saves a salesperson 20 minutes per day. Ask for nothing in return. Then ask if they'd like more. Never ask salespeople to enter more data, change their process, or attend training — even if the long-term benefit is clear. IT absorbs the transition cost before asking Sales to change behaviour.
+      </div>
+      <div class="invite-script">
+        <div class="invite-script-label">Invitation script</div>
+        <div class="invite-script-text">"<em>[Name]</em>, we shipped a change to <em>[specific task]</em> this sprint. Can your team tell me in <em>[X days]</em> whether it actually saves them time? 5 minutes of feedback is all I need."</div>
+      </div>
+      <div class="culture-note">For relationship-led cultures: "We've been working on removing a friction point for your team — I'd like 5 minutes of feedback on whether it's landed."</div>
+      <div class="note note-green"><strong>Success looks like:</strong> Sales leader volunteers a team member to test the next sprint's delivery before it goes live.</div>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">📣</div>
+        <div>
+          <div class="persona-name">The CMO / Head of Marketing</div>
+          <div class="persona-pain">"IT can't move at campaign speed — by the time they deliver, the market has moved."</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        The fix is not pretending IT can move faster. It is <strong>involving Marketing earlier in sprint planning</strong> so IT capacity is shaped by the commercial calendar, not the other way around. Read the calendar — know the product launch is in 8 weeks, plan accordingly, and tell Marketing "we have capacity reserved for your Q3 campaign from Sprint 14" without being asked. Speed surprises build loyal advocates: one integration delivered two weeks early will be referenced in the next budget conversation.
+      </div>
+      <div class="invite-script">
+        <div class="invite-script-label">Invitation script</div>
+        <div class="invite-script-text">"<em>[Name]</em>, planning Sprints 12–14 now. What are your top 3 IT dependencies for <em>[campaign / launch]</em>? I need them by <em>[date]</em> to block capacity."</div>
+      </div>
+      <div class="culture-note">For relationship-led cultures: "We want to make sure IT is aligned to your campaign calendar for next quarter — can you share your top 3 dependencies so we can block capacity now?"</div>
+      <div class="note note-green"><strong>Success looks like:</strong> CMO proactively includes IT in campaign planning meetings within 90 days.</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-item"><div class="stat-num">33</div><div class="stat-label">Specific actions across 8 tabs</div></div>
+  <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Max inline notes per action card</div></div>
+  <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Persona buy-in scripts with cultural guidance</div></div>
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Challenger rounds of mitigations embedded</div></div>
+</div>
+
+<script>
+  function show(id, el) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('s-' + id).classList.add('visible');
+    el.classList.add('active');
+  }
+  function toggleReadiness() { document.getElementById('readiness').classList.toggle('open'); }
+  var answers = {};
+  function answer(qid, val, btn) {
+    answers[qid] = val;
+    var item = document.getElementById(qid);
+    item.classList.remove('yes','no');
+    item.classList.add(val);
+    item.querySelectorAll('.rq-btn').forEach(function(b){ b.classList.remove('selected-yes','selected-no'); });
+    btn.classList.add(val==='yes' ? 'selected-yes' : 'selected-no');
+    if (Object.keys(answers).length === 5) { showResult(); }
+  }
+  function showResult() {
+    var yes = Object.values(answers).filter(function(v){ return v==='yes'; }).length;
+    var el = document.getElementById('r-result');
+    el.className = 'readiness-result show';
+    if (yes >= 4) {
+      el.classList.add('r-green');
+      el.innerHTML = '<div class="readiness-result-title">✅ Deploy the playbook now — you have the foundation to act.</div><div class="readiness-result-text">Start with the Alignment-First Sequence and work through the tabs in order. The Business Sponsor Delight tab and Revenue at Risk map will land well at this stage.</div>';
+    } else if (yes >= 2) {
+      el.classList.add('r-amber');
+      el.innerHTML = '<div class="readiness-result-title">⚠️ Run a relationship-building sprint first — then deploy.</div><div class="readiness-result-text">Start with the "So What?" audit, Data Access Sprint Zero, and one commercial sprint review with a single business leader. Use the Making Participation Stick tab before any other. Hold back the Board-level and CFO standing-session actions until you have 2–3 sprint review successes to reference. Allow 6–8 weeks before full deployment.</div>';
+    } else {
+      el.classList.add('r-red');
+      el.innerHTML = '<div class="readiness-result-title">🔴 Trust-building phase only — do not deploy the playbook tactics yet.</div><div class="readiness-result-text">Start with three things: (1) 1:1 listening meetings with each C-suite leader — no agenda except "what commercial problem would you most like IT to solve?", (2) Data Access Sprint Zero, (3) one small, fast commercial win visible to the business in the next 2 sprints. Return to this check in 60 days. Do not deploy the stakeholder alignment or business sponsor tabs until this returns amber or green.</div>';
+    }
+  }
+</script>
+<!-- HubSpot Analytics -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/49059754.js"></script>
+</body>
+</html>
