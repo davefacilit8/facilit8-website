@@ -159,37 +159,37 @@
   },
   "about": {
     "hero": {
-      "eyebrow": "About",
-      "headline": "Strategy without implementation is just a document.",
-      "sub": "Commercial transformation, delivered hands-on, until it sticks."
+      "eyebrow": "About facilit8",
+      "headline": "Making change easier. For your customers, your employees — and for you.",
+      "sub": "facilit8 works alongside Swiss-headquartered companies to make transformation manageable — close enough to work with the people who matter, step by step, until the change sticks."
     },
     "problem": {
-      "eyebrow": "The problem with how it usually works",
-      "lead": "Most consulting follows a familiar pattern.",
-      "body": "Senior people diagnose. Junior people deliver. A deck gets presented. A handover happens. And then the organisation is left to make it real — alone.",
-      "highlight": "facilit8 was created to close that gap."
+      "eyebrow": "Why this is harder than it looks",
+      "lead": "Most companies today are managing more change with fewer people.",
+      "body": "A generation of ERP and SaaS projects taught organisations that change cuts across teams, systems, and ways of working. That part is understood. What hasn't changed is how hard it is to make change happen when your people are improving the engine whilst maintaining speed and direction — expected to deliver their day job and lead the transformation at the same time. Technology is supposed to make things easier, faster, better. For customers. For employees. But that promise gets lost somewhere between the go-live and the handover. And when the energy fades, the new way of working never quite takes hold.",
+      "highlight": "The gap between deciding to change and making change real — that's where facilit8 works."
     },
     "founder": {
       "eyebrow": "Founder",
-      "heading": "Why I do what I do",
-      "body1": "After two decades of commercial transformation — at Capgemini, SAP, and Implement Consulting Group, and on the ground at companies like Nestlé, Clariant, and Thomas Cook — I reached a point where the most honest question I could ask myself was: where do I actually create the most value?",
-      "body2": "Over a hundred projects. B2B manufacturing, healthcare, and beyond. That experience shapes everything about how facilit8 works.",
-      "highlight": "Because transformation succeeds when people succeed.",
+      "heading": "Why I built facilit8",
+      "body1": "I've spent my career in the room where change happens — not writing reports about it afterwards, but in it. Trained in implementation-focused consultancies: Capgemini, SAP, and Implement Consulting Group, where the focus was always mid-market companies — the ones with real complexity but without a transformation department to absorb it. Working inside companies like Nestlé, Clariant, and Thomas Cook. What I noticed, consistently, is that the quality of what happens in a room changes everything. A well-run workshop doesn't just gather information. It generates energy. It surfaces the problems people were afraid to name. It turns a room of sceptics into a team that owns what comes next.",
+      "body2": "I'm a trained executive coach and experienced facilitator — which means I know how to get the best out of a group and out of a one-to-one. That combination — deep implementation experience, coaching skills, and the ability to make complexity feel manageable — is what facilit8 is built on. Not empty promises. Someone who stays in it with you, step by step, until the change sticks. Based in Switzerland, I work directly with the people driving the change — which is how skills transfer and results last.",
+      "highlight": "facilit8 means to make easier. Technology, process, people — all of it should make life better for your customers and your employees. That's what I trained for. That's what I do.",
       "credit": "David Howes — Founder, facilit8"
     },
     "beliefs": {
       "eyebrow": "Three things I believe",
-      "b1title": "Clarity before action",
-      "b1body": "Every engagement starts with an honest diagnosis — a clear-eyed view of your specific situation.",
-      "b2title": "Implementation is the job",
-      "b2body": "Making strategy real inside a real organisation, with real people, under real pressure — that is where the work happens.",
-      "b3title": "Transformation succeeds when people succeed",
-      "b3body": "Change does not happen because people understand the logic. It happens because people feel the purpose."
+      "b1title": "Technology should make things easier",
+      "b1body": "The whole point of a digital investment is to make life better — for your customers, your employees, your business. When it doesn't, something has gone wrong in how the change was designed or delivered. facilit8 works backwards from that outcome.",
+      "b2title": "Change lands through people, not projects",
+      "b2body": "Transformation doesn't fail in the planning phase. It fails at the handover — when people return to their day jobs and the new way of working never quite takes hold. Making adoption real is not a nice-to-have. It is the job.",
+      "b3title": "Step by step beats big bang",
+      "b3body": "Complex challenges don't need complex solutions. They need clear sequencing, the right conversations at the right moments, and someone who keeps asking: what's the next manageable step? Step by step isn't slow — it's how change actually sticks."
     },
     "cta": {
-      "heading": "A conversation costs nothing.",
-      "body": "If you are facing a commercial challenge — whether fully formed or still finding its shape — I am happy to talk it through.",
-      "cta": "Book a Conversation with David"
+      "heading": "If something on this page sounded familiar, that's where we start.",
+      "body": "Most people who reach out aren't sure exactly what they need. They just know something has to change — and that it's harder to do alone. A conversation costs nothing, and there's no minimum engagement size.",
+      "cta": "Talk to David"
     }
   },
   "contact": {
