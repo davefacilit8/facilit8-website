@@ -520,23 +520,23 @@ function renderToday(){
       const opts = JOB_SEARCH_ACTIVITIES.map(j=>'<option value="'+j.id+'" '+(day.jobsearchActivity===j.id?"selected":"")+'>'+j.label+'</option>').join("");
       return '<li><input type="checkbox" id="d_jobsearch_daily" '+(day.jobsearch_daily?"checked":"")+'>'+
         '<div class="check-label '+(day.jobsearch_daily?"done":"")+'"><b>'+a.label+'</b><small>'+a.why+'</small>'+
-        '<select id="d_jobsearchActivity"><option value="">Pick today\'s activity…</option>'+opts+'</select></div></li>';
+        '<select id="d_jobsearchActivity"><option value="">Pick today\\'s activity…</option>'+opts+'</select></div></li>';
     }
     if(a.id==="focus"){
       const opts = allThreadOptions.map(id=>'<option value="'+id+'" '+(day.focusThread===id?"selected":"")+'>'+THREADS[id].label+'</option>').join("");
       let activityHTML = "";
       if(day.focusThread && ACTIVITIES[day.focusThread]){
         const actOpts = ACTIVITIES[day.focusThread].map(label=>'<option value="'+label+'" '+(day.focusActivity===label?"selected":"")+'>'+label+'</option>').join("");
-        activityHTML = '<select id="d_focusActivity"><option value="">Pick today\'s activity…</option>'+actOpts+'</select>';
+        activityHTML = '<select id="d_focusActivity"><option value="">Pick today\\'s activity…</option>'+actOpts+'</select>';
       }
       return '<li><input type="checkbox" id="d_focus" '+(day.focus?"checked":"")+'>'+
         '<div class="check-label '+(day.focus?"done":"")+'"><b>Focus block</b><small>'+a.why+'</small>'+
-        '<select id="d_focusThread"><option value="">Pick today\'s thread…</option>'+opts+'</select>'+activityHTML+'</div></li>';
+        '<select id="d_focusThread"><option value="">Pick today\\'s thread…</option>'+opts+'</select>'+activityHTML+'</div></li>';
     }
     if(a.id==="reflection"){
       return '<li><input type="checkbox" id="d_reflection" '+(day.reflection?"checked":"")+'>'+
         '<div class="check-label '+(day.reflection?"done":"")+'"><b>Evening reflection</b><small>'+a.why+'</small>'+
-        '<textarea id="d_reflectionText" placeholder="What worked, what didn\'t...">'+(day.reflectionText||"")+'</textarea></div></li>';
+        '<textarea id="d_reflectionText" placeholder="What worked, what didn\\'t...">'+(day.reflectionText||"")+'</textarea></div></li>';
     }
     return '<li><input type="checkbox" id="d_'+a.id+'" '+(day[a.id]?"checked":"")+'>'+
       '<div class="check-label '+(day[a.id]?"done":"")+'"><b>'+a.label+'</b><small>'+a.why+'</small></div></li>';
@@ -551,8 +551,8 @@ function renderToday(){
   document.getElementById("view-today").innerHTML =
     '<span class="eyebrow">Today · Phase '+phase.id+' · '+phase.name+'</span>'+
     '<div class="card"><span class="eyebrow">Shape, not a checklist</span><p style="font-size:.82rem;color:var(--muted);margin:6px 0 0;">Wake & start by ~08:00 · work in blocks with real breaks for food and rest · wind down with a book, not a screen.</p></div>'+
-    '<div class="card"><h2>Today\'s anchors</h2><ul class="checklist">'+anchorItems+'</ul></div>'+
-    '<div class="card"><h2>This week\'s big rocks</h2><div class="weekly-mini">'+weeklyDone+' of '+WEEKLY_ANCHORS.length+' done this week</div><ul class="checklist">'+weeklyHTML+'</ul></div>';
+    '<div class="card"><h2>Today\\'s anchors</h2><ul class="checklist">'+anchorItems+'</ul></div>'+
+    '<div class="card"><h2>This week\\'s big rocks</h2><div class="weekly-mini">'+weeklyDone+' of '+WEEKLY_ANCHORS.length+' done this week</div><ul class="checklist">'+weeklyHTML+'</ul></div>';
 
   // bind events
   DAILY_ANCHORS.forEach(a=>{
@@ -605,7 +605,7 @@ function renderWeek(){
 
   document.getElementById("view-week").innerHTML =
     '<div class="card"><span class="eyebrow">Phase '+phase.id+'</span><h2>'+phase.name+'</h2>'+threadsHTML+'</div>'+
-    '<div class="card"><h2>This week\'s big rocks</h2><ul class="checklist">'+weeklyHTML+'</ul></div>'+
+    '<div class="card"><h2>This week\\'s big rocks</h2><ul class="checklist">'+weeklyHTML+'</ul></div>'+
     '<div class="card"><h2>All six weeks</h2>'+weekRows+'</div>';
 
   WEEKLY_ANCHORS.forEach(a=>{
