@@ -357,16 +357,21 @@ document.getElementById("toastClose").addEventListener("click", ()=>{
 });
 
 async function loadState(){
+  let state = null;
   try{
     const res = await fetch('/api/lifelens/state', { credentials:'same-origin' });
     if(res.ok){
       const data = await res.json();
-      if(data && data.state) return data.state;
+      if(data && data.state) state = data.state;
     }
   }catch(e){
     showToast("Couldn't load your saved progress.", "Starting fresh for now — refresh the page once you're back online to pick up where you left off.");
   }
-  return { settings:{startDate:null}, days:{}, weeks:{} };
+  if(!state || typeof state !== 'object') state = {};
+  if(!state.settings || typeof state.settings !== 'object') state.settings = { startDate:null };
+  if(!state.days || typeof state.days !== 'object') state.days = {};
+  if(!state.weeks || typeof state.weeks !== 'object') state.weeks = {};
+  return state;
 }
 async function saveState(){
   try{
@@ -707,12 +712,17 @@ function renderAll(){
   showTab(currentTab);
 }
 (async function init(){
-  STATE = await loadState();
-  if(!STATE.settings.startDate){
-    STATE.settings.startDate = "2026-06-29";
-    saveState();
+  try{
+    STATE = await loadState();
+    if(!STATE.settings.startDate){
+      STATE.settings.startDate = "2026-06-29";
+      saveState();
+    }
+    renderAll();
+  }catch(e){
+    console.error('LifeLENS failed to start:', e);
+    showToast("Something went wrong loading LifeLENS.", "Try refreshing the page. If it keeps happening, let David know.");
   }
-  renderAll();
 })();
 </script>
 </body>
