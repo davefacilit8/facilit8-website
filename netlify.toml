@@ -1,5 +1,7 @@
 [build]
   publish = "."
+  command = "npm install"
+  functions = "netlify/functions"
 
 [[headers]]
   for = "/*"
@@ -7,3 +9,25 @@
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/lifelens.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+
+# LifeLENS is a private, single-user tool. There is no static lifelens.html
+# file in this repo — the page only exists inside the Netlify Function below,
+# which checks a signed cookie (set after a correct password) before it will
+# ever render the real content. Anyone hitting the URL without that cookie
+# just gets a password form.
+[[redirects]]
+  from = "/lifelens.html"
+  to = "/.netlify/functions/lifelens"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/lifelens/state"
+  to = "/.netlify/functions/lifelens-state"
+  status = 200
+  force = true

@@ -4,7 +4,6 @@
     "services": "Services",
     "caseStudies": "Case Studies",
     "playbooks": "Playbooks",
-    "keystone": "Project Keystone",
     "about": "About",
     "contact": "Contact",
     "bookMeeting": "Book a Meeting"
@@ -81,9 +80,15 @@
       "secondaryCta": "About facilit8"
     },
     "stats": [
-      { "label": "Years of commercial transformation" },
-      { "label": "Projects delivered" },
-      { "label": "& international" }
+      {
+        "label": "Years of commercial transformation"
+      },
+      {
+        "label": "Projects delivered"
+      },
+      {
+        "label": "& international"
+      }
     ],
     "problem": {
       "eyebrow": "The problem",
@@ -172,9 +177,9 @@
     "founder": {
       "eyebrow": "Founder",
       "heading": "Why I built facilit8",
-      "body1": "I've spent my career in the room where change happens — not writing reports about it afterwards, but in it. Trained in implementation-focused consultancies: Capgemini, SAP, and Implement Consulting Group, where the focus was always mid-market companies — the ones with real complexity but without a transformation department to absorb it. Working inside companies like Nestlé, Clariant, and Thomas Cook. What I noticed, consistently, is that the quality of what happens in a room changes everything. A well-run workshop doesn't just gather information. It generates energy. It surfaces the problems people were afraid to name. It turns a room of sceptics into a team that owns what comes next.",
+      "body1": "I've spent my career in the room where change happens — not writing reports about it afterwards, but in it. Trained in implementation-focused consultancies: Capgemini, SAP, and Implement Consulting Group, where the focus was always companies of all sizes, often in states of acquisition, merger and inconsistent ways of working — but often without a transformation department to absorb it. Working as a commercial manager inside companies like Nestlé, Clariant, and Thomas Cook. What I noticed, consistently, is that the quality of what happens in a room changes everything. A well-run workshop doesn't just gather information. It generates energy. It surfaces the problems people were afraid to name. It turns a room of sceptics into a team that owns what comes next.",
       "body2": "I'm a trained executive coach and experienced facilitator — which means I know how to get the best out of a group and out of a one-to-one. That combination — deep implementation experience, coaching skills, and the ability to make complexity feel manageable — is what facilit8 is built on. Not empty promises. Someone who stays in it with you, step by step, until the change sticks. Based in Switzerland, I work directly with the people driving the change — which is how skills transfer and results last.",
-      "highlight": "facilit8 means to make easier. Technology, process, people — all of it should make life better for your customers and your employees. That's what I trained for. That's what I do.",
+      "highlight": "\"facilit8 means to make easier. Whether that is a more effective way to work together across functions, a 24/7 customer portal, or an AI solution to support faster pricing. Technology, process, ways of working — all change should make life better for your customers and your employees. That's what I make easier.\"",
       "credit": "David Howes — Founder, facilit8"
     },
     "beliefs": {
@@ -334,108 +339,6 @@
       "heading": "Have a different cash problem?",
       "body": "A conversation costs nothing. We'll tell you straight whether this playbook fits — or whether something else will get you further.",
       "cta": "Book a Conversation"
-    }
-  },
-  "keystone": {
-    "hero": {
-      "eyebrow": "Project Keystone",
-      "headline": "What needs to be true for an SME to operate at full organisational potential?",
-      "sub1": "Most businesses have more potential than they are realising. Not because of poor leadership. Not because of bad people. Because of the invisible gap between what an organisation has — and what it has actually managed to make work together.",
-      "sub2": "Project Keystone is a practitioner-built framework for finding that gap. And compounding past it.",
-      "cta": "Request a conversation"
-    },
-    "diagStrip": {
-      "eyebrow": "The question that opens everything",
-      "question": "\"What percentage of your organisation's potential do you think you are currently realising?\"",
-      "note": "Nobody answers 100%. The gap between their answer and 100% is the entire business case — made by them, before a single slide has been shown. For an SME, where there is no resource to waste, that gap has a real cost, every quarter."
-    },
-    "compoundStrategies": {
-      "eyebrow": "Start here",
-      "heading": "Most approaches help businesses add. Project Keystone helps SME businesses compound unrealised potential.",
-      "lead": "There is a fundamental difference between improving things one at a time — and choosing a thread that runs through everything simultaneously.",
-      "body1": "A Compound Strategy is that thread — the Rote Faden. It connects decisions at the Operating level to the forces that determine whether those decisions actually deliver their expected value: trust, psychological safety, shared ownership. These are the Quantum forces present in every project, every leadership team, every CEO's need for lasting change.",
-      "body2": "Compound Strategies are rare precisely because most organisations are structured to prevent them. Every function optimises for its own results. Every initiative competes for attention. The thread that could run through everything is cut before it is ever chosen. Keystone is designed to find and hold that thread.",
-      "body3": "The result: a series of individual improvements that build on each other, quarter after quarter, rather than resetting to zero each time a new priority arrives.",
-      "pullQuote": "\"Most approaches help businesses add. Project Keystone helps SME businesses compound unrealised potential.\"",
-      "whatMakesHeading": "What makes a strategy compound?",
-      "whatMakesBody1": "The most powerful strategies improve an Operating Enabler and strengthen a Quantum Enabler simultaneously. One move. Two layers. Multiplying effect.",
-      "whatMakesBody2": "A hiring decision that brings in capability and models the psychological safety the organisation is trying to build. A customer feedback process that improves service and strengthens Trust Capital in the leadership team. A technology rollout that unlocks efficiency and demonstrates Purpose Coherence.",
-      "whatMakesBody3": "These are not accidents. They are designed. And designing them requires seeing both layers at once.",
-      "chartEyebrow": "Adding vs. Compounding — over 8 quarters"
-    },
-    "quantumEnablers": {
-      "eyebrow": "Layer 2 — The five forces your P&L doesn't capture",
-      "heading": "What the business is. Not just what it does.",
-      "lead": "Every business has five invisible forces that determine whether its Operating decisions generate enduring returns — or just noise. They are harder to measure than revenue. Impossible to fake when leaders leave the room. And the ultimate determinant of whether your organisation compounds or fragments under pressure.",
-      "intro": "We call them the Quantum Enablers.",
-      "pullQuote": "\"Operating Enablers are the stones in the arch. Quantum Enablers are the forces that determine whether the arch stands for a year — or a century.\"",
-      "orbNote": "The five Quantum Enablers are revealed in the first conversation — not before it.",
-      "resistHeading": "They resist easy measurement",
-      "resistBody1": "Ask a leadership team to score psychological safety in a room where psychological safety is low — and you will get scores that reflect the lack of safety, not the reality. This is the observer effect applied to culture.",
-      "resistBody2": "A room where Governance & Ownership is scored at 8 because scoring it at 4 feels like blame — that room has just shown you its psychological safety level more accurately than any survey instrument could.",
-      "resistBody3": "Keystone reads these Quantum Enablers indirectly — through the pattern of Operating Enabler scores, the quality of the conversation, and the honesty of trade-off choices. The pattern is always honest, even when the scores are not."
-    },
-    "operatingEnablers": {
-      "eyebrow": "Layer 1 — What your business does",
-      "heading": "Ten levers. Most projects pull one at a time.",
-      "lead": "The Keystone framework maps ten Operating Enablers across three clusters: Commercial Operations, Transformation Strategy, and Customer Experience.",
-      "body1": "Each enabler sits on a maturity continuum — from a named low state to a named high state. Together they describe the full operating landscape of an SME: what the business does, how well it does it, and where the unrealised potential is concentrated.",
-      "body2": "Most projects address one or two of these at a time. Keystone works across all ten simultaneously — showing a leader which combination is holding the most energy in their specific organisation, and which single thread, pulled now, would release the most.",
-      "cluster1label": "Cluster 1",
-      "cluster1title": "Commercial Operations",
-      "cluster1body": "How the business generates and retains revenue — the engine room of commercial performance.",
-      "cluster2label": "Cluster 2",
-      "cluster2title": "Transformation Strategy",
-      "cluster2body": "How the business changes — its capacity to adapt, invest, and execute against a strategic direction.",
-      "cluster3label": "Cluster 3",
-      "cluster3title": "Customer Experience",
-      "cluster3body": "How the business serves — the interface between organisational capability and customer outcome.",
-      "clusterNote": "The individual enablers within each cluster are shared in the first session — not before it."
-    },
-    "lego": {
-      "eyebrow": "Worth watching",
-      "heading": "Complexity is the enemy of compounding.",
-      "body1": "Although not an SME, this brings to life what good looks like — what Project Keystone is all about.",
-      "body2": "LEGO lost their operating thread. They over-expanded, created complexity they could not manage, and compounded in the wrong direction. Getting back on track required exactly the kind of honest, cross-functional reckoning that Keystone is designed to surface.",
-      "tip": "Tip: start at 4 minutes to save a little time — that's where it gets to the substance.",
-      "videoCaption": "Opens on the IMD website."
-    },
-    "pulseCheck": {
-      "eyebrow": "The ritual",
-      "heading": "The question we ask every CEO before we design a single session.",
-      "question": "\"If I asked each member of your leadership team to score your business honestly — completely anonymously — how different do you think their answers would be from what they would say in the room together?\"",
-      "questionNote": "The length of the pause before the answer is itself insightful.",
-      "body1": "The Keystone Pulse Check is a quarterly habit that efficiently measures where your organisation sits across all 15 enablers — and surfaces the gaps that are not being talked about in normal business reviews. Where a deeper dive is needed, it provides the diagnostic foundation for laser-focused action.",
-      "body2": "Not because your leaders do not know. But because the conditions for honest conversation do not always exist. And when they do not, even the most capable leadership team produces consensus rather than genuine strategy.",
-      "body3": "The Keystone Pulse Check begins with a private conversation with the CEO or Owner. It results in a leadership team that has sat together, scored honestly, made real trade-offs — and left with Compound Strategies they collectively own.",
-      "pullQuote": "\"An arch does not need every stone to be perfect. It needs the right stone in the right place — and a room honest enough to collectively agree where.\"",
-      "stagesHeading": "Three organisational stages. One direction.",
-      "stage1num": "01", "stage1label": "Activation",
-      "stage2num": "02", "stage2label": "Traction",
-      "stage3num": "03", "stage3label": "Coherence",
-      "stage4num": "04", "stage4label": "Compound Returns"
-    },
-    "aiLens": {
-      "eyebrow": "The AI lens — across all 15 enablers",
-      "heading": "AI is an accelerant. Not a keystone.",
-      "lead": "AI accelerates whatever fitness level your organisation already has. It does not create fitness. It does not create coherence. It does not create trust.",
-      "body1": "A coherent organisation uses AI as part of its Compound Strategies — doing more of what is already working, faster and at greater scale. A fragmented organisation uses AI to accelerate its own distrust, discord, and decoherence.",
-      "body2": "The question for every SME right now is not whether to adopt AI. That question has already been answered. The question is: what does your organisation need so that AI makes you stronger rather than faster at the wrong things?",
-      "pullQuote": "\"A coherent organisation uses AI to compound. A fragmented organisation uses AI to accelerate its own disaster.\"",
-      "path1label": "Coherent organisation + AI",
-      "path1title": "Compound returns",
-      "path1body": "Operating and Quantum Enablers in alignment. AI amplifies what is already working — at speed and at scale.",
-      "path2label": "Fragmented organisation + AI",
-      "path2title": "Accelerated decoherence",
-      "path2body": "Distrust, misalignment, and unclear ownership — moving faster in the wrong direction.",
-      "body3": "Project Keystone applies an AI lens across all 15 enablers — not as a separate module, but as a filter woven through the entire framework. For each enabler, the question is not \"are you using AI here?\" but \"what does high fitness look like in an AI-enabled world — and what happens when AI arrives before that fitness is there?\""
-    },
-    "cta": {
-      "sub": "Are you adding — or compounding?",
-      "heading": "Project Keystone begins with one question and a conversation.",
-      "body": "What comes next depends on what the room reveals.",
-      "note": "Project Keystone is available to a small number of organisations. It is not a programme you buy. It is a conversation you request.",
-      "cta": "Request a conversation"
     }
   }
 }

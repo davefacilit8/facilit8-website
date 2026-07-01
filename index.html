@@ -1356,7 +1356,6 @@ const HERO_HOME     = 'https://images.unsplash.com/photo-1556761175-b413da4baf72
 const HERO_SERVICES = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1920&q=80&auto=format&fit=crop';
 const HERO_ABOUT    = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80&auto=format&fit=crop';
 const HERO_CONTACT  = 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1920&q=80&auto=format&fit=crop';
-const HERO_KEYSTONE = 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=1920&q=80&auto=format&fit=crop';
 const LOGO          = 'assets/facilit8-logo.png';
 const FOUNDER_PHOTO = 'assets/david-howes.jpg';
 
@@ -1415,7 +1414,6 @@ function Nav({ page, navigate }) {
     { id: 'services', label: t('nav.services') },
     { id: 'projects', label: t('nav.caseStudies') },
     { id: 'playbooks', label: t('nav.playbooks') },
-    { id: 'keystone', label: t('nav.keystone') },
     { id: 'about', label: t('nav.about') },
     { id: 'contact', label: t('nav.contact') },
   ];
@@ -1485,7 +1483,6 @@ function Footer({ navigate }) {
             <a href="#" onClick={e => { e.preventDefault(); go('about'); }}>{t('nav.about')}</a>
             <a href="#" onClick={e => { e.preventDefault(); go('projects'); }}>Case Studies</a>
             <a href="#" onClick={e => { e.preventDefault(); go('playbooks'); }}>Playbooks</a>
-            <a href="#" onClick={e => { e.preventDefault(); go('keystone'); }}>Project Keystone</a>
             <a href="#" onClick={e => { e.preventDefault(); go('contact'); }}>{t('nav.contact')}</a>
             <a href={CONFIG.meetingsUrl} target="_blank" rel="noopener noreferrer">{t('footer.bookMeeting')}</a>
           </div>
@@ -1641,254 +1638,6 @@ function Beliefs({ items }) {
         </div>
       ))}
     </div>
-  );
-}
-
-/* ============================================================
-   PROJECT KEYSTONE PAGE
-   ============================================================ */
-function KeystonePage({ navigate }) {
-  const t = useTranslation();
-  return (
-    <>
-      {/* ── HERO ── */}
-      <section className="hero">
-        <div className="hero-bg" style={{ backgroundImage: `url(${HERO_KEYSTONE})` }}/>
-        <div className="hero-overlay"/>
-        <div className="container">
-          <div className="section-eyebrow hero-eyebrow">{t('keystone.hero.eyebrow')}</div>
-          <h1 className="f8-display">{t('keystone.hero.headline')}</h1>
-          <p className="f8-lead">{t('keystone.hero.sub1')}</p>
-          <p className="f8-lead">{t('keystone.hero.sub2')}</p>
-          <div className="hero-cta-row">
-            <PrimaryButton onClick={() => navigate('contact')}>{t('keystone.hero.cta')}</PrimaryButton>
-          </div>
-        </div>
-      </section>
-
-      {/* ── DIAGNOSTIC QUESTION STRIP ── */}
-      <div style={{ background: 'var(--f8-navy-2)', padding: 'clamp(40px,6vw,64px) 0' }}>
-        <div className="container-narrow">
-          <div className="section-eyebrow" style={{ color: 'var(--f8-blue-bright)', marginBottom: 20 }}>
-            {t('keystone.diagStrip.eyebrow')}
-          </div>
-          <div className="ks-diag-question" style={{ background: 'rgba(255,255,255,0.05)', borderLeftColor: 'var(--f8-blue-bright)' }}>
-            <p style={{ color: '#fff' }}>{t('keystone.diagStrip.question')}</p>
-          </div>
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontStyle: 'italic', fontSize: 15, marginTop: 16, marginBottom: 0 }}>
-            {t('keystone.diagStrip.note')}
-          </p>
-        </div>
-      </div>
-
-      {/* ── SECTION 1: COMPOUND STRATEGIES ── */}
-      <section className="section section--alt">
-        <div className="container-narrow">
-          <div className="section-eyebrow">{t('keystone.compoundStrategies.eyebrow')}</div>
-          <h2 className="f8-h2">{t('keystone.compoundStrategies.heading')}</h2>
-          <p className="f8-lead mt-20">{t('keystone.compoundStrategies.lead')}</p>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.compoundStrategies.body1')}</p>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.compoundStrategies.body2')}</p>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.compoundStrategies.body3')}</p>
-
-          <PullQuote>{t('keystone.compoundStrategies.pullQuote')}</PullQuote>
-
-          <h3 className="f8-h3" style={{ marginTop: 40 }}>{t('keystone.compoundStrategies.whatMakesHeading')}</h3>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.compoundStrategies.whatMakesBody1')}</p>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.compoundStrategies.whatMakesBody2')}</p>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.compoundStrategies.whatMakesBody3')}</p>
-
-          {/* Adding vs Compounding visual */}
-          <div style={{ marginTop: 40, padding: '32px', background: '#fff', border: '1px solid var(--f8-fog)', borderRadius: 'var(--r-lg)' }}>
-            <div className="section-eyebrow" style={{ marginBottom: 16 }}>{t('keystone.compoundStrategies.chartEyebrow')}</div>
-            <svg viewBox="0 0 560 200" width="100%" style={{ display: 'block' }} aria-label="Chart showing adding (linear) vs compounding (exponential) growth over 8 quarters">
-              {[0,1,2,3].map(i => (
-                <line key={i} x1="60" y1={40 + i * 48} x2="540" y2={40 + i * 48} stroke="#E6ECF2" strokeWidth="1"/>
-              ))}
-              <line x1="60" y1="180" x2="540" y2="180" stroke="#C9D2DD" strokeWidth="1.5"/>
-              <line x1="60" y1="20" x2="60" y2="180" stroke="#C9D2DD" strokeWidth="1.5"/>
-              {['Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8'].map((q, i) => (
-                <text key={q} x={102 + i * 63} y="195" textAnchor="middle" fontSize="10" fill="#6B7A99" fontFamily="Inter, sans-serif">{q}</text>
-              ))}
-              <polyline points="60,165 123,150 186,135 249,120 312,105 375,90 438,75 501,60" fill="none" stroke="#C9D2DD" strokeWidth="2" strokeDasharray="5,3"/>
-              <polyline points="60,165 123,158 186,146 249,128 312,104 375,74 438,46 501,28" fill="none" stroke="#0090E7" strokeWidth="2.5"/>
-              <line x1="70" y1="18" x2="95" y2="18" stroke="#C9D2DD" strokeWidth="2" strokeDasharray="4,3"/>
-              <text x="100" y="22" fontSize="10" fill="#6B7A99" fontFamily="Inter, sans-serif">Adding (linear)</text>
-              <line x1="200" y1="18" x2="225" y2="18" stroke="#0090E7" strokeWidth="2.5"/>
-              <text x="230" y="22" fontSize="10" fill="#0070C0" fontFamily="Inter, sans-serif" fontWeight="600">Compounding</text>
-              <line x1="501" y1="28" x2="501" y2="60" stroke="#0090E7" strokeWidth="1" strokeDasharray="3,2"/>
-              <text x="508" y="46" fontSize="10" fill="#0090E7" fontFamily="Inter, sans-serif" fontWeight="600">Gap</text>
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 2: QUANTUM ENABLERS ── */}
-      <section className="section section--dark">
-        <div className="container-narrow">
-          <div className="section-eyebrow" style={{ color: 'var(--f8-blue-bright)' }}>{t('keystone.quantumEnablers.eyebrow')}</div>
-          <h2 className="f8-h2" style={{ color: '#fff', marginTop: 12 }}>{t('keystone.quantumEnablers.heading')}</h2>
-          <p className="f8-lead" style={{ color: 'rgba(255,255,255,0.82)', marginTop: 20 }}>{t('keystone.quantumEnablers.lead')}</p>
-          <p style={{ color: '#fff', fontWeight: 600, marginBottom: 0 }}>{t('keystone.quantumEnablers.intro')}</p>
-
-          <PullQuote>{t('keystone.quantumEnablers.pullQuote')}</PullQuote>
-
-          {/* QE orbs */}
-          <div className="qe-row">
-            {[
-              'Psychological Safety',
-              'Purpose Coherence',
-              'Trust Capital',
-              'Adaptive Capacity',
-              'Innovation Vitality',
-            ].map((label, i) => (
-              <div className="qe-step" key={i}>
-                <div className="qe-orb"><span className="qe-num">{i + 1}</span></div>
-                <div className="qe-label-text">{label}</div>
-              </div>
-            ))}
-          </div>
-          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 13, fontStyle: 'italic', textAlign: 'center', marginTop: 8 }}>
-            {t('keystone.quantumEnablers.orbNote')}
-          </p>
-
-          <h3 className="f8-h3" style={{ color: '#fff', marginTop: 48 }}>{t('keystone.quantumEnablers.resistHeading')}</h3>
-          <p style={{ color: 'rgba(255,255,255,0.78)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.quantumEnablers.resistBody1')}</p>
-          <p style={{ color: 'rgba(255,255,255,0.78)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.quantumEnablers.resistBody2')}</p>
-          <p style={{ color: 'rgba(255,255,255,0.78)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.quantumEnablers.resistBody3')}</p>
-        </div>
-      </section>
-
-      {/* ── SECTION 3: OPERATING ENABLERS ── */}
-      <section className="section">
-        <div className="container-narrow">
-          <div className="section-eyebrow">{t('keystone.operatingEnablers.eyebrow')}</div>
-          <h2 className="f8-h2" style={{ marginTop: 12 }}>{t('keystone.operatingEnablers.heading')}</h2>
-          <p className="f8-lead mt-20">{t('keystone.operatingEnablers.lead')}</p>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.operatingEnablers.body1')}</p>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.operatingEnablers.body2')}</p>
-
-          <div className="ks-cluster-grid">
-            <div className="ks-cluster-card">
-              <div className="cluster-label">{t('keystone.operatingEnablers.cluster1label')}</div>
-              <h3>{t('keystone.operatingEnablers.cluster1title')}</h3>
-              <p>{t('keystone.operatingEnablers.cluster1body')}</p>
-            </div>
-            <div className="ks-cluster-card">
-              <div className="cluster-label">{t('keystone.operatingEnablers.cluster2label')}</div>
-              <h3>{t('keystone.operatingEnablers.cluster2title')}</h3>
-              <p>{t('keystone.operatingEnablers.cluster2body')}</p>
-            </div>
-            <div className="ks-cluster-card">
-              <div className="cluster-label">{t('keystone.operatingEnablers.cluster3label')}</div>
-              <h3>{t('keystone.operatingEnablers.cluster3title')}</h3>
-              <p>{t('keystone.operatingEnablers.cluster3body')}</p>
-            </div>
-          </div>
-          <p style={{ color: 'var(--f8-grey)', fontSize: 14, fontStyle: 'italic', marginTop: 20 }}>
-            {t('keystone.operatingEnablers.clusterNote')}
-          </p>
-        </div>
-      </section>
-
-      {/* ── VIDEO: LEGO COMPLEXITY ── */}
-      <section className="section">
-        <div className="container-narrow">
-          <div className="section-eyebrow">{t('keystone.lego.eyebrow')}</div>
-          <h2 className="f8-h2" style={{ marginTop: 12 }}>{t('keystone.lego.heading')}</h2>
-          <div className="ks-video-grid">
-            <div>
-              <VideoThumbnail
-                href="https://www.imd.org/ibyimd/videos/ceo-dialogue-series/lego-built-too-much-complexity-this-is-how-we-got-back-on-track/"
-                eyebrow="CEO Dialogue Series — IMD"
-                title="LEGO built too much complexity. This is how we got back on track."
-                source="imd.org"
-                caption={t('keystone.lego.videoCaption')}
-              />
-            </div>
-            <div style={{ paddingTop: 4 }}>
-              <p style={{ color: 'var(--fg-2)', lineHeight: 1.75, fontSize: 16, marginBottom: 16 }}>{t('keystone.lego.body1')}</p>
-              <p style={{ color: 'var(--fg-2)', lineHeight: 1.75, fontSize: 16, marginBottom: 16 }}>{t('keystone.lego.body2')}</p>
-              <div className="ks-diag-question" style={{ marginTop: 0, marginBottom: 0 }}>
-                <p style={{ fontWeight: 600, fontStyle: 'normal', fontSize: '0.95rem' }}>{t('keystone.lego.tip')}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 4: KEYSTONE PULSE CHECK ── */}
-      <section className="section section--alt">
-        <div className="container-narrow">
-          <div className="section-eyebrow">{t('keystone.pulseCheck.eyebrow')}</div>
-          <h2 className="f8-h2" style={{ marginTop: 12 }}>{t('keystone.pulseCheck.heading')}</h2>
-
-          <DiagQuestion>{t('keystone.pulseCheck.question')}</DiagQuestion>
-          <p style={{ color: 'var(--f8-grey)', fontStyle: 'italic', fontSize: 15, marginTop: -8, marginBottom: 24 }}>
-            {t('keystone.pulseCheck.questionNote')}
-          </p>
-
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.pulseCheck.body1')}</p>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.pulseCheck.body2')}</p>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.pulseCheck.body3')}</p>
-
-          <PullQuote>{t('keystone.pulseCheck.pullQuote')}</PullQuote>
-
-          <h3 className="f8-h3" style={{ marginTop: 40 }}>{t('keystone.pulseCheck.stagesHeading')}</h3>
-          <div className="ks-stage-bar">
-            {[
-              { num: t('keystone.pulseCheck.stage1num'), label: t('keystone.pulseCheck.stage1label') },
-              { num: t('keystone.pulseCheck.stage2num'), label: t('keystone.pulseCheck.stage2label') },
-              { num: t('keystone.pulseCheck.stage3num'), label: t('keystone.pulseCheck.stage3label') },
-              { num: t('keystone.pulseCheck.stage4num'), label: t('keystone.pulseCheck.stage4label') },
-            ].map((s, i) => (
-              <div className="ks-stage" key={i}>
-                <div className="ks-stage-num">{s.num}</div>
-                <div className="ks-stage-label">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 5: AI LENS ── */}
-      <section className="section">
-        <div className="container-narrow">
-          <div className="section-eyebrow">{t('keystone.aiLens.eyebrow')}</div>
-          <h2 className="f8-h2" style={{ marginTop: 12 }}>{t('keystone.aiLens.heading')}</h2>
-          <p className="f8-lead mt-20">{t('keystone.aiLens.lead')}</p>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 16 }}>{t('keystone.aiLens.body1')}</p>
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: 0 }}>{t('keystone.aiLens.body2')}</p>
-
-          <PullQuote>{t('keystone.aiLens.pullQuote')}</PullQuote>
-
-          <div className="ks-ai-paths">
-            <div className="ks-ai-path positive">
-              <div className="path-label">{t('keystone.aiLens.path1label')}</div>
-              <h4>{t('keystone.aiLens.path1title')}</h4>
-              <p>{t('keystone.aiLens.path1body')}</p>
-            </div>
-            <div className="ks-ai-path negative">
-              <div className="path-label">{t('keystone.aiLens.path2label')}</div>
-              <h4>{t('keystone.aiLens.path2title')}</h4>
-              <p>{t('keystone.aiLens.path2body')}</p>
-            </div>
-          </div>
-
-          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 32, marginBottom: 0 }}>{t('keystone.aiLens.body3')}</p>
-        </div>
-      </section>
-
-      {/* ── CLOSING CTA ── */}
-      <ClosingCTA
-        navigate={navigate}
-        sub={t('keystone.cta.sub')}
-        heading={t('keystone.cta.heading')}
-        body={t('keystone.cta.body')}
-        note={t('keystone.cta.note')}
-        cta={{ label: t('keystone.cta.cta'), to: 'contact' }}
-      />
-    </>
   );
 }
 
@@ -3290,7 +3039,7 @@ function PlaybookDetailPage({ id, navigate }) {
 /* ============================================================
    ROOT
    ============================================================ */
-const VALID_PAGES = ['home','services','projects','playbooks','keystone','about','contact','cookies'];
+const VALID_PAGES = ['home','services','projects','playbooks','about','contact','cookies'];
 
 function Site() {
   const consentApi = useConsent();
@@ -3347,7 +3096,6 @@ function Site() {
       services:  F8t('nav.services') + ' — facilit8',
       projects:  F8t('nav.projects') + ' — facilit8',
       playbooks: 'Playbooks — facilit8',
-      keystone:  'Project Keystone — facilit8',
       about:     F8t('nav.about') + ' — facilit8',
       contact:   F8t('nav.contact') + ' — facilit8',
       cookies:   F8t('cookies.hero.eyebrow') + ' — facilit8',
@@ -3365,7 +3113,6 @@ function Site() {
   else if (page === 'projects')           body = <ProjectsPage navigate={navigate}/>;
   else if (page === 'playbooks')          body = <PlaybooksPage navigate={navigate}/>;
   else if (page.startsWith('playbook/')) body = <PlaybookDetailPage id={page.replace('playbook/','')} navigate={navigate}/>;
-  else if (page === 'keystone')           body = <KeystonePage navigate={navigate}/>;
   else if (page === 'about')             body = <AboutPage navigate={navigate}/>;
   else if (page === 'contact')           body = <ContactPage navigate={navigate}/>;
   else if (page === 'cookies')           body = <CookiesPage navigate={navigate}/>;

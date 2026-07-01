@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Keystone — facilit8</title>
+<meta name="description" content="Project Keystone is a practitioner-built framework for finding the gap between what an organisation has and what it has actually managed to make work together — and compounding past it.">
+<link rel="canonical" href="https://facilit8.org/project-keystone.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --f8-blue:        #0070C0;
+  --f8-blue-bright: #0090E7;
+  --f8-blue-deep:   #005896;
+  --f8-navy:        #0A1628;
+  --f8-navy-2:      #142238;
+  --f8-white:       #FFFFFF;
+  --f8-off-white:   #F5F7FA;
+  --f8-fog:         #E6ECF2;
+  --f8-mist:        #C9D2DD;
+  --f8-grey:        #6B7A99;
+  --f8-ink:         #1A1A2E;
+  --f8-ink-soft:    #3A3F55;
+  --fg-1: var(--f8-ink);
+  --fg-2: var(--f8-ink-soft);
+  --fg-3: var(--f8-grey);
+  --bg-1: var(--f8-white);
+  --bg-2: var(--f8-off-white);
+  --bg-dark: var(--f8-navy);
+  --bg-dark-2: var(--f8-navy-2);
+  --link:        var(--f8-blue);
+  --link-hover:  var(--f8-blue-deep);
+  --border:      var(--f8-fog);
+  --border-on-dark: rgba(255,255,255,0.12);
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --t-display:    clamp(2.5rem, 4vw + 1rem, 4rem);
+  --t-h2:         clamp(1.6rem, 1.4vw + 0.8rem, 2.1rem);
+  --t-h3:         1.4rem;
+  --t-lead:       1.2rem;
+  --lh-tight:   1.1;
+  --lh-snug:    1.25;
+  --lh-normal:  1.5;
+  --lh-body:    1.6;
+  --tracking-tight:  -0.02em;
+  --tracking-wide:   0.08em;
+  --r-sm: 4px; --r-md: 6px; --r-lg: 10px; --r-xl: 16px;
+  --shadow-2: 0 2px 8px rgba(10,22,40,0.06), 0 1px 2px rgba(10,22,40,0.04);
+  --shadow-focus: 0 0 0 3px rgba(0,144,231,0.35);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 200ms; --dur-fast: 120ms;
+  --container: 1200px;
+  --container-narrow: 880px;
+  --gutter: clamp(20px, 4vw, 40px);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; font-family: var(--font-sans); font-size: 1rem; line-height: var(--lh-body);
+  color: var(--fg-1); background: var(--bg-1); -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3,h4 { margin: 0 0 16px; }
+p { margin: 0 0 16px; }
+p:last-child { margin-bottom: 0; }
+a { color: var(--link); text-decoration: none; transition: color var(--dur) var(--ease-out); }
+a:hover { color: var(--link-hover); }
+img { display: block; max-width: 100%; }
+
+.container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+.container-narrow { max-width: var(--container-narrow); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding: clamp(56px, 8vw, 96px) 0; }
+.section--alt { background: var(--bg-2); }
+.section--dark { background: var(--bg-dark); color: #fff; }
+.section--dark .f8-lead, .section--dark p { color: rgba(255,255,255,0.78); }
+
+.f8-display { font-weight: 800; font-size: var(--t-display); line-height: var(--lh-tight); letter-spacing: var(--tracking-tight); text-wrap: balance; }
+.f8-h1 { font-weight: 700; font-size: clamp(2rem, 2.4vw + 1rem, 3rem); line-height: var(--lh-tight); letter-spacing: var(--tracking-tight); }
+.f8-h2 { font-weight: 700; font-size: var(--t-h2); line-height: var(--lh-snug); letter-spacing: var(--tracking-tight); }
+.f8-h3 { font-weight: 600; font-size: var(--t-h3); line-height: var(--lh-snug); }
+.f8-lead { font-size: var(--t-lead); line-height: var(--lh-normal); color: var(--fg-2); }
+.section-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--f8-blue); margin-bottom: 14px; }
+.mt-20 { margin-top: 20px; }
+
+/* Simple header */
+.ks-header { border-bottom: 1px solid var(--border); }
+.ks-header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.ks-header img { height: 30px; }
+.ks-back-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-sans); font-weight: 600; font-size: 15px;
+  padding: 12px 22px; border-radius: var(--r-md);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  text-decoration: none; line-height: 1;
+}
+.btn--primary { background: var(--f8-blue-bright); color: #fff; }
+.btn--primary:hover { background: var(--f8-blue); color: #fff; }
+.btn--primary:active { transform: translateY(1px); }
+.btn--primary:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+/* Hero */
+.hero {
+  position: relative; color: #fff;
+  padding: clamp(96px, 14vw, 180px) 0 clamp(80px, 10vw, 140px);
+  overflow: hidden; isolation: isolate; background: var(--bg-dark);
+}
+.hero-bg { position: absolute; inset: 0; z-index: -2; background-size: cover; background-position: center; }
+.hero-overlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,22,40,0.55), rgba(10,22,40,0.78)); }
+.hero h1, .hero .f8-display { color: #fff; max-width: 900px; margin-bottom: 0; }
+.hero .f8-lead { color: rgba(255,255,255,0.86); margin-top: 22px; max-width: 720px; }
+.hero-eyebrow { color: var(--f8-blue-bright); margin-bottom: 18px; }
+.hero-cta-row { margin-top: 36px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+
+/* Closing CTA */
+.closing { background: var(--bg-dark); color: #fff; text-align: center; padding: clamp(72px, 10vw, 120px) 0; }
+.closing h2 { color: #fff; margin: 0 0 16px; max-width: 700px; margin-inline: auto; }
+.closing p { color: rgba(255,255,255,0.78); max-width: 580px; margin: 0 auto 32px; font-size: 18px; }
+
+/* Footer */
+.footer { background: var(--bg-dark); color: #fff; padding: 40px 0 28px; border-top: 1px solid rgba(255,255,255,0.08); }
+.footer-bot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; color: rgba(255,255,255,0.56); font-size: 12px; }
+
+/* Keystone-specific styles */
+.ks-pull-quote {
+  margin: 32px 0; padding: 28px 32px; background: var(--f8-navy);
+  border-left: 4px solid var(--f8-blue-bright); border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+.ks-pull-quote p { margin: 0; color: #fff; font-style: italic; font-size: 1.1rem; line-height: 1.65; }
+
+.ks-diag-question { margin: 28px 0; padding: 28px 36px; background: var(--f8-off-white); border-left: 5px solid var(--f8-blue-bright); }
+.ks-diag-question p { margin: 0; color: var(--f8-navy); font-style: italic; font-weight: 700; font-size: 1.15rem; line-height: 1.6; }
+
+.ks-cluster-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+@media (max-width: 760px) { .ks-cluster-grid { grid-template-columns: 1fr; } }
+.ks-cluster-card { padding: 28px 24px; background: var(--f8-off-white); border-top: 3px solid var(--f8-blue-bright); }
+.ks-cluster-card .cluster-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--f8-blue); margin-bottom: 10px; }
+.ks-cluster-card h3 { margin: 0 0 10px; font-size: 1.1rem; color: var(--f8-navy); }
+.ks-cluster-card p { margin: 0; color: var(--f8-grey); font-size: 15px; line-height: 1.55; }
+
+.ks-stage-bar { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 32px; gap: 0; }
+.ks-stage { padding: 24px 20px; text-align: center; background: var(--f8-off-white); border-right: 1px solid var(--f8-fog); position: relative; }
+.ks-stage:last-child { border-right: none; background: var(--f8-navy); }
+.ks-stage::after {
+  content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%);
+  color: var(--f8-blue-bright); font-size: 18px; font-weight: 700; z-index: 1;
+}
+.ks-stage:last-child::after { display: none; }
+.ks-stage-num { font-size: 11px; font-weight: 700; color: var(--f8-blue); letter-spacing: 0.06em; margin-bottom: 8px; }
+.ks-stage:last-child .ks-stage-num { color: var(--f8-blue-bright); }
+.ks-stage-label { font-size: 1rem; font-weight: 700; color: var(--f8-navy); }
+.ks-stage:last-child .ks-stage-label { color: #fff; }
+@media (max-width: 640px) {
+  .ks-stage-bar { grid-template-columns: 1fr 1fr; }
+  .ks-stage::after { display: none; }
+  .ks-stage { border-right: none; border-bottom: 1px solid var(--f8-fog); }
+}
+
+.qe-row { display: flex; gap: 32px; justify-content: center; align-items: flex-start; flex-wrap: wrap; margin: 36px 0; }
+.qe-step { display: flex; flex-direction: column; align-items: center; gap: 14px; flex: 1; min-width: 120px; max-width: 180px; }
+.qe-orb {
+  width: 120px; height: 120px; border-radius: 50%;
+  background-image: url('assets/orb.jpg'); background-size: 260% 260%; background-position: center;
+  box-shadow: 0 0 24px rgba(0,144,231,0.45), 0 0 60px rgba(0,144,231,0.25);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.qe-num { color: #fff; font-weight: 800; font-size: 36px; text-shadow: 0 2px 12px rgba(0,0,0,0.6), 0 0 20px rgba(0,144,231,0.8); letter-spacing: -0.02em; line-height: 1; }
+.qe-label-text { color: #C9D2DD; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; text-align: center; line-height: 1.4; }
+@media (max-width: 640px) { .qe-row { gap: 24px; } .qe-orb { width: 90px; height: 90px; } .qe-num { font-size: 28px; } }
+
+.ks-ai-paths { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+@media (max-width: 640px) { .ks-ai-paths { grid-template-columns: 1fr; } }
+.ks-ai-path { padding: 28px 24px; border-radius: var(--r-lg); border: 1px solid var(--border); }
+.ks-ai-path.positive { border-color: var(--f8-blue); background: linear-gradient(135deg, rgba(0,112,192,0.04), rgba(0,144,231,0.08)); }
+.ks-ai-path.negative { border-color: var(--f8-fog); background: var(--f8-off-white); }
+.ks-ai-path .path-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.ks-ai-path.positive .path-label { color: var(--f8-blue); }
+.ks-ai-path.negative .path-label { color: var(--f8-grey); }
+.ks-ai-path h4 { margin: 0 0 10px; font-size: 1.05rem; color: var(--f8-ink); }
+.ks-ai-path p { margin: 0; color: var(--fg-2); font-size: 15px; line-height: 1.55; }
+
+/* Video thumbnail */
+.ks-video-wrap { border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-2); }
+.ks-video-thumb { display: block; position: relative; aspect-ratio: 16/9; background: var(--f8-navy); text-decoration: none; overflow: hidden; }
+.ks-video-thumb:hover .ks-video-play { transform: translate(-50%,-50%) scale(1.08); }
+.ks-video-thumb-text {
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 32px;
+  background: linear-gradient(to top, rgba(10,22,40,0.88) 40%, rgba(10,22,40,0.30) 100%);
+}
+.ks-video-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 64px; height: 64px; border-radius: 50%; background: rgba(0,144,231,0.92);
+  display: flex; align-items: center; justify-content: center; transition: transform var(--dur) var(--ease-out);
+}
+.ks-video-play svg { margin-left: 4px; }
+.ks-video-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--f8-blue-bright); margin-bottom: 8px; }
+.ks-video-title { font-size: clamp(1rem,2vw + 0.5rem,1.3rem); font-weight: 700; color: #fff; line-height: 1.3; margin: 0; }
+.ks-video-source { margin-top: 8px; font-size: 13px; color: rgba(255,255,255,0.5); }
+.ks-video-caption { padding: 14px 20px; background: var(--f8-off-white); border-top: 1px solid var(--border); font-size: 14px; color: var(--f8-grey); display: flex; align-items: center; gap: 8px; }
+.ks-video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 28px; align-items: start; }
+@media (max-width: 760px) { .ks-video-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="ks-header">
+  <div class="container ks-header-inner">
+    <a href="/"><img src="assets/facilit8-logo.png" alt="facilit8"></a>
+    <a class="ks-back-link" href="/">← Back to facilit8.org</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-bg" style="background-image:url(https://images.unsplash.com/photo-1541167760496-1628856ab772?w=1920&q=80&auto=format&fit=crop)"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="section-eyebrow hero-eyebrow">Project Keystone</div>
+      <h1 class="f8-display">What needs to be true for an SME to operate at full organisational potential?</h1>
+      <p class="f8-lead">Most businesses have more potential than they are realising. Not because of poor leadership. Not because of bad people. Because of the invisible gap between what an organisation has — and what it has actually managed to make work together.</p>
+      <p class="f8-lead">Project Keystone is a practitioner-built framework for finding that gap. And compounding past it.</p>
+      <div class="hero-cta-row">
+        <a class="btn btn--primary" href="/#contact">Request a conversation
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div style="background: var(--f8-navy-2); padding: clamp(40px,6vw,64px) 0;">
+    <div class="container-narrow">
+      <div class="section-eyebrow" style="color: var(--f8-blue-bright); margin-bottom: 20px;">The question that opens everything</div>
+      <div class="ks-diag-question" style="background: rgba(255,255,255,0.05); border-left-color: var(--f8-blue-bright);">
+        <p style="color:#fff;">"What percentage of your organisation's potential do you think you are currently realising?"</p>
+      </div>
+      <p style="color: rgba(255,255,255,0.6); font-style: italic; font-size: 15px; margin-top: 16px; margin-bottom: 0;">
+        Nobody answers 100%. The gap between their answer and 100% is the entire business case — made by them, before a single slide has been shown. For an SME, where there is no resource to waste, that gap has a real cost, every quarter.
+      </p>
+    </div>
+  </div>
+
+  <section class="section section--alt">
+    <div class="container-narrow">
+      <div class="section-eyebrow">Start here</div>
+      <h2 class="f8-h2">Most approaches help businesses add. Project Keystone helps SME businesses compound unrealised potential.</h2>
+      <p class="f8-lead mt-20">There is a fundamental difference between improving things one at a time — and choosing a thread that runs through everything simultaneously.</p>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 16px;">A Compound Strategy is that thread — the Rote Faden. It connects decisions at the Operating level to the forces that determine whether those decisions actually deliver their expected value: trust, psychological safety, shared ownership. These are the Quantum forces present in every project, every leadership team, every CEO's need for lasting change.</p>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 16px;">Compound Strategies are rare precisely because most organisations are structured to prevent them. Every function optimises for its own results. Every initiative competes for attention. The thread that could run through everything is cut before it is ever chosen. Keystone is designed to find and hold that thread.</p>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 0;">The result: a series of individual improvements that build on each other, quarter after quarter, rather than resetting to zero each time a new priority arrives.</p>
+
+      <div class="ks-pull-quote"><p>"Most approaches help businesses add. Project Keystone helps SME businesses compound unrealised potential."</p></div>
+
+      <h3 class="f8-h3" style="margin-top: 40px;">What makes a strategy compound?</h3>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 16px;">The most powerful strategies improve an Operating Enabler and strengthen a Quantum Enabler simultaneously. One move. Two layers. Multiplying effect.</p>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 16px;">A hiring decision that brings in capability and models the psychological safety the organisation is trying to build. A customer feedback process that improves service and strengthens Trust Capital in the leadership team. A technology rollout that unlocks efficiency and demonstrates Purpose Coherence.</p>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 0;">These are not accidents. They are designed. And designing them requires seeing both layers at once.</p>
+
+      <div style="margin-top: 40px; padding: 32px; background: #fff; border: 1px solid var(--f8-fog); border-radius: var(--r-lg);">
+        <div class="section-eyebrow" style="margin-bottom: 16px;">Adding vs. Compounding — over 8 quarters</div>
+        <svg viewBox="0 0 560 200" width="100%" style="display:block" aria-label="Chart showing adding (linear) vs compounding (exponential) growth over 8 quarters">
+          <line x1="60" y1="40" x2="540" y2="40" stroke="#E6ECF2" stroke-width="1"/>
+          <line x1="60" y1="88" x2="540" y2="88" stroke="#E6ECF2" stroke-width="1"/>
+          <line x1="60" y1="136" x2="540" y2="136" stroke="#E6ECF2" stroke-width="1"/>
+          <line x1="60" y1="184" x2="540" y2="184" stroke="#E6ECF2" stroke-width="1"/>
+          <line x1="60" y1="180" x2="540" y2="180" stroke="#C9D2DD" stroke-width="1.5"/>
+          <line x1="60" y1="20" x2="60" y2="180" stroke="#C9D2DD" stroke-width="1.5"/>
+          <text x="102" y="195" text-anchor="middle" font-size="10" fill="#6B7A99" font-family="Inter, sans-serif">Q1</text>
+          <text x="165" y="195" text-anchor="middle" font-size="10" fill="#6B7A99" font-family="Inter, sans-serif">Q2</text>
+          <text x="228" y="195" text-anchor="middle" font-size="10" fill="#6B7A99" font-family="Inter, sans-serif">Q3</text>
+          <text x="291" y="195" text-anchor="middle" font-size="10" fill="#6B7A99" font-family="Inter, sans-serif">Q4</text>
+          <text x="354" y="195" text-anchor="middle" font-size="10" fill="#6B7A99" font-family="Inter, sans-serif">Q5</text>
+          <text x="417" y="195" text-anchor="middle" font-size="10" fill="#6B7A99" font-family="Inter, sans-serif">Q6</text>
+          <text x="480" y="195" text-anchor="middle" font-size="10" fill="#6B7A99" font-family="Inter, sans-serif">Q7</text>
+          <text x="543" y="195" text-anchor="middle" font-size="10" fill="#6B7A99" font-family="Inter, sans-serif">Q8</text>
+          <polyline points="60,165 123,150 186,135 249,120 312,105 375,90 438,75 501,60" fill="none" stroke="#C9D2DD" stroke-width="2" stroke-dasharray="5,3"/>
+          <polyline points="60,165 123,158 186,146 249,128 312,104 375,74 438,46 501,28" fill="none" stroke="#0090E7" stroke-width="2.5"/>
+          <line x1="70" y1="18" x2="95" y2="18" stroke="#C9D2DD" stroke-width="2" stroke-dasharray="4,3"/>
+          <text x="100" y="22" font-size="10" fill="#6B7A99" font-family="Inter, sans-serif">Adding (linear)</text>
+          <line x1="200" y1="18" x2="225" y2="18" stroke="#0090E7" stroke-width="2.5"/>
+          <text x="230" y="22" font-size="10" fill="#0070C0" font-family="Inter, sans-serif" font-weight="600">Compounding</text>
+          <line x1="501" y1="28" x2="501" y2="60" stroke="#0090E7" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="508" y="46" font-size="10" fill="#0090E7" font-family="Inter, sans-serif" font-weight="600">Gap</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container-narrow">
+      <div class="section-eyebrow" style="color: var(--f8-blue-bright);">Layer 2 — The five forces your P&amp;L doesn't capture</div>
+      <h2 class="f8-h2" style="color:#fff; margin-top: 12px;">What the business is. Not just what it does.</h2>
+      <p class="f8-lead" style="color: rgba(255,255,255,0.82); margin-top: 20px;">Every business has five invisible forces that determine whether its Operating decisions generate enduring returns — or just noise. They are harder to measure than revenue. Impossible to fake when leaders leave the room. And the ultimate determinant of whether your organisation compounds or fragments under pressure.</p>
+      <p style="color:#fff; font-weight: 600; margin-bottom: 0;">We call them the Quantum Enablers.</p>
+
+      <div class="ks-pull-quote"><p>"Operating Enablers are the stones in the arch. Quantum Enablers are the forces that determine whether the arch stands for a year — or a century."</p></div>
+
+      <div class="qe-row">
+        <div class="qe-step"><div class="qe-orb"><span class="qe-num">1</span></div><div class="qe-label-text">Psychological Safety</div></div>
+        <div class="qe-step"><div class="qe-orb"><span class="qe-num">2</span></div><div class="qe-label-text">Purpose Coherence</div></div>
+        <div class="qe-step"><div class="qe-orb"><span class="qe-num">3</span></div><div class="qe-label-text">Trust Capital</div></div>
+        <div class="qe-step"><div class="qe-orb"><span class="qe-num">4</span></div><div class="qe-label-text">Adaptive Capacity</div></div>
+        <div class="qe-step"><div class="qe-orb"><span class="qe-num">5</span></div><div class="qe-label-text">Innovation Vitality</div></div>
+      </div>
+      <p style="color: rgba(255,255,255,0.5); font-size: 13px; font-style: italic; text-align: center; margin-top: 8px;">The five Quantum Enablers are revealed in the first conversation — not before it.</p>
+
+      <h3 class="f8-h3" style="color:#fff; margin-top: 48px;">They resist easy measurement</h3>
+      <p style="color: rgba(255,255,255,0.78); line-height: 1.7; margin-bottom: 16px;">Ask a leadership team to score psychological safety in a room where psychological safety is low — and you will get scores that reflect the lack of safety, not the reality. This is the observer effect applied to culture.</p>
+      <p style="color: rgba(255,255,255,0.78); line-height: 1.7; margin-bottom: 16px;">A room where Governance &amp; Ownership is scored at 8 because scoring it at 4 feels like blame — that room has just shown you its psychological safety level more accurately than any survey instrument could.</p>
+      <p style="color: rgba(255,255,255,0.78); line-height: 1.7; margin-bottom: 0;">Keystone reads these Quantum Enablers indirectly — through the pattern of Operating Enabler scores, the quality of the conversation, and the honesty of trade-off choices. The pattern is always honest, even when the scores are not.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow">
+      <div class="section-eyebrow">Layer 1 — What your business does</div>
+      <h2 class="f8-h2" style="margin-top: 12px;">Ten levers. Most projects pull one at a time.</h2>
+      <p class="f8-lead mt-20">The Keystone framework maps ten Operating Enablers across three clusters: Commercial Operations, Transformation Strategy, and Customer Experience.</p>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 16px;">Each enabler sits on a maturity continuum — from a named low state to a named high state. Together they describe the full operating landscape of an SME: what the business does, how well it does it, and where the unrealised potential is concentrated.</p>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 0;">Most projects address one or two of these at a time. Keystone works across all ten simultaneously — showing a leader which combination is holding the most energy in their specific organisation, and which single thread, pulled now, would release the most.</p>
+
+      <div class="ks-cluster-grid">
+        <div class="ks-cluster-card">
+          <div class="cluster-label">Cluster 1</div>
+          <h3>Commercial Operations</h3>
+          <p>How the business generates and retains revenue — the engine room of commercial performance.</p>
+        </div>
+        <div class="ks-cluster-card">
+          <div class="cluster-label">Cluster 2</div>
+          <h3>Transformation Strategy</h3>
+          <p>How the business changes — its capacity to adapt, invest, and execute against a strategic direction.</p>
+        </div>
+        <div class="ks-cluster-card">
+          <div class="cluster-label">Cluster 3</div>
+          <h3>Customer Experience</h3>
+          <p>How the business serves — the interface between organisational capability and customer outcome.</p>
+        </div>
+      </div>
+      <p style="color: var(--f8-grey); font-size: 14px; font-style: italic; margin-top: 20px;">The individual enablers within each cluster are shared in the first session — not before it.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow">
+      <div class="section-eyebrow">Worth watching</div>
+      <h2 class="f8-h2" style="margin-top: 12px;">Complexity is the enemy of compounding.</h2>
+      <div class="ks-video-grid">
+        <div>
+          <div class="ks-video-wrap">
+            <a class="ks-video-thumb" href="https://www.imd.org/ibyimd/videos/ceo-dialogue-series/lego-built-too-much-complexity-this-is-how-we-got-back-on-track/" target="_blank" rel="noopener noreferrer">
+              <div class="ks-video-thumb-text">
+                <div class="ks-video-eyebrow">CEO Dialogue Series — IMD</div>
+                <p class="ks-video-title">LEGO built too much complexity. This is how we got back on track.</p>
+                <div class="ks-video-source">imd.org</div>
+              </div>
+              <div class="ks-video-play">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </a>
+            <div class="ks-video-caption">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              Opens on the IMD website.
+            </div>
+          </div>
+        </div>
+        <div style="padding-top: 4px;">
+          <p style="color: var(--fg-2); line-height: 1.75; font-size: 16px; margin-bottom: 16px;">Although not an SME, this brings to life what good looks like — what Project Keystone is all about.</p>
+          <p style="color: var(--fg-2); line-height: 1.75; font-size: 16px; margin-bottom: 16px;">LEGO lost their operating thread. They over-expanded, created complexity they could not manage, and compounded in the wrong direction. Getting back on track required exactly the kind of honest, cross-functional reckoning that Keystone is designed to surface.</p>
+          <div class="ks-diag-question" style="margin-top: 0; margin-bottom: 0;">
+            <p style="font-weight: 600; font-style: normal; font-size: 0.95rem;">Tip: start at 4 minutes to save a little time — that's where it gets to the substance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container-narrow">
+      <div class="section-eyebrow">The ritual</div>
+      <h2 class="f8-h2" style="margin-top: 12px;">The question we ask every CEO before we design a single session.</h2>
+
+      <div class="ks-diag-question"><p>"If I asked each member of your leadership team to score your business honestly — completely anonymously — how different do you think their answers would be from what they would say in the room together?"</p></div>
+      <p style="color: var(--f8-grey); font-style: italic; font-size: 15px; margin-top: -8px; margin-bottom: 24px;">The length of the pause before the answer is itself insightful.</p>
+
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 16px;">The Keystone Pulse Check is a quarterly habit that efficiently measures where your organisation sits across all 15 enablers — and surfaces the gaps that are not being talked about in normal business reviews. Where a deeper dive is needed, it provides the diagnostic foundation for laser-focused action.</p>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 16px;">Not because your leaders do not know. But because the conditions for honest conversation do not always exist. And when they do not, even the most capable leadership team produces consensus rather than genuine strategy.</p>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 0;">The Keystone Pulse Check begins with a private conversation with the CEO or Owner. It results in a leadership team that has sat together, scored honestly, made real trade-offs — and left with Compound Strategies they collectively own.</p>
+
+      <div class="ks-pull-quote"><p>"An arch does not need every stone to be perfect. It needs the right stone in the right place — and a room honest enough to collectively agree where."</p></div>
+
+      <h3 class="f8-h3" style="margin-top: 40px;">Three organisational stages. One direction.</h3>
+      <div class="ks-stage-bar">
+        <div class="ks-stage"><div class="ks-stage-num">01</div><div class="ks-stage-label">Activation</div></div>
+        <div class="ks-stage"><div class="ks-stage-num">02</div><div class="ks-stage-label">Traction</div></div>
+        <div class="ks-stage"><div class="ks-stage-num">03</div><div class="ks-stage-label">Coherence</div></div>
+        <div class="ks-stage"><div class="ks-stage-num">04</div><div class="ks-stage-label">Compound Returns</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow">
+      <div class="section-eyebrow">The AI lens — across all 15 enablers</div>
+      <h2 class="f8-h2" style="margin-top: 12px;">AI is an accelerant. Not a keystone.</h2>
+      <p class="f8-lead mt-20">AI accelerates whatever fitness level your organisation already has. It does not create fitness. It does not create coherence. It does not create trust.</p>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 16px;">A coherent organisation uses AI as part of its Compound Strategies — doing more of what is already working, faster and at greater scale. A fragmented organisation uses AI to accelerate its own distrust, discord, and decoherence.</p>
+      <p style="color: var(--fg-2); line-height: 1.7; margin-bottom: 0;">The question for every SME right now is not whether to adopt AI. That question has already been answered. The question is: what does your organisation need so that AI makes you stronger rather than faster at the wrong things?</p>
+
+      <div class="ks-pull-quote"><p>"A coherent organisation uses AI to compound. A fragmented organisation uses AI to accelerate its own disaster."</p></div>
+
+      <div class="ks-ai-paths">
+        <div class="ks-ai-path positive">
+          <div class="path-label">Coherent organisation + AI</div>
+          <h4>Compound returns</h4>
+          <p>Operating and Quantum Enablers in alignment. AI amplifies what is already working — at speed and at scale.</p>
+        </div>
+        <div class="ks-ai-path negative">
+          <div class="path-label">Fragmented organisation + AI</div>
+          <h4>Accelerated decoherence</h4>
+          <p>Distrust, misalignment, and unclear ownership — moving faster in the wrong direction.</p>
+        </div>
+      </div>
+
+      <p style="color: var(--fg-2); line-height: 1.7; margin-top: 32px; margin-bottom: 0;">Project Keystone applies an AI lens across all 15 enablers — not as a separate module, but as a filter woven through the entire framework. For each enabler, the question is not "are you using AI here?" but "what does high fitness look like in an AI-enabled world — and what happens when AI arrives before that fitness is there?"</p>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="container">
+      <div class="section-eyebrow" style="color: var(--f8-blue-bright); margin-bottom: 16px;">Are you adding — or compounding?</div>
+      <h2 class="f8-h1">Project Keystone begins with one question and a conversation.</h2>
+      <p>What comes next depends on what the room reveals.</p>
+      <p style="font-size: 15px; font-style: italic; opacity: 0.7; margin-bottom: 32px;">Project Keystone is available to a small number of organisations. It is not a programme you buy. It is a conversation you request.</p>
+      <a class="btn btn--primary" href="/#contact">Request a conversation
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-bot">
+    <span>© 2026 facilit8. All rights reserved.</span>
+    <a href="/" style="color: rgba(255,255,255,0.78);">facilit8.org</a>
+  </div>
+</footer>
+</body>
+</html>

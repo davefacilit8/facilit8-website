@@ -1,0 +1,9 @@
+{
+  "name": "facilit8-website",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static site and Netlify Functions for facilit8.org",
+  "dependencies": {
+    "@netlify/blobs": "^10.0.0"
+  }
+}

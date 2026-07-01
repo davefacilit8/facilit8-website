@@ -4,7 +4,6 @@
     "services": "Leistungen",
     "caseStudies": "Case Studies",
     "playbooks": "Playbooks",
-    "keystone": "Project Keystone",
     "about": "Über uns",
     "contact": "Kontakt",
     "bookMeeting": "Termin buchen"
@@ -81,9 +80,15 @@
       "secondaryCta": "Über facilit8"
     },
     "stats": [
-      { "label": "Jahre Commercial Transformation" },
-      { "label": "Projekte umgesetzt" },
-      { "label": "& international" }
+      {
+        "label": "Jahre Commercial Transformation"
+      },
+      {
+        "label": "Projekte umgesetzt"
+      },
+      {
+        "label": "& international"
+      }
     ],
     "problem": {
       "eyebrow": "Das Problem",
@@ -172,9 +177,9 @@
     "founder": {
       "eyebrow": "Gründer",
       "heading": "Warum ich facilit8 gegründet habe",
-      "body1": "Meine Karriere habe ich in dem Raum verbracht, in dem Veränderung geschieht — nicht danach darüber zu schreiben, sondern mittendrin. Ausgebildet in umsetzungsorientierten Beratungshäusern: Capgemini, SAP und Implement Consulting Group, wo der Fokus stets auf mittelständischen Unternehmen lag — jenen mit echter Komplexität, aber ohne eine eigene Transformationsabteilung. In Unternehmen wie Nestlé, Clariant und Thomas Cook. Was ich dabei immer wieder festgestellt habe: Die Qualität dessen, was in einem Raum passiert, verändert alles. Ein gut geführter Workshop sammelt nicht nur Informationen. Er erzeugt Energie. Er bringt Probleme ans Licht, die niemand anzusprechen wagte. Er verwandelt einen Raum voller Skeptiker in ein Team, das den nächsten Schritt selbst trägt.",
+      "body1": "Meine Karriere habe ich in dem Raum verbracht, in dem Veränderung geschieht — nicht danach darüber zu schreiben, sondern mittendrin. Ausgebildet in umsetzungsorientierten Beratungshäusern: Capgemini, SAP und Implement Consulting Group, wo der Fokus stets auf Unternehmen aller Grössen lag, oft in Phasen der Übernahme, Fusion und uneinheitlicher Arbeitsweisen — aber häufig ohne eine eigene Transformationsabteilung. Als Commercial Manager in Unternehmen wie Nestlé, Clariant und Thomas Cook. Was ich dabei immer wieder festgestellt habe: Die Qualität dessen, was in einem Raum passiert, verändert alles. Ein gut geführter Workshop sammelt nicht nur Informationen. Er erzeugt Energie. Er bringt Probleme ans Licht, die niemand anzusprechen wagte. Er verwandelt einen Raum voller Skeptiker in ein Team, das den nächsten Schritt selbst trägt.",
       "body2": "Ich bin ausgebildeter Executive Coach und erfahrener Moderator — das heisst, ich weiss, wie ich das Beste aus einer Gruppe und aus einem Einzelgespräch heraushole. Diese Kombination — tiefe Umsetzungserfahrung, Coaching-Kompetenz und die Fähigkeit, Komplexität beherrschbar zu machen — ist das Fundament von facilit8. Keine leeren Versprechen. Jemand, der Schritt für Schritt an Ihrer Seite bleibt, bis der Wandel verankert ist. Mit Sitz in der Schweiz arbeite ich direkt mit den Menschen, die den Wandel vorantreiben — so werden Fähigkeiten übertragen und Ergebnisse dauerhaft.",
-      "highlight": "facilit8 bedeutet leichter machen. Technologie, Prozesse, Menschen — all das sollte das Leben Ihrer Kunden und Mitarbeitenden besser machen. Dafür habe ich mich ausgebildet. Das ist, was ich tue.",
+      "highlight": "«facilit8 bedeutet leichter machen. Ob das eine effektivere Art der bereichsübergreifenden Zusammenarbeit ist, ein 24/7-Kundenportal oder eine KI-Lösung für schnellere Preisgestaltung. Technologie, Prozesse, Arbeitsweisen — jede Veränderung sollte das Leben Ihrer Kunden und Mitarbeitenden besser machen. Das ist, was ich leichter mache.»",
       "credit": "David Howes — Gründer, facilit8"
     },
     "beliefs": {
@@ -334,108 +339,6 @@
       "heading": "Ein anderes Cash-Problem?",
       "body": "Ein Gespräch kostet nichts. Wir sagen Ihnen direkt, ob dieses Playbook passt — oder ob etwas anderes Sie weiter bringt.",
       "cta": "Gespräch vereinbaren"
-    }
-  },
-  "keystone": {
-    "hero": {
-      "eyebrow": "Project Keystone",
-      "headline": "Was muss wahr sein, damit ein KMU sein volles organisatorisches Potenzial entfalten kann?",
-      "sub1": "Die meisten Unternehmen haben mehr Potenzial, als sie realisieren. Nicht wegen schwacher Führung. Nicht wegen schlechter Menschen. Wegen der unsichtbaren Lücke zwischen dem, was eine Organisation hat — und dem, was sie tatsächlich zum Zusammenwirken gebracht hat.",
-      "sub2": "Project Keystone ist ein von Praktikern entwickeltes Framework, um diese Lücke zu finden. Und über sie hinaus zu wachsen.",
-      "cta": "Gespräch anfragen"
-    },
-    "diagStrip": {
-      "eyebrow": "Die Frage, die alles öffnet",
-      "question": "\"Welchen Prozentsatz des Potenzials Ihrer Organisation glauben Sie, dass Sie aktuell realisieren?\"",
-      "note": "Niemand antwortet mit 100 %. Die Lücke zwischen ihrer Antwort und 100 % ist die gesamte Business-Begründung — von ihnen selbst formuliert, bevor eine einzige Folie gezeigt wurde. Für ein KMU, wo keine Ressource verschwendet werden darf, hat diese Lücke jedes Quartal echte Kosten."
-    },
-    "compoundStrategies": {
-      "eyebrow": "Hier beginnen",
-      "heading": "Die meisten Ansätze helfen Unternehmen, zu addieren. Project Keystone hilft KMU, ungenutztes Potenzial zu kompoundieren.",
-      "lead": "Es gibt einen grundlegenden Unterschied zwischen dem Verbessern von Dingen nacheinander — und dem Wählen eines Fadens, der durch alles gleichzeitig läuft.",
-      "body1": "Eine Compound Strategy ist dieser Faden — der Rote Faden. Er verbindet Entscheidungen auf der Operating-Ebene mit den Kräften, die bestimmen, ob diese Entscheidungen tatsächlich den erwarteten Wert liefern: Vertrauen, psychologische Sicherheit, gemeinsame Verantwortung. Das sind die Quantum-Kräfte, die in jedem Projekt, jedem Leadership-Team und jedem CEO-Bedürfnis nach dauerhaftem Wandel präsent sind.",
-      "body2": "Compound Strategies sind selten, weil die meisten Organisationen so strukturiert sind, dass sie sie verhindern. Jede Funktion optimiert für ihre eigenen Ergebnisse. Jede Initiative konkurriert um Aufmerksamkeit. Der Faden, der durch alles laufen könnte, wird durchtrennt, bevor er je gewählt wird. Keystone ist dafür konzipiert, diesen Faden zu finden und zu halten.",
-      "body3": "Das Ergebnis: eine Reihe individueller Verbesserungen, die Quartal für Quartal aufeinander aufbauen — anstatt bei jeder neuen Priorität auf null zurückzusetzen.",
-      "pullQuote": "\"Die meisten Ansätze helfen Unternehmen, zu addieren. Project Keystone hilft KMU, ungenutztes Potenzial zu kompoundieren.\"",
-      "whatMakesHeading": "Was macht eine Strategie zur Compound Strategy?",
-      "whatMakesBody1": "Die wirkungsvollsten Strategien verbessern einen Operating Enabler und stärken gleichzeitig einen Quantum Enabler. Ein Schritt. Zwei Ebenen. Multiplizierende Wirkung.",
-      "whatMakesBody2": "Eine Einstellungsentscheidung, die Fähigkeit einbringt und gleichzeitig die psychologische Sicherheit modelliert, die die Organisation aufzubauen versucht. Ein Kundenfeedbackprozess, der den Service verbessert und Trust Capital im Leadership-Team stärkt. Ein Technologie-Rollout, der Effizienz freisetzt und Purpose Coherence demonstriert.",
-      "whatMakesBody3": "Das sind keine Zufälle. Sie werden gestaltet. Und um sie zu gestalten, muss man beide Ebenen gleichzeitig sehen.",
-      "chartEyebrow": "Addieren vs. Kompoundieren — über 8 Quartale"
-    },
-    "quantumEnablers": {
-      "eyebrow": "Ebene 2 — Die fünf Kräfte, die Ihre GuV nicht erfasst",
-      "heading": "Was das Unternehmen ist. Nicht nur, was es tut.",
-      "lead": "Jedes Unternehmen hat fünf unsichtbare Kräfte, die bestimmen, ob seine Operating-Entscheidungen dauerhaften Mehrwert erzeugen — oder nur Lärm. Sie sind schwerer zu messen als Umsatz. Unmöglich zu imitieren, wenn Führungskräfte den Raum verlassen. Und der ultimative Bestimmungsfaktor dafür, ob Ihre Organisation unter Druck wächst oder fragmentiert.",
-      "intro": "Wir nennen sie die Quantum Enablers.",
-      "pullQuote": "\"Operating Enablers sind die Steine im Bogen. Quantum Enablers sind die Kräfte, die bestimmen, ob der Bogen ein Jahr hält — oder ein Jahrhundert.\"",
-      "orbNote": "Die fünf Quantum Enablers werden im ersten Gespräch enthüllt — nicht davor.",
-      "resistHeading": "Sie entziehen sich einfacher Messbarkeit",
-      "resistBody1": "Wenn Sie ein Leadership-Team bitten, psychologische Sicherheit in einem Raum zu bewerten, in dem psychologische Sicherheit niedrig ist — erhalten Sie Bewertungen, die den Mangel an Sicherheit widerspiegeln, nicht die Realität. Das ist der Beobachtereffekt angewendet auf Unternehmenskultur.",
-      "resistBody2": "Ein Raum, in dem Governance & Ownership mit 8 bewertet wird, weil eine Bewertung mit 4 wie Schuldzuweisung wirken würde — dieser Raum hat Ihnen gerade sein Niveau an psychologischer Sicherheit genauer gezeigt als jedes Umfrageinstrument es könnte.",
-      "resistBody3": "Keystone liest diese Quantum Enablers indirekt — durch das Muster der Operating-Enabler-Bewertungen, die Qualität des Gesprächs und die Ehrlichkeit der Kompromissentscheidungen. Das Muster ist immer ehrlich, auch wenn die Bewertungen es nicht sind."
-    },
-    "operatingEnablers": {
-      "eyebrow": "Ebene 1 — Was Ihr Unternehmen tut",
-      "heading": "Zehn Hebel. Die meisten Projekte ziehen einen nach dem anderen.",
-      "lead": "Das Keystone-Framework bildet zehn Operating Enablers in drei Clustern ab: Commercial Operations, Transformation Strategy und Customer Experience.",
-      "body1": "Jeder Enabler liegt auf einem Reifegrad-Kontinuum — von einem benannten niedrigen Zustand zu einem benannten hohen Zustand. Zusammen beschreiben sie die gesamte Operating-Landschaft eines KMU: was das Unternehmen tut, wie gut es das tut und wo das unrealisierte Potenzial konzentriert ist.",
-      "body2": "Die meisten Projekte adressieren ein oder zwei dieser Enablers gleichzeitig. Keystone arbeitet über alle zehn gleichzeitig — und zeigt einem Leader, welche Kombination in seiner spezifischen Organisation die meiste Energie hält und welcher einzelne Faden, jetzt gezogen, die meiste freisetzen würde.",
-      "cluster1label": "Cluster 1",
-      "cluster1title": "Commercial Operations",
-      "cluster1body": "Wie das Unternehmen Umsatz generiert und sichert — das Herzstück der kommerziellen Performance.",
-      "cluster2label": "Cluster 2",
-      "cluster2title": "Transformation Strategy",
-      "cluster2body": "Wie das Unternehmen sich verändert — seine Fähigkeit, sich anzupassen, zu investieren und eine strategische Richtung umzusetzen.",
-      "cluster3label": "Cluster 3",
-      "cluster3title": "Customer Experience",
-      "cluster3body": "Wie das Unternehmen seinen Kunden dient — die Schnittstelle zwischen organisatorischer Fähigkeit und Kundenergebnis.",
-      "clusterNote": "Die einzelnen Enablers innerhalb jedes Clusters werden in der ersten Sitzung geteilt — nicht davor."
-    },
-    "lego": {
-      "eyebrow": "Sehenswert",
-      "heading": "Komplexität ist der Feind des Kompoundierens.",
-      "body1": "Obwohl kein KMU, veranschaulicht dies, wie gutes Aussehen kann — worum es bei Project Keystone geht.",
-      "body2": "LEGO verlor seinen Operating-Faden. Sie expandierten zu stark, schufen Komplexität, die sie nicht mehr beherrschen konnten, und kompoundierten in die falsche Richtung. Der Weg zurück erforderte genau die Art ehrlicher, funktionsübergreifender Auseinandersetzung, die Keystone entwickelt ist, an die Oberfläche zu bringen.",
-      "tip": "Tipp: Beginnen Sie bei Minute 4, um etwas Zeit zu sparen — dort beginnt der Kern.",
-      "videoCaption": "Wird auf der IMD-Website geöffnet."
-    },
-    "pulseCheck": {
-      "eyebrow": "Das Ritual",
-      "heading": "Die Frage, die wir jedem CEO stellen, bevor wir eine einzige Sitzung gestalten.",
-      "question": "\"Wenn ich jedes Mitglied Ihres Leadership-Teams bitten würde, Ihr Unternehmen ehrlich zu bewerten — vollständig anonym — wie unterschiedlich glauben Sie, würden ihre Antworten von dem sein, was sie im gemeinsamen Gespräch sagen würden?\"",
-      "questionNote": "Die Länge der Pause vor der Antwort ist selbst aufschlussreich.",
-      "body1": "Der Keystone Pulse Check ist eine Quartals-Routine, die effizient misst, wo Ihre Organisation über alle 15 Enablers steht — und Lücken aufdeckt, die in normalen Business-Reviews nicht besprochen werden. Wo eine vertiefte Analyse nötig ist, liefert er die diagnostische Grundlage für zielgerichtetes Handeln.",
-      "body2": "Nicht weil Ihre Führungskräfte es nicht wissen. Sondern weil die Bedingungen für ehrliche Gespräche nicht immer vorhanden sind. Und wenn sie es nicht sind, produziert selbst das fähigste Leadership-Team Konsens statt echter Strategie.",
-      "body3": "Der Keystone Pulse Check beginnt mit einem vertraulichen Gespräch mit dem CEO oder Inhaber. Er endet mit einem Leadership-Team, das gemeinsam bewertet, ehrlich gemacht und echte Kompromisse getroffen hat — und den Raum mit Compound Strategies verlässt, die es gemeinsam verantwortet.",
-      "pullQuote": "\"Ein Bogen braucht nicht jeden Stein perfekt. Er braucht den richtigen Stein am richtigen Ort — und einen Raum, der ehrlich genug ist, sich gemeinsam darauf zu einigen.\"",
-      "stagesHeading": "Drei organisatorische Phasen. Eine Richtung.",
-      "stage1num": "01", "stage1label": "Activation",
-      "stage2num": "02", "stage2label": "Traction",
-      "stage3num": "03", "stage3label": "Coherence",
-      "stage4num": "04", "stage4label": "Compound Returns"
-    },
-    "aiLens": {
-      "eyebrow": "Die KI-Perspektive — über alle 15 Enablers",
-      "heading": "KI ist ein Beschleuniger. Kein Keystone.",
-      "lead": "KI beschleunigt, welchen Fitness-Level Ihre Organisation bereits hat. Sie schafft keine Fitness. Sie schafft keine Kohärenz. Sie schafft kein Vertrauen.",
-      "body1": "Eine kohärente Organisation verwendet KI als Teil ihrer Compound Strategies — sie tut mehr von dem, was bereits funktioniert, schneller und in grösserem Massstab. Eine fragmentierte Organisation verwendet KI, um ihr eigenes Misstrauen, ihre Unstimmigkeiten und ihre Inkohärenz zu beschleunigen.",
-      "body2": "Die Frage für jedes KMU ist heute nicht, ob KI eingeführt werden soll. Diese Frage ist bereits beantwortet. Die Frage ist: Was braucht Ihre Organisation, damit KI Sie stärker macht — und nicht schneller auf dem falschen Weg?",
-      "pullQuote": "\"Eine kohärente Organisation nutzt KI zum Kompoundieren. Eine fragmentierte Organisation nutzt KI, um ihre eigene Misere zu beschleunigen.\"",
-      "path1label": "Kohärente Organisation + KI",
-      "path1title": "Compound Returns",
-      "path1body": "Operating und Quantum Enablers in Ausrichtung. KI verstärkt, was bereits funktioniert — schneller und in grösserem Massstab.",
-      "path2label": "Fragmentierte Organisation + KI",
-      "path2title": "Beschleunigte Inkohärenz",
-      "path2body": "Misstrauen, Fehlausrichtung und unklare Verantwortlichkeiten — in die falsche Richtung beschleunigt.",
-      "body3": "Project Keystone wendet eine KI-Perspektive über alle 15 Enablers an — nicht als separates Modul, sondern als Filter, der durch das gesamte Framework gewoben ist. Für jeden Enabler ist die Frage nicht \"Nutzen Sie KI hier?\" sondern \"Wie sieht hohe Fitness in einer KI-fähigen Welt aus — und was passiert, wenn KI eintrifft, bevor diese Fitness vorhanden ist?\""
-    },
-    "cta": {
-      "sub": "Addieren Sie — oder kompoundieren Sie?",
-      "heading": "Project Keystone beginnt mit einer Frage und einem Gespräch.",
-      "body": "Was als nächstes kommt, hängt davon ab, was der Raum enthüllt.",
-      "note": "Project Keystone steht einer kleinen Anzahl von Organisationen zur Verfügung. Es ist kein Programm, das Sie kaufen. Es ist ein Gespräch, das Sie anfragen.",
-      "cta": "Gespräch anfragen"
     }
   }
 }
