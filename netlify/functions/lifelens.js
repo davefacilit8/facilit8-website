@@ -736,7 +736,13 @@ exports.handler = async (event) => {
     }
     const params = new URLSearchParams(event.body || '');
     const password = params.get('password') || '';
-    if (password !== process.env.LIFELENS_PASSWORD) {
+    // Constant-time comparison via HMAC digests — avoids leaking password
+    // length or matching-prefix timing, unlike a plain !== on strings.
+    const crypto = require('crypto');
+    const key = crypto.randomBytes(32);
+    const a = crypto.createHmac('sha256', key).update(password).digest();
+    const b = crypto.createHmac('sha256', key).update(process.env.LIFELENS_PASSWORD).digest();
+    if (!crypto.timingSafeEqual(a, b)) {
       return { statusCode: 200, headers: NOSTORE_HEADERS, body: loginPage(true) };
     }
     return {

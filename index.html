@@ -5,6 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>facilit8 — Commercial Transformation enabled by Technology</title>
 <meta name="description" content="facilit8 helps businesses unlock the commercial value of their technology — through hands-on transformation that actually sticks.">
+<link rel="canonical" href="https://facilit8.org/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="facilit8">
+<meta property="og:title" content="facilit8 — Commercial Transformation enabled by Technology">
+<meta property="og:description" content="facilit8 helps businesses unlock the commercial value of their technology — through hands-on transformation that actually sticks.">
+<meta property="og:url" content="https://facilit8.org/">
+<meta property="og:image" content="https://facilit8.org/assets/facilit8-logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="facilit8 — Commercial Transformation enabled by Technology">
+<meta name="twitter:description" content="facilit8 helps businesses unlock the commercial value of their technology — through hands-on transformation that actually sticks.">
+<meta name="twitter:image" content="https://facilit8.org/assets/facilit8-logo.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "facilit8",
+  "url": "https://facilit8.org/",
+  "logo": "https://facilit8.org/assets/facilit8-logo.png",
+  "description": "facilit8 helps businesses unlock the commercial value of their technology — through hands-on commercial transformation that sticks.",
+  "founder": { "@type": "Person", "name": "David Howes" },
+  "areaServed": ["Switzerland", "DACH", "International"],
+  "email": "david@facilit8.org",
+  "knowsLanguage": ["en", "de"]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1148,7 +1173,9 @@ main { flex: 1; }
    CONFIGURATION
    ============================================================ */
 const CONFIG = {
-  meetingsUrl: 'https://www.facilit8.org/meetings/david-howes/facilit8results',
+  // Aligned with the embed on the Contact page (slug 'dmjhowes', not 'david-howes').
+  // The old www.facilit8.org/meetings/david-howes/... URL did not match and likely 404'd.
+  meetingsUrl: 'https://app-eu1.hubspot.com/meetings/dmjhowes/facilit8results',
 
   email: 'david@facilit8.org',
 };
@@ -3078,16 +3105,20 @@ function Site() {
   }, []);
 
   // Enable/disable HubSpot analytics based on consent.
+  // Deps array matters: without it this ran on EVERY render, spamming
+  // trackPageView and inflating HubSpot analytics. setPath gives each
+  // SPA "page" its own path in HubSpot instead of everything logging as "/".
   const analyticsAllowed = consentApi.has('analytics');
   React.useEffect(() => {
     const _hsq = window._hsq = window._hsq || [];
     if (analyticsAllowed) {
       _hsq.push(['doNotTrack', { track: true }]);
+      _hsq.push(['setPath', page === 'home' ? '/' : '/#' + page]);
       _hsq.push(['trackPageView']);
     } else {
       _hsq.push(['doNotTrack']);
     }
-  });
+  }, [analyticsAllowed, page]);
 
   React.useEffect(() => {
     const F8t = window.F8_I18N.t;
