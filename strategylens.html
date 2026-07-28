@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="StrategyLENS by facilit8 — your strategy as six explicit choices, challenged and tested. For Swiss Mittelstand leaders. EN/DE.">
+<title>StrategyLENS — facilit8</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='116' fill='%230A1628'/%3E%3Cg transform='translate(106 106) scale(12.5)' fill='none' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10' stroke='%23FFFFFF'/%3E%3Cpath d='M12 2 L12 12 L19 19' stroke='%233FB1F2'/%3E%3Ccircle cx='12' cy='12' r='4.5' stroke='%233FB1F2'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ── facilit8 design tokens ── */
+:root {
+  --f8-blue:#0070C0; --f8-blue-bright:#0090E7; --f8-blue-deep:#005896; --f8-blue-tint:#E8F4FC;
+  --f8-navy:#0A1628; --f8-navy-2:#142238;
+  --f8-teal:#007B8A; --f8-teal-tint:#E6F4F6;
+  --f8-amber:#B86A00; --f8-amber-tint:#FFF4E0;
+  --f8-green:#1A6B3A; --f8-green-tint:#EAF6EE;
+  --f8-purple:#5B3FA6; --f8-purple-tint:#F2EFFF;
+  --f8-rose:#9B1D4A; --f8-rose-tint:#FCEEF4;
+  --f8-red:#C0392B; --f8-red-tint:#FDEEEC;
+  --f8-slate:#3D5166; --f8-slate-tint:#EDF1F5;
+  --f8-off-white:#F5F7FA; --f8-fog:#E6ECF2; --f8-mist:#C9D2DD;
+  --f8-grey:#6B7A99; --f8-ink:#1A1A2E; --f8-ink-soft:#3A3F55;
+  --font-sans:'Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --r-sm:6px; --r-md:8px; --r-lg:12px; --r-xl:16px;
+  --shadow-1:0 1px 3px rgba(10,22,40,0.06);
+  --shadow-2:0 4px 16px rgba(10,22,40,0.08),0 1px 3px rgba(10,22,40,0.04);
+  --shadow-3:0 8px 32px rgba(10,22,40,0.12),0 2px 8px rgba(10,22,40,0.06);
+  --dur:0.18s; --ease-out:cubic-bezier(0.2,0,0,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-sans);background:var(--f8-off-white);color:var(--f8-ink);-webkit-font-smoothing:antialiased;}
+
+/* ── Nav ── */
+.app-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:saturate(160%) blur(10px);-webkit-backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--f8-fog);}
+.app-nav-inner{max-width:1240px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:16px;height:64px;}
+.app-nav-logo{font-size:17px;font-weight:800;color:var(--f8-navy);letter-spacing:-0.02em;display:flex;align-items:center;gap:10px;line-height:1;}
+.app-nav-logo .lens{color:var(--f8-blue);}
+.app-nav-sub{font-size:12.5px;color:var(--f8-grey);font-weight:500;flex:1;}
+.lang-toggle{display:flex;border:1.5px solid var(--f8-mist);border-radius:20px;overflow:hidden;}
+.lang-toggle button{border:none;background:transparent;font-family:var(--font-sans);font-size:12px;font-weight:700;padding:5px 12px;cursor:pointer;color:var(--f8-grey);transition:all var(--dur) var(--ease-out);}
+.lang-toggle button.on{background:var(--f8-navy);color:#fff;}
+.plan-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;cursor:pointer;border:none;font-family:var(--font-sans);transition:all var(--dur) var(--ease-out);}
+.plan-badge.basic{background:var(--f8-slate-tint);color:var(--f8-slate);border:1px solid var(--f8-mist);}
+.plan-badge.premium{background:linear-gradient(135deg,#f0e8ff,#e8f4fc);color:var(--f8-purple);border:1px solid #c9bff0;}
+
+/* ── Stage bar ── */
+.stage-bar{background:#fff;border-bottom:1px solid var(--f8-fog);}
+.stage-bar-inner{max-width:1240px;margin:0 auto;display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;padding:0 16px;}
+.stage-bar-inner::-webkit-scrollbar{display:none;}
+.stage-step{display:flex;align-items:center;gap:7px;padding:12px 12px;border-bottom:2px solid transparent;white-space:nowrap;font-size:12.5px;font-weight:500;color:var(--f8-grey);user-select:none;transition:all var(--dur) var(--ease-out);}
+.stage-step.done{color:var(--f8-green);}
+.stage-step.active{color:var(--f8-navy);font-weight:600;border-bottom-color:var(--f8-blue);}
+.stage-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;background:var(--f8-fog);color:var(--f8-grey);flex-shrink:0;}
+.stage-step.done .stage-num{background:var(--f8-green-tint);color:var(--f8-green);}
+.stage-step.active .stage-num{background:var(--f8-blue);color:#fff;}
+
+/* ── Layout ── */
+.workbench{max-width:1240px;margin:0 auto;padding:24px;display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:24px;align-items:start;}
+@media(max-width:960px){.workbench{grid-template-columns:1fr;}.cascade-panel{position:static !important;order:-1;}}
+
+/* ── Chat ── */
+.chat-card{background:#fff;border-radius:var(--r-xl);border:1px solid var(--f8-fog);box-shadow:var(--shadow-2);display:flex;flex-direction:column;min-height:640px;overflow:hidden;}
+.chat-head{padding:16px 22px;border-bottom:1px solid var(--f8-fog);display:flex;align-items:center;gap:10px;}
+.chat-head .dot{width:8px;height:8px;border-radius:50%;background:var(--f8-green);box-shadow:0 0 0 3px var(--f8-green-tint);}
+.chat-head-title{font-size:13.5px;font-weight:700;color:var(--f8-navy);}
+.chat-head-phase{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--f8-blue);}
+.chat-log{flex:1;padding:22px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;max-height:60vh;}
+.msg{max-width:82%;padding:12px 16px;border-radius:var(--r-lg);font-size:14.5px;line-height:1.55;animation:pop .28s var(--ease-out);}
+@keyframes pop{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.msg.bot{background:var(--f8-slate-tint);color:var(--f8-ink);border-top-left-radius:4px;align-self:flex-start;}
+.msg.bot .lead{display:block;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--f8-blue);margin-bottom:4px;}
+.msg.user{background:var(--f8-blue);color:#fff;border-top-right-radius:4px;align-self:flex-end;}
+.msg.challenge{background:var(--f8-purple-tint);border:1px solid #d9cff2;border-top-left-radius:4px;align-self:flex-start;}
+.msg.challenge .lead{color:var(--f8-purple);}
+.msg.note{background:var(--f8-amber-tint);border:1px solid #f0dcb2;align-self:flex-start;font-size:13.5px;}
+.msg.note .lead{color:var(--f8-amber);}
+.typing{display:inline-flex;gap:4px;padding:14px 18px;background:var(--f8-slate-tint);border-radius:var(--r-lg);border-top-left-radius:4px;align-self:flex-start;}
+.typing span{width:7px;height:7px;border-radius:50%;background:var(--f8-grey);animation:blink 1.2s infinite;}
+.typing span:nth-child(2){animation-delay:.2s;}.typing span:nth-child(3){animation-delay:.4s;}
+@keyframes blink{0%,80%,100%{opacity:.25;}40%{opacity:1;}}
+
+/* ── Input area ── */
+.chat-input{border-top:1px solid var(--f8-fog);padding:16px 22px;background:#FBFCFE;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+.chip{border:1.5px solid var(--f8-mist);background:#fff;border-radius:20px;padding:8px 15px;font-family:var(--font-sans);font-size:13.5px;font-weight:600;color:var(--f8-ink-soft);cursor:pointer;transition:all var(--dur) var(--ease-out);}
+.chip:hover{border-color:var(--f8-blue-bright);color:var(--f8-blue);}
+.chip.sel{background:var(--f8-blue);border-color:var(--f8-blue);color:#fff;}
+.chip.ghost{border-style:dashed;color:var(--f8-grey);}
+.input-row{display:flex;gap:10px;}
+.input-row textarea{flex:1;font-family:var(--font-sans);font-size:14.5px;color:var(--f8-ink);padding:11px 14px;border-radius:var(--r-md);border:1.5px solid var(--f8-mist);background:#fff;outline:none;resize:none;min-height:48px;max-height:120px;transition:border-color var(--dur) var(--ease-out),box-shadow var(--dur) var(--ease-out);}
+.input-row textarea:focus{border-color:var(--f8-blue-bright);box-shadow:0 0 0 3px rgba(0,144,231,0.12);}
+.btn{border:none;font-family:var(--font-sans);font-weight:700;font-size:14px;border-radius:var(--r-md);cursor:pointer;transition:all var(--dur) var(--ease-out);display:inline-flex;align-items:center;gap:8px;justify-content:center;}
+.btn-primary{background:var(--f8-blue);color:#fff;padding:12px 22px;}
+.btn-primary:hover{background:var(--f8-blue-deep);}
+.btn-primary:disabled{background:var(--f8-mist);cursor:default;}
+.btn-secondary{background:#fff;color:var(--f8-blue);border:1.5px solid var(--f8-blue);padding:11px 20px;}
+.btn-secondary:hover{background:var(--f8-blue-tint);}
+.btn-premium{background:linear-gradient(135deg,var(--f8-purple),#7a5fd0);color:#fff;padding:12px 22px;}
+.btn-premium:hover{filter:brightness(1.08);}
+.input-hint{font-size:11.5px;color:var(--f8-grey);margin-top:8px;}
+.multi-actions{display:flex;justify-content:flex-end;margin-top:4px;}
+
+/* ── Cascade panel ── */
+.cascade-panel{position:sticky;top:88px;display:flex;flex-direction:column;gap:14px;}
+.cascade-card{background:var(--f8-navy);border-radius:var(--r-xl);padding:20px;color:#fff;box-shadow:var(--shadow-2);}
+.cascade-title{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#7FC4F0;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.cascade-slot{border-left:3px solid rgba(255,255,255,0.14);padding:8px 0 8px 14px;margin-bottom:4px;transition:all var(--dur) var(--ease-out);}
+.cascade-slot .slot-label{font-size:10.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);}
+.cascade-slot .slot-value{font-size:13px;line-height:1.5;color:rgba(255,255,255,0.85);margin-top:3px;min-height:16px;}
+.cascade-slot.empty .slot-value{color:rgba(255,255,255,0.28);font-style:italic;}
+.cascade-slot.filled{border-left-color:var(--f8-blue-bright);}
+.cascade-slot.filled .slot-label{color:#7FC4F0;}
+.cascade-slot.ai{border-left-color:rgba(180,150,255,0.35);}
+.cascade-slot.ai.filled{border-left-color:#B49AF5;}
+.cascade-slot.ai.filled .slot-label{color:#CDB8FA;}
+.tension-card{background:#fff;border:1px solid var(--f8-fog);border-radius:var(--r-lg);padding:16px 18px;box-shadow:var(--shadow-1);}
+.tension-title{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--f8-amber);margin-bottom:10px;}
+.tension-item{font-size:12.5px;color:var(--f8-ink-soft);line-height:1.5;padding:6px 0;border-bottom:1px dashed var(--f8-fog);}
+.tension-item:last-child{border-bottom:none;}
+.tension-item b{color:var(--f8-ink);}
+.tension-empty{font-size:12.5px;color:var(--f8-grey);font-style:italic;}
+
+/* ── Dashboard ── */
+.dashboard{max-width:1240px;margin:0 auto;padding:24px;display:none;}
+.dash-head{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
+.dash-head h1{font-size:clamp(22px,3.5vw,32px);font-weight:800;letter-spacing:-0.02em;color:var(--f8-navy);line-height:1.2;}
+.dash-head .sub{font-size:14px;color:var(--f8-ink-soft);margin-top:6px;}
+.dash-actions{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap;}
+.dash-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;}
+.dcard{background:#fff;border:1px solid var(--f8-fog);border-radius:var(--r-xl);padding:22px;box-shadow:var(--shadow-1);}
+.dcard h3{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.span12{grid-column:span 12;}.span8{grid-column:span 8;}.span6{grid-column:span 6;}.span4{grid-column:span 4;}
+@media(max-width:960px){.span8,.span6,.span4{grid-column:span 12;}}
+
+/* cascade visual on dashboard */
+.cascade-flow{display:flex;flex-direction:column;gap:0;}
+.cf-step{display:flex;gap:16px;align-items:stretch;}
+.cf-rail{display:flex;flex-direction:column;align-items:center;width:34px;flex-shrink:0;}
+.cf-dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;background:var(--f8-blue);flex-shrink:0;z-index:1;}
+.cf-line{width:2px;flex:1;background:var(--f8-fog);min-height:14px;}
+.cf-body{padding:2px 0 22px;}
+.cf-label{font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--f8-blue);}
+.cf-value{font-size:14.5px;color:var(--f8-ink);line-height:1.55;margin-top:4px;max-width:640px;}
+.cf-step.ai .cf-dot{background:var(--f8-purple);}
+.cf-step.ai .cf-label{color:var(--f8-purple);}
+.cf-not{font-size:12.5px;color:var(--f8-rose);margin-top:5px;font-weight:600;}
+
+/* scorecard */
+.sc-row{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:0;border:1px solid var(--f8-fog);border-radius:var(--r-lg);overflow:hidden;margin-bottom:12px;}
+.sc-cell{padding:13px 15px;font-size:13px;line-height:1.5;border-right:1px solid var(--f8-fog);position:relative;}
+.sc-cell:last-child{border-right:none;}
+.sc-cell .k{display:block;font-size:9.5px;font-weight:700;letter-spacing:0.11em;text-transform:uppercase;color:var(--f8-grey);margin-bottom:4px;}
+.sc-cell.choice{background:var(--f8-blue-tint);}.sc-cell.choice .k{color:var(--f8-blue);}
+.sc-cell.lead{background:var(--f8-teal-tint);}.sc-cell.lead .k{color:var(--f8-teal);}
+.sc-cell.impact{background:var(--f8-green-tint);}.sc-cell.impact .k{color:var(--f8-green);}
+.sc-arrow{position:absolute;right:-7px;top:50%;transform:translateY(-50%);width:13px;height:13px;background:inherit;border-top:1px solid var(--f8-fog);border-right:1px solid var(--f8-fog);rotate:45deg;z-index:1;}
+@media(max-width:760px){.sc-row{grid-template-columns:1fr;}.sc-cell{border-right:none;border-bottom:1px solid var(--f8-fog);}.sc-arrow{display:none;}}
+.sc-legend{font-size:12px;color:var(--f8-grey);margin-top:6px;line-height:1.5;}
+
+/* WWHTBT list */
+.wwhtbt-item{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--f8-fog);}
+.wwhtbt-item:last-child{border-bottom:none;}
+.wwhtbt-flag{font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:12px;flex-shrink:0;margin-top:2px;}
+.wwhtbt-flag.ok{background:var(--f8-green-tint);color:var(--f8-green);}
+.wwhtbt-flag.test{background:var(--f8-amber-tint);color:var(--f8-amber);}
+.wwhtbt-flag.risk{background:var(--f8-red-tint);color:var(--f8-red);}
+.wwhtbt-text{font-size:13.5px;line-height:1.55;color:var(--f8-ink-soft);}
+.wwhtbt-text b{color:var(--f8-ink);}
+
+/* challenger */
+.challenger-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--f8-fog);}
+.challenger-item:last-child{border-bottom:none;}
+.ch-ico{width:28px;height:28px;border-radius:8px;background:var(--f8-purple-tint);color:var(--f8-purple);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;}
+.ch-body{font-size:13.5px;line-height:1.55;color:var(--f8-ink-soft);}
+.ch-body b{color:var(--f8-ink);}
+.ch-tag{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:var(--f8-purple);background:var(--f8-purple-tint);border-radius:10px;padding:2px 8px;margin-bottom:4px;}
+
+/* sprint */
+.sprint-item{display:flex;gap:14px;padding:11px 0;border-bottom:1px dashed var(--f8-fog);align-items:flex-start;}
+.sprint-item:last-child{border-bottom:none;}
+.sprint-week{font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--f8-teal);background:var(--f8-teal-tint);border-radius:8px;padding:4px 9px;flex-shrink:0;white-space:nowrap;margin-top:2px;}
+.sprint-text{font-size:13.5px;line-height:1.55;color:var(--f8-ink-soft);}
+.sprint-text b{color:var(--f8-ink);}
+
+/* storyboard */
+.story-arc{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+@media(max-width:900px){.story-arc{grid-template-columns:1fr;}}
+.story-panel{border:1px solid var(--f8-fog);border-radius:var(--r-lg);padding:16px;display:flex;flex-direction:column;gap:8px;background:#FBFCFE;}
+.story-panel .sp-num{width:26px;height:26px;border-radius:50%;background:var(--f8-navy);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.story-panel .sp-role{font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--f8-rose);}
+.story-panel .sp-title{font-size:13.5px;font-weight:700;color:var(--f8-navy);}
+.story-panel .sp-text{font-size:12.5px;line-height:1.55;color:var(--f8-ink-soft);}
+.story-tips{margin-top:14px;background:var(--f8-amber-tint);border:1px solid #f0dcb2;border-radius:var(--r-md);padding:13px 16px;font-size:12.5px;line-height:1.6;color:var(--f8-ink-soft);}
+.story-tips b{color:var(--f8-amber);}
+
+/* locked premium card */
+.locked{position:relative;overflow:hidden;}
+.locked .lock-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.55),rgba(255,255,255,0.94) 55%);backdrop-filter:blur(2px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px;z-index:2;}
+.lock-veil .lv-title{font-size:15px;font-weight:800;color:var(--f8-navy);}
+.lock-veil .lv-sub{font-size:13px;color:var(--f8-ink-soft);max-width:380px;line-height:1.55;}
+
+/* misc */
+.pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:12px;}
+.pill.free{background:var(--f8-green-tint);color:var(--f8-green);}
+.pill.paid{background:var(--f8-purple-tint);color:var(--f8-purple);}
+.disclaimer{font-size:12px;color:var(--f8-grey);line-height:1.6;border-top:1px solid var(--f8-fog);margin-top:24px;padding-top:14px;}
+.email-status{width:100%;font-size:12.5px;font-weight:600;padding:8px 14px;border-radius:var(--r-md);margin-top:2px;}
+.email-status.ok{background:var(--f8-green-tint);color:var(--f8-green);}
+.email-status.err{background:var(--f8-red-tint);color:var(--f8-red);}
+.email-status.pending{background:var(--f8-slate-tint);color:var(--f8-slate);}
+.footer{max-width:1240px;margin:0 auto;padding:20px 24px 48px;font-size:12px;color:var(--f8-grey);display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.footer b{color:var(--f8-navy);}
+
+/* prototype banner */
+.proto-banner{background:var(--f8-navy);color:rgba(255,255,255,0.85);font-size:12px;padding:8px 24px;text-align:center;line-height:1.5;}
+.proto-banner b{color:#7FC4F0;}
+/* challenge transparency */
+.ch-why{font-size:11.5px;color:var(--f8-grey);margin-top:7px;font-style:italic;border-top:1px dashed #d9cff2;padding-top:6px;}
+.q-hint{display:block;font-size:12.5px;color:var(--f8-grey);font-style:italic;margin-top:6px;}
+/* alignment */
+.align-status{display:inline-block;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;margin-bottom:10px;}
+.align-status.good{background:var(--f8-green-tint);color:var(--f8-green);}
+.align-status.warn{background:var(--f8-amber-tint);color:var(--f8-amber);}
+.align-status.bad{background:var(--f8-red-tint);color:var(--f8-red);}
+.process-item{display:flex;gap:11px;padding:9px 0;border-bottom:1px dashed var(--f8-fog);font-size:13.5px;line-height:1.55;color:var(--f8-ink-soft);align-items:flex-start;}
+.process-item:last-child{border-bottom:none;}
+.process-item .pi-ico{width:24px;height:24px;border-radius:7px;background:var(--f8-blue-tint);color:var(--f8-blue);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px;}
+.process-item b{color:var(--f8-ink);}
+/* print */
+@media print{
+  .app-nav,.stage-bar,.workbench,.dash-actions,.lock-veil,.proto-banner,.footer .noprint{display:none !important;}
+  .dashboard{display:block !important;padding:0;}
+  .dcard{box-shadow:none;break-inside:avoid;}
+  body{background:#fff;}
+}
+</style>
+</head>
+<body>
+
+<nav class="app-nav">
+  <div class="app-nav-inner">
+    <div class="app-nav-logo">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke="#0A1628"/><path d="M12 2 L12 12 L19 19" stroke="#0090E7"/><circle cx="12" cy="12" r="4.5" stroke="#0090E7"/></svg>
+      Strategy<span class="lens">LENS</span>
+    </div>
+    <div class="app-nav-sub" data-i18n="navSub"></div>
+    <div class="lang-toggle">
+      <button id="lang-en" onclick="setLang('en')">EN</button>
+      <button id="lang-de" onclick="setLang('de')">DE</button>
+    </div>
+    <button class="plan-badge basic" id="plan-badge" onclick="togglePlan()"></button>
+  </div>
+</nav>
+
+<div class="proto-banner" id="proto-banner" data-i18n="protoBanner"></div>
+
+<div class="stage-bar"><div class="stage-bar-inner" id="stage-bar"></div></div>
+
+<div class="workbench" id="workbench">
+  <div class="chat-card">
+    <div class="chat-head">
+      <div class="dot"></div>
+      <div class="chat-head-title" data-i18n="chatTitle"></div>
+      <div class="chat-head-phase" id="chat-phase"></div>
+    </div>
+    <div class="chat-log" id="chat-log"></div>
+    <div class="chat-input" id="chat-input"></div>
+  </div>
+
+  <div class="cascade-panel">
+    <div class="cascade-card">
+      <div class="cascade-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7FC4F0" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4.5"/></svg>
+        <span data-i18n="cascadeTitle"></span>
+      </div>
+      <div id="cascade-slots"></div>
+    </div>
+    <div class="tension-card">
+      <div class="tension-title" data-i18n="tensionTitle"></div>
+      <div id="tension-list"><div class="tension-empty" data-i18n="tensionEmpty"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="dashboard" id="dashboard"></div>
+
+<div class="footer">
+  <b>facilit8</b><span>·</span><span data-i18n="footerLine"></span>
+</div>
+
+<script>
+/* ══════════════════════ STATE ══════════════════════ */
+const S = {
+  lang: 'en',
+  plan: 'basic',           // 'basic' | 'premium'
+  step: 0,
+  answers: {},             // key -> value (string or array)
+  tensions: [],            // detected both/and tensions
+  flags: [],               // bad-strategy / challenger flags
+  wwhtbtRatings: {},       // idx -> 'ok'|'test'|'risk'
+  finished: false
+};
+
+/* ══════════════════════ UI STRINGS ══════════════════════ */
+const UI = {
+  navSub:{en:'Strategy as five choices — plus the sixth: AI', de:'Strategie als fünf Entscheidungen — plus die sechste: KI'},
+  chatTitle:{en:'Your strategy sparring session', de:'Ihr Strategie-Sparring'},
+  cascadeTitle:{en:'Your choice cascade', de:'Ihre Entscheidungskaskade'},
+  tensionTitle:{en:'⚖ Both/And watchlist', de:'⚖ Sowohl-als-auch-Radar'},
+  tensionEmpty:{en:'Tensions you name will appear here.', de:'Benannte Spannungsfelder erscheinen hier.'},
+  planBasic:{en:'Free', de:'Kostenlos'},
+  planPremium:{en:'Premium', de:'Premium'},
+  send:{en:'Send', de:'Senden'},
+  confirmChips:{en:'Confirm', de:'Bestätigen'},
+  skip:{en:'Skip', de:'Überspringen'},
+  otherChip:{en:'✎ In my own words…', de:'✎ In eigenen Worten…'},
+  inputHint:{en:'Short and honest beats long and polished.', de:'Kurz und ehrlich schlägt lang und poliert.'},
+  footerLine:{en:'StrategyLENS · Decision support, not a verdict. You own the strategy.', de:'StrategyLENS · Entscheidungshilfe, kein Urteil. Die Strategie gehört Ihnen.'},
+  phases:{
+    setup:{en:'Setup', de:'Setup'},
+    diagnose:{en:'Diagnose', de:'Diagnose'},
+    aspire:{en:'Aspire', de:'Ambition'},
+    where:{en:'Where to play', de:'Spielfeld'},
+    how:{en:'How to win', de:'Gewinnlogik'},
+    cap:{en:'Capabilities', de:'Fähigkeiten'},
+    sys:{en:'Systems', de:'Steuerung'},
+    ai:{en:'AI choice', de:'KI-Entscheidung'},
+    test:{en:'Test', de:'Test'},
+    measure:{en:'Measure', de:'Messen'},
+    align:{en:'Alignment', de:'Alignment'},
+    dash:{en:'Dashboard', de:'Dashboard'}
+  },
+  slots:{
+    aspiration:{en:'Winning aspiration', de:'Sieg-Ambition'},
+    where:{en:'Where to play', de:'Wo spielen wir'},
+    notPlay:{en:'Where we will not play', de:'Wo wir nicht spielen'},
+    how:{en:'How to win', de:'Wie gewinnen wir'},
+    cap:{en:'Must-have capabilities', de:'Notwendige Fähigkeiten'},
+    sys:{en:'Management systems', de:'Steuerungssysteme'},
+    ai:{en:'AI choice — the 6th', de:'KI-Entscheidung — die 6.'}
+  },
+  emptySlot:{en:'Not yet chosen', de:'Noch offen'},
+  dashTitle:{en:'Smart Choices Dashboard', de:'Smart-Choices-Dashboard'},
+  dashSub:{en:'Your strategy hypothesis as explicit choices — challenged, tested, measurable. The input to your leadership alignment process.', de:'Ihre Strategie-Hypothese als explizite Entscheidungen — hinterfragt, getestet, messbar. Der Input für den Alignment-Prozess mit Ihrem Führungsteam.'},
+  hypothesisPill:{en:'Strategy hypothesis', de:'Strategie-Hypothese'},
+  protoBanner:{en:'<b>Prototype</b> · demo engine — the full version runs on a real AI challenger. <b>Everything stays on your device</b> — nothing is sent or stored unless you choose to email your dashboard.', de:'<b>Prototyp</b> · Demo-Engine — die Vollversion nutzt einen echten KI-Challenger. <b>Alles bleibt auf Ihrem Gerät</b> — nichts wird gesendet oder gespeichert, ausser Sie senden Ihr Dashboard per E-Mail.'},
+  resumeQ:{en:'Welcome back. You have a session in progress. Continue where you left off?', de:'Willkommen zurück. Eine Sitzung ist in Arbeit. Dort weitermachen, wo Sie aufgehört haben?'},
+  resumeYes:{en:'Resume session', de:'Sitzung fortsetzen'},
+  resumeNo:{en:'Start fresh', de:'Neu beginnen'},
+  langLocked:{en:'Language is locked during the session — you can switch again on the dashboard.', de:'Die Sprache ist während der Sitzung fixiert — auf dem Dashboard können Sie wieder wechseln.'},
+  emailBtn:{en:'✉ Email me my dashboard', de:'✉ Dashboard per E-Mail'},
+  emailPrompt:{en:'Your email address:', de:'Ihre E-Mail-Adresse:'},
+  emailCc:{en:'Also send a copy to facilit8 so Dave can follow up? (optional)', de:'Kopie an facilit8, damit Dave nachfassen kann? (optional)'},
+  emailSending:{en:'Sending…', de:'Wird gesendet…'},
+  emailSent:{en:'✓ Sent. Check your inbox.', de:'✓ Gesendet. Bitte Posteingang prüfen.'},
+  emailInvalid:{en:'That doesn’t look like a valid email address.', de:'Das sieht nicht nach einer gültigen E-Mail-Adresse aus.'},
+  emailError:{en:'Could not send right now — please try again shortly.', de:'Senden derzeit nicht möglich — bitte gleich nochmals versuchen.'},
+  printBtn:{en:'Print / PDF', de:'Drucken / PDF'},
+  restartBtn:{en:'Start again', de:'Neu starten'},
+  backToChat:{en:'← Back to the conversation', de:'← Zurück zum Gespräch'},
+  cascadeH:{en:'The choice cascade', de:'Die Entscheidungskaskade'},
+  diagH:{en:'Diagnosis — the honest starting point', de:'Diagnose — der ehrliche Ausgangspunkt'},
+  scH:{en:'Choice Cascade Scorecard', de:'Choice-Cascade-Scorecard'},
+  scLegend:{en:'Read left to right: each choice must change a behaviour; the leading indicator predicts success within weeks; the impact confirms it in CHF. If the leading indicator does not move, the choice is not working — change course early.', de:'Von links nach rechts lesen: Jede Entscheidung muss ein Verhalten ändern; der Frühindikator sagt den Erfolg in Wochen voraus; der Impact bestätigt ihn in CHF. Bewegt sich der Frühindikator nicht, wirkt die Entscheidung nicht — früh gegensteuern.'},
+  wwhtbtH:{en:'What would have to be true', de:'Was müsste wahr sein'},
+  tensionH:{en:'Both/And tension watchlist', de:'Sowohl-als-auch-Spannungsfelder'},
+  challengerH:{en:'The Challenger — what was examined and improved', de:'Der Challenger — was geprüft und verbessert wurde'},
+  sprintH:{en:'90-day proof sprint', de:'90-Tage-Beweis-Sprint'},
+  storyH:{en:'Communication storyboard — telling the strategy', de:'Kommunikations-Storyboard — die Strategie erzählen'},
+  lockChallenger:{en:'The Challenger examined your strategy and found things worth fixing.', de:'Der Challenger hat Ihre Strategie geprüft und Verbesserungen gefunden.'},
+  lockChallengerSub:{en:'Premium shows every challenge, every improvement, and why. Quality made visible.', de:'Premium zeigt jede Prüfung, jede Verbesserung — und warum. Qualität sichtbar gemacht.'},
+  lockSprint:{en:'Your 90-day proof sprint is ready.', de:'Ihr 90-Tage-Beweis-Sprint ist bereit.'},
+  lockSprintSub:{en:'Premium turns your choices into first moves — quick wins that fund belief while the foundation is built.', de:'Premium macht aus Ihren Entscheidungen erste Schritte — Quick Wins, die Vertrauen schaffen, während das Fundament entsteht.'},
+  lockStory:{en:'Your strategy story is drafted.', de:'Ihre Strategie-Story ist entworfen.'},
+  lockStorySub:{en:'Premium builds the leadership storyboard: villain, hero, promised land — ready to engage your teams.', de:'Premium liefert das Führungs-Storyboard: Gegenspieler, Held, gelobtes Land — bereit für Ihre Teams.'},
+  alignH:{en:'Leadership alignment', de:'Alignment im Führungsteam'},
+  alignTrueLabel:{en:'For coherence and relevance, it would have to be true that:', de:'Für Kohärenz und Relevanz müsste wahr sein:'},
+  processH:{en:'From hypothesis to aligned strategy', de:'Von der Hypothese zur getragenen Strategie'},
+  lockProcess:{en:'This hypothesis is ready to be pressure-tested with real evidence and your team.', de:'Diese Hypothese ist bereit für den Härtetest mit echter Evidenz und Ihrem Team.'},
+  lockProcessSub:{en:'Premium runs the full alignment process: market data, financials, team inputs, customer & supplier complaints — and a facilitated leadership offsite.', de:'Premium umfasst den vollen Alignment-Prozess: Marktdaten, Finanzzahlen, Team-Inputs, Kunden- & Lieferantenreklamationen — und ein moderiertes Führungs-Offsite.'},
+  upgradeBtn:{en:'Unlock with Premium', de:'Mit Premium freischalten'},
+  premiumNote:{en:'Demo: Premium is simulated in this prototype.', de:'Demo: Premium wird in diesem Prototyp simuliert.'},
+  disclaimer:{en:'StrategyLENS produces a strategy HYPOTHESIS — decision support, not a verdict. Validate it with market data, financials and your leadership team before acting on it. The choices — and the accountability for them — belong to you. Figures are your estimates, not audited forecasts.', de:'StrategyLENS erzeugt eine Strategie-HYPOTHESE — Entscheidungshilfe, kein Urteil. Validieren Sie sie mit Marktdaten, Finanzzahlen und Ihrem Führungsteam, bevor Sie danach handeln. Die Entscheidungen — und die Verantwortung dafür — liegen bei Ihnen. Zahlen sind Ihre Schätzungen, keine geprüften Prognosen.'},
+  ratingOk:{en:'Confident', de:'Sicher'},
+  ratingTest:{en:'Needs testing', de:'Zu testen'},
+  ratingRisk:{en:'Uncomfortable', de:'Unbehagen'},
+  viewDash:{en:'Open your Smart Choices Dashboard →', de:'Ihr Smart-Choices-Dashboard öffnen →'},
+  freeBadge:{en:'Free', de:'Kostenlos'},
+  paidBadge:{en:'Premium', de:'Premium'}
+};
+/* ══════════════════════ FLOW ══════════════════════
+   One question at a time. Short. Direct. Link-questions open each phase gently. */
+const FLOW = [
+  /* ── SETUP ── */
+  {id:'company', phase:'setup', type:'text',
+   q:{en:"Welcome. I ask short questions. You give honest answers. Together we build your strategy as six explicit choices.\n\nFirst: what is your company called?",
+      de:"Willkommen. Ich stelle kurze Fragen. Sie geben ehrliche Antworten. Gemeinsam bauen wir Ihre Strategie als sechs explizite Entscheidungen.\n\nZuerst: Wie heisst Ihr Unternehmen?"}},
+  {id:'sector', phase:'setup', type:'chips', key:'sector',
+   q:{en:"Which world do you operate in?", de:"In welcher Welt sind Sie unterwegs?"},
+   chips:[
+     {v:'machinery', en:'Machinery & equipment', de:'Maschinen & Anlagen'},
+     {v:'building', en:'Building technology', de:'Gebäudetechnik'},
+     {v:'chem', en:'Chemicals & materials', de:'Chemie & Werkstoffe'},
+     {v:'medtech', en:'MedTech & pharma supply', de:'MedTech & Pharma-Zulieferung'},
+     {v:'food', en:'Food & consumer goods', de:'Lebensmittel & Konsumgüter'},
+     {v:'services', en:'Services & trade', de:'Dienstleistung & Handel'}
+   ], allowOther:true},
+  {id:'size', phase:'setup', type:'chips', key:'size',
+   q:{en:"How many people?", de:"Wie viele Mitarbeitende?"},
+   chips:[
+     {v:'<50', en:'Under 50', de:'Unter 50'},
+     {v:'50-250', en:'50 – 250', de:'50 – 250'},
+     {v:'250-1000', en:'250 – 1’000', de:'250 – 1’000'},
+     {v:'>1000', en:'Over 1’000', de:'Über 1’000'}
+   ]},
+  {id:'urgency', phase:'setup', type:'chips', key:'urgency',
+   lead:{en:'Your perspective first', de:'Zuerst Ihre Einschätzung'},
+   q:{en:"How urgent is strategy renewal — relative to everything else on your desk?",
+      de:"Wie dringend ist die Strategie-Erneuerung — im Vergleich zu allem anderen auf Ihrem Tisch?"},
+   chips:[
+     {v:'existential', en:'Existential — we must move', de:'Existenziell — wir müssen handeln'},
+     {v:'important', en:'Important — this year', de:'Wichtig — dieses Jahr'},
+     {v:'exploring', en:'Exploring — staying sharp', de:'Sondierend — wach bleiben'}
+   ]},
+
+  /* ── DIAGNOSE (Rumelt: honest diagnosis before any choice) ── */
+  {id:'challenge', phase:'diagnose', type:'text', key:'challenge',
+   lead:{en:'Diagnosis, not judgement', de:'Diagnose, kein Urteil'},
+   q:{en:"What is the biggest challenge you face to grow profitably? One sentence.",
+      de:"Was ist Ihre grösste Hürde für profitables Wachstum? Ein Satz."},
+   check:'short'},
+  {id:'attractiveMarkets', phase:'diagnose', type:'text', key:'attractiveMarkets',
+   q:{en:"Which of your markets are most attractive going forward? And why?",
+      de:"Welche Ihrer Märkte sind künftig am attraktivsten? Und warum?"},
+   check:'short'},
+  {id:'customers', phase:'diagnose', type:'text', key:'customers',
+   q:{en:"Who are your most important customers — and what keeps them awake at night?",
+      de:"Wer sind Ihre wichtigsten Kunden — und was raubt ihnen den Schlaf?"},
+   check:'short'},
+  {id:'assumptions', phase:'diagnose', type:'text', key:'assumptions',
+   lead:{en:'The uncomfortable one', de:'Die unbequeme Frage'},
+   q:{en:"What assumptions — things never questioned in your company — limit your growth?",
+      de:"Welche Annahmen — Dinge, die bei Ihnen nie hinterfragt werden — begrenzen Ihr Wachstum?"}},
+  {id:'underused', phase:'diagnose', type:'text', key:'underused',
+   q:{en:"What do you already own that runs below its potential? Assets, data, relationships, licences.",
+      de:"Was besitzen Sie bereits, das unter seinem Potenzial läuft? Anlagen, Daten, Beziehungen, Lizenzen."},
+   after:'diagSummary'},
+
+  /* ── ASPIRE ── */
+  {id:'aspireCo', phase:'aspire', type:'text', key:'aspireCo',
+   lead:{en:'Look up, not down', de:'Nach oben schauen'},
+   q:{en:"Which company do you aspire to be more like? Any industry. Why that one?",
+      de:"Welchem Unternehmen möchten Sie ähnlicher werden? Jede Branche zählt. Warum genau diesem?"}},
+  {id:'aspiration', phase:'aspire', type:'text', key:'aspiration', slot:'aspiration',
+   q:{en:"Now your winning aspiration. What does winning look like in five years? Winning — not surviving.",
+      de:"Jetzt Ihre Sieg-Ambition. Wie sieht Gewinnen in fünf Jahren aus? Gewinnen — nicht überleben."},
+   check:'aspiration'},
+
+  /* ── WHERE TO PLAY ── */
+  {id:'where', phase:'where', type:'multi', key:'where', max:2, slot:'where',
+   lead:{en:'Choice 2 of 6', de:'Entscheidung 2 von 6'},
+   q:{en:"Where will you play? Choose your focus — two at most.",
+      de:"Wo spielen Sie? Wählen Sie Ihren Fokus — höchstens zwei."},
+   chips:[
+     {v:'core', en:'Deeper into our core niche', de:'Tiefer in unsere Kernnische'},
+     {v:'adjacent', en:'An adjacent customer segment', de:'Ein angrenzendes Kundensegment'},
+     {v:'geo', en:'A new geography', de:'Eine neue Region'},
+     {v:'value', en:'Up the value chain: services & lifecycle', de:'Die Wertschöpfung hoch: Services & Lifecycle'},
+     {v:'digital', en:'Digital channel to new buyers', de:'Digitaler Kanal zu neuen Käufern'},
+     {v:'aftermarket', en:'Own the aftermarket', de:'Das Aftermarket-Geschäft besetzen'}
+   ]},
+  {id:'whereDetail', phase:'where', type:'text', key:'whereDetail',
+   q:{en:"Make it concrete. Which segment, which geography, which customer — in your words?",
+      de:"Machen Sie es konkret. Welches Segment, welche Region, welcher Kunde — in Ihren Worten?"},
+   check:'everywhere'},
+  {id:'notPlay', phase:'where', type:'text', key:'notPlay', slot:'notPlay',
+   lead:{en:'Strategy is sacrifice', de:'Strategie heisst Verzicht'},
+   q:{en:"And where will you NOT play? Name one thing you will stop doing or stop serving.",
+      de:"Und wo spielen Sie NICHT? Nennen Sie eine Sache, die Sie aufgeben oder nicht mehr bedienen."},
+   check:'nothing'},
+
+  /* ── HOW TO WIN ── */
+  {id:'whyBuy', phase:'how', type:'text', key:'whyBuy', slot:'how',
+   lead:{en:'Choice 3 of 6', de:'Entscheidung 3 von 6'},
+   q:{en:"Why should customers buy from you — and not your competitor? Be blunt.",
+      de:"Warum sollten Kunden bei Ihnen kaufen — und nicht beim Wettbewerber? Seien Sie direkt."},
+   check:'fluff'},
+  {id:'moat', phase:'how', type:'chips', key:'moat',
+   q:{en:"What can no competitor copy within two years?",
+      de:"Was kann kein Wettbewerber in zwei Jahren kopieren?"},
+   chips:[
+     {v:'trust', en:'Trusted relationships', de:'Vertrauensbeziehungen'},
+     {v:'knowhow', en:'Niche know-how & precision', de:'Nischen-Know-how & Präzision'},
+     {v:'speed', en:'Speed & responsiveness', de:'Tempo & Reaktionsfähigkeit'},
+     {v:'service', en:'Service & lifecycle network', de:'Service- & Lifecycle-Netz'},
+     {v:'data', en:'Proprietary data & installed base', de:'Eigene Daten & installierte Basis'},
+     {v:'ecosystem', en:'Ecosystem & partners', de:'Ökosystem & Partner'},
+     {v:'price', en:'Price', de:'Preis'}
+   ], check:'price'},
+
+  /* ── CAPABILITIES ── */
+  {id:'caps', phase:'cap', type:'multi', key:'caps', max:3, slot:'cap',
+   lead:{en:'Choice 4 of 6', de:'Entscheidung 4 von 6'},
+   q:{en:"What must you be great at to win this way? Pick three at most.",
+      de:"Worin müssen Sie hervorragend sein, um so zu gewinnen? Höchstens drei."},
+   chips:[
+     {v:'tech', en:'Technical excellence', de:'Technische Exzellenz'},
+     {v:'kam', en:'Key-account management', de:'Key-Account-Management'},
+     {v:'servops', en:'Service & lifecycle operations', de:'Service- & Lifecycle-Betrieb'},
+     {v:'digital', en:'Digital channels & e-commerce', de:'Digitale Kanäle & E-Commerce'},
+     {v:'data', en:'Data & analytics', de:'Daten & Analytik'},
+     {v:'innov', en:'Innovation speed', de:'Innovationstempo'},
+     {v:'talent', en:'Talent & succession', de:'Talente & Nachfolge'},
+     {v:'partner', en:'Partnerships', de:'Partnerschaften'}
+   ]},
+  {id:'capGap', phase:'cap', type:'chipsFromCaps', key:'capGap',
+   lead:{en:'The 20% question', de:'Die 20-Prozent-Frage'},
+   q:{en:"Which of these runs below half its potential today? Honesty pays here.",
+      de:"Welche davon läuft heute unter der Hälfte ihres Potenzials? Ehrlichkeit zahlt sich hier aus."}},
+
+  /* ── SYSTEMS ── */
+  {id:'weekly', phase:'sys', type:'text', key:'weekly', slot:'sys',
+   lead:{en:'Choice 5 of 6', de:'Entscheidung 5 von 6'},
+   q:{en:"How will you know it is working — week by week, not year by year?",
+      de:"Woran erkennen Sie, dass es funktioniert — Woche für Woche, nicht Jahr für Jahr?"}},
+  {id:'behaviour', phase:'sys', type:'text', key:'behaviour',
+   q:{en:"Who has to change behaviour for this to pay back? And will they?",
+      de:"Wer muss sein Verhalten ändern, damit sich das auszahlt? Und wird er es tun?"},
+   check:'adoption'},
+
+  /* ── AI — THE SIXTH CHOICE ── */
+  {id:'aiRole', phase:'ai', type:'chips', key:'aiRole', slot:'ai',
+   lead:{en:'The sixth choice', de:'Die sechste Entscheidung'},
+   q:{en:"Classic strategy stops at five choices. Yours gets a sixth: what role will AI play in how you win?",
+      de:"Klassische Strategie endet bei fünf Entscheidungen. Ihre bekommt eine sechste: Welche Rolle spielt KI in Ihrer Gewinnlogik?"},
+   chips:[
+     {v:'offer', en:'In the offer — smarter products & services', de:'Im Angebot — intelligentere Produkte & Services'},
+     {v:'intel', en:'Customer intelligence — know them first', de:'Kundenintelligenz — sie zuerst verstehen'},
+     {v:'speed', en:'Speed — quotes & decisions in hours, not weeks', de:'Tempo — Angebote & Entscheidungen in Stunden statt Wochen'},
+     {v:'efficiency', en:'Efficiency — same work, lower cost', de:'Effizienz — gleiche Arbeit, geringere Kosten'},
+     {v:'none', en:'No role yet — and that is a choice too', de:'Noch keine Rolle — auch das ist eine Entscheidung'}
+   ], check:'aiNone'},
+  {id:'aiData', phase:'ai', type:'text', key:'aiData',
+   lead:{en:'Your unfair advantage', de:'Ihr unfairer Vorteil'},
+   q:{en:"What data do you own that competitors do not? Machine data, service history, formulations, customer history.",
+      de:"Welche Daten besitzen Sie, die Wettbewerber nicht haben? Maschinendaten, Servicehistorie, Rezepturen, Kundenhistorie."}},
+  {id:'aiHuman', phase:'ai', type:'text', key:'aiHuman',
+   lead:{en:'Both/And', de:'Sowohl-als-auch'},
+   q:{en:"What will you NOT hand to AI? Where does human judgement stay?",
+      de:"Was geben Sie NICHT an die KI ab? Wo bleibt menschliches Urteilsvermögen?"},
+   tension:'aiHumanTension'},
+  {id:'aiFirst', phase:'ai', type:'text', key:'aiFirst',
+   q:{en:"Your first AI move in the next 90 days. Small, visible, measurable. What is it?",
+      de:"Ihr erster KI-Schritt in den nächsten 90 Tagen. Klein, sichtbar, messbar. Was ist es?"}},
+
+  /* ── TEST: WWHTBT — generated at runtime ── */
+  {id:'wwhtbt', phase:'test', type:'wwhtbt',
+   lead:{en:'Reverse-engineer your own logic', de:'Ihre eigene Logik rückwärts prüfen'},
+   q:{en:"Now we test. For each condition: does it hold? Be honest — 'Uncomfortable' answers are the most valuable ones.",
+      de:"Jetzt wird getestet. Für jede Bedingung: Trägt sie? Seien Sie ehrlich — «Unbehagen» ist die wertvollste Antwort."}},
+
+  /* ── MEASURE: Choice Cascade Scorecard ── */
+  {id:'sc_where', phase:'measure', type:'chips', key:'sc_where',
+   lead:{en:'Predict, don’t post-mortem', de:'Vorhersagen statt sezieren'},
+   q:{en:"Scorecard, choice 1 — Where to play. Which early signal will PREDICT it is working, within weeks?",
+      de:"Scorecard, Entscheidung 1 — Spielfeld. Welches Frühsignal SAGT den Erfolg voraus — in Wochen?"},
+   chips:[
+     {v:'leads', en:'Qualified leads from the target segment', de:'Qualifizierte Leads aus dem Zielsegment'},
+     {v:'meetings', en:'Meetings with named target accounts', de:'Termine mit definierten Zielkunden'},
+     {v:'pipeline', en:'Pipeline share from the new focus', de:'Pipeline-Anteil aus dem neuen Fokus'}
+   ], allowOther:true},
+  {id:'sc_how', phase:'measure', type:'chips', key:'sc_how',
+   q:{en:"Choice 2 — How to win. Which behaviour must change first, visibly?",
+      de:"Entscheidung 2 — Gewinnlogik. Welches Verhalten muss sich zuerst sichtbar ändern?"},
+   chips:[
+     {v:'story', en:'Sales tell the new value story', de:'Vertrieb erzählt die neue Wertgeschichte'},
+     {v:'pricing', en:'Pricing by value, not cost-plus', de:'Preise nach Wert, nicht Kosten-plus'},
+     {v:'proactive', en:'Service teams sell proactively', de:'Serviceteams verkaufen proaktiv'}
+   ], allowOther:true},
+  {id:'sc_ai', phase:'measure', type:'chips', key:'sc_ai',
+   q:{en:"Choice 3 — AI. What proves your first AI move within 90 days?",
+      de:"Entscheidung 3 — KI. Was beweist Ihren ersten KI-Schritt innert 90 Tagen?"},
+   chips:[
+     {v:'hours', en:'Hours saved per quote or case', de:'Gesparte Stunden pro Angebot oder Fall'},
+     {v:'response', en:'Response time to customers', de:'Antwortzeit gegenüber Kunden'},
+     {v:'forecast', en:'Forecast accuracy', de:'Prognosegenauigkeit'},
+     {v:'usage', en:'Weekly active use by the team', de:'Wöchentliche aktive Nutzung im Team'}
+   ], allowOther:true},
+  {id:'prize', phase:'measure', type:'text', key:'prize', optional:true,
+   q:{en:"One number. If this strategy works, what is the yearly prize in CHF? A rough figure is fine — or skip.",
+      de:"Eine Zahl. Wenn diese Strategie funktioniert: Was ist der jährliche Gewinn in CHF? Grob reicht — oder überspringen."}},
+
+  /* ── ALIGNMENT: from hypothesis to shared strategy ── */
+  {id:'alignTeam', phase:'align', type:'chips', key:'alignTeam',
+   lead:{en:'The last lens: your team', de:'Die letzte Linse: Ihr Team'},
+   q:{en:"How aligned is your leadership team on these choices — today, honestly?",
+      de:"Wie einig ist Ihr Führungsteam bei diesen Entscheidungen — heute, ehrlich?"},
+   chips:[
+     {v:'aligned', en:'Aligned — we have discussed this', de:'Einig — wir haben das diskutiert'},
+     {v:'mostly', en:'Mostly — one or two doubters', de:'Weitgehend — ein, zwei Zweifler'},
+     {v:'split', en:'Split — different pictures of winning', de:'Gespalten — verschiedene Bilder vom Gewinnen'},
+     {v:'untested', en:'Unknown — never tested', de:'Unbekannt — nie geprüft'}
+   ], check:'align'},
+  {id:'alignTrue', phase:'align', type:'text', key:'alignTrue',
+   lead:{en:'Coherence and relevance', de:'Kohärenz und Relevanz'},
+   q:{en:"What would have to be true for your team to carry this strategy — coherent (the choices reinforce each other) and relevant (your people feel it matters)?",
+      de:"Was müsste wahr sein, damit Ihr Team diese Strategie trägt — kohärent (die Entscheidungen stützen einander) und relevant (Ihre Leute spüren, dass es zählt)?"}}
+];
+
+/* Sector-specific AI first-move examples — anchor AI to their world, not generic tools */
+const SECTOR_AI = {
+  machinery:{en:'Example from your world: an AI brief before every service visit — machine history, likely parts, upsell cue.', de:'Beispiel aus Ihrer Welt: ein KI-Briefing vor jedem Serviceeinsatz — Maschinenhistorie, wahrscheinliche Teile, Upsell-Hinweis.'},
+  building:{en:'Example from your world: quotes drafted by AI from plans and past projects — hours, not days.', de:'Beispiel aus Ihrer Welt: Offerten per KI aus Plänen und Referenzprojekten — Stunden statt Tage.'},
+  chem:{en:'Example from your world: AI search across formulations and regulatory documents for faster customer answers.', de:'Beispiel aus Ihrer Welt: KI-Suche über Rezepturen und Regulierungsdokumente für schnellere Kundenantworten.'},
+  medtech:{en:'Example from your world: AI-drafted compliance documentation, checked by your QA.', de:'Beispiel aus Ihrer Welt: KI-Entwürfe für Compliance-Dokumente, geprüft durch Ihre QS.'},
+  food:{en:'Example from your world: AI demand forecasting from orders, season and weather.', de:'Beispiel aus Ihrer Welt: KI-Absatzprognose aus Bestellungen, Saison und Wetter.'},
+  services:{en:'Example from your world: AI first-draft proposals built from your best past bids.', de:'Beispiel aus Ihrer Welt: KI-Erstentwürfe für Angebote aus Ihren besten bisherigen Offerten.'}
+};
+
+/* Both/And tension library (Smith & Lewis) — detected, never resolved for the user */
+const TENSIONS = {
+  aiHumanTension:{en:'<b>AI automation ⟺ human judgement.</b> You named where judgement stays. Guard that line.', de:'<b>KI-Automatisierung ⟺ menschliches Urteil.</b> Sie haben die Grenze benannt. Verteidigen Sie sie.'},
+  quickFoundation:{en:'<b>Quick wins ⟺ right foundation.</b> Your 90-day sprint must fund belief while the base is built.', de:'<b>Quick Wins ⟺ richtiges Fundament.</b> Ihr 90-Tage-Sprint muss Vertrauen schaffen, während das Fundament entsteht.'},
+  standardPersonal:{en:'<b>Standardise ⟺ personalise.</b> Harmonise across markets; don’t flatten what customers love.', de:'<b>Standardisieren ⟺ personalisieren.</b> Über Märkte harmonisieren — nicht plattwalzen, was Kunden schätzen.'},
+  techAdoption:{en:'<b>Technology investment ⟺ adoption.</b> Budget as much for behaviour as for tools.', de:'<b>Technologie-Investition ⟺ Akzeptanz.</b> Budgetieren Sie so viel für Verhalten wie für Werkzeuge.'},
+  focusOptions:{en:'<b>Focus ⟺ options.</b> You chose to sacrifice. Revisit the sacrifice yearly — not weekly.', de:'<b>Fokus ⟺ Optionen.</b> Sie haben verzichtet. Prüfen Sie den Verzicht jährlich — nicht wöchentlich.'}
+};
+
+/* ══════════════════════ HELPERS ══════════════════════ */
+const $ = id => document.getElementById(id);
+const T = obj => obj ? (obj[S.lang] || obj.en) : '';
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const trunc = (s,n) => { s=String(s); return s.length>n ? s.slice(0,n-1).trimEnd()+'…' : s; };
+const chipLabel = (step,v) => { const c=(step.chips||[]).find(x=>x.v===v); return c ? T(c) : v; };
+const FLUFF = /(world[- ]?class|weltklasse|best[- ]in[- ]class|leading|führend|innovativ|innovative|synerg|holistic|ganzheitlich|customer[- ]centric|kundenzentriert|quality|qualität|excellen)/i;
+
+let retried = {};   // stepId -> true if already challenged once
+let multiSel = [];  // current multi-select
+let wwhtbtList = []; let wwhtbtIdx = 0;
+
+/* ══════════════════════ I18N RENDER ══════════════════════ */
+function setLang(l){
+  /* language locked mid-session: register shifts break the conversation thread */
+  if(l!==S.lang && S.step>0 && !S.finished){ addMsg('note', T(UI.langLocked)); return; }
+  S.lang = l;
+  document.documentElement.lang = l;
+  $('lang-en').classList.toggle('on', l==='en');
+  $('lang-de').classList.toggle('on', l==='de');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{ el.innerHTML = T(UI[el.dataset.i18n]); });
+  renderPlanBadge(); renderStageBar(); renderCascade(); renderTensions();
+  if(S.finished){ buildDashboard(); } else { renderInput(); }
+}
+function renderPlanBadge(){
+  const b=$('plan-badge');
+  b.className='plan-badge '+(S.plan==='premium'?'premium':'basic');
+  b.innerHTML=(S.plan==='premium'?'★ ':'')+T(S.plan==='premium'?UI.planPremium:UI.planBasic);
+}
+function togglePlan(){
+  S.plan = S.plan==='premium' ? 'basic' : 'premium';
+  renderPlanBadge(); saveState();
+  if(S.finished) buildDashboard();
+}
+
+/* ══════════════════════ STAGE BAR ══════════════════════ */
+const PHASE_ORDER=['setup','diagnose','aspire','where','how','cap','sys','ai','test','measure','align','dash'];
+function currentPhase(){ return S.finished ? 'dash' : (FLOW[S.step] ? FLOW[S.step].phase : 'dash'); }
+function renderStageBar(){
+  const cur=currentPhase(); const curIdx=PHASE_ORDER.indexOf(cur);
+  $('stage-bar').innerHTML = PHASE_ORDER.map((p,i)=>{
+    const cls = i<curIdx?'done':(i===curIdx?'active':'');
+    const mark = i<curIdx?'✓':(i+1);
+    return `<div class="stage-step ${cls}"><span class="stage-num">${mark}</span>${T(UI.phases[p])}</div>`;
+  }).join('');
+  $('chat-phase').textContent = T(UI.phases[cur]);
+}
+
+/* ══════════════════════ CHAT ══════════════════════ */
+function addMsg(cls, html, lead){
+  const log=$('chat-log');
+  const d=document.createElement('div');
+  d.className='msg '+cls;
+  d.innerHTML=(lead?`<span class="lead">${lead}</span>`:'')+html;
+  log.appendChild(d); log.scrollTop=log.scrollHeight;
+}
+function botSay(html, lead, cls='bot'){
+  return new Promise(res=>{
+    const log=$('chat-log');
+    const t=document.createElement('div'); t.className='typing'; t.innerHTML='<span></span><span></span><span></span>';
+    log.appendChild(t); log.scrollTop=log.scrollHeight;
+    setTimeout(()=>{ t.remove(); addMsg(cls, html, lead); res(); }, 550+Math.min(html.length*3,700));
+  });
+}
+function userSay(text){ addMsg('user', esc(text).replace(/\n/g,'<br>')); }
+
+/* ══════════════════════ INPUT RENDERING ══════════════════════ */
+function renderInput(){
+  const step=FLOW[S.step]; const box=$('chat-input');
+  if(!step || S.finished){ box.innerHTML=''; return; }
+  if(step.type==='text'){
+    box.innerHTML=`<div class="input-row">
+        <textarea id="txt" rows="2" placeholder="…"></textarea>
+        <button class="btn btn-primary" onclick="submitText()">${T(UI.send)}</button>
+      </div>
+      <div class="input-hint">${T(UI.inputHint)}${step.optional?` · <a href="#" onclick="submitSkip();return false;">${T(UI.skip)}</a>`:''}</div>`;
+    const ta=$('txt');
+    ta.addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();submitText();} });
+    ta.focus();
+  } else if(step.type==='chips'||step.type==='chipsFromCaps'){
+    let chips = step.chips||[];
+    if(step.type==='chipsFromCaps'){
+      const capsStep=FLOW.find(s=>s.id==='caps');
+      chips=(S.answers.caps||[]).map(v=>({v, en:chipLabel(capsStep,v), de:chipLabel(capsStep,v)}));
+      chips.push({v:'none', en:'None — all strong', de:'Keine — alle stark'});
+    }
+    if(retried[step.id] && step.check==='price') chips=chips.filter(c=>c.v!=='price');
+    box.innerHTML=`<div class="chips">${chips.map(c=>`<button class="chip" onclick="submitChip('${c.v}')">${T(c)}</button>`).join('')}
+      ${step.allowOther?`<button class="chip ghost" onclick="showOther()">${T(UI.otherChip)}</button>`:''}</div>
+      <div id="other-slot"></div>`;
+  } else if(step.type==='multi'){
+    multiSel=[];
+    box.innerHTML=`<div class="chips" id="multi-chips">${step.chips.map(c=>`<button class="chip" data-v="${c.v}" onclick="toggleMulti('${c.v}')">${T(c)}</button>`).join('')}</div>
+      <div class="multi-actions"><button class="btn btn-primary" id="multi-ok" disabled onclick="submitMulti()">${T(UI.confirmChips)}</button></div>`;
+  } else if(step.type==='wwhtbt'){
+    renderWwhtbtInput();
+  }
+}
+function showOther(){
+  $('other-slot').innerHTML=`<div class="input-row" style="margin-top:6px;">
+    <textarea id="txt" rows="2"></textarea>
+    <button class="btn btn-primary" onclick="submitText()">${T(UI.send)}</button></div>`;
+  $('txt').focus();
+}
+function toggleMulti(v){
+  const step=FLOW[S.step];
+  const i=multiSel.indexOf(v);
+  if(i>=0) multiSel.splice(i,1);
+  else { if(multiSel.length>=step.max){ return; } multiSel.push(v); }
+  document.querySelectorAll('#multi-chips .chip').forEach(el=>el.classList.toggle('sel',multiSel.includes(el.dataset.v)));
+  $('multi-ok').disabled=multiSel.length===0;
+}
+
+/* ══════════════════════ SUBMITS ══════════════════════ */
+function submitText(){
+  const ta=$('txt'); if(!ta) return;
+  const v=ta.value.trim(); if(!v) return;
+  handleAnswer(v);
+}
+function submitSkip(){ handleAnswer('', true); }
+function submitChip(v){ handleAnswer(v); }
+function submitMulti(){ handleAnswer(multiSel.slice()); }
+
+async function handleAnswer(val, skipped=false){
+  const step=FLOW[S.step];
+  if(!skipped){
+    const label = Array.isArray(val) ? val.map(v=>chipLabel(step,v)).join(' · ')
+                : (step.chips ? chipLabel(step,val) : val);
+    userSay(label);
+  }
+  $('chat-input').innerHTML='';
+  /* challenge pass — once per step; always shows WHY it was flagged (quality made visible) */
+  if(!skipped && step.check && !retried[step.id]){
+    const ch = runCheck(step, val);
+    if(ch){
+      retried[step.id]=true;
+      const body=T(ch.msg)+(ch.why?`<div class="ch-why">${T(ch.why)}</div>`:'');
+      if(ch.retry){ await botSay(body, T(UI_CH.lead), 'challenge'); saveState(); renderInput(); return; }
+      else { await botSay(body, T(UI_CH.lead), 'challenge'); }
+    }
+  }
+  /* store */
+  if(step.id==='company') S.answers.company=val;
+  if(step.key) S.answers[step.key]=val;
+  if(step.tension) addTension(step.tension);
+  if(step.id==='notPlay' && !/(nothing|none|nichts|keine|nix)/i.test(String(val))) addTension('focusOptions');
+  if(step.id==='aiFirst') addTension('quickFoundation');
+  renderCascade();
+  /* after-hooks */
+  if(step.after==='diagSummary') await sayDiagSummary();
+  /* advance */
+  S.step++;
+  saveState();
+  const next=FLOW[S.step];
+  renderStageBar();
+  if(!next){ return finishConversation(); }
+  if(next.type==='wwhtbt'){ await startWwhtbt(next); return; }
+  await askStep(next);
+}
+async function askStep(step){
+  let q=esc(T(step.q)).replace(/\n/g,'<br>');
+  /* sector-anchored AI example — the 6th choice must not collapse into generic tools */
+  if(step.id==='aiFirst' && SECTOR_AI[S.answers.sector]) q+=`<span class="q-hint">${T(SECTOR_AI[S.answers.sector])}</span>`;
+  if(step.id==='aiData' && S.answers.underused) q+=`<span class="q-hint">${S.lang==='de'?'Sie nannten vorhin':'Earlier you named'}: «${esc(trunc(S.answers.underused,60))}»</span>`;
+  await botSay(q, step.lead?T(step.lead):null);
+  renderInput();
+}
+
+/* ══════════════════════ CHALLENGE RULES ══════════════════════ */
+const UI_CH={lead:{en:'The Challenger',de:'Der Challenger'}};
+const CH={
+  short:{retry:true,msg:{en:'Too thin. One honest, specific sentence — what really sits behind this?',de:'Zu dünn. Ein ehrlicher, konkreter Satz — was steckt wirklich dahinter?'},
+    why:{en:'Why flagged: very short answers rarely carry a real diagnosis. If yours does, keep it — you decide.',de:'Warum markiert: Sehr kurze Antworten tragen selten eine echte Diagnose. Wenn Ihre es tut, behalten Sie sie — Sie entscheiden.'}},
+  aspiration:{retry:true,msg:{en:'That reads like a target, not a picture of winning. Five years from now: who is delighted, and what do they say about you? Once more.',de:'Das klingt nach Zielwert, nicht nach Gewinnen. In fünf Jahren: Wer ist begeistert — und was sagt er über Sie? Noch einmal.'},
+    why:{en:'Why flagged: growth numbers without a picture of winning — Rumelt calls this goals dressed as strategy.',de:'Warum markiert: Wachstumszahlen ohne Bild des Gewinnens — Rumelt nennt das Ziele im Strategiekostüm.'}},
+  everywhere:{retry:false,msg:{en:'Everywhere is not a place. The narrower the field, the harder you punch. I will hold you to this focus.',de:'Überall ist kein Ort. Je enger das Feld, desto härter der Schlag. Ich nehme Sie bei diesem Fokus beim Wort.'},
+    why:{en:'Why flagged: “all / everywhere” wording — a where-to-play choice needs borders.',de:'Warum markiert: «alle / überall»-Formulierung — eine Spielfeld-Entscheidung braucht Grenzen.'}},
+  nothing:{retry:true,msg:{en:'That is the most expensive answer in strategy. Stop nothing, and everything stays half-funded. Name one small thing.',de:'Das ist die teuerste Antwort der Strategie. Wer nichts aufgibt, finanziert alles nur halb. Nennen Sie eine kleine Sache.'},
+    why:{en:'Why flagged: no sacrifice named — in Playing to Win, what you stop is half the choice.',de:'Warum markiert: kein Verzicht genannt — in Playing to Win ist das Aufhören die halbe Entscheidung.'}},
+  fluff:{retry:true,msg:{en:'That is what everyone says. What would your best customer say — in their words, not yours?',de:'Das sagen alle. Was würde Ihr bester Kunde sagen — in seinen Worten, nicht in Ihren?'},
+    why:{en:'Why flagged: generic-claim wording (“leading”, “quality”, …) — differentiation must be checkable. If your customers really say it, keep it.',de:'Warum markiert: Allgemeinplatz-Formulierung («führend», «Qualität», …) — Differenzierung muss überprüfbar sein. Wenn Ihre Kunden es wirklich sagen, behalten Sie es.'}},
+  price:{retry:true,msg:{en:'Price is a position for the biggest player in the market. That is rarely the Mittelstand. What else can nobody copy?',de:'Preis ist die Position des grössten Anbieters im Markt. Das ist selten der Mittelstand. Was sonst kann niemand kopieren?'},
+    why:{en:'Why flagged: price-as-moat is sustainable only for the market’s cost leader.',de:'Warum markiert: Preis als Burggraben trägt nur beim Kostenführer des Marktes.'}},
+  adoption:{retry:false,msg:{en:'Then the adoption plan IS the strategy. We will put that behaviour into your scorecard.',de:'Dann IST der Akzeptanzplan die Strategie. Dieses Verhalten kommt in Ihre Scorecard.'},
+    why:{en:'Why flagged: doubt words about the behaviour change — adoption risk is the top strategy killer.',de:'Warum markiert: Zweifel an der Verhaltensänderung — Akzeptanzrisiko ist der häufigste Strategie-Killer.'}},
+  aiNone:{retry:true,msg:{en:'You called your situation existential — and give AI no role. Both cannot be comfortable. Keep “no role”, or choose again.',de:'Sie nennen Ihre Lage existenziell — und geben KI keine Rolle. Beides zugleich ist unbequem. Bleiben Sie bei «keine Rolle» — oder wählen Sie neu.'},
+    why:{en:'Why flagged: existential urgency combined with no AI role — a combination worth one more look.',de:'Warum markiert: existenzielle Dringlichkeit kombiniert mit «keine KI-Rolle» — eine Kombination, die einen zweiten Blick verdient.'}},
+  aiNoneSoft:{retry:false,msg:{en:'An honest choice — better than AI theatre. Put a date on revisiting it: six months.',de:'Eine ehrliche Entscheidung — besser als KI-Theater. Setzen Sie ein Datum zur Überprüfung: sechs Monate.'},
+    why:{en:'Recorded as an explicit choice, not an oversight.',de:'Festgehalten als explizite Entscheidung, nicht als blinder Fleck.'}},
+  align:{retry:false,msg:{en:'A strategy only the owner believes in is a memo. The offsite is where a hypothesis becomes a shared strategy — that is the next step, not a failure.',de:'Eine Strategie, an die nur der Inhaber glaubt, ist ein Memo. Im Offsite wird aus der Hypothese eine getragene Strategie — das ist der nächste Schritt, kein Scheitern.'},
+    why:{en:'Why flagged: alignment gap — exactly the input the alignment process is built for.',de:'Warum markiert: Alignment-Lücke — genau der Input, für den der Alignment-Prozess gebaut ist.'}}
+};
+function runCheck(step, val){
+  const v=Array.isArray(val)?val.join(' '):String(val);
+  switch(step.check){
+    case 'short': if(v.length<12){S.flags.push('thin');return CH.short;} return null;
+    case 'aspiration':
+      if(v.length<15 || FLUFF.test(v) || /^(grow|increase|double|wachsen|steigern|verdoppeln|\+?\d+\s?%)/i.test(v)){S.flags.push('goalNotChoice');return CH.aspiration;} return null;
+    case 'everywhere': if(/(^|\s)(all|every|everywhere|worldwide|global|alle|überall|weltweit)(\s|$|\.)/i.test(v)){S.flags.push('everywhere');addTension('standardPersonal');return CH.everywhere;} return null;
+    case 'nothing': if(/(nothing|none|nichts|keine|nix)/i.test(v)&&v.length<28){S.flags.push('noSacrifice');return CH.nothing;} return null;
+    case 'fluff': if(FLUFF.test(v)){S.flags.push('fluff');return CH.fluff;} return null;
+    case 'price': if(v==='price'){S.flags.push('price');return CH.price;} return null;
+    case 'adoption': if(/(won'?t|will not|unlikely|not sure|nein|nicht|kaum|schwierig|unsicher|weiss nicht)/i.test(v)){S.flags.push('adoption');addTension('techAdoption');return CH.adoption;} return null;
+    case 'aiNone':
+      if(v==='none'&&S.answers.urgency==='existential'){S.flags.push('aiNone');return CH.aiNone;}
+      if(v==='none'){S.flags.push('aiNoneOk');return CH.aiNoneSoft;} return null;
+    case 'align':
+      if(v==='split'||v==='untested'){S.flags.push('misaligned');return CH.align;} return null;
+  }
+  return null;
+}
+
+/* ══════════════════════ DIAGNOSIS SUMMARY ══════════════════════ */
+async function sayDiagSummary(){
+  const a=S.answers;
+  const en=`Your diagnosis in one line:<br><b>“${esc(trunc(a.challenge,110))}”</b> — while <b>${esc(trunc(a.underused,80))}</b> sits below its potential. That gap is where your strategy starts.`;
+  const de=`Ihre Diagnose in einem Satz:<br><b>«${esc(trunc(a.challenge,110))}»</b> — während <b>${esc(trunc(a.underused,80))}</b> unter dem Potenzial läuft. In dieser Lücke beginnt Ihre Strategie.`;
+  await botSay(S.lang==='de'?de:en, S.lang==='de'?'Diagnose':'Diagnosis', 'note');
+}
+
+/* ══════════════════════ TENSIONS ══════════════════════ */
+function addTension(key){ if(!S.tensions.includes(key)) S.tensions.push(key); renderTensions(); }
+function renderTensions(){
+  const el=$('tension-list');
+  if(!S.tensions.length){ el.innerHTML=`<div class="tension-empty">${T(UI.tensionEmpty)}</div>`; return; }
+  el.innerHTML=S.tensions.map(k=>`<div class="tension-item">${T(TENSIONS[k])}</div>`).join('');
+}
+
+/* ══════════════════════ CASCADE PANEL ══════════════════════ */
+const SLOT_DEFS=[
+  {k:'aspiration', label:'aspiration', val:()=>S.answers.aspiration},
+  {k:'where', label:'where', val:()=>{
+     const step=FLOW.find(s=>s.id==='where');
+     const picks=(S.answers.where||[]).map(v=>chipLabel(step,v)).join(' + ');
+     return [picks, S.answers.whereDetail?trunc(S.answers.whereDetail,70):''].filter(Boolean).join(' — ');}},
+  {k:'notPlay', label:'notPlay', val:()=>S.answers.notPlay&&trunc(S.answers.notPlay,70)},
+  {k:'how', label:'how', val:()=>{
+     const m=S.answers.moat?chipLabel(FLOW.find(s=>s.id==='moat'),S.answers.moat):'';
+     return [S.answers.whyBuy?trunc(S.answers.whyBuy,70):'', m?'['+m+']':''].filter(Boolean).join(' ');}},
+  {k:'cap', label:'cap', val:()=>{
+     const step=FLOW.find(s=>s.id==='caps');
+     return (S.answers.caps||[]).map(v=>chipLabel(step,v)).join(' · ');}},
+  {k:'sys', label:'sys', val:()=>S.answers.weekly&&trunc(S.answers.weekly,70)},
+  {k:'ai', label:'ai', ai:true, val:()=>{
+     const r=S.answers.aiRole?chipLabel(FLOW.find(s=>s.id==='aiRole'),S.answers.aiRole):'';
+     return [r, S.answers.aiFirst?'→ '+trunc(S.answers.aiFirst,55):''].filter(Boolean).join(' ');}}
+];
+function renderCascade(){
+  $('cascade-slots').innerHTML=SLOT_DEFS.map(s=>{
+    const v=s.val();
+    return `<div class="cascade-slot ${s.ai?'ai ':''}${v?'filled':'empty'}">
+      <div class="slot-label">${T(UI.slots[s.label])}</div>
+      <div class="slot-value">${v?esc(v):T(UI.emptySlot)}</div></div>`;
+  }).join('');
+}
+
+/* ══════════════════════ WWHTBT ══════════════════════ */
+function buildWwhtbtList(){
+  const a=S.answers; const L=[];
+  const push=(en,de)=>L.push({en,de});
+  push(`Your chosen field — <b>${esc(trunc(a.whereDetail||'',70))}</b> — is big enough and pays for value.`,
+       `Ihr gewähltes Feld — <b>${esc(trunc(a.whereDetail||'',70))}</b> — ist gross genug und zahlt für Wert.`);
+  push(`Customers value <b>${esc(chipLabel(FLOW.find(s=>s.id==='moat'),a.moat||''))}</b> enough to choose you over cheaper options.`,
+       `Kunden schätzen <b>${esc(chipLabel(FLOW.find(s=>s.id==='moat'),a.moat||''))}</b> genug, um Sie teureren Alternativen vorzuziehen.`);
+  if(a.capGap && a.capGap!=='none'){
+    const lbl=esc(chipLabel(FLOW.find(s=>s.id==='caps'),a.capGap));
+    push(`You can bring <b>${lbl}</b> to full strength within 12 months.`,
+         `Sie können <b>${lbl}</b> innert 12 Monaten auf volle Stärke bringen.`);
+  }
+  push(`The people you named — <b>${esc(trunc(a.behaviour||'',60))}</b> — actually change behaviour.`,
+       `Die genannten Personen — <b>${esc(trunc(a.behaviour||'',60))}</b> — ändern ihr Verhalten tatsächlich.`);
+  if(a.aiRole && a.aiRole!=='none'){
+    push(`Your data — <b>${esc(trunc(a.aiData||'',60))}</b> — is clean, accessible and legally usable for AI.`,
+         `Ihre Daten — <b>${esc(trunc(a.aiData||'',60))}</b> — sind sauber, zugänglich und rechtlich für KI nutzbar.`);
+  }
+  push(`Stopping <b>${esc(trunc(a.notPlay||'',60))}</b> frees real capacity without losing key revenue.`,
+       `Der Verzicht auf <b>${esc(trunc(a.notPlay||'',60))}</b> setzt echte Kapazität frei, ohne Schlüsselumsatz zu kosten.`);
+  return L;
+}
+async function startWwhtbt(step){
+  wwhtbtList=buildWwhtbtList(); wwhtbtIdx=0;
+  await botSay(esc(T(step.q)), T(step.lead));
+  askWwhtbtItem();
+}
+async function askWwhtbtItem(){
+  if(wwhtbtIdx>=wwhtbtList.length){
+    const r=Object.values(S.wwhtbtRatings);
+    const ok=r.filter(x=>x==='ok').length, te=r.filter(x=>x==='test').length, ri=r.filter(x=>x==='risk').length;
+    const en=`${ok} solid · ${te} to test · ${ri} uncomfortable.<br>The uncomfortable ones are not fears — they are your test agenda. Now we make it measurable.`;
+    const de=`${ok} solide · ${te} zu testen · ${ri} mit Unbehagen.<br>Das Unbehagen ist keine Angst — es ist Ihre Test-Agenda. Jetzt machen wir es messbar.`;
+    await botSay(S.lang==='de'?de:en, S.lang==='de'?'Zwischenstand':'Where you stand','note');
+    S.step++; renderStageBar();
+    const next=FLOW[S.step];
+    await botSay(esc(T(next.q)), next.lead?T(next.lead):null);
+    renderInput(); return;
+  }
+  const item=wwhtbtList[wwhtbtIdx];
+  await botSay((S.lang==='de'?'Müsste wahr sein: ':'Would have to be true: ')+T(item));
+  renderWwhtbtInput();
+}
+function renderWwhtbtInput(){
+  $('chat-input').innerHTML=`<div class="chips">
+    <button class="chip" onclick="rateWwhtbt('ok')">✓ ${T(UI.ratingOk)}</button>
+    <button class="chip" onclick="rateWwhtbt('test')">? ${T(UI.ratingTest)}</button>
+    <button class="chip" onclick="rateWwhtbt('risk')">⚠ ${T(UI.ratingRisk)}</button>
+  </div>`;
+}
+function rateWwhtbt(r){
+  S.wwhtbtRatings[wwhtbtIdx]=r;
+  userSay(r==='ok'?T(UI.ratingOk):r==='test'?T(UI.ratingTest):T(UI.ratingRisk));
+  $('chat-input').innerHTML='';
+  wwhtbtIdx++;
+  saveState();
+  askWwhtbtItem();
+}
+
+/* ══════════════════════ SAVE / RESUME (device-local only) ══════════════════════ */
+const SAVE_KEY='strategylens.v1';
+function saveState(){
+  try{ localStorage.setItem(SAVE_KEY, JSON.stringify({S, retried, wwhtbtIdx})); }catch(e){}
+}
+function loadState(){
+  try{ const raw=localStorage.getItem(SAVE_KEY); return raw?JSON.parse(raw):null; }catch(e){ return null; }
+}
+function clearState(){ try{ localStorage.removeItem(SAVE_KEY); }catch(e){} }
+async function resumeSession(saved){
+  Object.assign(S, saved.S); retried=saved.retried||{}; wwhtbtIdx=saved.wwhtbtIdx||0;
+  window.S=S;
+  setLangUnlocked(S.lang);
+  renderStageBar(); renderCascade(); renderTensions(); renderPlanBadge();
+  if(S.finished){ wwhtbtList=buildWwhtbtList(); openDashboard(); return; }
+  const step=FLOW[S.step];
+  if(step && step.type==='wwhtbt'){ wwhtbtList=buildWwhtbtList(); await botSay(esc(T(step.q)), T(step.lead)); askWwhtbtItem(); return; }
+  if(step){ await askStep(step); }
+}
+function setLangUnlocked(l){ const st=S.step; S.step=0; setLang(l); S.step=st; }
+
+/* ══════════════════════ FINISH ══════════════════════ */
+async function finishConversation(){
+  S.finished=true; renderStageBar(); saveState();
+  const en=`Done. Six choices, tested, measurable — your <b>strategy hypothesis</b>.<br><br>Next step: pressure-test it with real evidence and your leadership team. StrategyLENS challenged it; you chose it; your team makes it a strategy.`;
+  const de=`Fertig. Sechs Entscheidungen, getestet, messbar — Ihre <b>Strategie-Hypothese</b>.<br><br>Nächster Schritt: der Härtetest mit echter Evidenz und Ihrem Führungsteam. StrategyLENS hat hinterfragt; Sie haben entschieden; Ihr Team macht daraus eine Strategie.`;
+  await botSay(S.lang==='de'?de:en);
+  $('chat-input').innerHTML=`<div class="multi-actions" style="justify-content:center;">
+    <button class="btn btn-primary" onclick="openDashboard()">${T(UI.viewDash)}</button></div>`;
+}
+function openDashboard(){
+  $('workbench').style.display='none';
+  $('dashboard').style.display='block';
+  buildDashboard();
+  window.scrollTo({top:0});
+}
+function backToChat(){
+  $('dashboard').style.display='none';
+  $('workbench').style.display='grid';
+}
+/* ══════════════════════ GENERATORS (simulated challenger engine) ══════════════════════ */
+function genChallengerItems(){
+  const a=S.answers; const items=[];
+  const add=(tag,en,de)=>items.push({tag,en,de});
+  if(S.flags.includes('goalNotChoice')||S.flags.includes('fluff'))
+    add({en:'Fluff',de:'Worthülsen'},
+      `Your first aspiration read like a target or a slogan. The Challenger pushed for a picture of winning. Improved version on record: <b>“${esc(trunc(a.aspiration,90))}”</b>.`,
+      `Ihre erste Ambition klang nach Zielwert oder Slogan. Der Challenger verlangte ein Bild des Gewinnens. Verbesserte Fassung: <b>«${esc(trunc(a.aspiration,90))}»</b>.`);
+  if(S.flags.includes('price'))
+    add({en:'Coherence',de:'Kohärenz'},
+      `You first chose <b>price</b> as your edge. The Challenger rejected it — price is the biggest player’s position. Your revised moat: <b>${esc(chipLabel(FLOW.find(s=>s.id==='moat'),a.moat))}</b>.`,
+      `Sie wählten zuerst den <b>Preis</b> als Vorteil. Der Challenger lehnte ab — Preis ist die Position des Grössten. Ihr neuer Burggraben: <b>${esc(chipLabel(FLOW.find(s=>s.id==='moat'),a.moat))}</b>.`);
+  if(S.flags.includes('noSacrifice')||S.flags.includes('everywhere'))
+    add({en:'Sacrifice',de:'Verzicht'},
+      `“Everywhere” and “stop nothing” both appeared. The Challenger forced a real sacrifice: <b>${esc(trunc(a.notPlay,80))}</b>. Guard it — sacrifice is what makes the rest affordable.`,
+      `«Überall» und «nichts aufgeben» kamen beide vor. Der Challenger erzwang echten Verzicht: <b>${esc(trunc(a.notPlay,80))}</b>. Verteidigen Sie ihn — Verzicht finanziert den Rest.`);
+  if(a.capGap && a.capGap!=='none')
+    add({en:'Weak link',de:'Schwachstelle'},
+      `Your win logic depends on <b>${esc(chipLabel(FLOW.find(s=>s.id==='caps'),a.capGap))}</b> — the capability you rated below half strength. Sprint 1 must attack it, or the strategy rests on your weakest leg.`,
+      `Ihre Gewinnlogik hängt an <b>${esc(chipLabel(FLOW.find(s=>s.id==='caps'),a.capGap))}</b> — der Fähigkeit, die Sie unter halber Stärke einschätzen. Sprint 1 muss genau hier ansetzen, sonst ruht die Strategie auf dem schwächsten Bein.`);
+  if(S.flags.includes('adoption'))
+    add({en:'Adoption',de:'Akzeptanz'},
+      `You doubt the behaviour change will happen. The Challenger made it a scorecard line — behaviour is now measured weekly, not hoped for.`,
+      `Sie zweifeln an der Verhaltensänderung. Der Challenger machte daraus eine Scorecard-Zeile — Verhalten wird nun wöchentlich gemessen, nicht erhofft.`);
+  if(S.flags.includes('aiNone')||S.flags.includes('aiNoneOk'))
+    add({en:'AI choice',de:'KI-Entscheidung'},
+      `“No role for AI” is on record as an explicit choice with a six-month review date — not a blind spot.`,
+      `«Keine Rolle für KI» ist als explizite Entscheidung festgehalten — mit Überprüfung in sechs Monaten. Kein blinder Fleck.`);
+  else if(a.aiRole)
+    add({en:'AI coherence',de:'KI-Kohärenz'},
+      `AI role <b>${esc(chipLabel(FLOW.find(s=>s.id==='aiRole'),a.aiRole))}</b> checked against your moat: your proprietary data (<b>${esc(trunc(a.aiData,55))}</b>) is the part competitors cannot clone. Build the first move on that data, not on generic tools.`,
+      `KI-Rolle <b>${esc(chipLabel(FLOW.find(s=>s.id==='aiRole'),a.aiRole))}</b> gegen Ihren Burggraben geprüft: Ihre eigenen Daten (<b>${esc(trunc(a.aiData,55))}</b>) sind der Teil, den niemand klonen kann. Bauen Sie den ersten Schritt auf diesen Daten auf, nicht auf generischen Tools.`);
+  if(S.flags.includes('misaligned'))
+    add({en:'Alignment',de:'Alignment'},
+      `Your leadership team is <b>${esc(chipLabel(FLOW.find(s=>s.id==='alignTeam'),a.alignTeam))}</b> on these choices. The Challenger's verdict: this hypothesis must not become a memo. Team inputs and a facilitated offsite are the next move — before any investment.`,
+      `Ihr Führungsteam ist bei diesen Entscheidungen <b>${esc(chipLabel(FLOW.find(s=>s.id==='alignTeam'),a.alignTeam))}</b>. Das Urteil des Challengers: Diese Hypothese darf kein Memo werden. Team-Inputs und ein moderiertes Offsite sind der nächste Schritt — vor jeder Investition.`);
+  const risks=Object.values(S.wwhtbtRatings).filter(x=>x==='risk').length;
+  if(risks>0)
+    add({en:'Evidence',de:'Evidenz'},
+      `${risks} “what would have to be true” condition(s) made you uncomfortable. The Challenger converted them into your test agenda — validate before you invest.`,
+      `${risks} «Was müsste wahr sein»-Bedingung(en) lösten Unbehagen aus. Der Challenger machte daraus Ihre Test-Agenda — validieren, bevor Sie investieren.`);
+  add({en:'Underused assets',de:'Ungenutzte Aktiva'},
+    `Extend before you replace: <b>${esc(trunc(a.underused,80))}</b> runs below potential. The cheapest strategic move is usually sweating what you already own.`,
+    `Erweitern vor ersetzen: <b>${esc(trunc(a.underused,80))}</b> läuft unter Potenzial. Der günstigste strategische Schritt ist meist, das Vorhandene auszuschöpfen.`);
+  return items;
+}
+function genSprint(){
+  const a=S.answers; const L=[];
+  const add=(w,en,de)=>L.push({w,en,de});
+  add('W 1–2',
+    `<b>Value check.</b> Talk to five customers in your target field. One question: does “${esc(trunc(a.challenge,60))}” match what they feel?`,
+    `<b>Wert-Check.</b> Sprechen Sie mit fünf Kunden im Zielfeld. Eine Frage: Deckt sich «${esc(trunc(a.challenge,60))}» mit dem, was sie spüren?`);
+  add('W 3–4',
+    `<b>Sacrifice memo.</b> Draft the stop: ${esc(trunc(a.notPlay,70))}. One page — to discuss and decide with your leadership team, not to announce.`,
+    `<b>Verzichts-Memo.</b> Entwerfen Sie den Stopp: ${esc(trunc(a.notPlay,70))}. Eine Seite — zum Diskutieren und Entscheiden mit dem Führungsteam, nicht zum Verkünden.`);
+  add('W 5–6',
+    `<b>Proof story.</b> Build one reference case that shows <b>${esc(chipLabel(FLOW.find(s=>s.id==='moat'),a.moat))}</b> in customer words. Sales carry it into every meeting.`,
+    `<b>Beweis-Story.</b> Bauen Sie einen Referenzfall, der <b>${esc(chipLabel(FLOW.find(s=>s.id==='moat'),a.moat))}</b> in Kundenworten zeigt. Der Vertrieb nimmt ihn in jedes Gespräch mit.`);
+  add('W 7–8',
+    `<b>First AI move.</b> Ship it small and visible: ${esc(trunc(a.aiFirst,80))}. Measure ${esc(scLabel('sc_ai'))} from day one.`,
+    `<b>Erster KI-Schritt.</b> Klein und sichtbar liefern: ${esc(trunc(a.aiFirst,80))}. ${esc(scLabel('sc_ai'))} ab Tag eins messen.`);
+  if(a.capGap && a.capGap!=='none')
+    add('W 9–10',
+      `<b>Capability sprint.</b> Attack the weak link: ${esc(chipLabel(FLOW.find(s=>s.id==='caps'),a.capGap))}. Named owner, visible progress.`,
+      `<b>Fähigkeits-Sprint.</b> Die Schwachstelle angehen: ${esc(chipLabel(FLOW.find(s=>s.id==='caps'),a.capGap))}. Benannter Verantwortlicher, sichtbarer Fortschritt.`);
+  add('W 11–12',
+    `<b>Scorecard live.</b> Weekly rhythm installed: ${esc(trunc(a.weekly,70))}. Leading indicators reviewed every Monday — course-correct early.`,
+    `<b>Scorecard live.</b> Wochenrhythmus installiert: ${esc(trunc(a.weekly,70))}. Frühindikatoren jeden Montag prüfen — früh gegensteuern.`);
+  return L;
+}
+function scLabel(key){
+  const step=FLOW.find(s=>s.id===key);
+  const v=S.answers[key];
+  if(!v) return '—';
+  return step.chips.some(c=>c.v===v) ? chipLabel(step,v) : v;
+}
+function genStory(){
+  const a=S.answers;
+  const P=(role,title,text)=>({role,title,text});
+  return S.lang==='de' ? [
+    P('Der Gegenspieler','Was uns bedroht',`«${esc(trunc(a.challenge,110))}» — Nichtstun ist keine Sicherheit. Es ist der Gegner.`),
+    P('Das gelobte Land','Wohin wir gehen',`${esc(trunc(a.aspiration,120))}`),
+    P('Der Weg','Was wir entscheiden',`Wir fokussieren: ${esc(trunc(a.whereDetail,80))}. Wir gewinnen durch: ${esc(trunc(a.whyBuy,80))}. Und wir hören auf mit: ${esc(trunc(a.notPlay,60))}.`),
+    P('Die Helden','Wer es schafft',`Nicht die Strategie gewinnt — Menschen gewinnen. ${esc(trunc(a.behaviour,100))}. KI trägt die Routine; Urteilskraft bleibt bei uns: ${esc(trunc(a.aiHuman,70))}.`),
+    P('Die Reise','Womit wir beginnen',`In 90 Tagen liefern wir den ersten Beweis: ${esc(trunc(a.aiFirst,90))}. Klein anfangen. Sichtbar gewinnen. Dann skalieren.`)
+  ] : [
+    P('The villain','What threatens us',`“${esc(trunc(a.challenge,110))}” — doing nothing is not safety. It is the opponent.`),
+    P('The promised land','Where we are going',`${esc(trunc(a.aspiration,120))}`),
+    P('The path','What we choose',`We focus: ${esc(trunc(a.whereDetail,80))}. We win through: ${esc(trunc(a.whyBuy,80))}. And we stop: ${esc(trunc(a.notPlay,60))}.`),
+    P('The heroes','Who makes it happen',`Strategies don’t win — people do. ${esc(trunc(a.behaviour,100))}. AI carries the routine; judgement stays with us: ${esc(trunc(a.aiHuman,70))}.`),
+    P('The journey','How we start',`In 90 days we deliver the first proof: ${esc(trunc(a.aiFirst,90))}. Start small. Win visibly. Then scale.`)
+  ];
+}
+
+/* ══════════════════════ DASHBOARD BUILD ══════════════════════ */
+function lockCard(inner, titleKey, subKey){
+  if(S.plan==='premium') return inner;
+  return inner+`<div class="lock-veil">
+    <div class="lv-title">🔒 ${T(UI[titleKey])}</div>
+    <div class="lv-sub">${T(UI[subKey])}</div>
+    <button class="btn btn-premium" onclick="togglePlan()">${T(UI.upgradeBtn)}</button>
+    <div style="font-size:11px;color:var(--f8-grey);">${T(UI.premiumNote)}</div></div>`;
+}
+function buildDashboard(){
+  const a=S.answers;
+  const capsStep=FLOW.find(s=>s.id==='caps');
+  const whereStep=FLOW.find(s=>s.id==='where');
+  const risks=[];
+  wwhtbtList.forEach((it,i)=>{ risks.push({t:T(it), r:S.wwhtbtRatings[i]||'test'}); });
+  const scRows=[
+    {c:S.lang==='de'?'Spielfeld: ':'Where to play: ', cv:trunc(a.whereDetail||'',60),
+     b:S.lang==='de'?'Vertrieb priorisiert das Zielsegment':'Sales prioritise the target segment', l:scLabel('sc_where')},
+    {c:S.lang==='de'?'Gewinnlogik: ':'How to win: ', cv:trunc(a.whyBuy||'',60),
+     b:scLabel('sc_how'), l:S.lang==='de'?'Erfolgsquote im Fokussegment (monatlich)':'Win rate in the focus segment (monthly)'},
+    {c:S.lang==='de'?'KI-Schritt: ':'AI move: ', cv:trunc(a.aiFirst||'',60),
+     b:S.lang==='de'?'Team nutzt den KI-Output wöchentlich':'Team uses the AI output weekly', l:scLabel('sc_ai')}
+  ];
+  const prize=a.prize ? esc(trunc(a.prize,40)) : (S.lang==='de'?'Ihr Zielwert':'Your target');
+  const D=$('dashboard');
+  D.innerHTML=`
+  <div class="dash-head">
+    <div>
+      <h1>${T(UI.dashTitle)} — ${esc(a.company||'')} <span class="pill" style="background:var(--f8-amber-tint);color:var(--f8-amber);vertical-align:middle;">${T(UI.hypothesisPill)}</span></h1>
+      <div class="sub">${T(UI.dashSub)}</div>
+    </div>
+    <div class="dash-actions">
+      <button class="btn btn-secondary" onclick="backToChat()">${T(UI.backToChat)}</button>
+      <button class="btn btn-secondary" onclick="window.print()">🖨 ${T(UI.printBtn)}</button>
+      <button class="btn btn-secondary" onclick="emailDashboard()">${T(UI.emailBtn)}</button>
+      <button class="btn btn-secondary" onclick="clearState();location.reload()">↺ ${T(UI.restartBtn)}</button>
+      <div id="email-status" class="email-status" style="display:none;"></div>
+    </div>
+  </div>
+  <div class="dash-grid">
+
+    <div class="dcard span12">
+      <h3 style="color:var(--f8-slate);">🩺 ${T(UI.diagH)} <span class="pill free">${T(UI.freeBadge)}</span></h3>
+      <div style="font-size:14.5px;line-height:1.65;color:var(--f8-ink-soft);">
+        <b style="color:var(--f8-ink);">${esc(a.challenge||'')}</b><br>
+        ${S.lang==='de'?'Attraktivste Märkte':'Most attractive markets'}: ${esc(a.attractiveMarkets||'')}<br>
+        ${S.lang==='de'?'Kunden & ihre Sorgen':'Customers & their worries'}: ${esc(a.customers||'')}<br>
+        ${S.lang==='de'?'Begrenzende Annahmen':'Limiting assumptions'}: ${esc(a.assumptions||'')}<br>
+        ${S.lang==='de'?'Unter Potenzial':'Below potential'}: ${esc(a.underused||'')}
+      </div>
+    </div>
+
+    <div class="dcard span8">
+      <h3 style="color:var(--f8-blue);">◎ ${T(UI.cascadeH)} <span class="pill free">${T(UI.freeBadge)}</span></h3>
+      <div class="cascade-flow">
+        ${cfStep(1,T(UI.slots.aspiration), esc(a.aspiration||''))}
+        ${cfStep(2,T(UI.slots.where), esc((a.where||[]).map(v=>chipLabel(whereStep,v)).join(' + '))+' — '+esc(a.whereDetail||''), `✕ ${S.lang==='de'?'Nicht spielen':'Not playing'}: ${esc(a.notPlay||'')}`)}
+        ${cfStep(3,T(UI.slots.how), esc(a.whyBuy||'')+' <b>['+esc(chipLabel(FLOW.find(s=>s.id==='moat'),a.moat||''))+']</b>')}
+        ${cfStep(4,T(UI.slots.cap), esc((a.caps||[]).map(v=>chipLabel(capsStep,v)).join(' · ')))}
+        ${cfStep(5,T(UI.slots.sys), esc(a.weekly||''))}
+        ${cfStep(6,T(UI.slots.ai), esc(chipLabel(FLOW.find(s=>s.id==='aiRole'),a.aiRole||''))+' — '+esc(a.aiFirst||'')+`<div style="font-size:12px;color:var(--f8-grey);margin-top:4px;">${S.lang==='de'?'Urteilskraft bleibt menschlich':'Judgement stays human'}: ${esc(a.aiHuman||'')}</div>`,null,true)}
+      </div>
+    </div>
+
+    <div class="dcard span4">
+      <h3 style="color:var(--f8-amber);">⚖ ${T(UI.tensionH)} <span class="pill free">${T(UI.freeBadge)}</span></h3>
+      ${S.tensions.length?S.tensions.map(k=>`<div class="tension-item">${T(TENSIONS[k])}</div>`).join(''):`<div class="tension-empty">—</div>`}
+    </div>
+
+    <div class="dcard span12">
+      <h3 style="color:var(--f8-teal);">📈 ${T(UI.scH)} <span class="pill free">${T(UI.freeBadge)}</span></h3>
+      ${scRows.map(r=>`
+      <div class="sc-row">
+        <div class="sc-cell choice"><span class="k">${S.lang==='de'?'Entscheidung':'Choice'}</span>${esc(r.c)}${r.cv}<div class="sc-arrow"></div></div>
+        <div class="sc-cell"><span class="k">${S.lang==='de'?'Verhalten ändert sich':'Behaviour changes'}</span>${r.b}<div class="sc-arrow"></div></div>
+        <div class="sc-cell lead"><span class="k">${S.lang==='de'?'Frühindikator (Wochen)':'Leading indicator (weeks)'}</span>${r.l}<div class="sc-arrow"></div></div>
+        <div class="sc-cell impact"><span class="k">${S.lang==='de'?'Impact (CHF/Jahr)':'Impact (CHF/yr)'}</span>${prize}</div>
+      </div>`).join('')}
+      <div class="sc-legend">${T(UI.scLegend)}</div>
+    </div>
+
+    <div class="dcard span6">
+      <h3 style="color:var(--f8-green);">🧪 ${T(UI.wwhtbtH)} <span class="pill free">${T(UI.freeBadge)}</span></h3>
+      ${risks.map(x=>`<div class="wwhtbt-item">
+        <span class="wwhtbt-flag ${x.r}">${x.r==='ok'?T(UI.ratingOk):x.r==='test'?T(UI.ratingTest):T(UI.ratingRisk)}</span>
+        <div class="wwhtbt-text">${x.t}</div></div>`).join('')}
+    </div>
+
+    <div class="dcard span6">
+      <h3 style="color:var(--f8-blue);">🤝 ${T(UI.alignH)} <span class="pill free">${T(UI.freeBadge)}</span></h3>
+      ${alignBlock(a)}
+    </div>
+
+    <div class="dcard span6 ${S.plan==='premium'?'':'locked'}">
+      <h3 style="color:var(--f8-purple);">⚔ ${T(UI.challengerH)} <span class="pill paid">${T(UI.paidBadge)}</span></h3>
+      ${lockCard(genChallengerItems().map(it=>`<div class="challenger-item">
+        <div class="ch-ico">⚔</div>
+        <div class="ch-body"><span class="ch-tag">${T(it.tag)}</span><br>${T(it)}</div></div>`).join(''),'lockChallenger','lockChallengerSub')}
+    </div>
+
+    <div class="dcard span6 ${S.plan==='premium'?'':'locked'}">
+      <h3 style="color:var(--f8-teal);">🚀 ${T(UI.sprintH)} <span class="pill paid">${T(UI.paidBadge)}</span></h3>
+      ${lockCard(genSprint().map(it=>`<div class="sprint-item">
+        <span class="sprint-week">${it.w}</span>
+        <div class="sprint-text">${T(it)}</div></div>`).join(''),'lockSprint','lockSprintSub')}
+    </div>
+
+    <div class="dcard span6 ${S.plan==='premium'?'':'locked'}">
+      <h3 style="color:var(--f8-navy);">🧭 ${T(UI.processH)} <span class="pill paid">${T(UI.paidBadge)}</span></h3>
+      ${lockCard(processBlock(),'lockProcess','lockProcessSub')}
+    </div>
+
+    <div class="dcard span6 ${S.plan==='premium'?'':'locked'}">
+      <h3 style="color:var(--f8-rose);">🎬 ${T(UI.storyH)} <span class="pill paid">${T(UI.paidBadge)}</span></h3>
+      ${lockCard(`<div class="story-arc" style="grid-template-columns:1fr;">
+        ${genStory().map((p,i)=>`<div class="story-panel">
+          <div style="display:flex;align-items:center;gap:10px;"><div class="sp-num">${i+1}</div><div><div class="sp-role">${p.role}</div><div class="sp-title">${p.title}</div></div></div>
+          <div class="sp-text">${p.text}</div></div>`).join('')}
+      </div>
+      <div class="story-tips">${S.lang==='de'
+        ?'<b>Rhetorik-Werkzeuge (Lancaster):</b> Dreierregel («Fokussieren. Beweisen. Skalieren.») · Kontrast («Nicht mehr tun — das Richtige tun.») · Wiederholen Sie einen Schlüsselsatz in jeder Sitzung · Beginnen Sie mit einer persönlichen Geschichte, nicht mit Folie 1.'
+        :'<b>Rhetoric toolkit (Lancaster):</b> Rule of three (“Focus. Prove. Scale.”) · Contrast (“Not doing more — doing what matters.”) · Repeat one key phrase in every meeting · Open with a personal story, not slide 1.'}</div>`,'lockStory','lockStorySub')}
+    </div>
+
+    <div class="span12 disclaimer">${T(UI.disclaimer)}</div>
+  </div>`;
+}
+function alignBlock(a){
+  const st=a.alignTeam||'untested';
+  const cls=st==='aligned'?'good':(st==='mostly'?'warn':'bad');
+  const lbl=chipLabel(FLOW.find(s=>s.id==='alignTeam'),st);
+  return `<div class="align-status ${cls}">${esc(lbl)}</div>
+    <div style="font-size:13.5px;line-height:1.6;color:var(--f8-ink-soft);">
+      <b style="color:var(--f8-ink);">${T(UI.alignTrueLabel)}</b><br>${esc(a.alignTrue||'—')}
+    </div>
+    ${(st==='split'||st==='untested')?`<div style="margin-top:10px;font-size:12.5px;color:var(--f8-amber);font-weight:600;">${S.lang==='de'?'→ Genau hier setzt der Alignment-Prozess an (Premium).':'→ This is exactly where the alignment process starts (Premium).'}</div>`:''}`;
+}
+function processBlock(){
+  const items = S.lang==='de' ? [
+    ['📊','<b>Marktdaten-Paket.</b> Ihre Spielfeld-Hypothese gegen echte Markt- und Wettbewerbsdaten geprüft.'],
+    ['💰','<b>Finanz-Realitätscheck.</b> Der CHF-Preis und die Scorecard gegen Ihre Zahlen gerechnet.'],
+    ['👥','<b>Team-Inputs.</b> Jedes Führungsmitglied durchläuft die LENS separat — die Unterschiede sind der wertvollste Befund.'],
+    ['📣','<b>Kunden- & Lieferantenreklamationen.</b> Die ehrlichste Datenquelle, die Sie besitzen — systematisch ausgewertet gegen Ihre Gewinnlogik.'],
+    ['🏔','<b>Moderiertes Führungs-Offsite.</b> Aus der Hypothese wird eine getragene Strategie — moderiert von facilit8.']
+  ] : [
+    ['📊','<b>Market data pack.</b> Your where-to-play hypothesis tested against real market and competitor data.'],
+    ['💰','<b>Financial reality check.</b> The CHF prize and scorecard run against your actual numbers.'],
+    ['👥','<b>Team inputs.</b> Each leadership member runs the LENS separately — the differences are the most valuable finding.'],
+    ['📣','<b>Customer & supplier complaints.</b> The most honest data you own — mined systematically against your win logic.'],
+    ['🏔','<b>Facilitated leadership offsite.</b> The hypothesis becomes a strategy your team carries — facilitated by facilit8.']
+  ];
+  return items.map(i=>`<div class="process-item"><div class="pi-ico">${i[0]}</div><div>${i[1]}</div></div>`).join('')
+    +`<div style="margin-top:12px;"><a class="btn btn-premium" style="text-decoration:none;font-size:13px;padding:10px 18px;" href="mailto:hello@facilit8.org?subject=${encodeURIComponent('StrategyLENS alignment process — '+(S.answers.company||''))}">${S.lang==='de'?'Alignment-Prozess anfragen':'Enquire about the alignment process'}</a></div>`;
+}
+function emailStatus(msg,cls){
+  const el=$('email-status'); if(!el) return;
+  if(!msg){ el.style.display='none'; el.textContent=''; el.className='email-status'; return; }
+  el.style.display='block'; el.textContent=msg; el.className='email-status'+(cls?' '+cls:'');
+}
+function buildEmailSummary(a){
+  return `StrategyLENS — ${a.company||''}\n\n`+
+    `${S.lang==='de'?'Sieg-Ambition':'Winning aspiration'}: ${a.aspiration||''}\n`+
+    `${S.lang==='de'?'Spielfeld':'Where to play'}: ${a.whereDetail||''}\n`+
+    `${S.lang==='de'?'Nicht spielen':'Not playing'}: ${a.notPlay||''}\n`+
+    `${S.lang==='de'?'Gewinnlogik':'How to win'}: ${a.whyBuy||''}\n`+
+    `${S.lang==='de'?'KI-Entscheidung':'AI choice'}: ${a.aiFirst||''}\n`+
+    `${S.lang==='de'?'Preis (CHF/Jahr)':'Prize (CHF/yr)'}: ${a.prize||'—'}\n\n`+
+    `${S.lang==='de'?'Vollständiges Dashboard: Drucken/PDF im Browser.':'Full dashboard: use Print/PDF in the browser.'}`;
+}
+async function emailDashboard(){
+  const a=S.answers;
+  const to=window.prompt(T(UI.emailPrompt)); if(!to) return;
+  const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!EMAIL_RE.test(to.trim())){ emailStatus(T(UI.emailInvalid),'err'); return; }
+  const ccFacilit8=window.confirm(T(UI.emailCc));
+  emailStatus(T(UI.emailSending),'pending');
+  try{
+    const res=await fetch('/api/strategylens/email',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        to:to.trim(), ccFacilit8, lang:S.lang,
+        company:a.company||'', summary:buildEmailSummary(a)
+      })
+    });
+    let data={}; try{ data=await res.json(); }catch(e){}
+    if(res.ok && data.ok) emailStatus(T(UI.emailSent),'ok');
+    else emailStatus(T(UI.emailError),'err');
+  }catch(e){
+    emailStatus(T(UI.emailError),'err');
+  }
+}
+function cfStep(n,label,value,not,ai){
+  return `<div class="cf-step ${ai?'ai':''}">
+    <div class="cf-rail"><div class="cf-dot">${n}</div>${n<6?'<div class="cf-line"></div>':''}</div>
+    <div class="cf-body"><div class="cf-label">${label}</div><div class="cf-value">${value}</div>${not?`<div class="cf-not">${not}</div>`:''}</div></div>`;
+}
+
+
+/* ══════════════════════ BOOT ══════════════════════ */
+window.S=S; window.FLOW=FLOW; window.UI=UI; /* exposed for dev tooling */
+(async function(){
+  setLang(document.documentElement.lang==='de'?'de':'en');
+  renderCascade();
+  const saved=loadState();
+  if(saved && saved.S && (saved.S.step>0 || saved.S.finished)){
+    S.lang=saved.S.lang||S.lang;
+    setLangUnlocked(S.lang);
+    await botSay(esc(T(UI.resumeQ)));
+    $('chat-input').innerHTML=`<div class="chips">
+      <button class="chip" onclick="resumeSessionClick()">▶ ${T(UI.resumeYes)}</button>
+      <button class="chip" onclick="startFresh()">↺ ${T(UI.resumeNo)}</button></div>`;
+    window._saved=saved;
+    return;
+  }
+  await askStep(FLOW[0]);
+})();
+async function resumeSessionClick(){ userSay(T(UI.resumeYes)); $('chat-input').innerHTML=''; await resumeSession(window._saved); }
+async function startFresh(){ userSay(T(UI.resumeNo)); clearState(); $('chat-input').innerHTML=''; await askStep(FLOW[0]); }
+
+</script>
+</body>
+</html>

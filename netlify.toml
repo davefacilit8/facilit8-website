@@ -17,6 +17,11 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow, noarchive"
 
+[[headers]]
+  for = "/strategylens.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+
 # LifeLENS is a private, single-user tool. There is no static lifelens.html
 # file in this repo — the page only exists inside the Netlify Function below,
 # which checks a signed cookie (set after a correct password) before it will
@@ -31,5 +36,18 @@
 [[redirects]]
   from = "/api/lifelens/state"
   to = "/.netlify/functions/lifelens-state"
+  status = 200
+  force = true
+
+# StrategyLENS is a public soft-launch (noindex, unlisted) — clean slug only,
+# not linked from the homepage or sitemap yet.
+[[redirects]]
+  from = "/strategylens"
+  to = "/strategylens.html"
+  status = 200
+
+[[redirects]]
+  from = "/api/strategylens/email"
+  to = "/.netlify/functions/strategylens-email"
   status = 200
   force = true

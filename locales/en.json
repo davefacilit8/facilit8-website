@@ -6,7 +6,7 @@
     "playbooks": "Playbooks",
     "about": "About",
     "contact": "Contact",
-    "bookMeeting": "Book a Meeting"
+    "bookMeeting": "Start a conversation"
   },
   "footer": {
     "tagline": "Commercial transformation, delivered hands-on, until it sticks.",
@@ -79,6 +79,63 @@
       "primaryCta": "Book a Meeting",
       "secondaryCta": "About facilit8"
     },
+    "heroAsk": {
+      "eyebrow": "Commercial transformation",
+      "headline": "The technology is there. The results should be too.",
+      "sub": "Every engagement starts the same way — with what you actually need, and why. Pick the one that sounds like your week.",
+      "iconAlt": "A route being travelled step by step from start to destination",
+      "iconCaption": "Step by step, until it sticks",
+      "cardsAriaLabel": "Choose the situation closest to yours",
+      "kicker": "Situation",
+      "card1Title": "We bought the platform. Nothing changed.",
+      "card1Body": "CRM, automation or AI is live, and the commercial numbers haven't moved.",
+      "card2Title": "The programme has stalled mid-flight.",
+      "card2Body": "Timelines are slipping, the sponsor is exposed, and confidence is draining.",
+      "card3Title": "Growth has flattened and nobody agrees why.",
+      "card3Body": "Sales, marketing and service each have a different version of the truth.",
+      "answerEyebrow": "Where we'd start",
+      "answer1": "A short diagnostic on adoption, not on the platform. We find where the value is leaking between your people, process and data.",
+      "proof1": "Same starting point as the AI service agent work that took 30% out of peak-season service cost.",
+      "answer2": "A first 30 days that stabilises the programme: what is true, what is at risk, and which decisions the sponsor has to take this month.",
+      "proof2": "The structure behind the CRM, engagement and ERP recovery framework in the Rescue the Rollout playbook.",
+      "answer3": "One room, the right people, and an honest look at your go-to-market: where growth should come from and what has to change to get it.",
+      "proof3": "How four regional inside sales teams were built, delivering 10% growth in low-growth segments.",
+      "cta": "Start with a conversation"
+    },
+    "sectors": {
+      "eyebrow": "Where we work",
+      "heading": "Three sectors where the gap costs the most.",
+      "countSuffix": "engagements",
+      "s1Title": "Manufacturing & chemicals",
+      "s1Body": "Channel consolidation, customer portals, inside sales, decision intelligence.",
+      "s1Metric": "150+ distributors reduced to under 70",
+      "s1BodyEnd": ", with 360° performance management behind it.",
+      "s2Title": "Healthcare & life sciences",
+      "s2Body": "Trial operations, patient adherence, pharmacy retail insight, revenue defence.",
+      "s2Metric": "Clinical trial setup time cut by 20%",
+      "s2BodyEnd": " using design thinking and LEAN.",
+      "s3Title": "Technology & industrial services",
+      "s3Body": "SMART product strategy, IoT go-to-market, service growth, field enablement.",
+      "s3Metric": "New commercial roles designed",
+      "s3BodyEnd": " so solutions sell across product silos."
+    },
+    "work": {
+      "eyebrow": "Selected work",
+      "heading": "Anonymised clients. Real numbers.",
+      "allLink": "All 50+ engagements",
+      "c1Industry": "Healthcare & life sciences",
+      "c1Title": "Cancer clinical trial setup optimisation",
+      "c1Body": "Design thinking and LEAN applied to trial activation, reducing setup and activation time by 20%.",
+      "c2Industry": "Retail & consumer goods",
+      "c2Title": "Copilot AI agent implementation",
+      "c2Body": "An AI service agent deployed ahead of peak season, cutting customer service cost by 30%.",
+      "c3Industry": "Manufacturing & chemicals",
+      "c3Title": "Customer portal for 350+ accounts",
+      "c3Body": "Agile delivery of an eCommerce self-service portal for a global pigments manufacturer, reducing cost to serve.",
+      "c4Industry": "Technology & industrial",
+      "c4Title": "Digital strategy — SMART products & factory",
+      "c4Body": "Playing to Win and design thinking used to define SMART products, processes and factory for a precision instruments firm."
+    },
     "stats": [
       {
         "label": "Years of commercial transformation"
@@ -112,9 +169,9 @@
       "card3Body": "Every engagement is designed around measurable commercial results, not activity metrics or deliverables for their own sake."
     },
     "cta": {
-      "heading": "Ready to make your technology investments pay?",
-      "body": "Let's have a straightforward conversation about where you are and what's possible.",
-      "cta": "Book a Meeting"
+      "heading": "What support do you need, and why?",
+      "body": "That's the whole first conversation. No pitch, no proposal, no minimum engagement size — just an honest read on whether and how we can help.",
+      "cta": "Start with a conversation"
     }
   },
   "services": {

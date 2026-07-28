@@ -6,7 +6,7 @@
     "playbooks": "Playbooks",
     "about": "Über uns",
     "contact": "Kontakt",
-    "bookMeeting": "Termin buchen"
+    "bookMeeting": "Gespräch beginnen"
   },
   "footer": {
     "tagline": "Commercial Transformation — praxisnah umgesetzt, bis sie wirklich verankert ist.",
@@ -79,6 +79,63 @@
       "primaryCta": "Termin buchen",
       "secondaryCta": "Über facilit8"
     },
+    "heroAsk": {
+      "eyebrow": "Kommerzielle Transformation",
+      "headline": "Die Technologie ist da. Die Ergebnisse sollten es auch sein.",
+      "sub": "Jedes Projekt beginnt gleich — mit der Frage, was Sie wirklich brauchen und warum. Wählen Sie die Situation, die Ihrer Woche am nächsten kommt.",
+      "iconAlt": "Eine Route, die Schritt für Schritt zurückgelegt wird — vom Start bis zum Ziel",
+      "iconCaption": "Schritt für Schritt, bis es hält",
+      "cardsAriaLabel": "Wählen Sie die Situation, die Ihrer am nächsten kommt",
+      "kicker": "Situation",
+      "card1Title": "Die Plattform ist eingeführt. Verändert hat sich nichts.",
+      "card1Body": "CRM, Automatisierung oder AI läuft — und die kommerziellen Zahlen bewegen sich nicht.",
+      "card2Title": "Das Programm steckt mitten im Flug fest.",
+      "card2Body": "Termine rutschen, der Sponsor steht exponiert da, und das Vertrauen schwindet.",
+      "card3Title": "Das Wachstum ist flach und niemand ist sich einig, warum.",
+      "card3Body": "Vertrieb, Marketing und Service haben jeweils eine andere Version der Wahrheit.",
+      "answerEyebrow": "Wo wir beginnen würden",
+      "answer1": "Eine kurze Diagnose zur Nutzung, nicht zur Plattform. Wir finden, wo der Wert zwischen Menschen, Prozessen und Daten verloren geht.",
+      "proof1": "Derselbe Ausgangspunkt wie beim AI-Service-Agenten, der die Servicekosten in der Hochsaison um 30% gesenkt hat.",
+      "answer2": "Erste 30 Tage, die das Programm stabilisieren: was gilt, was gefährdet ist und welche Entscheidungen der Sponsor diesen Monat treffen muss.",
+      "proof2": "Die Struktur hinter dem Recovery-Framework für CRM, Customer Engagement und ERP aus dem Playbook „Rescue the Rollout”.",
+      "answer3": "Ein Raum, die richtigen Menschen und ein ehrlicher Blick auf Ihren Go-to-Market: woher Wachstum kommen soll und was sich dafür ändern muss.",
+      "proof3": "So wurden vier regionale Inside-Sales-Teams aufgebaut — mit 10% Wachstum in wachstumsschwachen Segmenten.",
+      "cta": "Gespräch beginnen"
+    },
+    "sectors": {
+      "eyebrow": "Wo wir arbeiten",
+      "heading": "Drei Branchen, in denen die Lücke am meisten kostet.",
+      "countSuffix": "Projekte",
+      "s1Title": "Fertigung & Chemie",
+      "s1Body": "Kanalkonsolidierung, Kundenportale, Inside Sales, Decision Intelligence.",
+      "s1Metric": "150+ Distributoren auf unter 70 reduziert",
+      "s1BodyEnd": " — mit 360°-Leistungssteuerung dahinter.",
+      "s2Title": "Healthcare & Life Sciences",
+      "s2Body": "Studienabläufe, Patientenadhärenz, Apotheken-Retail-Insights, Umsatzverteidigung.",
+      "s2Metric": "Aufsetzzeit klinischer Studien um 20% verkürzt",
+      "s2BodyEnd": " — mit Design Thinking und LEAN.",
+      "s3Title": "Technologie & industrielle Dienstleistungen",
+      "s3Body": "SMART-Produktstrategie, IoT-Go-to-Market, Servicewachstum, Außendienst-Enablement.",
+      "s3Metric": "Neue kommerzielle Rollen entworfen",
+      "s3BodyEnd": " — damit Lösungen über Produktsilos hinweg verkauft werden."
+    },
+    "work": {
+      "eyebrow": "Ausgewählte Projekte",
+      "heading": "Anonymisierte Kunden. Echte Zahlen.",
+      "allLink": "Alle 50+ Projekte",
+      "c1Industry": "Healthcare & Life Sciences",
+      "c1Title": "Optimierung des Aufsetzens klinischer Studien",
+      "c1Body": "Design Thinking und LEAN in der Studienaktivierung — Aufsetz- und Aktivierungszeit um 20% reduziert.",
+      "c2Industry": "Retail & Konsumgüter",
+      "c2Title": "Einführung eines Copilot-AI-Agenten",
+      "c2Body": "Ein AI-Service-Agent vor der Hochsaison eingeführt — Servicekosten um 30% gesenkt.",
+      "c3Industry": "Fertigung & Chemie",
+      "c3Title": "Kundenportal für 350+ Kunden",
+      "c3Body": "Agile Umsetzung eines eCommerce-Self-Service-Portals für einen globalen Pigmenthersteller — geringere Servicekosten.",
+      "c4Industry": "Technologie & Industrie",
+      "c4Title": "Digitalstrategie — SMART Produkte & Fabrik",
+      "c4Body": "Playing to Win und Design Thinking zur Definition von SMART Produkten, Prozessen und Fabrik für einen Präzisionsinstrumentenhersteller."
+    },
     "stats": [
       {
         "label": "Jahre Commercial Transformation"
@@ -112,9 +169,9 @@
       "card3Body": "Jedes Engagement ist auf messbare kommerzielle Ergebnisse ausgerichtet — nicht auf Aktivitätsmetriken oder Deliverables um ihrer selbst willen."
     },
     "cta": {
-      "heading": "Bereit, Ihre Technologieinvestitionen rentabel zu machen?",
-      "body": "Lassen Sie uns ein offenes Gespräch darüber führen, wo Sie stehen und was möglich ist.",
-      "cta": "Termin buchen"
+      "heading": "Welche Unterstützung brauchen Sie — und warum?",
+      "body": "Das ist das ganze erste Gespräch. Kein Pitch, kein Angebot, keine Mindestprojektgröße — nur eine ehrliche Einschätzung, ob und wie wir helfen können.",
+      "cta": "Gespräch beginnen"
     }
   },
   "services": {

@@ -4,7 +4,7 @@
     {
       "name": "facilit8 static site",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "/Users/dmjhowes/Library/CloudStorage/Dropbox/Cowork/facilit8-website"],
+      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "/Users/dmjhowes/Library/CloudStorage/Dropbox/Cowork/facilit8/facilit8-website"],
       "port": 8080
     }
   ]
