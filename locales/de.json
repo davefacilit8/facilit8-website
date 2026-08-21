@@ -194,6 +194,22 @@
       "aboutLink": "Über facilit8",
       "talkLink": "Mit David sprechen"
     },
+    "whoWeHelp": {
+      "eyebrow": "Für wen wir da sind",
+      "heading": "Für wen das hier ist.",
+      "startLabel": "Wo ich beginnen würde",
+      "cta": "Termin buchen",
+      "door1Label": "CEO im Schweizer/DACH-Mittelstand",
+      "door1Quote": "Ich weiss, dass sich etwas ändern muss, und ich habe nicht die Kapazität, das selbst zu leiten.",
+      "door1Start": "Ein erstes Gespräch darüber, wo die Lücke tatsächlich liegt — kein Framework-Pitch, kein Angebot.",
+      "door2Label": "Post-Merger-Integrationsverantwortliche/r",
+      "door2Quote": "Der Deal ist unterschrieben. Jetzt müssen zwei Vertriebsteams schnell zu einem werden.",
+      "door2Start": "Die Sequenz der ersten 30 Tage: erfassen, was unterschiedlich ist, eine Definition vereinbaren, eine gemeinsame Zahl aufbauen.",
+      "door2Link": "So funktioniert das →",
+      "door3Label": "PE Operating Partner",
+      "door3Quote": "Der Value-Creation-Plan sagt „kommerziell“. Ich muss wissen, ob das real ist, bevor es in die nächste Board-Präsentation geht.",
+      "door3Start": "Eine strukturierte Prüfung der kommerziellen Annahmen im Value-Creation-Plan gegen das, was das Unternehmen in der Haltedauer tatsächlich liefern kann."
+    },
     "sectors": {
       "eyebrow": "Wo wir arbeiten",
       "heading": "Drei Branchen, in denen die Lücke am meisten kostet.",

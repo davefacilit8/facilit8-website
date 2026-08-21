@@ -182,6 +182,22 @@ en: {
       aboutLink:'About facilit8',
       talkLink:'Talk to David'
     },
+    whoWeHelp: {
+      eyebrow:'Who we help',
+      heading:'Who this is for.',
+      startLabel:"Where I'd start",
+      cta:'Book a meeting',
+      door1Label:'Swiss/DACH mid-market CEO',
+      door1Quote:"I know something has to change, and I don't have the bandwidth to run it myself.",
+      door1Start:'A first conversation on where the gap actually is — no framework pitch, no proposal.',
+      door2Label:'Post-merger integration sponsor',
+      door2Quote:'We closed the deal. Now two sales teams have to become one — fast.',
+      door2Start:'The first-30-days sequence: map what\'s different, agree one definition, stand up one shared number.',
+      door2Link:'How this works →',
+      door3Label:'PE operating partner',
+      door3Quote:'The value-creation plan says commercial. I need to know it\'s real before the next board deck.',
+      door3Start:'A structured read of the value-creation plan\'s commercial assumptions against what the business can actually deliver in the hold period.'
+    },
     sectors: {
       eyebrow:'Where we work',
       heading:'Three sectors where the gap costs the most.',
@@ -404,6 +420,22 @@ de: {
       credit:'David Howes — Gründer, facilit8',
       aboutLink:'Über facilit8',
       talkLink:'Mit David sprechen'
+    },
+    whoWeHelp: {
+      eyebrow:'Für wen wir da sind',
+      heading:'Für wen das hier ist.',
+      startLabel:'Wo ich beginnen würde',
+      cta:'Termin buchen',
+      door1Label:'CEO im Schweizer/DACH-Mittelstand',
+      door1Quote:'Ich weiss, dass sich etwas ändern muss, und ich habe nicht die Kapazität, das selbst zu leiten.',
+      door1Start:'Ein erstes Gespräch darüber, wo die Lücke tatsächlich liegt — kein Framework-Pitch, kein Angebot.',
+      door2Label:'Post-Merger-Integrationsverantwortliche/r',
+      door2Quote:'Der Deal ist unterschrieben. Jetzt müssen zwei Vertriebsteams schnell zu einem werden.',
+      door2Start:'Die Sequenz der ersten 30 Tage: erfassen, was unterschiedlich ist, eine Definition vereinbaren, eine gemeinsame Zahl aufbauen.',
+      door2Link:'So funktioniert das →',
+      door3Label:'PE Operating Partner',
+      door3Quote:'Der Value-Creation-Plan sagt „kommerziell". Ich muss wissen, ob das real ist, bevor es in die nächste Board-Präsentation geht.',
+      door3Start:'Eine strukturierte Prüfung der kommerziellen Annahmen im Value-Creation-Plan gegen das, was das Unternehmen in der Haltedauer tatsächlich liefern kann.'
     },
     sectors: {
       eyebrow:'Wo wir arbeiten',

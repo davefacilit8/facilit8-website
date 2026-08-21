@@ -1212,6 +1212,19 @@ main { flex: 1; }
 }
 
 /* ============================================================
+   Homepage — Who we help (segment doors)
+   ============================================================ */
+.who-help-section { background: var(--bg-2); padding: 64px 0 80px; }
+.who-help-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 860px) { .who-help-grid { grid-template-columns: 1fr; } }
+.who-door { background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg); padding: 32px 28px; display: flex; flex-direction: column; gap: 18px; }
+.who-door-label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--f8-blue); }
+.who-door-quote { font-size: 18px; font-weight: 600; line-height: 1.4; color: var(--f8-navy); font-style: italic; margin: 0; }
+.who-door-start-label { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--f8-grey); margin-top: auto; }
+.who-door-start { font-size: 14.5px; line-height: 1.55; color: var(--fg-2); margin: 4px 0 0; }
+.who-door .btn { align-self: flex-start; margin-top: 4px; }
+
+/* ============================================================
    Homepage — section H2 shared by Sectors / Selected work
    ============================================================ */
 .section-h2 { margin-top: 14px; font-size: 38px; line-height: 1.2; letter-spacing: -0.025em; font-weight: 700; color: var(--f8-navy); }
@@ -1471,9 +1484,9 @@ function VideoThumbnail({ href, eyebrow, title, source, caption }) {
   );
 }
 
-const HERO_SERVICES = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1920&q=80&auto=format&fit=crop';
-const HERO_ABOUT    = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80&auto=format&fit=crop';
-const HERO_CONTACT  = 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1920&q=80&auto=format&fit=crop';
+const HERO_SERVICES = '/assets/img/hero-services.jpg';
+const HERO_ABOUT    = '/assets/img/hero-about.jpg';
+const HERO_CONTACT  = '/assets/img/hero-contact.jpg';
 const LOGO          = 'assets/facilit8-logo.png';
 const FOUNDER_PHOTO = 'assets/david-howes.jpg';
 
@@ -1595,6 +1608,7 @@ function Footer({ navigate }) {
             <a href="#" onClick={e => { e.preventDefault(); go('services'); }}>Go-to-Market Strategy</a>
             <a href="#" onClick={e => { e.preventDefault(); go('services'); }}>Revenue Operations</a>
             <a href="/capability-lens-app.html">Capability Lens</a>
+            <a href="/post-merger-commercial-excellence.html">Post-Merger Commercial Excellence</a>
           </div>
           <div className="footer-col">
             <h4>{t('footer.companyHeading')}</h4>
@@ -2069,6 +2083,44 @@ function FounderBand({ navigate }) {
 }
 
 /* ============================================================
+   HOME PAGE — Who we help (segment doors)
+   ============================================================ */
+function meetingsUrlFor(segment) {
+  return `${CONFIG.meetingsUrl}?utm_source=facilit8_website&utm_medium=segment_door&utm_campaign=who_we_help&utm_content=${segment}`;
+}
+
+function WhoWeHelpSection({ navigate }) {
+  const t = useTranslation();
+  const doors = [
+    { n: 1, segment: 'ceo' },
+    { n: 2, segment: 'post_merger', link: { label: t('home.whoWeHelp.door2Link'), href: 'post-merger-commercial-excellence.html' } },
+    { n: 3, segment: 'pe' },
+  ];
+  return (
+    <section className="who-help-section">
+      <div className="container">
+        <div className="section-eyebrow">{t('home.whoWeHelp.eyebrow')}</div>
+        <h2 className="section-h2">{t('home.whoWeHelp.heading')}</h2>
+        <div className="who-help-grid">
+          {doors.map(d => (
+            <div className="who-door" key={d.n}>
+              <div className="who-door-label">{t(`home.whoWeHelp.door${d.n}Label`)}</div>
+              <p className="who-door-quote">"{t(`home.whoWeHelp.door${d.n}Quote`)}"</p>
+              <div>
+                <div className="who-door-start-label">{t('home.whoWeHelp.startLabel')}</div>
+                <p className="who-door-start">{t(`home.whoWeHelp.door${d.n}Start`)}</p>
+                {d.link && <div style={{marginTop:8}}><a className="text-link" href={d.link.href}>{d.link.label}<Arrow/></a></div>}
+              </div>
+              <PrimaryButton href={meetingsUrlFor(d.segment)}>{t('home.whoWeHelp.cta')}</PrimaryButton>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================
    HOME PAGE — Where we work (sectors)
    ============================================================ */
 function SectorsSection() {
@@ -2159,6 +2211,7 @@ function HomePage({ navigate }) {
   return (
     <>
       <AskHero navigate={navigate}/>
+      <WhoWeHelpSection navigate={navigate}/>
       <FounderBand navigate={navigate}/>
       <SectorsSection/>
       <Section alt>
@@ -2593,7 +2646,7 @@ const PLAYBOOKS = [
     title: 'The CMO as Revenue Firefighter: Driving Short-Term Cash When It Matters Most',
     sub: 'A practical guide to the marketing levers, cross-functional plays, and quick wins that put money in the door fast.',
     tags: ['Cash', 'Marketing', '90 days'],
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1400&q=80&auto=format&fit=crop',
+    image: '/assets/img/pb-cmo-revenue-firefighter.jpg',
   },
   {
     id: 'cio-po-agile-playbook',
@@ -2602,7 +2655,7 @@ const PLAYBOOKS = [
     title: 'Speak the Same Language: The CIO & Product Owner Playbook for Agile Commercial Delivery',
     sub: 'Practical actions for CIOs and Product Owners who want IT delivery measured by commercial outcomes, not sprint velocity. Built around Scrum cadences.',
     tags: ['Agile', 'CIO', 'Outcomes'],
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1400&q=80&auto=format&fit=crop',
+    image: '/assets/img/hero-contact.jpg',
   },
   {
     id: 'cio-platform-turnaround',
@@ -2611,7 +2664,7 @@ const PLAYBOOKS = [
     title: "Rescue the Rollout: The Programme Director's Playbook for CRM Transformation Recovery",
     sub: 'A structured 6-month recovery framework for turning around a stalled multi-platform CRM, Customer Engagement and ERP programme — starting in the first 30 days.',
     tags: ['CRM', 'Recovery', '6 months'],
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1400&q=80&auto=format&fit=crop',
+    image: '/assets/img/hero-services.jpg',
   },
   {
     id: 'tool-overload-90-day-reset',
@@ -2620,7 +2673,7 @@ const PLAYBOOKS = [
     title: 'From Tool Overload to Commercial Advantage: Your 90-Day AI & Digital Reset',
     sub: 'Cut through the noise. A step-by-step leadership playbook for turning digital investment into measurable commercial results.',
     tags: ['AI', 'Digital', '90 days'],
-    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1400&q=80&auto=format&fit=crop',
+    image: '/assets/img/pb-tool-overload-90-day-reset.jpg',
   },
   {
     id: 'pitch-to-partner',
@@ -2629,7 +2682,7 @@ const PLAYBOOKS = [
     title: 'From Pitch to Partner: The C-Suite Guide to Consultative Selling',
     sub: 'How Swiss B2B teams stop selling products and start solving problems — building the trust, tools, and techniques that turn buyers into long-term partners.',
     tags: ['Sales', 'B2B', 'Trust'],
-    image: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=1400&q=80&auto=format&fit=crop',
+    image: '/assets/img/pb-pitch-to-partner.jpg',
   },
   {
     id: 'commercial-capability-lens',
@@ -2638,7 +2691,7 @@ const PLAYBOOKS = [
     title: 'The Commercial Capability-Lens Playbook',
     sub: 'For HR and commercial leaders: run every open sales, marketing or service role through a capability lens before you repost it. Let AI do the AI-able work; put people on the accountabilities and soft skills. A role-design tool, not a layoff tool.',
     tags: ['AI', 'Role Design', 'Commercial', '🔒 Protected'],
-    image: 'https://images.unsplash.com/photo-1552581234-26160f608093?w=1400&q=80&auto=format&fit=crop',
+    image: '/assets/img/pb-commercial-capability-lens.jpg',
   },
   {
     id: 'pilot-lead-harmonisation',
@@ -2647,7 +2700,7 @@ const PLAYBOOKS = [
     title: 'Harmonise the Lead: The Senior Project Leader Playbook for Lead Generation & Market Adoption',
     sub: 'A structured 16-week pilot framework covering problem approach, workplan, stakeholder engagement, impact case, and sustainable integration across 3 markets.',
     tags: ['Lead Gen', 'CRM', '16 weeks', '🔒 Protected'],
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1400&q=80&auto=format&fit=crop',
+    image: '/assets/img/pb-pilot-lead-harmonisation.jpg',
   },
 ];
 

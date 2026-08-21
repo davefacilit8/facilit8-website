@@ -194,6 +194,22 @@
       "aboutLink": "About facilit8",
       "talkLink": "Talk to David"
     },
+    "whoWeHelp": {
+      "eyebrow": "Who we help",
+      "heading": "Who this is for.",
+      "startLabel": "Where I'd start",
+      "cta": "Book a meeting",
+      "door1Label": "Swiss/DACH mid-market CEO",
+      "door1Quote": "I know something has to change, and I don't have the bandwidth to run it myself.",
+      "door1Start": "A first conversation on where the gap actually is — no framework pitch, no proposal.",
+      "door2Label": "Post-merger integration sponsor",
+      "door2Quote": "We closed the deal. Now two sales teams have to become one — fast.",
+      "door2Start": "The first-30-days sequence: map what's different, agree one definition, stand up one shared number.",
+      "door2Link": "How this works →",
+      "door3Label": "PE operating partner",
+      "door3Quote": "The value-creation plan says commercial. I need to know it's real before the next board deck.",
+      "door3Start": "A structured read of the value-creation plan's commercial assumptions against what the business can actually deliver in the hold period."
+    },
     "sectors": {
       "eyebrow": "Where we work",
       "heading": "Three sectors where the gap costs the most.",
