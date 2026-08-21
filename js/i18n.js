@@ -45,7 +45,7 @@
    ========================================================= */
 en: {
   nav: { home:'Home', services:'Services', caseStudies:'Case Studies', playbooks:'Playbooks', about:'About', contact:'Contact', bookMeeting:'Start a conversation' },
-  footer: { tagline:'Commercial transformation, delivered hands-on, until it sticks.', servicesHeading:'Services', companyHeading:'Company', basedInHeading:'Based in', basedInValue:'Switzerland', workingInternationally:'Working internationally', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Switzerland — DACH & International', cookiesPrivacy:'Cookies & Privacy', bookMeeting:'Book a meeting' },
+  footer: { tagline:'Commercial Excellence — transformation that sticks.', servicesHeading:'Services', companyHeading:'Company', basedInHeading:'Based in', basedInValue:'Switzerland', workingInternationally:'Working internationally', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Switzerland — DACH & International', cookiesPrivacy:'Cookies & Privacy', bookMeeting:'Book a meeting' },
   deBanner: { text:'This page is also available in German.', switchButton:'Switch to German', dismiss:'×' },
   cookieBanner: { text:'We use cookies to power the meeting booking tool and, if you accept, to understand how visitors use this site.', managePreferences:'Manage preferences', essentialOnly:'Essential only', acceptAll:'Accept all', ariaLabel:'Cookie notice' },
   cookies: {
@@ -67,11 +67,11 @@ en: {
     }
   },
   home: {
-    hero: { eyebrow:'Commercial Transformation', headline1:'The technology is there.', headline2:'The results should be too.', sub:'facilit8 helps businesses unlock the commercial value of technology — through hands-on transformation that sticks.', primaryCta:'Book a Meeting', secondaryCta:'About facilit8' },
+    hero: { eyebrow:'Commercial Transformation', headline1:'The technology is there.', headline2:'The results should be too.', sub:'The AI advantage window is open.', primaryCta:'Book a Meeting', secondaryCta:'About facilit8' },
     heroAsk: {
       eyebrow:'Commercial transformation',
-      headline:'The technology is there. The results should be too.',
-      sub:'Every engagement starts the same way — with what you actually need, and why. Pick the one that sounds like your week.',
+      headline:'The AI advantage window is open. Most companies will miss it.',
+      sub:"Across 50+ organisations I've watched the same gap open: teams that changed how they work with technology pulled ahead of teams that just bought it. The next 3–4 years decide who does that with AI. facilit8 gets you to the right side of that gap — hands-on, step by step, until the results are real.",
       iconAlt:'A route being travelled step by step from start to destination',
       iconCaption:'Step by step, until it sticks',
       cardsAriaLabel:'Choose the situation closest to yours',
@@ -80,16 +80,23 @@ en: {
       card1Body:"CRM, automation or AI is live, and the commercial numbers haven't moved.",
       card2Title:'The programme has stalled mid-flight.',
       card2Body:'Timelines are slipping, the sponsor is exposed, and confidence is draining.',
-      card3Title:'Growth has flattened and nobody agrees why.',
-      card3Body:'Sales, marketing and service each have a different version of the truth.',
+      card3Title:'Every function has an AI pilot, but few will lead to real results.',
+      card3Body:'Marketing has one. So does service. So does ops. None of them are wired to a plan that moves the P&L.',
       answerEyebrow:"Where we'd start",
       answer1:'A short diagnostic on adoption, not on the platform. We find where the value is leaking between your people, process and data.',
-      proof1:'Same starting point as the AI service agent work that took 30% out of peak-season service cost.',
+      proof1:'Same starting point as our AI-adoption diagnostic — where value leaks between people, process and data.',
       answer2:'A first 30 days that stabilises the programme: what is true, what is at risk, and which decisions the sponsor has to take this month.',
       proof2:'The structure behind the CRM, engagement and ERP recovery framework in the Rescue the Rollout playbook.',
-      answer3:'One room, the right people, and an honest look at your go-to-market: where growth should come from and what has to change to get it.',
-      proof3:'How four regional inside sales teams were built, delivering 10% growth in low-growth segments.',
+      answer3:"A structured session that turns AI from a buzzword into an owned plan — clear on where it creates value, and who's accountable for it.",
+      proof3:'The same structured thinking behind StrategyLENS — our 20-minute tool for testing your strategic choices, including AI.',
       cta:'Start with a conversation'
+    },
+    founder: {
+      photoAlt:'David Howes, founder of facilit8',
+      body:"facilit8 means make it easier. I started it because I kept seeing the same pattern: change gets decided in the boardroom and gets lost on the way to the front line — not because people don't try, but because nobody stays close enough, for long enough, for the new way of working to take hold. So I work differently: hands-on, alongside your teams, coaching-led, one manageable step at a time, until it's just how you work. What comes out of that is Commercial Excellence — sales, marketing and service pulling in the same direction — and AI and digital projects that move the numbers you actually report on, not pilots that quietly disappear. You always work directly with me — and delivery scales through established partners when work needs a collaboration of skillsets.",
+      credit:'David Howes — Founder, facilit8',
+      aboutLink:'About facilit8',
+      talkLink:'Talk to David'
     },
     sectors: {
       eyebrow:'Where we work',
@@ -104,20 +111,20 @@ en: {
       heading:'Anonymised clients. Real numbers.',
       allLink:'All 50+ engagements',
       c1Industry:'Healthcare & life sciences', c1Title:'Cancer clinical trial setup optimisation', c1Body:'Design thinking and LEAN applied to trial activation, reducing setup and activation time by 20%.',
-      c2Industry:'Retail & consumer goods', c2Title:'Copilot AI agent implementation', c2Body:'An AI service agent deployed ahead of peak season, cutting customer service cost by 30%.',
+      c2Industry:'Manufacturing & chemicals', c2Title:'Distributor network consolidation', c2Body:'150+ distributors consolidated to under 70, with 360° performance management built in behind it.',
       c3Industry:'Manufacturing & chemicals', c3Title:'Customer portal for 350+ accounts', c3Body:'Agile delivery of an eCommerce self-service portal for a global pigments manufacturer, reducing cost to serve.',
       c4Industry:'Technology & industrial', c4Title:'Digital strategy — SMART products & factory', c4Body:'Playing to Win and design thinking used to define SMART products, processes and factory for a precision instruments firm.'
     },
     stats: [{ label:'Years of commercial transformation' },{ label:'Projects delivered' },{ label:'& international' }],
     problem: { eyebrow:'The problem', heading:'Most businesses have the tools. Few get the results.', body:"CRM, sales automation, revenue analytics, customer data platforms — the investment is real. So why aren't the results following? Because technology alone doesn't transform commercial performance. The gap between capability and outcomes comes down to how your people, processes, and systems actually work together. And that's where most programmes fall short." },
     whatWeDo: { eyebrow:'What we do', heading:'We close the gap between technology and commercial performance.', body1:'facilit8 works alongside your commercial teams — in your business, not above it — to turn technology investment into measurable results. From go-to-market design to sales and revenue operations, we bring senior expertise and practical delivery to every engagement.', body2:'We work with mid-market businesses, enterprise organisations, PE-backed companies, and scale-ups that are ready to make their commercial systems perform.' },
-    howWeWork: { eyebrow:'How we work', heading:'Three things that make every engagement different.', card1Title:'Hands-on delivery', card1Body:"We don't hand over a deck and walk away. We work inside your organisation until the change is real and lasting.", card2Title:'Senior expertise', card2Body:'You work directly with experienced practitioners — not junior consultants managed from a distance.', card3Title:'Outcomes, not outputs', card3Body:'Every engagement is designed around measurable commercial results, not activity metrics or deliverables for their own sake.' },
+    howWeWork: { eyebrow:'How we work', heading:'Three things that make every engagement different.', card1Title:'Hands-on delivery', card1Body:"We don't hand over a deck and walk away. We work inside your organisation until the change is real and lasting.", card2Title:'Senior expertise', card2Body:'You work directly with me — and delivery scales through established partners when work needs a collaboration of skillsets.', card3Title:'Outcomes, not outputs', card3Body:'Every engagement is designed around measurable commercial results, not activity metrics or deliverables for their own sake.' },
     cta: { heading:'What support do you need, and why?', body:'That\'s the whole first conversation. No pitch, no proposal, no minimum engagement size — just an honest read on whether and how we can help.', cta:'Start with a conversation' }
   },
   services: {
     hero: { eyebrow:'Services', headline:'Commercial performance, transformed.', sub:'We work across four interconnected areas — because lasting commercial change rarely comes from pulling a single lever.' },
     intro:"Technology has changed how businesses grow, sell, and serve customers. But realising that potential requires more than implementation. It requires the right strategy, the right operating model, and people who can make change happen inside a real organisation. That's what facilit8 does — hands-on, working alongside your teams from diagnosis through to measurable results.",
-    s1heading:'Commercial Transformation', s1body:"End-to-end transformation of your commercial engine. Growth stagnation rarely has a single cause. When revenue stalls, the problem is usually systemic — disconnected teams, misaligned incentives, unclear ownership, and processes that haven't kept pace with the business.", s1b1:'Commercial diagnostics and performance reviews', s1b2:'Operating model redesign for sales and marketing', s1b3:'Change programmes with embedded delivery support', s1b4:'Capability building and team enablement',
+    s1heading:'Commercial Excellence', s1body:"End-to-end transformation of your commercial engine. Growth stagnation rarely has a single cause. When revenue stalls, the problem is usually systemic — disconnected teams, misaligned incentives, unclear ownership, and processes that haven't kept pace with the business.", s1b1:'Commercial diagnostics and performance reviews', s1b2:'Operating model redesign for sales and marketing', s1b3:'Change programmes with embedded delivery support', s1b4:'Capability building and team enablement',
     s2heading:'Technology Enablement', s2body:'Making your technology investment actually pay off. Most businesses have invested heavily in commercial technology — CRM, sales engagement platforms, customer data tools, marketing automation. Few are extracting full value from them.', s2b1:'CRM optimisation and adoption programmes', s2b2:'Sales and marketing technology audits', s2b3:'Tool consolidation and stack redesign', s2b4:'Integration of data, workflow, and reporting',
     s3heading:'Go-to-Market Strategy', s3body:'A sharper, more deliberate path to market. Entering a new market, launching a new product, or rethinking how you compete requires more than a slide deck.', s3b1:'Market segmentation and customer targeting', s3b2:'Value proposition development and messaging', s3b3:'Channel and partnership strategy', s3b4:'Launch planning and commercial readiness',
     s4heading:'Revenue Operations', s4body:'Aligning your commercial systems for predictable growth. When sales, marketing, and customer success operate in silos — with different data, different processes, and different definitions of success — revenue becomes unpredictable and hard to scale.', s4b1:'RevOps diagnostic and maturity assessment', s4b2:'Pipeline and forecasting process design', s4b3:'CRM data governance and reporting architecture', s4b4:'Cross-functional alignment and operating rhythms',
@@ -177,7 +184,7 @@ en: {
    ========================================================= */
 de: {
   nav: { home:'Startseite', services:'Leistungen', caseStudies:'Case Studies', playbooks:'Playbooks', about:'Über uns', contact:'Kontakt', bookMeeting:'Gespräch beginnen' },
-  footer: { tagline:'Commercial Transformation — praxisnah umgesetzt, bis sie wirklich verankert ist.', servicesHeading:'Leistungen', companyHeading:'Unternehmen', basedInHeading:'Standort', basedInValue:'Schweiz', workingInternationally:'International tätig', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Schweiz — DACH & International', cookiesPrivacy:'Cookies & Datenschutz', bookMeeting:'Termin buchen' },
+  footer: { tagline:'Commercial Excellence — Transformation, die hält.', servicesHeading:'Leistungen', companyHeading:'Unternehmen', basedInHeading:'Standort', basedInValue:'Schweiz', workingInternationally:'International tätig', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Schweiz — DACH & International', cookiesPrivacy:'Cookies & Datenschutz', bookMeeting:'Termin buchen' },
   deBanner: { text:'Diese Seite ist auch auf Deutsch verfügbar.', switchButton:'Auf Deutsch wechseln', dismiss:'×' },
   cookieBanner: { text:'Wir verwenden Cookies, um das Meeting-Buchungstool zu betreiben und — sofern Sie zustimmen — zu verstehen, wie Besucher diese Website nutzen.', managePreferences:'Einstellungen verwalten', essentialOnly:'Nur notwendige', acceptAll:'Alle akzeptieren', ariaLabel:'Cookie-Hinweis' },
   cookies: {
@@ -199,11 +206,11 @@ de: {
     }
   },
   home: {
-    hero: { eyebrow:'Commercial Transformation', headline1:'Die Technologie ist vorhanden.', headline2:'Die Ergebnisse sollten es auch sein.', sub:'facilit8 hilft Unternehmen, den kommerziellen Wert ihrer Technologie zu erschliessen — durch praxisnahe Transformation, die wirklich bleibt.', primaryCta:'Termin buchen', secondaryCta:'Über facilit8' },
+    hero: { eyebrow:'Commercial Transformation', headline1:'Die Technologie ist vorhanden.', headline2:'Die Ergebnisse sollten es auch sein.', sub:'Das AI-Zeitfenster ist offen.', primaryCta:'Termin buchen', secondaryCta:'Über facilit8' },
     heroAsk: {
       eyebrow:'Kommerzielle Transformation',
-      headline:'Die Technologie ist da. Die Ergebnisse sollten es auch sein.',
-      sub:'Jedes Projekt beginnt gleich — mit der Frage, was Sie wirklich brauchen und warum. Wählen Sie die Situation, die Ihrer Woche am nächsten kommt.',
+      headline:'Das AI-Zeitfenster ist offen. Die meisten Unternehmen werden es verpassen.',
+      sub:'Bei über 50 Organisationen habe ich immer wieder dieselbe Lücke entstehen sehen: Teams, die verändert haben, wie sie mit Technologie arbeiten, haben Teams überholt, die sie nur eingekauft haben. Die nächsten drei bis vier Jahre entscheiden, wer das auch mit AI schafft. facilit8 bringt Sie auf die richtige Seite dieser Lücke — praxisnah, Schritt für Schritt, bis die Ergebnisse real sind.',
       iconAlt:'Eine Route, die Schritt für Schritt zurückgelegt wird — vom Start bis zum Ziel',
       iconCaption:'Schritt für Schritt, bis es hält',
       cardsAriaLabel:'Wählen Sie die Situation, die Ihrer am nächsten kommt',
@@ -212,16 +219,23 @@ de: {
       card1Body:'CRM, Automatisierung oder AI läuft — und die kommerziellen Zahlen bewegen sich nicht.',
       card2Title:'Das Programm steckt mitten im Flug fest.',
       card2Body:'Termine rutschen, der Sponsor steht exponiert da, und das Vertrauen schwindet.',
-      card3Title:'Das Wachstum ist flach und niemand ist sich einig, warum.',
-      card3Body:'Vertrieb, Marketing und Service haben jeweils eine andere Version der Wahrheit.',
+      card3Title:'Jede Funktion hat einen AI-Piloten, aber nur wenige führen zu echten Ergebnissen.',
+      card3Body:'Marketing hat einen. Service auch. Und Operations auch. Keiner davon ist an einen Plan gebunden, der sich in den Zahlen zeigt.',
       answerEyebrow:'Wo wir beginnen würden',
       answer1:'Eine kurze Diagnose zur Nutzung, nicht zur Plattform. Wir finden, wo der Wert zwischen Menschen, Prozessen und Daten verloren geht.',
-      proof1:'Derselbe Ausgangspunkt wie beim AI-Service-Agenten, der die Servicekosten in der Hochsaison um 30% gesenkt hat.',
+      proof1:'Derselbe Ausgangspunkt wie unsere AI-Adoption-Diagnose — dort, wo zwischen Menschen, Prozessen und Daten Wert verloren geht.',
       answer2:'Erste 30 Tage, die das Programm stabilisieren: was gilt, was gefährdet ist und welche Entscheidungen der Sponsor diesen Monat treffen muss.',
       proof2:'Die Struktur hinter dem Recovery-Framework für CRM, Customer Engagement und ERP aus dem Playbook „Rescue the Rollout”.',
-      answer3:'Ein Raum, die richtigen Menschen und ein ehrlicher Blick auf Ihren Go-to-Market: woher Wachstum kommen soll und was sich dafür ändern muss.',
-      proof3:'So wurden vier regionale Inside-Sales-Teams aufgebaut — mit 10% Wachstum in wachstumsschwachen Segmenten.',
+      answer3:'Eine strukturierte Session, die AI vom Schlagwort zu einem verantworteten Plan macht — klar, wo der Wert entsteht und wer dafür verantwortlich ist.',
+      proof3:'Dasselbe strukturierte Denken, das hinter StrategyLENS steht — unserem 20-minütigen Tool, um Ihre strategischen Entscheidungen zu testen, einschliesslich AI.',
       cta:'Gespräch beginnen'
+    },
+    founder: {
+      photoAlt:'David Howes, Gründer von facilit8',
+      body:'facilit8 heisst, etwas einfacher zu machen. Ich habe facilit8 gegründet, weil ich immer wieder dasselbe Muster gesehen habe: Veränderung wird im Sitzungszimmer beschlossen und geht auf dem Weg an die Front verloren — nicht, weil Menschen es nicht versuchen, sondern weil niemand nah genug und lange genug dranbleibt, damit sich die neue Arbeitsweise wirklich durchsetzt. Deshalb arbeite ich anders: praxisnah, gemeinsam mit Ihren Teams, coaching-geleitet, Schritt für Schritt, bis es einfach die Art ist, wie Sie arbeiten. Das Ergebnis ist Commercial Excellence — Vertrieb, Marketing und Service, die an einem Strang ziehen — sowie AI- und Digitalprojekte, die die Zahlen bewegen, die Sie tatsächlich ausweisen, statt Piloten, die still wieder verschwinden. Sie arbeiten immer direkt mit mir zusammen — und die Umsetzung skaliert durch etablierte Partner, wenn die Arbeit eine Kombination unterschiedlicher Fähigkeiten braucht.',
+      credit:'David Howes — Gründer, facilit8',
+      aboutLink:'Über facilit8',
+      talkLink:'Mit David sprechen'
     },
     sectors: {
       eyebrow:'Wo wir arbeiten',
@@ -236,20 +250,20 @@ de: {
       heading:'Anonymisierte Kunden. Echte Zahlen.',
       allLink:'Alle 50+ Projekte',
       c1Industry:'Healthcare & Life Sciences', c1Title:'Optimierung des Aufsetzens klinischer Studien', c1Body:'Design Thinking und LEAN in der Studienaktivierung — Aufsetz- und Aktivierungszeit um 20% reduziert.',
-      c2Industry:'Retail & Konsumgüter', c2Title:'Einführung eines Copilot-AI-Agenten', c2Body:'Ein AI-Service-Agent vor der Hochsaison eingeführt — Servicekosten um 30% gesenkt.',
+      c2Industry:'Fertigung & Chemie', c2Title:'Konsolidierung des Distributorennetzwerks', c2Body:'Über 150 Distributoren auf unter 70 konsolidiert, mit integriertem 360°-Performance-Management dahinter.',
       c3Industry:'Fertigung & Chemie', c3Title:'Kundenportal für 350+ Kunden', c3Body:'Agile Umsetzung eines eCommerce-Self-Service-Portals für einen globalen Pigmenthersteller — geringere Servicekosten.',
       c4Industry:'Technologie & Industrie', c4Title:'Digitalstrategie — SMART Produkte & Fabrik', c4Body:'Playing to Win und Design Thinking zur Definition von SMART Produkten, Prozessen und Fabrik für einen Präzisionsinstrumentenhersteller.'
     },
     stats: [{ label:'Jahre Commercial Transformation' },{ label:'Projekte umgesetzt' },{ label:'& international' }],
     problem: { eyebrow:'Das Problem', heading:'Die meisten Unternehmen haben die Werkzeuge. Nur wenige erzielen die Ergebnisse.', body:'CRM, Vertriebsautomatisierung, Revenue Analytics, Customer-Data-Plattformen — die Investitionen sind real. Warum folgen die Ergebnisse nicht? Weil Technologie allein keine kommerzielle Performance transformiert. Die Lücke zwischen Möglichkeit und Ergebnis hängt davon ab, wie Ihre Menschen, Prozesse und Systeme tatsächlich zusammenarbeiten. Und genau dort scheitern die meisten Programme.' },
     whatWeDo: { eyebrow:'Was wir tun', heading:'Wir schliessen die Lücke zwischen Technologie und kommerzieller Performance.', body1:'facilit8 arbeitet direkt an der Seite Ihrer Commercial Teams — in Ihrem Unternehmen, nicht darüber — um Technologieinvestitionen in messbare Ergebnisse zu verwandeln. Von der Go-to-Market-Strategie bis zu Sales und Revenue Operations bringen wir Senior-Expertise und praxisnahe Umsetzung in jedes Engagement.', body2:'Wir arbeiten mit mittelständischen Unternehmen, Grossunternehmen, PE-gestützten Firmen und Wachstumsunternehmen, die ihre kommerziellen Systeme zum Laufen bringen wollen.' },
-    howWeWork: { eyebrow:'Wie wir arbeiten', heading:'Drei Dinge, die jedes Engagement besonders machen.', card1Title:'Praxisnahe Umsetzung', card1Body:'Wir übergeben keine Präsentation und gehen. Wir arbeiten in Ihrem Unternehmen, bis der Wandel real und dauerhaft ist.', card2Title:'Senior-Expertise', card2Body:'Sie arbeiten direkt mit erfahrenen Praktikern — nicht mit Junior-Beratern, die aus der Distanz gemanagt werden.', card3Title:'Wirkung, nicht Aktivität', card3Body:'Jedes Engagement ist auf messbare kommerzielle Ergebnisse ausgerichtet — nicht auf Aktivitätsmetriken oder Deliverables um ihrer selbst willen.' },
+    howWeWork: { eyebrow:'Wie wir arbeiten', heading:'Drei Dinge, die jedes Engagement besonders machen.', card1Title:'Praxisnahe Umsetzung', card1Body:'Wir übergeben keine Präsentation und gehen. Wir arbeiten in Ihrem Unternehmen, bis der Wandel real und dauerhaft ist.', card2Title:'Senior-Expertise', card2Body:'Sie arbeiten direkt mit mir zusammen — und die Umsetzung skaliert durch etablierte Partner, wenn die Arbeit eine Kombination unterschiedlicher Fähigkeiten braucht.', card3Title:'Wirkung, nicht Aktivität', card3Body:'Jedes Engagement ist auf messbare kommerzielle Ergebnisse ausgerichtet — nicht auf Aktivitätsmetriken oder Deliverables um ihrer selbst willen.' },
     cta: { heading:'Welche Unterstützung brauchen Sie — und warum?', body:'Das ist das ganze erste Gespräch. Kein Pitch, kein Angebot, keine Mindestprojektgröße — nur eine ehrliche Einschätzung, ob und wie wir helfen können.', cta:'Gespräch beginnen' }
   },
   services: {
     hero: { eyebrow:'Leistungen', headline:'Kommerzielle Performance — transformiert.', sub:'Wir arbeiten in vier miteinander verbundenen Bereichen — weil dauerhafter kommerzieller Wandel selten durch das Ziehen an einem einzigen Hebel entsteht.' },
     intro:'Technologie hat verändert, wie Unternehmen wachsen, verkaufen und Kunden betreuen. Doch dieses Potenzial zu realisieren erfordert mehr als Implementierung. Es braucht die richtige Strategie, das richtige Betriebsmodell und Menschen, die Wandel in einem realen Unternehmen bewirken können. Genau das tut facilit8 — praxisnah, direkt an der Seite Ihrer Teams, von der Diagnose bis zu messbaren Ergebnissen.',
-    s1heading:'Commercial Transformation', s1body:'Umfassende Transformation Ihrer kommerziellen Leistungsfähigkeit. Wachstumsstagnation hat selten eine einzige Ursache. Wenn der Umsatz stagniert, ist das Problem meist systemisch — getrennte Teams, falsch ausgerichtete Anreize, unklare Verantwortlichkeiten und Prozesse, die nicht mit dem Unternehmen Schritt gehalten haben.', s1b1:'Kommerzielle Diagnosen und Performance-Reviews', s1b2:'Neugestaltung des Operating Models für Vertrieb und Marketing', s1b3:'Change-Programme mit eingebetteter Umsetzungsunterstützung', s1b4:'Capability-Aufbau und Team-Enablement',
+    s1heading:'Commercial Excellence', s1body:'Umfassende Transformation Ihrer kommerziellen Leistungsfähigkeit. Wachstumsstagnation hat selten eine einzige Ursache. Wenn der Umsatz stagniert, ist das Problem meist systemisch — getrennte Teams, falsch ausgerichtete Anreize, unklare Verantwortlichkeiten und Prozesse, die nicht mit dem Unternehmen Schritt gehalten haben.', s1b1:'Kommerzielle Diagnosen und Performance-Reviews', s1b2:'Neugestaltung des Operating Models für Vertrieb und Marketing', s1b3:'Change-Programme mit eingebetteter Umsetzungsunterstützung', s1b4:'Capability-Aufbau und Team-Enablement',
     s2heading:'Technology Enablement', s2body:'Ihre Technologieinvestition tatsächlich rentabel machen. Die meisten Unternehmen haben stark in kommerzielle Technologie investiert — CRM, Sales-Engagement-Plattformen, Customer-Data-Tools, Marketing-Automatisierung. Nur wenige schöpfen deren vollen Wert aus.', s2b1:'CRM-Optimierung und Adoptionsprogramme', s2b2:'Technologie-Audits für Vertrieb und Marketing', s2b3:'Tool-Konsolidierung und Stack-Neugestaltung', s2b4:'Integration von Daten, Workflows und Reporting',
     s3heading:'Go-to-Market Strategy', s3body:'Ein schärferer, zielgerichteter Weg zum Markt. Der Eintritt in einen neuen Markt, die Einführung eines neuen Produkts oder die Überprüfung Ihrer Wettbewerbspositionierung erfordert mehr als eine Präsentation.', s3b1:'Marktsegmentierung und Kundenzielgruppenauswahl', s3b2:'Entwicklung von Value Propositions und Messaging', s3b3:'Kanal- und Partnerstrategie', s3b4:'Launch-Planung und kommerzielle Bereitschaft',
     s4heading:'Revenue Operations', s4body:'Ihre kommerziellen Systeme auf vorhersehbares Wachstum ausrichten. Wenn Vertrieb, Marketing und Customer Success in Silos agieren — mit unterschiedlichen Daten, Prozessen und Erfolgsdefinitionen — wird Umsatz unvorhersehbar und schwer skalierbar.', s4b1:'RevOps-Diagnose und Reifegradbeurteilung', s4b2:'Pipeline- und Forecasting-Prozessgestaltung', s4b3:'CRM-Daten-Governance und Reporting-Architektur', s4b4:'Funktionsübergreifende Ausrichtung und Operating Rhythms',

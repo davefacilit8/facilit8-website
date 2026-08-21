@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>facilit8 — Commercial Transformation enabled by Technology</title>
-<meta name="description" content="facilit8 helps businesses unlock the commercial value of their technology — through hands-on transformation that actually sticks.">
+<title>facilit8 — Commercial Excellence enabled by AI & Technology</title>
+<meta name="description" content="facilit8 delivers Commercial Excellence — transformation that sticks — hands-on, step by step, for Swiss/DACH mid-market and PE-backed companies.">
 <link rel="canonical" href="https://facilit8.org/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="facilit8">
-<meta property="og:title" content="facilit8 — Commercial Transformation enabled by Technology">
-<meta property="og:description" content="facilit8 helps businesses unlock the commercial value of their technology — through hands-on transformation that actually sticks.">
+<meta property="og:title" content="facilit8 — Commercial Excellence enabled by AI & Technology">
+<meta property="og:description" content="facilit8 delivers Commercial Excellence — transformation that sticks — hands-on, step by step, for Swiss/DACH mid-market and PE-backed companies.">
 <meta property="og:url" content="https://facilit8.org/">
 <meta property="og:image" content="https://facilit8.org/assets/facilit8-logo.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="facilit8 — Commercial Transformation enabled by Technology">
-<meta name="twitter:description" content="facilit8 helps businesses unlock the commercial value of their technology — through hands-on transformation that actually sticks.">
+<meta name="twitter:title" content="facilit8 — Commercial Excellence enabled by AI & Technology">
+<meta name="twitter:description" content="facilit8 delivers Commercial Excellence — transformation that sticks — hands-on, step by step, for Swiss/DACH mid-market and PE-backed companies.">
 <meta name="twitter:image" content="https://facilit8.org/assets/facilit8-logo.png">
 <script type="application/ld+json">
 {
@@ -23,7 +23,7 @@
   "name": "facilit8",
   "url": "https://facilit8.org/",
   "logo": "https://facilit8.org/assets/facilit8-logo.png",
-  "description": "facilit8 helps businesses unlock the commercial value of their technology — through hands-on commercial transformation that sticks.",
+  "description": "facilit8 delivers Commercial Excellence — transformation that sticks — through hands-on delivery, step by step, for Swiss/DACH mid-market and PE-backed companies.",
   "founder": { "@type": "Person", "name": "David Howes" },
   "areaServed": ["Switzerland", "DACH", "International"],
   "email": "david@facilit8.org",
@@ -1599,7 +1599,7 @@ function Footer({ navigate }) {
           </div>
           <div className="footer-col">
             <h4>{t('footer.servicesHeading')}</h4>
-            <a href="#" onClick={e => { e.preventDefault(); go('services'); }}>Commercial Transformation</a>
+            <a href="#" onClick={e => { e.preventDefault(); go('services'); }}>Commercial Excellence</a>
             <a href="#" onClick={e => { e.preventDefault(); go('services'); }}>Technology Enablement</a>
             <a href="#" onClick={e => { e.preventDefault(); go('services'); }}>Go-to-Market Strategy</a>
             <a href="#" onClick={e => { e.preventDefault(); go('services'); }}>Revenue Operations</a>
@@ -1931,6 +1931,30 @@ function AskHero({ navigate }) {
 }
 
 /* ============================================================
+   HOME PAGE — Founder band
+   ============================================================ */
+function FounderBand({ navigate }) {
+  const t = useTranslation();
+  return (
+    <Section alt>
+      <div className="container">
+        <div className="founder-grid">
+          <div className="founder-photo" role="img" aria-label={t('home.founder.photoAlt')} style={{ backgroundImage: `url(${FOUNDER_PHOTO})` }}/>
+          <div>
+            <p style={{fontSize:17,lineHeight:1.65,color:'var(--fg-2)'}}>{t('home.founder.body')}</p>
+            <div style={{marginTop:16,color:'var(--f8-grey)',fontSize:14}}>{t('home.founder.credit')}</div>
+            <div className="hero-cta-row">
+              <TextLink onClick={() => navigate('about')}>{t('home.founder.aboutLink')}</TextLink>
+              <TextLink onClick={() => navigate('contact')}>{t('home.founder.talkLink')}</TextLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+/* ============================================================
    HOME PAGE — Where we work (sectors)
    ============================================================ */
 function SectorsSection() {
@@ -1979,7 +2003,7 @@ function SelectedWorkSection({ navigate }) {
   const findProject = (company, project) => PROJECTS_DATA.find(p => p.company === company && p.project === project);
   const items = [
     { industryKey: 'c1Industry', titleKey: 'c1Title', bodyKey: 'c1Body', ref: findProject('Swiss Cancer Research Institute', 'Cancer Clinical Trial Setup Optimisation') },
-    { industryKey: 'c2Industry', titleKey: 'c2Title', bodyKey: 'c2Body', ref: findProject('Swiss E-commerce Photo & Print Platform', 'Copilot AI Agent Implementation') },
+    { industryKey: 'c2Industry', titleKey: 'c2Title', bodyKey: 'c2Body', ref: findProject('Swiss Specialty Chemicals Corporation', 'Channel Partner Consolidation') },
     { industryKey: 'c3Industry', titleKey: 'c3Title', bodyKey: 'c3Body', ref: findProject('Global Specialty Pigments Manufacturer', 'Customer Portal (Heubach Connect)') },
     { industryKey: 'c4Industry', titleKey: 'c4Title', bodyKey: 'c4Body', ref: findProject('Swiss High-Precision X-Ray & RF Technology Firm', 'Digital Strategy — SMART products, processes, factory') },
   ];
@@ -2021,6 +2045,7 @@ function HomePage({ navigate }) {
   return (
     <>
       <AskHero navigate={navigate}/>
+      <FounderBand navigate={navigate}/>
       <SectorsSection/>
       <Section alt>
         <div className="container-narrow">
