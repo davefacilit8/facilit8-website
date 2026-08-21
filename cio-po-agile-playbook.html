@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Speak the Same Language — CIO & Product Owner Playbook</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
 :root {
   --f8-blue:        #0070C0; --f8-blue-bright: #0090E7; --f8-blue-deep: #005896; --f8-blue-tint: #E8F4FC;
@@ -834,6 +832,21 @@ h1 em { font-style: italic; color: var(--f8-blue); font-weight: 700; }
   <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Challenger rounds of mitigations embedded</div></div>
 </div>
 
+<div class="pb-closing">
+  <h3>IT delivery that the CFO talks about.</h3>
+  <p>A conversation costs nothing. We'll tell you straight whether this playbook fits — or whether something else will get you further.</p>
+  <div class="pb-closing-actions">
+    <a class="pb-btn pb-btn--primary" href="https://app-eu1.hubspot.com/meetings/dmjhowes/facilit8results" target="_blank" rel="noopener noreferrer">Book a meeting</a>
+    <a class="pb-btn pb-btn--text" href="/">Back to facilit8.org</a>
+  </div>
+</div>
+
+<div class="pb-email-card">
+  <h3>Want this playbook by email?</h3>
+  <p>Leave your email and I'll send you a copy — no spam, unsubscribe anytime.</p>
+  <div id="pb-email-gate"></div>
+</div>
+
 <script>
   function show(id, el) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
@@ -868,7 +881,13 @@ h1 em { font-style: italic; color: var(--f8-blue); font-weight: 700; }
     }
   }
 </script>
-<!-- HubSpot Analytics -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/49059754.js"></script>
+<script src="js/playbook-consent.js"></script>
+<script>
+  F8Consent.mountPlaybookForm({
+    containerId: 'pb-email-gate',
+    formId: '78dd9d0a-4ac6-4e23-9b6e-8dead8a6adb1',
+    playbookId: 'cio-po-agile-playbook'
+  });
+</script>
 </body>
 </html>

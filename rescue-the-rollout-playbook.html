@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rescue the Rollout — Commercial Transformation Turnaround Playbook</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
 :root {
   --f8-blue:#0070C0;--f8-blue-bright:#0090E7;--f8-blue-deep:#005896;--f8-blue-tint:#E8F4FC;
@@ -893,6 +891,21 @@ h1 em{font-style:italic;color:var(--f8-blue);font-weight:700;}
   <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Month structured recovery framework</div></div>
 </div>
 
+<div class="pb-closing">
+  <h3>Programmes are recovered by people, not plans.</h3>
+  <p>The turnaround actions in this playbook only work if the right people own them. A 30-minute conversation will tell you whether you have them in place — and what to do if you don't.</p>
+  <div class="pb-closing-actions">
+    <a class="pb-btn pb-btn--primary" href="https://app-eu1.hubspot.com/meetings/dmjhowes/facilit8results" target="_blank" rel="noopener noreferrer">Book a meeting</a>
+    <a class="pb-btn pb-btn--text" href="/">Back to facilit8.org</a>
+  </div>
+</div>
+
+<div class="pb-email-card">
+  <h3>Want this playbook by email?</h3>
+  <p>Leave your email and I'll send you a copy — no spam, unsubscribe anytime.</p>
+  <div id="pb-email-gate"></div>
+</div>
+
 <script>
   function show(id,el){document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('s-'+id).classList.add('visible');el.classList.add('active');}
   function toggleReadiness(){document.getElementById('readiness').classList.toggle('open');}
@@ -900,7 +913,13 @@ h1 em{font-style:italic;color:var(--f8-blue);font-weight:700;}
   function answer(qid,val,btn){answers[qid]=val;var item=document.getElementById(qid);item.classList.remove('yes','no');item.classList.add(val);item.querySelectorAll('.rq-btn').forEach(function(b){b.classList.remove('selected-yes','selected-no');});btn.classList.add(val==='yes'?'selected-yes':'selected-no');if(Object.keys(answers).length===5){showResult();}}
   function showResult(){var yes=Object.values(answers).filter(function(v){return v==='yes';}).length;var el=document.getElementById('r-result');el.className='readiness-result show';if(yes>=4){el.classList.add('r-green');el.innerHTML='<div class="readiness-result-title">✅ Deploy the full playbook — your foundations are in place.</div><div class="readiness-result-text">Start with the Sequenced Recovery tab and work through domains in order. The Rebuild Trust tab will land well at this stage — use persona scripts to accelerate stakeholder engagement.</div>';}else if(yes>=2){el.classList.add('r-amber');el.innerHTML='<div class="readiness-result-title">⚠️ Fix governance first — then deploy delivery actions.</div><div class="readiness-result-text">Open the Sponsors tab and complete SP-09, SP-01 and SP-04 before anything else. Only return to the Sequenced Recovery sequence once a named sponsor, a signed ESC ToR and a live RACI are in place. Allow 2–3 weeks before deploying delivery tabs.</div>';}else{el.classList.add('r-red');el.innerHTML='<div class="readiness-result-title">🔴 Stop. Open the Sponsors tab. Start with SP-09.</div><div class="readiness-result-text">Do not proceed to any other tab. Run the Sponsor Turnaround Workshop (SP-09) to establish a named, empowered sponsor with a signed turnaround plan. Only once that exists: run PT-02 (Team Reset) and PT-01 (Team Health Assessment). The rest of this playbook is inert until you have cleared those three.</div>';}}
 </script>
-<!-- HubSpot Analytics -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/49059754.js"></script>
+<script src="js/playbook-consent.js"></script>
+<script>
+  F8Consent.mountPlaybookForm({
+    containerId: 'pb-email-gate',
+    formId: '78dd9d0a-4ac6-4e23-9b6e-8dead8a6adb1',
+    playbookId: 'cio-platform-turnaround'
+  });
+</script>
 </body>
 </html>

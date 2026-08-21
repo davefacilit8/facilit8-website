@@ -19,7 +19,8 @@
     "copyright": "© 2026 facilit8 — David Howes",
     "location": "Switzerland — DACH & International",
     "cookiesPrivacy": "Cookies & Privacy",
-    "bookMeeting": "Book a meeting"
+    "bookMeeting": "Book a meeting",
+    "privacy": "Privacy"
   },
   "deBanner": {
     "text": "This page is also available in German.",
@@ -54,7 +55,7 @@
     "savePreferences": "Save my preferences",
     "preferencesSaved": "✓ Preferences saved",
     "adminNote": "This site is operated by David Howes / facilit8, based in Switzerland. For any questions about data handling, contact",
-    "lastUpdated": "Last updated: May 2026.",
+    "lastUpdated": "Last updated: August 2026.",
     "categories": {
       "essential": {
         "name": "Essential",
@@ -69,6 +70,90 @@
         "description": "Helps understand how visitors use the site and, if enabled, supports HubSpot click and visit tracking."
       }
     }
+  },
+  "privacy": {
+    "hero": {
+      "eyebrow": "Privacy",
+      "heading": "How facilit8 handles your data",
+      "sub": "Short version: we collect only what you give us, we use it only for what you asked for, and we never sell or share it. The detail is below."
+    },
+    "whoEyebrow": "Who is responsible",
+    "whoBody": "This site and the services behind it are operated by David Howes, trading as facilit8, based in Switzerland. facilit8 is the controller for the personal data described on this page. Swiss data protection law (FADP) applies, and the EU GDPR applies where you are in the EU or EEA. For anything to do with your data, write to",
+    "whatEyebrow": "What we collect, and why",
+    "whatIntro": "Everything below is data you actively give us. There are no purchased lists, no data brokers, and no profiling or automated decision-making.",
+    "basisLabel": "Legal basis",
+    "retentionLabel": "Kept for",
+    "items": {
+      "contactForm": {
+        "title": "Contact form",
+        "body": "Your name, email address and the message you write. Used only to reply to you and to keep a record of the conversation.",
+        "basis": "steps taken at your request, and our legitimate interest in responding to enquiries.",
+        "retention": "as long as the enquiry is active, then up to 24 months."
+      },
+      "meetings": {
+        "title": "Meeting booking",
+        "body": "Your name, email address and whatever you enter when booking a call through the HubSpot calendar. Used to schedule and prepare for the meeting.",
+        "basis": "steps taken at your request.",
+        "retention": "up to 24 months after the last contact."
+      },
+      "playbookRequest": {
+        "title": "Playbook requests",
+        "body": "Your email address and which playbook you asked for. Used to send you that playbook and to see which topics people are asking about.",
+        "basis": "steps taken at your request.",
+        "retention": "up to 24 months after your last interaction."
+      },
+      "updates": {
+        "title": "Occasional updates by email",
+        "body": "Your email address, used to send occasional playbooks and related updates. This happens only if you tick the consent box — it is never bundled into anything else. Every email carries an unsubscribe link, and unsubscribing takes effect immediately.",
+        "basis": "your consent, which you can withdraw at any time.",
+        "retention": "until you unsubscribe."
+      },
+      "analytics": {
+        "title": "Site analytics",
+        "body": "If — and only if — you accept analytics cookies, HubSpot records which pages you visit and which links you click. If you decline, nothing is recorded.",
+        "basis": "your consent, managed on the Cookies & Privacy page.",
+        "retention": "up to 13 months."
+      }
+    },
+    "processorsEyebrow": "Who else processes your data",
+    "processorsIntro": "facilit8 is a one-person business and uses a small number of established providers. Each is used only for the purpose named below, and none of them may use your data for their own purposes.",
+    "processorHeaders": {
+      "service": "Service",
+      "handles": "What it handles",
+      "where": "Where",
+      "policy": "Policy"
+    },
+    "processors": {
+      "hubspot": {
+        "name": "HubSpot, Inc.",
+        "handles": "Contact form, meeting bookings, playbook requests, email, CRM records and — with your consent — site analytics.",
+        "where": "EU data centre (Frankfurt). The facilit8 HubSpot account is hosted in the EU region."
+      },
+      "netlify": {
+        "name": "Netlify, Inc.",
+        "handles": "Hosts and serves this website. Standard server logs, including IP address, for security and reliability.",
+        "where": "Global content delivery network."
+      }
+    },
+    "transfersEyebrow": "Data outside Switzerland",
+    "transfersBody": "Your data is processed in the EU and, for some providers, in the United States. Transfers rely on the adequacy decisions of the European Commission and the Swiss Federal Council where those apply, and on standard contractual clauses where they do not.",
+    "rightsEyebrow": "Your rights",
+    "rightsBody": "You can ask us at any time to:",
+    "rightsList": [
+      "See what personal data we hold about you",
+      "Correct anything that is wrong",
+      "Delete your data",
+      "Restrict or object to how we use it",
+      "Receive your data in a portable format",
+      "Withdraw consent you have given, without affecting what was lawful before"
+    ],
+    "rightsClosing": "One email is enough — there is no form to fill in. We respond within 30 days. If you are not satisfied, you can complain to the Swiss Federal Data Protection and Information Commissioner (FDPIC) or, in the EU or EEA, to your national supervisory authority.",
+    "securityEyebrow": "Security",
+    "securityBody": "Data is held in the systems named above and protected by their access controls and encryption. No system is perfect: if a breach ever affects your data, we will tell you and the relevant authority as the law requires.",
+    "cookiesLinkIntro": "For cookie-level detail and to change your preferences, see",
+    "cookiesLinkCta": "Cookies & Privacy",
+    "contactNote": "Questions about any of this? Write to",
+    "lastUpdated": "Last updated: August 2026."
   },
   "home": {
     "hero": {
@@ -346,6 +431,7 @@
     "comingSoon": {
       "chip": "Coming soon",
       "getNotified": "Get notified when it's published",
+      "notifyBlocked": "This form uses functional cookies, which you have not yet accepted.",
       "backLink": "Back to all playbooks"
     },
     "meta": {

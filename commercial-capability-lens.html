@@ -6,9 +6,7 @@
 <meta name="description" content="A capability-lens playbook for open commercial roles: let AI do the AI-able work so people focus on the accountabilities and soft skills only they can do. For HR and commercial leaders. By facilit8.">
 <meta name="robots" content="noindex, nofollow">
 <title>Look Before You Backfill — The Capability-Lens Playbook for Open Commercial Roles</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
 :root {
   --f8-blue:        #0070C0; --f8-blue-bright: #0090E7; --f8-blue-deep: #005896; --f8-blue-tint: #E8F4FC;
@@ -851,6 +849,21 @@ h1 em { font-style: italic; color: var(--f8-blue); font-weight: 700; }
   Decision-support only, and not legal advice — confirm employment-law questions with Swiss counsel. The client owns every hiring decision in writing; the lens is never the sole basis for not backfilling a role. Liability terms live in the engagement letter, not on this page.
 </div>
 
+<div class="pb-closing">
+  <h3>An open commercial role? Run it through the lens.</h3>
+  <p>A 30-minute conversation with David can show you how the capability-lens framework applies to your next open role — and how to build a repeatable process around it.</p>
+  <div class="pb-closing-actions">
+    <a class="pb-btn pb-btn--primary" href="https://app-eu1.hubspot.com/meetings/dmjhowes/facilit8results" target="_blank" rel="noopener noreferrer">Book a meeting</a>
+    <a class="pb-btn pb-btn--text" href="/">Back to facilit8.org</a>
+  </div>
+</div>
+
+<div class="pb-email-card">
+  <h3>Want this playbook by email?</h3>
+  <p>Leave your email and I'll send you a copy — no spam, unsubscribe anytime.</p>
+  <div id="pb-email-gate"></div>
+</div>
+
 </div><!-- /main-content -->
 
 <script>
@@ -921,7 +934,13 @@ document.getElementById('pw-input').addEventListener('keydown', function(e) {
     }
   }
 </script>
-<!-- HubSpot Analytics -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/49059754.js"></script>
+<script src="js/playbook-consent.js"></script>
+<script>
+  F8Consent.mountPlaybookForm({
+    containerId: 'pb-email-gate',
+    formId: '78dd9d0a-4ac6-4e23-9b6e-8dead8a6adb1',
+    playbookId: 'commercial-capability-lens'
+  });
+</script>
 </body>
 </html>

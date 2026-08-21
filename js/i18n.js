@@ -45,7 +45,7 @@
    ========================================================= */
 en: {
   nav: { home:'Home', services:'Services', caseStudies:'Case Studies', playbooks:'Playbooks', about:'About', contact:'Contact', bookMeeting:'Start a conversation' },
-  footer: { tagline:'Commercial Excellence — transformation that sticks.', servicesHeading:'Services', companyHeading:'Company', basedInHeading:'Based in', basedInValue:'Switzerland', workingInternationally:'Working internationally', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Switzerland — DACH & International', cookiesPrivacy:'Cookies & Privacy', bookMeeting:'Book a meeting' },
+  footer: { tagline:'Commercial Excellence — transformation that sticks.', servicesHeading:'Services', companyHeading:'Company', basedInHeading:'Based in', basedInValue:'Switzerland', workingInternationally:'Working internationally', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Switzerland — DACH & International', cookiesPrivacy:'Cookies & Privacy', bookMeeting:'Book a meeting' , privacy:'Privacy'},
   deBanner: { text:'This page is also available in German.', switchButton:'Switch to German', dismiss:'×' },
   cookieBanner: { text:'We use cookies to power the meeting booking tool and, if you accept, to understand how visitors use this site.', managePreferences:'Manage preferences', essentialOnly:'Essential only', acceptAll:'Accept all', ariaLabel:'Cookie notice' },
   cookies: {
@@ -59,12 +59,96 @@ en: {
     savePreferences:'Save my preferences',
     preferencesSaved:'✓ Preferences saved',
     adminNote:'This site is operated by David Howes / facilit8, based in Switzerland. For any questions about data handling, contact',
-    lastUpdated:'Last updated: May 2026.',
+    lastUpdated:'Last updated: August 2026.',
     categories: {
       essential: { name:'Essential', description:'Required for the site to work correctly. These cannot be disabled.' },
       functional: { name:'Functional', description:'Enables enhanced features. Without these, parts of the site (such as the meeting booking calendar and contact form) will not be available.' },
       analytics: { name:'Analytics & Marketing', description:'Helps understand how visitors use the site and, if enabled, supports HubSpot click and visit tracking.' }
     }
+  },
+  privacy: {
+    "hero": {
+      "eyebrow": "Privacy",
+      "heading": "How facilit8 handles your data",
+      "sub": "Short version: we collect only what you give us, we use it only for what you asked for, and we never sell or share it. The detail is below."
+    },
+    "whoEyebrow": "Who is responsible",
+    "whoBody": "This site and the services behind it are operated by David Howes, trading as facilit8, based in Switzerland. facilit8 is the controller for the personal data described on this page. Swiss data protection law (FADP) applies, and the EU GDPR applies where you are in the EU or EEA. For anything to do with your data, write to",
+    "whatEyebrow": "What we collect, and why",
+    "whatIntro": "Everything below is data you actively give us. There are no purchased lists, no data brokers, and no profiling or automated decision-making.",
+    "basisLabel": "Legal basis",
+    "retentionLabel": "Kept for",
+    "items": {
+      "contactForm": {
+        "title": "Contact form",
+        "body": "Your name, email address and the message you write. Used only to reply to you and to keep a record of the conversation.",
+        "basis": "steps taken at your request, and our legitimate interest in responding to enquiries.",
+        "retention": "as long as the enquiry is active, then up to 24 months."
+      },
+      "meetings": {
+        "title": "Meeting booking",
+        "body": "Your name, email address and whatever you enter when booking a call through the HubSpot calendar. Used to schedule and prepare for the meeting.",
+        "basis": "steps taken at your request.",
+        "retention": "up to 24 months after the last contact."
+      },
+      "playbookRequest": {
+        "title": "Playbook requests",
+        "body": "Your email address and which playbook you asked for. Used to send you that playbook and to see which topics people are asking about.",
+        "basis": "steps taken at your request.",
+        "retention": "up to 24 months after your last interaction."
+      },
+      "updates": {
+        "title": "Occasional updates by email",
+        "body": "Your email address, used to send occasional playbooks and related updates. This happens only if you tick the consent box — it is never bundled into anything else. Every email carries an unsubscribe link, and unsubscribing takes effect immediately.",
+        "basis": "your consent, which you can withdraw at any time.",
+        "retention": "until you unsubscribe."
+      },
+      "analytics": {
+        "title": "Site analytics",
+        "body": "If — and only if — you accept analytics cookies, HubSpot records which pages you visit and which links you click. If you decline, nothing is recorded.",
+        "basis": "your consent, managed on the Cookies & Privacy page.",
+        "retention": "up to 13 months."
+      }
+    },
+    "processorsEyebrow": "Who else processes your data",
+    "processorsIntro": "facilit8 is a one-person business and uses a small number of established providers. Each is used only for the purpose named below, and none of them may use your data for their own purposes.",
+    "processorHeaders": {
+      "service": "Service",
+      "handles": "What it handles",
+      "where": "Where",
+      "policy": "Policy"
+    },
+    "processors": {
+      "hubspot": {
+        "name": "HubSpot, Inc.",
+        "handles": "Contact form, meeting bookings, playbook requests, email, CRM records and — with your consent — site analytics.",
+        "where": "EU data centre (Frankfurt). The facilit8 HubSpot account is hosted in the EU region."
+      },
+      "netlify": {
+        "name": "Netlify, Inc.",
+        "handles": "Hosts and serves this website. Standard server logs, including IP address, for security and reliability.",
+        "where": "Global content delivery network."
+      }
+    },
+    "transfersEyebrow": "Data outside Switzerland",
+    "transfersBody": "Your data is processed in the EU and, for some providers, in the United States. Transfers rely on the adequacy decisions of the European Commission and the Swiss Federal Council where those apply, and on standard contractual clauses where they do not.",
+    "rightsEyebrow": "Your rights",
+    "rightsBody": "You can ask us at any time to:",
+    "rightsList": [
+      "See what personal data we hold about you",
+      "Correct anything that is wrong",
+      "Delete your data",
+      "Restrict or object to how we use it",
+      "Receive your data in a portable format",
+      "Withdraw consent you have given, without affecting what was lawful before"
+    ],
+    "rightsClosing": "One email is enough — there is no form to fill in. We respond within 30 days. If you are not satisfied, you can complain to the Swiss Federal Data Protection and Information Commissioner (FDPIC) or, in the EU or EEA, to your national supervisory authority.",
+    "securityEyebrow": "Security",
+    "securityBody": "Data is held in the systems named above and protected by their access controls and encryption. No system is perfect: if a breach ever affects your data, we will tell you and the relevant authority as the law requires.",
+    "cookiesLinkIntro": "For cookie-level detail and to change your preferences, see",
+    "cookiesLinkCta": "Cookies & Privacy",
+    "contactNote": "Questions about any of this? Write to",
+    "lastUpdated": "Last updated: August 2026."
   },
   home: {
     hero: { eyebrow:'Commercial Transformation', headline1:'The technology is there.', headline2:'The results should be too.', sub:'The AI advantage window is open.', primaryCta:'Book a Meeting', secondaryCta:'About facilit8' },
@@ -163,7 +247,7 @@ en: {
   },
   playbookDetail: {
     notFound: { heading:'Playbook not found.', body:"The link you followed didn't match a playbook we publish.", backButton:'Back to playbooks' },
-    comingSoon: { chip:'Coming soon', getNotified:"Get notified when it's published", backLink:'Back to all playbooks' },
+    comingSoon: { chip:'Coming soon', getNotified:"Get notified when it's published", notifyBlocked:'This form uses functional cookies, which you have not yet accepted.', backLink:'Back to all playbooks' },
     meta: { audience:'Audience', cadence:'Cadence', readTime:'Read time', format:'Format', horizon:'Horizon', markets:'Markets', scope:'Scope', series:'Series' },
     breadcrumb:'Playbooks',
     talkThrough: { heading:'Talk it through', body:"Most engagements start with a thirty-minute conversation. Tell us where you are and what you're trying to achieve — we'll be direct about whether and how we can help.", cta:'Book a Conversation' },
@@ -184,7 +268,7 @@ en: {
    ========================================================= */
 de: {
   nav: { home:'Startseite', services:'Leistungen', caseStudies:'Case Studies', playbooks:'Playbooks', about:'Über uns', contact:'Kontakt', bookMeeting:'Gespräch beginnen' },
-  footer: { tagline:'Commercial Excellence — Transformation, die hält.', servicesHeading:'Leistungen', companyHeading:'Unternehmen', basedInHeading:'Standort', basedInValue:'Schweiz', workingInternationally:'International tätig', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Schweiz — DACH & International', cookiesPrivacy:'Cookies & Datenschutz', bookMeeting:'Termin buchen' },
+  footer: { tagline:'Commercial Excellence — Transformation, die hält.', servicesHeading:'Leistungen', companyHeading:'Unternehmen', basedInHeading:'Standort', basedInValue:'Schweiz', workingInternationally:'International tätig', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Schweiz — DACH & International', cookiesPrivacy:'Cookies & Datenschutz', bookMeeting:'Termin buchen' , privacy:'Datenschutz'},
   deBanner: { text:'Diese Seite ist auch auf Deutsch verfügbar.', switchButton:'Auf Deutsch wechseln', dismiss:'×' },
   cookieBanner: { text:'Wir verwenden Cookies, um das Meeting-Buchungstool zu betreiben und — sofern Sie zustimmen — zu verstehen, wie Besucher diese Website nutzen.', managePreferences:'Einstellungen verwalten', essentialOnly:'Nur notwendige', acceptAll:'Alle akzeptieren', ariaLabel:'Cookie-Hinweis' },
   cookies: {
@@ -198,12 +282,96 @@ de: {
     savePreferences:'Einstellungen speichern',
     preferencesSaved:'✓ Einstellungen gespeichert',
     adminNote:'Diese Website wird von David Howes / facilit8 mit Sitz in der Schweiz betrieben. Bei Fragen zur Datenverarbeitung wenden Sie sich an',
-    lastUpdated:'Zuletzt aktualisiert: Mai 2026.',
+    lastUpdated:'Zuletzt aktualisiert: August 2026.',
     categories: {
       essential: { name:'Notwendig', description:'Erforderlich, damit die Website korrekt funktioniert. Diese können nicht deaktiviert werden.' },
       functional: { name:'Funktional', description:'Ermöglicht erweiterte Funktionen. Ohne diese sind Teile der Website (wie der Meeting-Kalender und das Kontaktformular) nicht verfügbar.' },
       analytics: { name:'Analyse & Marketing', description:'Hilft zu verstehen, wie Besucher die Website nutzen, und unterstützt — sofern aktiviert — das HubSpot-Klick- und Besuchstracking.' }
     }
+  },
+  privacy: {
+    "hero": {
+      "eyebrow": "Datenschutz",
+      "heading": "Wie facilit8 mit Ihren Daten umgeht",
+      "sub": "Kurzfassung: Wir erheben nur, was Sie uns geben, verwenden es nur für das, worum Sie gebeten haben, und verkaufen oder teilen es nie. Die Details stehen unten."
+    },
+    "whoEyebrow": "Verantwortliche Stelle",
+    "whoBody": "Diese Website und die dahinterliegenden Dienste werden von David Howes, tätig unter facilit8, mit Sitz in der Schweiz betrieben. facilit8 ist Verantwortlicher für die auf dieser Seite beschriebenen Personendaten. Es gilt das Schweizer Datenschutzgesetz (DSG); die EU-DSGVO gilt, sofern Sie sich in der EU oder im EWR befinden. Bei allen Fragen zu Ihren Daten schreiben Sie an",
+    "whatEyebrow": "Was wir erheben — und warum",
+    "whatIntro": "Alles Folgende sind Daten, die Sie uns aktiv geben. Es gibt keine gekauften Listen, keine Datenhändler und kein Profiling oder automatisierte Entscheidungen.",
+    "basisLabel": "Rechtsgrundlage",
+    "retentionLabel": "Aufbewahrung",
+    "items": {
+      "contactForm": {
+        "title": "Kontaktformular",
+        "body": "Ihr Name, Ihre E-Mail-Adresse und Ihre Nachricht. Wird ausschliesslich verwendet, um Ihnen zu antworten und den Verlauf festzuhalten.",
+        "basis": "Massnahmen auf Ihre Anfrage hin sowie unser berechtigtes Interesse an der Beantwortung von Anfragen.",
+        "retention": "solange die Anfrage aktiv ist, danach bis zu 24 Monate."
+      },
+      "meetings": {
+        "title": "Terminbuchung",
+        "body": "Ihr Name, Ihre E-Mail-Adresse und die Angaben, die Sie bei der Buchung über den HubSpot-Kalender machen. Wird zur Planung und Vorbereitung des Gesprächs verwendet.",
+        "basis": "Massnahmen auf Ihre Anfrage hin.",
+        "retention": "bis zu 24 Monate nach dem letzten Kontakt."
+      },
+      "playbookRequest": {
+        "title": "Playbook-Anfragen",
+        "body": "Ihre E-Mail-Adresse und das angefragte Playbook. Wird verwendet, um Ihnen dieses Playbook zuzusenden und zu erkennen, welche Themen nachgefragt werden.",
+        "basis": "Massnahmen auf Ihre Anfrage hin.",
+        "retention": "bis zu 24 Monate nach Ihrer letzten Interaktion."
+      },
+      "updates": {
+        "title": "Gelegentliche Updates per E-Mail",
+        "body": "Ihre E-Mail-Adresse, um Ihnen gelegentlich Playbooks und verwandte Updates zu senden. Dies geschieht nur, wenn Sie das Einwilligungsfeld ankreuzen — es ist nie an etwas anderes gekoppelt. Jede E-Mail enthält einen Abmeldelink; die Abmeldung wirkt sofort.",
+        "basis": "Ihre Einwilligung, die Sie jederzeit widerrufen können.",
+        "retention": "bis Sie sich abmelden."
+      },
+      "analytics": {
+        "title": "Website-Analyse",
+        "body": "Nur wenn Sie Analyse-Cookies akzeptieren, erfasst HubSpot, welche Seiten Sie besuchen und welche Links Sie anklicken. Lehnen Sie ab, wird nichts erfasst.",
+        "basis": "Ihre Einwilligung, verwaltet auf der Seite Cookies & Datenschutz.",
+        "retention": "bis zu 13 Monate."
+      }
+    },
+    "processorsEyebrow": "Wer Ihre Daten sonst noch verarbeitet",
+    "processorsIntro": "facilit8 ist ein Ein-Personen-Unternehmen und nutzt wenige etablierte Anbieter. Jeder wird ausschliesslich für den unten genannten Zweck eingesetzt, und keiner darf Ihre Daten für eigene Zwecke verwenden.",
+    "processorHeaders": {
+      "service": "Dienst",
+      "handles": "Wofür",
+      "where": "Wo",
+      "policy": "Richtlinie"
+    },
+    "processors": {
+      "hubspot": {
+        "name": "HubSpot, Inc.",
+        "handles": "Kontaktformular, Terminbuchungen, Playbook-Anfragen, E-Mail, CRM-Daten und — mit Ihrer Einwilligung — Website-Analyse.",
+        "where": "EU-Rechenzentrum (Frankfurt). Das HubSpot-Konto von facilit8 wird in der EU-Region gehostet."
+      },
+      "netlify": {
+        "name": "Netlify, Inc.",
+        "handles": "Hostet und liefert diese Website aus. Übliche Server-Logs einschliesslich IP-Adresse für Sicherheit und Betrieb.",
+        "where": "Globales Content-Delivery-Netzwerk."
+      }
+    },
+    "transfersEyebrow": "Daten ausserhalb der Schweiz",
+    "transfersBody": "Ihre Daten werden in der EU und bei einzelnen Anbietern in den USA verarbeitet. Übermittlungen stützen sich auf die Angemessenheitsbeschlüsse der Europäischen Kommission und des Schweizerischen Bundesrates, soweit diese greifen, und andernfalls auf Standardvertragsklauseln.",
+    "rightsEyebrow": "Ihre Rechte",
+    "rightsBody": "Sie können jederzeit verlangen:",
+    "rightsList": [
+      "Auskunft über die zu Ihnen gespeicherten Personendaten",
+      "Berichtigung falscher Angaben",
+      "Löschung Ihrer Daten",
+      "Einschränkung der Verarbeitung oder Widerspruch dagegen",
+      "Herausgabe Ihrer Daten in einem übertragbaren Format",
+      "Widerruf einer erteilten Einwilligung, ohne dass die bisherige Verarbeitung unrechtmässig wird"
+    ],
+    "rightsClosing": "Eine E-Mail genügt — es gibt kein Formular. Wir antworten innerhalb von 30 Tagen. Sind Sie nicht zufrieden, können Sie sich an den Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) oder — in der EU bzw. im EWR — an Ihre nationale Aufsichtsbehörde wenden.",
+    "securityEyebrow": "Sicherheit",
+    "securityBody": "Die Daten liegen in den oben genannten Systemen und sind durch deren Zugriffskontrollen und Verschlüsselung geschützt. Kein System ist perfekt: Sollte eine Verletzung Ihre Daten betreffen, informieren wir Sie und die zuständige Behörde, wie es das Gesetz verlangt.",
+    "cookiesLinkIntro": "Cookie-Details und Ihre Einstellungen finden Sie auf der Seite",
+    "cookiesLinkCta": "Cookies & Datenschutz",
+    "contactNote": "Fragen dazu? Schreiben Sie an",
+    "lastUpdated": "Zuletzt aktualisiert: August 2026."
   },
   home: {
     hero: { eyebrow:'Commercial Transformation', headline1:'Die Technologie ist vorhanden.', headline2:'Die Ergebnisse sollten es auch sein.', sub:'Das AI-Zeitfenster ist offen.', primaryCta:'Termin buchen', secondaryCta:'Über facilit8' },
@@ -302,7 +470,7 @@ de: {
   },
   playbookDetail: {
     notFound: { heading:'Playbook nicht gefunden.', body:'Der aufgerufene Link stimmt mit keinem unserer veröffentlichten Playbooks überein.', backButton:'Zurück zu den Playbooks' },
-    comingSoon: { chip:'Demnächst', getNotified:'Benachrichtigung bei Veröffentlichung', backLink:'Zurück zu allen Playbooks' },
+    comingSoon: { chip:'Demnächst', getNotified:'Benachrichtigung bei Veröffentlichung', notifyBlocked:'Dieses Formular verwendet funktionale Cookies, denen Sie noch nicht zugestimmt haben.', backLink:'Zurück zu allen Playbooks' },
     meta: { audience:'Zielgruppe', cadence:'Rhythmus', readTime:'Lesezeit', format:'Format', horizon:'Zeitrahmen', markets:'Märkte', scope:'Anwendungsbereich', series:'Reihe' },
     breadcrumb:'Playbooks',
     talkThrough: { heading:'Besprechen wir es', body:'Die meisten Engagements beginnen mit einem dreissigminütigen Gespräch. Schildern Sie uns, wo Sie stehen und was Sie erreichen möchten — wir sagen Ihnen direkt, ob und wie wir helfen können.', cta:'Gespräch vereinbaren' },

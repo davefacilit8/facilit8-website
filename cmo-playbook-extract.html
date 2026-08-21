@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The CMO as Revenue Firefighter — Playbook Extract · facilit8</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
   /* ── facilit8 site nav bar ───────────────────────────────────────── */
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -183,7 +181,7 @@
 </style>
 
 <!-- V2 playbook fonts -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 </head>
 <body>
 
@@ -217,7 +215,7 @@
 <!-- ── V2 playbook content ───────────────────────────────────────────── -->
 <div class="playbook-content">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+  @import url('/assets/fonts/fonts.css');
   .playbook-content * { box-sizing: border-box; }
   .playbook-content { font-family: 'DM Sans', sans-serif; background: #F5F2EC; color: #1A1A2E; padding: 32px 24px; }
 
@@ -757,6 +755,21 @@
   <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Challenger mitigations embedded</div></div>
 </div>
 
+<div class="pb-closing">
+  <h3>Have a different cash problem?</h3>
+  <p>A conversation costs nothing. We'll tell you straight whether this playbook fits — or whether something else will get you further.</p>
+  <div class="pb-closing-actions">
+    <a class="pb-btn pb-btn--primary" href="https://app-eu1.hubspot.com/meetings/dmjhowes/facilit8results" target="_blank" rel="noopener noreferrer">Book a meeting</a>
+    <a class="pb-btn pb-btn--text" href="/">Back to facilit8.org</a>
+  </div>
+</div>
+
+<div class="pb-email-card">
+  <h3>Want this playbook by email?</h3>
+  <p>Leave your email and I'll send you a copy — no spam, unsubscribe anytime.</p>
+  <div id="pb-email-gate"></div>
+</div>
+
 </div><!-- /playbook-content -->
 
 <!-- ── Book a conversation CTA ────────────────────────────────────────── -->
@@ -781,7 +794,13 @@
     el.classList.add('active');
   }
 </script>
-<!-- HubSpot Analytics -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/49059754.js"></script>
+<script src="js/playbook-consent.js"></script>
+<script>
+  F8Consent.mountPlaybookForm({
+    containerId: 'pb-email-gate',
+    formId: '78dd9d0a-4ac6-4e23-9b6e-8dead8a6adb1',
+    playbookId: 'cmo-revenue-firefighter'
+  });
+</script>
 </body>
 </html>

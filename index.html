@@ -30,9 +30,7 @@
   "knowsLanguage": ["en", "de"]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
 /* ============================================================
    facilit8 — Design Tokens
@@ -1370,13 +1368,6 @@ const COOKIE_CONFIG = {
           duration: 'Session / up to 13 months',
           policyUrl: 'https://legal.hubspot.com/cookie-policy',
         },
-        {
-          name: 'Google Fonts',
-          purpose: "Loads the Inter typeface from Google's CDN. Google may log the request.",
-          provider: 'Google LLC',
-          duration: 'Up to 1 year',
-          policyUrl: 'https://policies.google.com/privacy',
-        },
       ],
     },
     {
@@ -1625,6 +1616,10 @@ function Footer({ navigate }) {
           <span>{t('footer.copyright')}</span>
           <span style={{display:'flex',gap:16,alignItems:'center'}}>
             <span>{t('footer.location')}</span>
+            <a href="#privacy" onClick={e => { e.preventDefault(); navigate('privacy'); }}
+              style={{color:'rgba(255,255,255,0.4)',fontSize:12,textDecoration:'underline'}}>
+              {t('footer.privacy')}
+            </a>
             <a href="#cookies" onClick={e => { e.preventDefault(); navigate('cookies'); }}
               style={{color:'rgba(255,255,255,0.4)',fontSize:12,textDecoration:'underline'}}>
               {t('footer.cookiesPrivacy')}
@@ -1868,6 +1863,125 @@ function CookiesPage({ navigate }) {
             {t('cookies.adminNote')} <a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a>.
             {' '}{t('cookies.lastUpdated')}
           </p>
+        </div>
+      </section>
+    </>
+  );
+}
+
+/* ============================================================
+   PRIVACY PAGE — data-processing notice (FADP / GDPR)
+   Copy lives in locales/{en,de}.json + js/i18n.js under `privacy`.
+   Section order and processor rows are configured here; every
+   string is looked up by key so EN/DE stay in step.
+   ============================================================ */
+const PRIVACY_ITEMS = ['contactForm', 'meetings', 'playbookRequest', 'updates', 'analytics'];
+
+const PRIVACY_PROCESSORS = [
+  { id: 'hubspot', policyUrl: 'https://legal.hubspot.com/privacy-policy' },
+  { id: 'netlify', policyUrl: 'https://www.netlify.com/privacy/' },
+];
+
+function PrivacyPage({ navigate }) {
+  const t = useTranslation();
+
+  return (
+    <>
+      <section className="hero" style={{ padding: 'clamp(72px,10vw,120px) 0 clamp(48px,6vw,80px)' }}>
+        <div className="hero-bg" style={{ backgroundImage: `url(${HERO_CONTACT})` }}/>
+        <div className="hero-overlay"/>
+        <div className="container">
+          <div className="section-eyebrow hero-eyebrow">{t('privacy.hero.eyebrow')}</div>
+          <h1 className="f8-h1">{t('privacy.hero.heading')}</h1>
+          <p className="f8-lead" style={{ maxWidth: 640 }}>{t('privacy.hero.sub')}</p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-narrow">
+
+          {/* Controller */}
+          <div className="section-eyebrow">{t('privacy.whoEyebrow')}</div>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12 }}>
+            {t('privacy.whoBody')} <a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a>.
+          </p>
+
+          {/* What we collect */}
+          <div className="section-eyebrow" style={{ marginTop: 48 }}>{t('privacy.whatEyebrow')}</div>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12 }}>{t('privacy.whatIntro')}</p>
+
+          {PRIVACY_ITEMS.map(id => (
+            <div className="cookie-category" key={id}>
+              <div className="cookie-category-header">
+                <div style={{ flex: 1 }}>
+                  <h3 className="cookie-category-title">{t(`privacy.items.${id}.title`)}</h3>
+                  <p className="cookie-category-desc">{t(`privacy.items.${id}.body`)}</p>
+                </div>
+              </div>
+              <p className="cookie-empty-note">
+                <strong>{t('privacy.basisLabel')}:</strong> {t(`privacy.items.${id}.basis`)}
+                {' · '}
+                <strong>{t('privacy.retentionLabel')}:</strong> {t(`privacy.items.${id}.retention`)}
+              </p>
+            </div>
+          ))}
+
+          {/* Processors */}
+          <div className="section-eyebrow" style={{ marginTop: 48 }}>{t('privacy.processorsEyebrow')}</div>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12, marginBottom: 20 }}>
+            {t('privacy.processorsIntro')}
+          </p>
+          <div className="cookie-table-wrap">
+            <table className="cookie-table">
+              <thead>
+                <tr>
+                  <th>{t('privacy.processorHeaders.service')}</th>
+                  <th>{t('privacy.processorHeaders.handles')}</th>
+                  <th>{t('privacy.processorHeaders.where')}</th>
+                  <th>{t('privacy.processorHeaders.policy')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {PRIVACY_PROCESSORS.map(p => (
+                  <tr key={p.id}>
+                    <td>{t(`privacy.processors.${p.id}.name`)}</td>
+                    <td>{t(`privacy.processors.${p.id}.handles`)}</td>
+                    <td>{t(`privacy.processors.${p.id}.where`)}</td>
+                    <td><a href={p.policyUrl} target="_blank" rel="noopener noreferrer">{t('cookies.viewPolicy')}</a></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Transfers */}
+          <div className="section-eyebrow" style={{ marginTop: 48 }}>{t('privacy.transfersEyebrow')}</div>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12 }}>{t('privacy.transfersBody')}</p>
+
+          {/* Rights */}
+          <div className="section-eyebrow" style={{ marginTop: 48 }}>{t('privacy.rightsEyebrow')}</div>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12 }}>{t('privacy.rightsBody')}</p>
+          <ul style={{ color: 'var(--fg-2)', lineHeight: 1.8, marginTop: 12, paddingLeft: 20 }}>
+            {(t('privacy.rightsList') || []).map((r, i) => <li key={i}>{r}</li>)}
+          </ul>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 16 }}>{t('privacy.rightsClosing')}</p>
+
+          {/* Security */}
+          <div className="section-eyebrow" style={{ marginTop: 48 }}>{t('privacy.securityEyebrow')}</div>
+          <p style={{ color: 'var(--fg-2)', lineHeight: 1.7, marginTop: 12 }}>{t('privacy.securityBody')}</p>
+
+          {/* Cookies cross-link + contact */}
+          <p style={{ color: 'var(--f8-grey)', fontSize: 13, marginTop: 40, lineHeight: 1.6 }}>
+            {t('privacy.cookiesLinkIntro')}{' '}
+            <a href="#cookies" onClick={e => { e.preventDefault(); navigate('cookies'); }}>
+              {t('privacy.cookiesLinkCta')}
+            </a>.
+          </p>
+          <p style={{ color: 'var(--f8-grey)', fontSize: 13, marginTop: 8, lineHeight: 1.6 }}>
+            {t('privacy.contactNote')} <a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a>.
+            {' '}{t('privacy.lastUpdated')}
+          </p>
+
         </div>
       </section>
     </>
@@ -2609,6 +2723,61 @@ function PlaybooksPage({ navigate }) {
   );
 }
 
+const PLAYBOOK_NOTIFY_FORM_ID = 'e724f960-6325-4f83-9afe-f89c2ccbd2e0';
+
+function PlaybookNotifyForm({ playbookId, navigate }) {
+  const { has } = React.useContext(ConsentContext);
+  const functionalAllowed = has('functional');
+  const t = useTranslation();
+  const targetId = `hs-notify-${playbookId}`;
+
+  React.useEffect(() => {
+    if (!functionalAllowed) return;
+    const FORM_SCRIPT_ID = 'hs-forms-script';
+    const initForm = () => {
+      if (window.hbspt && document.getElementById(targetId)) {
+        window.hbspt.forms.create({
+          region: 'eu1',
+          portalId: '49059754',
+          formId: PLAYBOOK_NOTIFY_FORM_ID,
+          target: `#${targetId}`,
+          onFormReady: (form) => {
+            const hidden = form.querySelector('[name="playbook_id"]');
+            if (hidden) hidden.value = playbookId;
+          },
+        });
+      }
+    };
+    const existing = document.getElementById(FORM_SCRIPT_ID);
+    if (existing) {
+      initForm();
+    } else {
+      const s = document.createElement('script');
+      s.id = FORM_SCRIPT_ID;
+      s.charset = 'utf-8';
+      s.type = 'text/javascript';
+      s.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
+      s.onload = initForm;
+      document.body.appendChild(s);
+    }
+  }, [functionalAllowed, playbookId]);
+
+  if (!functionalAllowed) {
+    return (
+      <div className="iframe-blocked" style={{ marginTop: 28, maxWidth: 420 }}>
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--f8-grey)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        <p>{t('playbookDetail.comingSoon.notifyBlocked')}</p>
+        <button className="btn btn--primary" onClick={() => navigate('cookies')}>
+          {t('contact.manageCookies')}<Arrow/>
+        </button>
+      </div>
+    );
+  }
+  return <div id={targetId} style={{ marginTop: 28, maxWidth: 420 }}/>;
+}
+
 function PlaybookDetailPage({ id, navigate }) {
   const t = useTranslation();
   const p = PLAYBOOKS.find(x => x.id === id);
@@ -2629,7 +2798,8 @@ function PlaybookDetailPage({ id, navigate }) {
           <div className="section-eyebrow" style={{marginTop:8}}>{p.eyebrow}</div>
           <h1 className="f8-h1">{p.title}</h1>
           <p>{p.sub}</p>
-          <PrimaryButton onClick={() => navigate('contact')}>{t('playbookDetail.comingSoon.getNotified')}</PrimaryButton>
+          <div className="section-eyebrow" style={{marginTop:24}}>{t('playbookDetail.comingSoon.getNotified')}</div>
+          <PlaybookNotifyForm playbookId={p.id} navigate={navigate}/>
           <div style={{ marginTop: 28 }}>
             <TextLink onClick={() => navigate('playbooks')}>{t('playbookDetail.comingSoon.backLink')}</TextLink>
           </div>
@@ -3307,7 +3477,7 @@ function PlaybookDetailPage({ id, navigate }) {
 /* ============================================================
    ROOT
    ============================================================ */
-const VALID_PAGES = ['home','services','projects','playbooks','about','contact','cookies'];
+const VALID_PAGES = ['home','services','projects','playbooks','about','contact','cookies','privacy'];
 
 function Site() {
   const consentApi = useConsent();
@@ -3371,6 +3541,7 @@ function Site() {
       about:     F8t('nav.about') + ' — facilit8',
       contact:   F8t('nav.contact') + ' — facilit8',
       cookies:   F8t('cookies.hero.eyebrow') + ' — facilit8',
+      privacy:   F8t('privacy.hero.eyebrow') + ' — facilit8',
     };
     if (page.startsWith('playbook/')) {
       const pb = PLAYBOOKS.find(x => x.id === page.replace('playbook/',''));
@@ -3388,6 +3559,7 @@ function Site() {
   else if (page === 'about')             body = <AboutPage navigate={navigate}/>;
   else if (page === 'contact')           body = <ContactPage navigate={navigate}/>;
   else if (page === 'cookies')           body = <CookiesPage navigate={navigate}/>;
+  else if (page === 'privacy')           body = <PrivacyPage navigate={navigate}/>;
   else                                    body = <HomePage navigate={navigate}/>;
 
   return (

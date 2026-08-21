@@ -19,7 +19,8 @@
     "copyright": "© 2026 facilit8 — David Howes",
     "location": "Schweiz — DACH & International",
     "cookiesPrivacy": "Cookies & Datenschutz",
-    "bookMeeting": "Termin buchen"
+    "bookMeeting": "Termin buchen",
+    "privacy": "Datenschutz"
   },
   "deBanner": {
     "text": "Diese Seite ist auch auf Deutsch verfügbar.",
@@ -54,7 +55,7 @@
     "savePreferences": "Einstellungen speichern",
     "preferencesSaved": "✓ Einstellungen gespeichert",
     "adminNote": "Diese Website wird von David Howes / facilit8 mit Sitz in der Schweiz betrieben. Bei Fragen zur Datenverarbeitung wenden Sie sich an",
-    "lastUpdated": "Zuletzt aktualisiert: Mai 2026.",
+    "lastUpdated": "Zuletzt aktualisiert: August 2026.",
     "categories": {
       "essential": {
         "name": "Notwendig",
@@ -69,6 +70,90 @@
         "description": "Hilft zu verstehen, wie Besucher die Website nutzen, und unterstützt — sofern aktiviert — das HubSpot-Klick- und Besuchstracking."
       }
     }
+  },
+  "privacy": {
+    "hero": {
+      "eyebrow": "Datenschutz",
+      "heading": "Wie facilit8 mit Ihren Daten umgeht",
+      "sub": "Kurzfassung: Wir erheben nur, was Sie uns geben, verwenden es nur für das, worum Sie gebeten haben, und verkaufen oder teilen es nie. Die Details stehen unten."
+    },
+    "whoEyebrow": "Verantwortliche Stelle",
+    "whoBody": "Diese Website und die dahinterliegenden Dienste werden von David Howes, tätig unter facilit8, mit Sitz in der Schweiz betrieben. facilit8 ist Verantwortlicher für die auf dieser Seite beschriebenen Personendaten. Es gilt das Schweizer Datenschutzgesetz (DSG); die EU-DSGVO gilt, sofern Sie sich in der EU oder im EWR befinden. Bei allen Fragen zu Ihren Daten schreiben Sie an",
+    "whatEyebrow": "Was wir erheben — und warum",
+    "whatIntro": "Alles Folgende sind Daten, die Sie uns aktiv geben. Es gibt keine gekauften Listen, keine Datenhändler und kein Profiling oder automatisierte Entscheidungen.",
+    "basisLabel": "Rechtsgrundlage",
+    "retentionLabel": "Aufbewahrung",
+    "items": {
+      "contactForm": {
+        "title": "Kontaktformular",
+        "body": "Ihr Name, Ihre E-Mail-Adresse und Ihre Nachricht. Wird ausschliesslich verwendet, um Ihnen zu antworten und den Verlauf festzuhalten.",
+        "basis": "Massnahmen auf Ihre Anfrage hin sowie unser berechtigtes Interesse an der Beantwortung von Anfragen.",
+        "retention": "solange die Anfrage aktiv ist, danach bis zu 24 Monate."
+      },
+      "meetings": {
+        "title": "Terminbuchung",
+        "body": "Ihr Name, Ihre E-Mail-Adresse und die Angaben, die Sie bei der Buchung über den HubSpot-Kalender machen. Wird zur Planung und Vorbereitung des Gesprächs verwendet.",
+        "basis": "Massnahmen auf Ihre Anfrage hin.",
+        "retention": "bis zu 24 Monate nach dem letzten Kontakt."
+      },
+      "playbookRequest": {
+        "title": "Playbook-Anfragen",
+        "body": "Ihre E-Mail-Adresse und das angefragte Playbook. Wird verwendet, um Ihnen dieses Playbook zuzusenden und zu erkennen, welche Themen nachgefragt werden.",
+        "basis": "Massnahmen auf Ihre Anfrage hin.",
+        "retention": "bis zu 24 Monate nach Ihrer letzten Interaktion."
+      },
+      "updates": {
+        "title": "Gelegentliche Updates per E-Mail",
+        "body": "Ihre E-Mail-Adresse, um Ihnen gelegentlich Playbooks und verwandte Updates zu senden. Dies geschieht nur, wenn Sie das Einwilligungsfeld ankreuzen — es ist nie an etwas anderes gekoppelt. Jede E-Mail enthält einen Abmeldelink; die Abmeldung wirkt sofort.",
+        "basis": "Ihre Einwilligung, die Sie jederzeit widerrufen können.",
+        "retention": "bis Sie sich abmelden."
+      },
+      "analytics": {
+        "title": "Website-Analyse",
+        "body": "Nur wenn Sie Analyse-Cookies akzeptieren, erfasst HubSpot, welche Seiten Sie besuchen und welche Links Sie anklicken. Lehnen Sie ab, wird nichts erfasst.",
+        "basis": "Ihre Einwilligung, verwaltet auf der Seite Cookies & Datenschutz.",
+        "retention": "bis zu 13 Monate."
+      }
+    },
+    "processorsEyebrow": "Wer Ihre Daten sonst noch verarbeitet",
+    "processorsIntro": "facilit8 ist ein Ein-Personen-Unternehmen und nutzt wenige etablierte Anbieter. Jeder wird ausschliesslich für den unten genannten Zweck eingesetzt, und keiner darf Ihre Daten für eigene Zwecke verwenden.",
+    "processorHeaders": {
+      "service": "Dienst",
+      "handles": "Wofür",
+      "where": "Wo",
+      "policy": "Richtlinie"
+    },
+    "processors": {
+      "hubspot": {
+        "name": "HubSpot, Inc.",
+        "handles": "Kontaktformular, Terminbuchungen, Playbook-Anfragen, E-Mail, CRM-Daten und — mit Ihrer Einwilligung — Website-Analyse.",
+        "where": "EU-Rechenzentrum (Frankfurt). Das HubSpot-Konto von facilit8 wird in der EU-Region gehostet."
+      },
+      "netlify": {
+        "name": "Netlify, Inc.",
+        "handles": "Hostet und liefert diese Website aus. Übliche Server-Logs einschliesslich IP-Adresse für Sicherheit und Betrieb.",
+        "where": "Globales Content-Delivery-Netzwerk."
+      }
+    },
+    "transfersEyebrow": "Daten ausserhalb der Schweiz",
+    "transfersBody": "Ihre Daten werden in der EU und bei einzelnen Anbietern in den USA verarbeitet. Übermittlungen stützen sich auf die Angemessenheitsbeschlüsse der Europäischen Kommission und des Schweizerischen Bundesrates, soweit diese greifen, und andernfalls auf Standardvertragsklauseln.",
+    "rightsEyebrow": "Ihre Rechte",
+    "rightsBody": "Sie können jederzeit verlangen:",
+    "rightsList": [
+      "Auskunft über die zu Ihnen gespeicherten Personendaten",
+      "Berichtigung falscher Angaben",
+      "Löschung Ihrer Daten",
+      "Einschränkung der Verarbeitung oder Widerspruch dagegen",
+      "Herausgabe Ihrer Daten in einem übertragbaren Format",
+      "Widerruf einer erteilten Einwilligung, ohne dass die bisherige Verarbeitung unrechtmässig wird"
+    ],
+    "rightsClosing": "Eine E-Mail genügt — es gibt kein Formular. Wir antworten innerhalb von 30 Tagen. Sind Sie nicht zufrieden, können Sie sich an den Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) oder — in der EU bzw. im EWR — an Ihre nationale Aufsichtsbehörde wenden.",
+    "securityEyebrow": "Sicherheit",
+    "securityBody": "Die Daten liegen in den oben genannten Systemen und sind durch deren Zugriffskontrollen und Verschlüsselung geschützt. Kein System ist perfekt: Sollte eine Verletzung Ihre Daten betreffen, informieren wir Sie und die zuständige Behörde, wie es das Gesetz verlangt.",
+    "cookiesLinkIntro": "Cookie-Details und Ihre Einstellungen finden Sie auf der Seite",
+    "cookiesLinkCta": "Cookies & Datenschutz",
+    "contactNote": "Fragen dazu? Schreiben Sie an",
+    "lastUpdated": "Zuletzt aktualisiert: August 2026."
   },
   "home": {
     "hero": {
@@ -346,6 +431,7 @@
     "comingSoon": {
       "chip": "Demnächst",
       "getNotified": "Benachrichtigung bei Veröffentlichung",
+      "notifyBlocked": "Dieses Formular verwendet funktionale Cookies, denen Sie noch nicht zugestimmt haben.",
       "backLink": "Zurück zu allen Playbooks"
     },
     "meta": {
