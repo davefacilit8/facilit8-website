@@ -4,7 +4,10 @@
   "description": "Impact Checklist acceptance tests. Kept separate so the Netlify build does not install Playwright.",
   "scripts": {
     "test": "npm run test:functions && npm run test:e2e",
+    "deps:site": "npm install --prefix .. --no-audit --no-fund --omit=dev --no-package-lock",
+    "pretest:functions": "npm run deps:site",
     "test:functions": "node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=./support/gha-reporter.mjs --test-reporter-destination=stdout functions.test.js",
+    "pretest:e2e": "npm run deps:site",
     "test:e2e": "playwright test",
     "server": "node support/server.js"
   },

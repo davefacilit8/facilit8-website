@@ -26,11 +26,15 @@ const JSON_HEADERS = {
    that endpoint, which is why these are not written as `exports.handler`
    functions like the older ones in netlify/functions. */
 let storeFactory = null;
+let blobsGetStore = null;
 function setStoreFactory(fn) { storeFactory = fn; }
+// The v2 entry points import @netlify/blobs statically (so Netlify's bundler
+// ships it) and hand getStore in here.
+function setBlobsGetStore(fn) { blobsGetStore = fn; }
 function store(name) {
   if (storeFactory) return storeFactory(name);
-  const { getStore } = require('@netlify/blobs');
-  return getStore({ name, consistency: 'strong' });
+  if (!blobsGetStore) throw new Error('Netlify Blobs not wired: call setBlobsGetStore from the entry point');
+  return blobsGetStore({ name, consistency: 'strong' });
 }
 
 /* ── v2 adapter ──
@@ -214,7 +218,7 @@ async function incrementCounter(event, name, mode) {
 
 module.exports = {
   DIMS, MODES, LANGS, INDUSTRIES, SIZES, COUNTER_EVENTS,
-  setStoreFactory, store, toV2, reply, guard, parseBody, onlyKeys,
+  setStoreFactory, setBlobsGetStore, store, toV2, reply, guard, parseBody, onlyKeys,
   checkScores, checkRanking, checkCommon, zurichDate, zurichMonth,
   safeEqual, atomicUpdate, rateLimit, incrementCounter,
 };
