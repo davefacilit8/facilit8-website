@@ -56,3 +56,38 @@
   to = "/.netlify/functions/strategylens-email"
   status = 200
   force = true
+
+# Impact Checklist — public free tool plus its four functions.
+[[redirects]]
+  from = "/impact-checklist"
+  to = "/impact-checklist.html"
+  status = 200
+
+[[redirects]]
+  from = "/api/impact/access"
+  to = "/.netlify/functions/impact-access"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/impact/submit"
+  to = "/.netlify/functions/impact-submit"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/impact/benchmark"
+  to = "/.netlify/functions/impact-benchmark"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/impact/count"
+  to = "/.netlify/functions/impact-count"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/js/impact-checklist.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

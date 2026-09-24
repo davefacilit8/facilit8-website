@@ -79,6 +79,26 @@ en: {
     "basisLabel": "Legal basis",
     "retentionLabel": "Kept for",
     "items": {
+      /* impact-privacy:start */
+      "impactInterpretation": {
+        "title": "Impact Checklist: personal interpretation",
+        "body": "If you tick the box and submit, your email address, optionally your name and organisation, your 8 trust scores, the order you chose, and your mode, industry and company size are sent to facilit8's HubSpot account, so David can write and send you a personal interpretation. Whether you also want occasional insights is a separate, unticked box and is recorded separately. Nothing is sent unless you tick the box and submit.",
+        "basis": "steps taken at your request; for insights emails, your consent, which you can withdraw at any time.",
+        "retention": "up to 24 months after your last interaction."
+      },
+      "impactBaseline": {
+        "title": "Impact Checklist: Swiss Impact Baseline",
+        "body": "If you tick the box and submit, an anonymous record is stored with Netlify: the date, language, mode, industry, company size band, your 8 trust scores and the order you chose. It contains no name, email address, organisation or initiative, and it cannot be linked back to you. It is used only for aggregated trend reporting, and any group is shown only when it has at least 5 responses.",
+        "basis": "your consent. Because the record is anonymous, it cannot be found or deleted individually afterwards.",
+        "retention": "for trend reporting over time."
+      },
+      "impactCounter": {
+        "title": "Impact Checklist: usage totals",
+        "body": "The checklist counts how often it is started and completed, and how often interpretations and Baseline contributions are requested, per mode and per month. Only the totals are stored: no cookies, identifiers or IP addresses. To prevent abuse, the site briefly holds a one-way hash of your IP address, which changes daily, for rate limiting.",
+        "basis": "our legitimate interest in knowing whether the tool is useful and in protecting it from abuse.",
+        "retention": "totals are kept for reporting; rate-limit hashes for no more than one day."
+      },
+      /* impact-privacy:end */
       "contactForm": {
         "title": "Contact form",
         "body": "Your name, email address and the message you write. Used only to reply to you and to keep a record of the conversation.",
@@ -121,12 +141,12 @@ en: {
     "processors": {
       "hubspot": {
         "name": "HubSpot, Inc.",
-        "handles": "Contact form, meeting bookings, playbook requests, email, CRM records and — with your consent — site analytics.",
+        "handles": "Contact form, meeting bookings, playbook requests, email, CRM records and — with your consent — site analytics. Impact Checklist interpretation requests.",
         "where": "EU data centre (Frankfurt). The facilit8 HubSpot account is hosted in the EU region."
       },
       "netlify": {
         "name": "Netlify, Inc.",
-        "handles": "Hosts and serves this website. Standard server logs, including IP address, for security and reliability.",
+        "handles": "Hosts and serves this website. Standard server logs, including IP address, for security and reliability. Anonymous Impact Checklist Baseline records, usage totals and short-lived rate-limit hashes (Netlify Blobs).",
         "where": "Global content delivery network."
       }
     },
@@ -148,7 +168,7 @@ en: {
     "cookiesLinkIntro": "For cookie-level detail and to change your preferences, see",
     "cookiesLinkCta": "Cookies & Privacy",
     "contactNote": "Questions about any of this? Write to",
-    "lastUpdated": "Last updated: August 2026."
+    "lastUpdated": "Last updated: September 2026."
   },
   home: {
     hero: { eyebrow:'Commercial Transformation', headline1:'The technology is there.', headline2:'The results should be too.', sub:'The AI advantage window is open.', primaryCta:'Book a Meeting', secondaryCta:'About facilit8' },
@@ -277,6 +297,436 @@ en: {
     pilotLeadCta: { heading:'Running a lead harmonisation pilot?', body:"A 30-minute conversation with David can tell you whether this framework fits your situation — or what to adapt for your markets.", cta:'Book a Conversation' },
     cmoFirefighterCta: { heading:'Have a different cash problem?', body:"A conversation costs nothing. We'll tell you straight whether this playbook fits — or whether something else will get you further.", cta:'Book a Conversation' }
   },
+  /* impact:start */
+  impact: {
+    "meta": {
+      "title": "Impact Checklist — facilit8",
+      "description": "Eight dimensions of trust decide whether a transformation delivers impact. Score your confidence in each, see where trust is fragile, and decide where to start."
+    },
+    "back": "← Back to facilit8.org",
+    "langLabel": "Language",
+    "hero": {
+      "eyebrow": "facilit8 Impact Checklist",
+      "headline": "AI can diagnose your processes. Only people can build the trust needed to deliver impact.",
+      "intro": "What AI cannot do is create the confidence that turns a plan into results. Transformations rarely fail for lack of insight. They fail when leaders stop trusting the direction, the plan or each other. All eight dimensions are essential: weakness in any one of them puts the impact your customers expect at risk. This checklist shows where trust is strong, where it is fragile, and where to act first."
+    },
+    "tabs": {
+      "model": "The model",
+      "assess": "Checklist",
+      "results": "Your results",
+      "team": "Team comparison"
+    },
+    "model": {
+      "impact": "Impact",
+      "impactBody": "Impact: results for the business and its customers. All eight dimensions are essential to deliver it. A weak one puts customer impact and expectations at risk.",
+      "leadership": "Leadership",
+      "leadershipOwner": "Owned by the sponsor and executive team",
+      "capabilities": "Capabilities",
+      "capabilitiesOwner": "Delivered by the organisation",
+      "lensLabel": "Customer lens",
+      "scaleNote": "Trust means confidence. Score each item from 0% (no trust) to 100% (full trust). Higher is always better, including for Risk: a high score means risks are understood and managed.",
+      "learningLabel": "What we mean by learning",
+      "learningDef": "Learning is the organisation's ability to keep building, applying and sharing new skills, including working with AI, as fast as the work changes.",
+      "start": "Start the checklist"
+    },
+    "dims": {
+      "direction": {
+        "name": "Direction",
+        "question": "Why?",
+        "attributes": [
+          "Clarity",
+          "Alignment",
+          "Commercial outcomes"
+        ],
+        "lens": "Innovating the customer experience and differentiating from competitors",
+        "quick": "…everyone knows why we are doing this, where we are going, and how it will set us apart for our customers?",
+        "statements": [
+          "The ambition, and why it matters, is clear and written down.",
+          "The leadership team tells the same story about where we are going.",
+          "We have agreed the commercial and customer results this must deliver, such as revenue, margin, productivity or customer experience."
+        ],
+        "levels": [
+          "No agreed ambition; people describe different goals",
+          "Ambition agreed at the top but not yet understood across teams",
+          "Everyone can explain the ambition, its commercial outcomes and what it means for customers"
+        ],
+        "coaching": [
+          "If a customer asked what will be different for them in a year, what would each of us say?",
+          "Which part of the direction do you feel most and least sure about?"
+        ],
+        "aiHelp": "Scenario modelling and synthesis of market and customer signals",
+        "aiRisk": "A strategy that sounds like everyone else's, because it came from the same AI"
+      },
+      "risk": {
+        "name": "Risk",
+        "question": "What could stop us?",
+        "attributes": [
+          "Assumptions",
+          "Consequences & barriers",
+          "AI governance & ethics"
+        ],
+        "lens": "Risk to customers if we fail, or if AI gets it wrong",
+        "quick": "…we understand what could stop us, including risks from AI and risks to our customers, and are managing them?",
+        "statements": [
+          "We know what needs to be true to deliver the direction, and we test it.",
+          "We understand what happens to us and our customers if we fail, and what could prevent impact, and each barrier has an owner.",
+          "We have clear rules for using AI responsibly, covering bias, transparency, data use and regulation such as the EU AI Act."
+        ],
+        "levels": [
+          "Risks are discussed only when they happen",
+          "Main risks are listed but rarely reviewed; no clear rules for AI use",
+          "Assumptions are tested, risks have owners and are reviewed, and AI use follows clear rules"
+        ],
+        "coaching": [
+          "What would need to be true for this to succeed, and which of those are we least sure of?",
+          "Where would we want a person to check what AI suggests?"
+        ],
+        "aiHelp": "Early-warning signals and testing assumptions against data",
+        "aiRisk": "Hidden model risk, and over-reliance on AI judgement"
+      },
+      "decisions": {
+        "name": "Decisions",
+        "question": "Who decides?",
+        "attributes": [
+          "Decision rights (incl. human vs AI)",
+          "Prioritisation",
+          "Cohesion"
+        ],
+        "lens": "Customer voice in decisions",
+        "quick": "…the right people make the right decisions at the right pace, as one team, with the customer in mind?",
+        "statements": [
+          "It is clear who decides what, at which level and how fast, including which decisions AI may make or recommend and which stay with people.",
+          "When everything seems important, we can still say what comes first, with the customer in mind.",
+          "Leaders act as one team. Different views are raised openly and resolved, and decisions are carried together."
+        ],
+        "levels": [
+          "Unclear who decides; decisions stall or are reopened",
+          "Clear for big decisions, less so day to day",
+          "Decisions are made at the right level, at pace, and carried together"
+        ],
+        "coaching": [
+          "Which decision, if made this month, would unlock the most progress?",
+          "Where do we agree in the room but act differently afterwards?"
+        ],
+        "aiHelp": "Faster options analysis and decision support",
+        "aiRisk": "Unclear accountability for decisions AI makes or shapes"
+      },
+      "plan": {
+        "name": "Plan",
+        "question": "When and how much?",
+        "attributes": [
+          "Iteration",
+          "Resourcing",
+          "Issues"
+        ],
+        "lens": "Engaging customers along the way",
+        "quick": "…our plan lets us deliver in steps, is properly resourced and involves customers along the way?",
+        "statements": [
+          "We deliver in short cycles, involve customers, learn from results and adjust.",
+          "The people and budget we need are committed, not borrowed.",
+          "Issues are raised early and resolved quickly."
+        ],
+        "levels": [
+          "Fixed plan, under-resourced, issues surface late",
+          "Resources partly committed; adjusting is slow",
+          "Short delivery cycles, committed resources, issues resolved quickly"
+        ],
+        "coaching": [
+          "What could we deliver in the next 90 days that customers would notice?",
+          "What could we stop doing to free up the people this needs?"
+        ],
+        "aiHelp": "Forecasting, resource planning and early issue detection",
+        "aiRisk": "False precision in AI-generated plans"
+      },
+      "people": {
+        "name": "People",
+        "question": "Who?",
+        "attributes": [
+          "Capability & AI learning",
+          "Accountability",
+          "Engagement"
+        ],
+        "lens": "Customer-facing teams equipped for the new experience",
+        "quick": "…our people have the skills, including AI skills, and the ownership to deliver for customers?",
+        "statements": [
+          "We keep building the skills we need, including working confidently with AI, as fast as the work changes.",
+          "Each outcome has a named owner who follows through.",
+          "People, including customer-facing teams, adopt new ways of working, and the change sticks."
+        ],
+        "levels": [
+          "Skills gaps unaddressed; ownership unclear",
+          "Key roles covered; learning, including AI, is ad hoc",
+          "Skills, including AI, grow continuously, and every outcome has an engaged owner"
+        ],
+        "coaching": [
+          "What have people learned in the last six months, and how did they learn it?",
+          "What would help people feel confident working with AI?"
+        ],
+        "aiHelp": "Copilots, personalised learning and adoption insight",
+        "aiRisk": "Fear for jobs, and skills eroding through over-use"
+      },
+      "partners": {
+        "name": "Partners",
+        "question": "With whom?",
+        "attributes": [
+          "Expertise",
+          "Alignment",
+          "Commercial fit"
+        ],
+        "lens": "Partners strengthen the customer experience",
+        "quick": "…our partners are capable, aligned and improve our customers' experience?",
+        "statements": [
+          "Our external partners bring expertise we do not have in-house.",
+          "Partners work towards our outcomes and our customers' experience, not only their own scope.",
+          "Contracts and incentives reward the results we need."
+        ],
+        "levels": [
+          "Partners deliver to contract scope only",
+          "Partners are capable but only partly aligned with our outcomes",
+          "Partners share our goals, and incentives reward the results we need"
+        ],
+        "coaching": [
+          "What do our partners know about our customers that we could use more?",
+          "If a partner's contract ended tomorrow, what would we miss most?"
+        ],
+        "aiHelp": "Vendor evaluation and contract analysis",
+        "aiRisk": "Lock-in, and vendor claims that exceed reality"
+      },
+      "data": {
+        "name": "Data",
+        "question": "What do we need?",
+        "attributes": [
+          "Quality",
+          "Security (incl. traceability)",
+          "Integrity"
+        ],
+        "lens": "Customer data secure and used well",
+        "quick": "…we have the data we need, secure and trusted, including our customer data?",
+        "statements": [
+          "We have the data we need, accurate and complete enough to act on.",
+          "Data, especially customer data, is protected, compliant with FADP/GDPR and traceable: we know where it comes from and who uses it.",
+          "There is one trusted version of the truth across teams and systems."
+        ],
+        "levels": [
+          "Data is incomplete, untrusted or insecure",
+          "Core data usable, but versions conflict and security is uneven",
+          "One trusted, secure version of the truth, including customer data"
+        ],
+        "coaching": [
+          "Which decision would be easier if we had one number we all trusted?",
+          "What customer data do we hold that we are not yet using well?"
+        ],
+        "aiHelp": "Data cleansing, lineage tracking and anomaly detection",
+        "aiRisk": "Bias, privacy breaches and regulatory non-compliance"
+      },
+      "systems": {
+        "name": "Process & Systems",
+        "question": "How?",
+        "attributes": [
+          "Velocity",
+          "Usability",
+          "Automation"
+        ],
+        "lens": "Customer self-service",
+        "quick": "…our processes and systems help us deliver, and let customers serve themselves easily?",
+        "statements": [
+          "Our processes and systems let us change and deliver quickly.",
+          "Our processes and systems are easy to use, and customers can serve themselves where they prefer to.",
+          "Repetitive work is automated where it makes sense."
+        ],
+        "levels": [
+          "Manual processes; systems get in the way",
+          "Systems support core work; little automation or self-service",
+          "Fast, easy processes, sensible automation and easy customer self-service"
+        ],
+        "coaching": [
+          "Where do customers or colleagues wait longest today?",
+          "What would customers happily do themselves if we made it easy?"
+        ],
+        "aiHelp": "Process mining, automation, AI agents and customer self-service",
+        "aiRisk": "Automating a broken process, making it fail faster"
+      }
+    },
+    "scale": {
+      "prefix": "How much do you trust that…",
+      "labels": [
+        "No trust",
+        "Low",
+        "Partial",
+        "High",
+        "Full trust"
+      ],
+      "groupLabel": "Trust for {item}"
+    },
+    "setup": {
+      "heading": "Before you start",
+      "body": "Only industry and company size are required. Nothing leaves your browser unless you choose to send it.",
+      "name": "Name",
+      "role": "Role",
+      "org": "Organisation",
+      "initiative": "Initiative being assessed",
+      "optional": "optional",
+      "required": "required",
+      "industry": "Industry",
+      "industryOptions": {
+        "lifeSciences": "Life Sciences",
+        "consumer": "Consumer",
+        "industrial": "Industrial",
+        "other": "Other"
+      },
+      "size": "Company size",
+      "sizeOptions": {
+        "lt50": "Under 50 employees",
+        "50to249": "50–249 employees",
+        "250to999": "250–999 employees",
+        "1000plus": "1,000+ employees"
+      },
+      "choose": "Please choose",
+      "mode": "Choose a mode",
+      "quickH": "Quick check · 8 items",
+      "quickP": "One headline question per dimension. About 5 minutes. Free.",
+      "deepH": "Deep assessment · 24 items",
+      "deepP": "Three statements per dimension, with level examples. About 15 minutes. Requires an access code.",
+      "code": "Access code",
+      "unlock": "Unlock",
+      "checking": "Checking…",
+      "codeOk": "Access code accepted. Deep assessment unlocked.",
+      "codeInvalid": "This access code is not valid. Please check it and try again.",
+      "codeExpired": "This access code has expired. Please contact facilit8 for a new one.",
+      "codeError": "The code could not be checked right now. Please try again in a moment.",
+      "codeLimited": "Too many attempts. Please wait a few minutes and try again.",
+      "paidNote": "Deep assessment and team comparison are facilitated by facilit8.",
+      "paidLink": "Get in touch to find out more."
+    },
+    "assess": {
+      "progress": "{a} of {b} answered",
+      "levelsHeading": "How to read the scale",
+      "level0": "0% looks like",
+      "level50": "50% looks like",
+      "level100": "100% looks like",
+      "continue": "Continue",
+      "missing": "{n} items still to answer. They are highlighted.",
+      "missingOne": "1 item still to answer. It is highlighted.",
+      "missingSetup": "Please choose your industry and company size.",
+      "deepLocked": "Enter a valid access code to use the deep assessment, or choose the quick check."
+    },
+    "rank": {
+      "heading": "Where would you start?",
+      "body": "All eight dimensions are essential, and these five are where your trust is lowest. Where would you start? Put them in the order you would address them.",
+      "bodyTie": "All eight dimensions are essential, and these {n} are where your trust is lowest (some share the same score). Where would you start? Put them in the order you would address them.",
+      "hint": "Drag the rows, or use the arrow buttons, to put them in order. First is where you would start.",
+      "drag": "Drag to reorder {dim}",
+      "up": "Move {dim} up",
+      "down": "Move {dim} down",
+      "moved": "{dim} moved to position {n}.",
+      "confirm": "This is my order — show my results",
+      "back": "Back to the checklist",
+      "trust": "Trust {n}%"
+    },
+    "results": {
+      "empty": "Complete the checklist to see your results.",
+      "heading": "Your trust barometer",
+      "overall": "Overall trust",
+      "leadership": "Leadership",
+      "capabilities": "Capabilities",
+      "bands": [
+        "Fix",
+        "Strengthen",
+        "Sustain"
+      ],
+      "startHere": "Start here",
+      "modeQuick": "Quick check",
+      "modeDeep": "Deep assessment",
+      "gapLabel": "A question to consider",
+      "gapNote": "Your Leadership scores are noticeably higher than Capabilities. Would your teams score Leadership the same way?",
+      "sustainHeading": "Sustain what works",
+      "sustain": "Every dimension scores 75% or higher. Your focus is to sustain what works: revisit these scores as the work changes, and ask whether others in the organisation would score them the same way.",
+      "startHeading": "Where to start",
+      "startIntro": "The order you chose, with your trust score for each.",
+      "coachingHeading": "Coaching questions",
+      "coachingFrame": "Questions to explore together. There are no wrong answers.",
+      "coachingMore": "More questions for your other areas are part of a conversation with facilit8.",
+      "aiHeading": "How AI can help",
+      "aiRiskLabel": "AI risk to watch",
+      "readMore": "Read more",
+      "nextHeading": "The next conversation",
+      "nextBody": "Think of a common customer complaint. Which of these dimensions sit behind it? Start with the capabilities involved, then ask what leadership could change to make it easier. It is rarely just one dimension. Often it is several, and sometimes all eight. That is the conversation facilit8 can help you have.",
+      "nextCta": "Talk to facilit8",
+      "keepHeading": "Keep your results",
+      "keepBody": "Download a PDF for yourself, or export a results file so a facilitator can compare several leaders' views.",
+      "pdf": "Download PDF",
+      "export": "Export results file",
+      "paidNote": "Deep assessment and team comparison are facilitated by facilit8.",
+      "paidLink": "Get in touch to find out more."
+    },
+    "interpret": {
+      "heading": "A personal interpretation from Dave",
+      "consent": "Email me my results and a personal one-page interpretation from Dave.",
+      "email": "Email",
+      "name": "Name",
+      "org": "Organisation",
+      "optional": "optional",
+      "marketing": "Also send me occasional facilit8 insights.",
+      "submit": "Send my request",
+      "sending": "Sending…",
+      "ok": "Thank you. Dave will send your interpretation personally.",
+      "turnaround": "You can expect it within {t}.",
+      "errEmail": "Please enter a valid email address.",
+      "err": "Sending failed. Please try again, or export your results file and email it to david@facilit8.org.",
+      "limited": "Too many requests. Please wait a few minutes and try again.",
+      "privacy": "What is sent, and why, is explained in the",
+      "privacyLink": "privacy notice"
+    },
+    "baseline": {
+      "heading": "Swiss Impact Baseline",
+      "consent": "Add my anonymous scores to the facilit8 Swiss Impact Baseline.",
+      "detail": "Only the date, language, mode, industry, company size, your 8 trust scores and your order are stored. No name, email, organisation or initiative.",
+      "submit": "Add my scores",
+      "sending": "Sending…",
+      "ok": "Thank you. Your anonymous scores have been added.",
+      "err": "Your scores could not be added. Please try again later.",
+      "limited": "Too many requests. Please wait a few minutes and try again."
+    },
+    "team": {
+      "heading": "Compare several leaders",
+      "body": "Load the exported results files from each leader. The tool shows the average trust per dimension, how far apart leaders are, and where they would start.",
+      "gateHeading": "Facilitator access",
+      "gateBody": "Team comparison is facilitated by facilit8. Enter your access code to continue.",
+      "load": "Load results files",
+      "clear": "Clear",
+      "bad": "{f} is not a valid results file.",
+      "who": "{n} respondents",
+      "whoOne": "1 respondent",
+      "leader": "Leader {x}",
+      "showNames": "Show names",
+      "noName": "(no name)",
+      "th": [
+        "Dimension",
+        "Average trust",
+        "Range (lowest to highest)",
+        "In top 3",
+        "Signal"
+      ],
+      "flag": "Leaders disagree",
+      "top3": "{n} of {m}",
+      "spreadNote": "A range of 50 points or more means leaders see this dimension very differently. That conversation often matters more than the score.",
+      "startHeading": "Where the team would start",
+      "startIntro": "Ordered by how many leaders put each dimension in their top 3, then by average trust (lowest first).",
+      "startNone": "No leader placed any dimension in their top 3: every dimension scored 75% or higher for everyone.",
+      "votes": "in top 3 for {n} of {m} · average trust {a}%"
+    },
+    "card": {
+      "eyebrow": "Free tool · For sponsors & executive teams",
+      "title": "The facilit8 Impact Checklist",
+      "sub": "AI can diagnose your processes. Only people can build the trust needed to deliver impact. Score eight dimensions of trust in about five minutes and see where to start.",
+      "tags": [
+        "Trust",
+        "Leadership",
+        "5 minutes"
+      ]
+    }
+  },
+  /* impact:end */
 },
 
 /* =========================================================
@@ -318,6 +768,26 @@ de: {
     "basisLabel": "Rechtsgrundlage",
     "retentionLabel": "Aufbewahrung",
     "items": {
+      /* impact-privacy:start */
+      "impactInterpretation": {
+        "title": "Impact-Checkliste: persönliche Interpretation",
+        "body": "Wenn Sie das Kästchen ankreuzen und absenden, werden Ihre E-Mail-Adresse, optional Ihr Name und Ihre Organisation, Ihre 8 Vertrauenswerte, die von Ihnen gewählte Reihenfolge sowie Modus, Branche und Unternehmensgrösse an das HubSpot-Konto von facilit8 gesendet, damit David Ihnen eine persönliche Interpretation schreiben und senden kann. Ob Sie zusätzlich gelegentlich Impulse erhalten möchten, ist ein separates, nicht angekreuztes Kästchen und wird separat erfasst. Ohne Ankreuzen und Absenden wird nichts gesendet.",
+        "basis": "Massnahmen auf Ihre Anfrage; für Impuls-E-Mails Ihre Einwilligung, die Sie jederzeit widerrufen können.",
+        "retention": "bis zu 24 Monate nach Ihrer letzten Interaktion."
+      },
+      "impactBaseline": {
+        "title": "Impact-Checkliste: Swiss Impact Baseline",
+        "body": "Wenn Sie das Kästchen ankreuzen und absenden, wird bei Netlify ein anonymer Datensatz gespeichert: Datum, Sprache, Modus, Branche, Grössenklasse des Unternehmens, Ihre 8 Vertrauenswerte und die von Ihnen gewählte Reihenfolge. Er enthält keinen Namen, keine E-Mail-Adresse, keine Organisation und keine Initiative und kann Ihnen nicht zugeordnet werden. Er wird nur für zusammengefasste Trendauswertungen genutzt, und eine Gruppe wird nur gezeigt, wenn sie mindestens 5 Antworten umfasst.",
+        "basis": "Ihre Einwilligung. Da der Datensatz anonym ist, kann er nachträglich nicht einzeln gefunden oder gelöscht werden.",
+        "retention": "für Trendauswertungen über die Zeit."
+      },
+      "impactCounter": {
+        "title": "Impact-Checkliste: Nutzungszahlen",
+        "body": "Die Checkliste zählt, wie oft sie gestartet und abgeschlossen wird und wie oft Interpretationen und Beiträge zur Baseline angefragt werden, pro Modus und pro Monat. Gespeichert werden nur die Summen: keine Cookies, keine Kennungen und keine IP-Adressen. Zum Schutz vor Missbrauch hält die Website für die Begrenzung von Anfragen kurzzeitig einen täglich wechselnden Einweg-Hash Ihrer IP-Adresse.",
+        "basis": "unser berechtigtes Interesse daran, zu wissen, ob das Tool nützlich ist, und es vor Missbrauch zu schützen.",
+        "retention": "Summen werden für Auswertungen aufbewahrt; Hashes für die Anfragebegrenzung höchstens einen Tag."
+      },
+      /* impact-privacy:end */
       "contactForm": {
         "title": "Kontaktformular",
         "body": "Ihr Name, Ihre E-Mail-Adresse und Ihre Nachricht. Wird ausschliesslich verwendet, um Ihnen zu antworten und den Verlauf festzuhalten.",
@@ -360,12 +830,12 @@ de: {
     "processors": {
       "hubspot": {
         "name": "HubSpot, Inc.",
-        "handles": "Kontaktformular, Terminbuchungen, Playbook-Anfragen, E-Mail, CRM-Daten und — mit Ihrer Einwilligung — Website-Analyse.",
+        "handles": "Kontaktformular, Terminbuchungen, Playbook-Anfragen, E-Mail, CRM-Daten und — mit Ihrer Einwilligung — Website-Analyse. Anfragen für Interpretationen der Impact-Checkliste.",
         "where": "EU-Rechenzentrum (Frankfurt). Das HubSpot-Konto von facilit8 wird in der EU-Region gehostet."
       },
       "netlify": {
         "name": "Netlify, Inc.",
-        "handles": "Hostet und liefert diese Website aus. Übliche Server-Logs einschliesslich IP-Adresse für Sicherheit und Betrieb.",
+        "handles": "Hostet und liefert diese Website aus. Übliche Server-Logs einschliesslich IP-Adresse für Sicherheit und Betrieb. Anonyme Baseline-Datensätze der Impact-Checkliste, Nutzungszahlen und kurzlebige Hashes für die Anfragebegrenzung (Netlify Blobs).",
         "where": "Globales Content-Delivery-Netzwerk."
       }
     },
@@ -387,7 +857,7 @@ de: {
     "cookiesLinkIntro": "Cookie-Details und Ihre Einstellungen finden Sie auf der Seite",
     "cookiesLinkCta": "Cookies & Datenschutz",
     "contactNote": "Fragen dazu? Schreiben Sie an",
-    "lastUpdated": "Zuletzt aktualisiert: August 2026."
+    "lastUpdated": "Zuletzt aktualisiert: September 2026."
   },
   home: {
     hero: { eyebrow:'Commercial Transformation', headline1:'Die Technologie ist vorhanden.', headline2:'Die Ergebnisse sollten es auch sein.', sub:'Das AI-Zeitfenster ist offen.', primaryCta:'Termin buchen', secondaryCta:'Über facilit8' },
@@ -516,6 +986,436 @@ de: {
     pilotLeadCta: { heading:'Führen Sie einen Lead-Harmonisierungs-Pilot durch?', body:'Ein dreissigminütiges Gespräch mit David zeigt Ihnen, ob dieses Framework zu Ihrer Situation passt — oder was für Ihre Märkte angepasst werden sollte.', cta:'Gespräch vereinbaren' },
     cmoFirefighterCta: { heading:'Ein anderes Cash-Problem?', body:'Ein Gespräch kostet nichts. Wir sagen Ihnen direkt, ob dieses Playbook passt — oder ob etwas anderes Sie weiter bringt.', cta:'Gespräch vereinbaren' }
   },
+  /* impact:start */
+  impact: {
+    "meta": {
+      "title": "Impact-Checkliste — facilit8",
+      "description": "Acht Dimensionen des Vertrauens entscheiden, ob eine Transformation Wirkung erzielt. Bewerten Sie Ihre Zuversicht in jeder, erkennen Sie, wo das Vertrauen fragil ist, und entscheiden Sie, wo Sie beginnen."
+    },
+    "back": "← Zurück zu facilit8.org",
+    "langLabel": "Sprache",
+    "hero": {
+      "eyebrow": "facilit8 Impact-Checkliste",
+      "headline": "KI kann Ihre Prozesse diagnostizieren. Nur Menschen können das Vertrauen aufbauen, das es braucht, um Wirkung zu erzielen.",
+      "intro": "Was KI nicht kann: die Zuversicht schaffen, die aus einem Plan Ergebnisse macht. Transformationen scheitern selten an fehlenden Erkenntnissen. Sie scheitern, wenn Führungskräfte das Vertrauen in die Richtung, in den Plan oder ineinander verlieren. Alle acht Dimensionen sind unverzichtbar: Eine Schwäche in einer davon gefährdet die Wirkung, die Ihre Kundschaft erwartet. Diese Checkliste zeigt, wo das Vertrauen stark ist, wo es fragil ist und wo Sie zuerst ansetzen sollten."
+    },
+    "tabs": {
+      "model": "Das Modell",
+      "assess": "Checkliste",
+      "results": "Ihre Ergebnisse",
+      "team": "Teamvergleich"
+    },
+    "model": {
+      "impact": "Impact",
+      "impactBody": "Impact: Ergebnisse für das Unternehmen und seine Kundschaft. Alle acht Dimensionen sind unverzichtbar, um sie zu erreichen. Eine schwache Dimension gefährdet die Wirkung bei der Kundschaft und deren Erwartungen.",
+      "leadership": "Führung",
+      "leadershipOwner": "Verantwortet von Sponsor und Führungsteam",
+      "capabilities": "Fähigkeiten",
+      "capabilitiesOwner": "Umgesetzt durch die Organisation",
+      "lensLabel": "Kundensicht",
+      "scaleNote": "Vertrauen bedeutet Zuversicht. Bewerten Sie jeden Punkt von 0 % (kein Vertrauen) bis 100 % (volles Vertrauen). Höher ist immer besser, auch beim Risiko: Ein hoher Wert bedeutet, dass Risiken verstanden und gesteuert werden.",
+      "learningLabel": "Was wir unter Lernen verstehen",
+      "learningDef": "Lernen ist die Fähigkeit der Organisation, neue Fähigkeiten laufend aufzubauen, anzuwenden und zu teilen, auch im Umgang mit KI, so schnell, wie sich die Arbeit verändert.",
+      "start": "Checkliste starten"
+    },
+    "dims": {
+      "direction": {
+        "name": "Richtung",
+        "question": "Warum?",
+        "attributes": [
+          "Klarheit",
+          "Ausrichtung",
+          "Kommerzielle Ergebnisse"
+        ],
+        "lens": "Das Kundenerlebnis erneuern und sich vom Wettbewerb abheben",
+        "quick": "…alle wissen, warum wir das tun, wohin wir gehen und wie es uns für unsere Kundschaft abheben wird?",
+        "statements": [
+          "Das Ziel und warum es wichtig ist, sind klar und schriftlich festgehalten.",
+          "Das Führungsteam erzählt dieselbe Geschichte darüber, wohin wir gehen.",
+          "Wir haben vereinbart, welche kommerziellen Ergebnisse und welche Ergebnisse für die Kundschaft dies liefern muss, etwa Umsatz, Marge, Produktivität oder Kundenerlebnis."
+        ],
+        "levels": [
+          "Kein vereinbartes Ziel; die Leute beschreiben unterschiedliche Ziele",
+          "Ziel an der Spitze vereinbart, aber in den Teams noch nicht verstanden",
+          "Alle können das Ziel, seine kommerziellen Ergebnisse und seine Bedeutung für die Kundschaft erklären"
+        ],
+        "coaching": [
+          "Wenn eine Kundin oder ein Kunde fragen würde, was in einem Jahr für sie anders sein wird: Was würde jede und jeder von uns antworten?",
+          "Bei welchem Teil der Richtung fühlen Sie sich am sichersten, und bei welchem am unsichersten?"
+        ],
+        "aiHelp": "Szenariomodellierung und Synthese von Markt- und Kundensignalen",
+        "aiRisk": "Eine Strategie, die wie die aller anderen klingt, weil sie von derselben KI stammt"
+      },
+      "risk": {
+        "name": "Risiko",
+        "question": "Was könnte uns aufhalten?",
+        "attributes": [
+          "Annahmen",
+          "Konsequenzen & Hindernisse",
+          "KI-Governance & Ethik"
+        ],
+        "lens": "Risiko für die Kundschaft, wenn wir scheitern oder wenn die KI falsch liegt",
+        "quick": "…wir verstehen, was uns aufhalten könnte, einschliesslich Risiken durch KI und Risiken für unsere Kundschaft, und dies steuern?",
+        "statements": [
+          "Wir wissen, was zutreffen muss, um das Ziel zu erreichen, und wir überprüfen es.",
+          "Wir verstehen, was für uns und unsere Kundschaft passiert, wenn wir scheitern, und was Wirkung verhindern könnte, und jedes Hindernis hat eine verantwortliche Person.",
+          "Wir haben klare Regeln für den verantwortungsvollen Einsatz von KI, die Bias, Transparenz, Datennutzung und Regulierung wie den EU AI Act abdecken."
+        ],
+        "levels": [
+          "Risiken werden erst besprochen, wenn sie eintreten",
+          "Die wichtigsten Risiken sind erfasst, werden aber selten überprüft; keine klaren Regeln für den KI-Einsatz",
+          "Annahmen werden überprüft, Risiken haben Verantwortliche und werden überprüft, und der KI-Einsatz folgt klaren Regeln"
+        ],
+        "coaching": [
+          "Was müsste zutreffen, damit dies gelingt, und bei welchen dieser Punkte sind wir am unsichersten?",
+          "Wo möchten wir, dass ein Mensch prüft, was die KI vorschlägt?"
+        ],
+        "aiHelp": "Frühwarnsignale und Überprüfung von Annahmen anhand von Daten",
+        "aiRisk": "Verborgene Modellrisiken und zu grosses Vertrauen in das Urteil der KI"
+      },
+      "decisions": {
+        "name": "Entscheidungen",
+        "question": "Wer entscheidet?",
+        "attributes": [
+          "Entscheidungsrechte (inkl. Mensch vs. KI)",
+          "Priorisierung",
+          "Zusammenhalt"
+        ],
+        "lens": "Die Stimme der Kundschaft in Entscheidungen",
+        "quick": "…die richtigen Personen die richtigen Entscheidungen im richtigen Tempo treffen, als ein Team und mit der Kundschaft im Blick?",
+        "statements": [
+          "Es ist klar, wer was auf welcher Ebene und wie schnell entscheidet, auch welche Entscheidungen KI treffen oder empfehlen darf und welche bei Menschen bleiben.",
+          "Auch wenn alles wichtig scheint, können wir sagen, was zuerst kommt, mit der Kundschaft im Blick.",
+          "Wir handeln als ein Führungsteam. Unterschiedliche Sichtweisen werden offen angesprochen und geklärt, und wir tragen Entscheidungen gemeinsam mit."
+        ],
+        "levels": [
+          "Unklar, wer entscheidet; Entscheidungen stocken oder werden wieder aufgerollt",
+          "Klar bei grossen Entscheidungen, weniger im Alltag",
+          "Entscheidungen fallen auf der richtigen Ebene, im richtigen Tempo, und werden gemeinsam getragen"
+        ],
+        "coaching": [
+          "Welche Entscheidung würde, wenn sie diesen Monat fällt, den grössten Fortschritt ermöglichen?",
+          "Wo sind wir uns im Raum einig, handeln danach aber unterschiedlich?"
+        ],
+        "aiHelp": "Schnellere Analyse von Optionen und Entscheidungsunterstützung",
+        "aiRisk": "Unklare Verantwortung für Entscheidungen, die KI trifft oder beeinflusst"
+      },
+      "plan": {
+        "name": "Plan",
+        "question": "Wann und wie viel?",
+        "attributes": [
+          "Iteration",
+          "Ressourcen",
+          "Probleme"
+        ],
+        "lens": "Die Kundschaft laufend einbeziehen",
+        "quick": "…unser Plan uns schrittweise liefern lässt, ausreichend mit Ressourcen ausgestattet ist und die Kundschaft laufend einbezieht?",
+        "statements": [
+          "Wir liefern in kurzen Zyklen, beziehen die Kundschaft ein, lernen aus den Ergebnissen und passen an.",
+          "Die benötigten Personen und Budgets sind fest zugesagt, nicht nur ausgeliehen.",
+          "Probleme werden früh angesprochen und rasch gelöst."
+        ],
+        "levels": [
+          "Starrer Plan, zu wenig Ressourcen, Probleme zeigen sich spät",
+          "Ressourcen teilweise zugesagt; Anpassungen sind langsam",
+          "Kurze Lieferzyklen, fest zugesagte Ressourcen, Probleme werden rasch gelöst"
+        ],
+        "coaching": [
+          "Was könnten wir in den nächsten 90 Tagen liefern, das die Kundschaft bemerken würde?",
+          "Womit könnten wir aufhören, um die Menschen freizuspielen, die dies braucht?"
+        ],
+        "aiHelp": "Prognosen, Ressourcenplanung und frühe Problemerkennung",
+        "aiRisk": "Scheinbare Präzision in KI-generierten Plänen"
+      },
+      "people": {
+        "name": "Menschen",
+        "question": "Wer?",
+        "attributes": [
+          "Fähigkeiten & KI-Lernen",
+          "Verantwortung",
+          "Engagement"
+        ],
+        "lens": "Teams mit Kundenkontakt sind für das neue Erlebnis gerüstet",
+        "quick": "…unsere Mitarbeitenden die Fähigkeiten, einschliesslich KI-Kompetenzen, und die Eigenverantwortung haben, um für die Kundschaft zu liefern?",
+        "statements": [
+          "Wir bauen die benötigten Fähigkeiten laufend auf, auch den sicheren Umgang mit KI, so schnell, wie sich die Arbeit verändert.",
+          "Jedes Ergebnis hat eine benannte verantwortliche Person, die dranbleibt.",
+          "Die Mitarbeitenden, auch die Teams mit Kundenkontakt, übernehmen neue Arbeitsweisen, und die Veränderung bleibt."
+        ],
+        "levels": [
+          "Kompetenzlücken bleiben offen; Verantwortung ist unklar",
+          "Schlüsselrollen sind besetzt; Lernen, auch zu KI, geschieht punktuell",
+          "Fähigkeiten, auch zu KI, wachsen laufend, und jedes Ergebnis hat eine engagierte verantwortliche Person"
+        ],
+        "coaching": [
+          "Was haben die Mitarbeitenden in den letzten sechs Monaten gelernt, und wie haben sie es gelernt?",
+          "Was würde den Mitarbeitenden helfen, sich im Umgang mit KI sicher zu fühlen?"
+        ],
+        "aiHelp": "Copiloten, personalisiertes Lernen und Einblicke in die Nutzung",
+        "aiRisk": "Angst um Arbeitsplätze und Kompetenzverlust durch übermässige Nutzung"
+      },
+      "partners": {
+        "name": "Partner",
+        "question": "Mit wem?",
+        "attributes": [
+          "Expertise",
+          "Ausrichtung",
+          "Kommerzielle Passung"
+        ],
+        "lens": "Partner stärken das Kundenerlebnis",
+        "quick": "…unsere Partner fähig und auf unsere Ziele ausgerichtet sind und das Erlebnis unserer Kundschaft verbessern?",
+        "statements": [
+          "Unsere externen Partner bringen Fachwissen, das wir intern nicht haben.",
+          "Partner arbeiten auf unsere Ergebnisse und das Erlebnis unserer Kundschaft hin, nicht nur auf ihren eigenen Auftragsumfang.",
+          "Verträge und Anreize belohnen die Ergebnisse, die wir brauchen."
+        ],
+        "levels": [
+          "Partner liefern nur den vertraglichen Umfang",
+          "Partner sind fähig, aber nur teilweise auf unsere Ergebnisse ausgerichtet",
+          "Partner teilen unsere Ziele, und Anreize belohnen die Ergebnisse, die wir brauchen"
+        ],
+        "coaching": [
+          "Was wissen unsere Partner über unsere Kundschaft, das wir besser nutzen könnten?",
+          "Wenn der Vertrag eines Partners morgen enden würde: Was würden wir am meisten vermissen?"
+        ],
+        "aiHelp": "Lieferantenbewertung und Vertragsanalyse",
+        "aiRisk": "Abhängigkeit von Anbietern und Versprechen, die die Realität übertreffen"
+      },
+      "data": {
+        "name": "Daten",
+        "question": "Was brauchen wir?",
+        "attributes": [
+          "Qualität",
+          "Sicherheit (inkl. Nachvollziehbarkeit)",
+          "Integrität"
+        ],
+        "lens": "Kundendaten sind sicher und werden gut genutzt",
+        "quick": "…wir die Daten haben, die wir brauchen, sicher und vertrauenswürdig, einschliesslich unserer Kundendaten?",
+        "statements": [
+          "Wir haben die Daten, die wir brauchen, genau und vollständig genug, um danach zu handeln.",
+          "Daten, besonders Kundendaten, sind geschützt, DSG/DSGVO-konform und nachvollziehbar: Wir wissen, woher sie stammen und wer sie nutzt.",
+          "Es gibt eine vertrauenswürdige Version der Wahrheit über Teams und Systeme hinweg."
+        ],
+        "levels": [
+          "Daten sind unvollständig, nicht vertrauenswürdig oder unsicher",
+          "Kerndaten sind nutzbar, aber Versionen widersprechen sich und die Sicherheit ist uneinheitlich",
+          "Eine vertrauenswürdige, sichere Version der Wahrheit, auch bei Kundendaten"
+        ],
+        "coaching": [
+          "Welche Entscheidung wäre einfacher, wenn wir eine Zahl hätten, der wir alle vertrauen?",
+          "Welche Kundendaten haben wir, die wir noch nicht gut nutzen?"
+        ],
+        "aiHelp": "Datenbereinigung, Nachverfolgung der Datenherkunft und Anomalieerkennung",
+        "aiRisk": "Bias, Datenschutzverletzungen und Verstösse gegen Vorschriften"
+      },
+      "systems": {
+        "name": "Prozesse & Systeme",
+        "question": "Wie?",
+        "attributes": [
+          "Tempo",
+          "Benutzerfreundlichkeit",
+          "Automatisierung"
+        ],
+        "lens": "Self-Service für die Kundschaft",
+        "quick": "…unsere Prozesse und Systeme uns bei der Umsetzung helfen und es der Kundschaft leicht machen, sich selbst zu bedienen?",
+        "statements": [
+          "Unsere Prozesse und Systeme ermöglichen schnelle Anpassung und Umsetzung.",
+          "Unsere Prozesse und Systeme sind einfach zu nutzen, und die Kundschaft kann sich selbst bedienen, wo sie das bevorzugt.",
+          "Wiederkehrende Arbeit ist automatisiert, wo es sinnvoll ist."
+        ],
+        "levels": [
+          "Manuelle Prozesse; Systeme stehen im Weg",
+          "Systeme unterstützen die Kernarbeit; wenig Automatisierung oder Self-Service",
+          "Schnelle, einfache Prozesse, sinnvolle Automatisierung und einfacher Self-Service für die Kundschaft"
+        ],
+        "coaching": [
+          "Wo warten Kundinnen und Kunden oder Kolleginnen und Kollegen heute am längsten?",
+          "Was würde die Kundschaft gerne selbst erledigen, wenn wir es einfach machen würden?"
+        ],
+        "aiHelp": "Process Mining, Automatisierung, KI-Agenten und Self-Service für die Kundschaft",
+        "aiRisk": "Einen fehlerhaften Prozess automatisieren, sodass er schneller scheitert"
+      }
+    },
+    "scale": {
+      "prefix": "Wie sehr vertrauen Sie darauf, dass…",
+      "labels": [
+        "Kein Vertrauen",
+        "Gering",
+        "Teilweise",
+        "Hoch",
+        "Volles Vertrauen"
+      ],
+      "groupLabel": "Vertrauen: {item}"
+    },
+    "setup": {
+      "heading": "Bevor Sie beginnen",
+      "body": "Nur Branche und Unternehmensgrösse sind erforderlich. Nichts verlässt Ihren Browser, ausser Sie entscheiden sich dafür.",
+      "name": "Name",
+      "role": "Funktion",
+      "org": "Organisation",
+      "initiative": "Bewertete Initiative",
+      "optional": "optional",
+      "required": "erforderlich",
+      "industry": "Branche",
+      "industryOptions": {
+        "lifeSciences": "Life Sciences",
+        "consumer": "Konsumgüter",
+        "industrial": "Industrie",
+        "other": "Andere"
+      },
+      "size": "Unternehmensgrösse",
+      "sizeOptions": {
+        "lt50": "Unter 50 Mitarbeitende",
+        "50to249": "50–249 Mitarbeitende",
+        "250to999": "250–999 Mitarbeitende",
+        "1000plus": "1000+ Mitarbeitende"
+      },
+      "choose": "Bitte wählen",
+      "mode": "Modus wählen",
+      "quickH": "Kurz-Check · 8 Punkte",
+      "quickP": "Eine Leitfrage pro Dimension. Rund 5 Minuten. Kostenlos.",
+      "deepH": "Vertiefte Bewertung · 24 Punkte",
+      "deepP": "Drei Aussagen pro Dimension, mit Beispielen für jede Stufe. Rund 15 Minuten. Erfordert einen Zugangscode.",
+      "code": "Zugangscode",
+      "unlock": "Freischalten",
+      "checking": "Wird geprüft…",
+      "codeOk": "Zugangscode akzeptiert. Vertiefte Bewertung freigeschaltet.",
+      "codeInvalid": "Dieser Zugangscode ist nicht gültig. Bitte prüfen Sie ihn und versuchen Sie es erneut.",
+      "codeExpired": "Dieser Zugangscode ist abgelaufen. Bitte kontaktieren Sie facilit8 für einen neuen Code.",
+      "codeError": "Der Code konnte gerade nicht geprüft werden. Bitte versuchen Sie es gleich noch einmal.",
+      "codeLimited": "Zu viele Versuche. Bitte warten Sie einige Minuten und versuchen Sie es erneut.",
+      "paidNote": "Die vertiefte Bewertung und der Teamvergleich werden von facilit8 moderiert.",
+      "paidLink": "Nehmen Sie Kontakt auf, um mehr zu erfahren."
+    },
+    "assess": {
+      "progress": "{a} von {b} beantwortet",
+      "levelsHeading": "So lesen Sie die Skala",
+      "level0": "So sieht 0 % aus",
+      "level50": "So sieht 50 % aus",
+      "level100": "So sieht 100 % aus",
+      "continue": "Weiter",
+      "missing": "Noch {n} Punkte offen. Sie sind markiert.",
+      "missingOne": "Noch 1 Punkt offen. Er ist markiert.",
+      "missingSetup": "Bitte wählen Sie Ihre Branche und Unternehmensgrösse.",
+      "deepLocked": "Geben Sie einen gültigen Zugangscode ein, um die vertiefte Bewertung zu nutzen, oder wählen Sie den Kurz-Check."
+    },
+    "rank": {
+      "heading": "Wo würden Sie beginnen?",
+      "body": "Alle acht Dimensionen sind unverzichtbar, und bei diesen fünf ist Ihr Vertrauen am geringsten. Wo würden Sie beginnen? Bringen Sie sie in die Reihenfolge, in der Sie sie angehen würden.",
+      "bodyTie": "Alle acht Dimensionen sind unverzichtbar, und bei diesen {n} ist Ihr Vertrauen am geringsten (einige haben denselben Wert). Wo würden Sie beginnen? Bringen Sie sie in die Reihenfolge, in der Sie sie angehen würden.",
+      "hint": "Ziehen Sie die Zeilen oder nutzen Sie die Pfeiltasten, um die Reihenfolge festzulegen. Oben steht, wo Sie beginnen würden.",
+      "drag": "{dim} verschieben",
+      "up": "{dim} nach oben",
+      "down": "{dim} nach unten",
+      "moved": "{dim} ist jetzt auf Position {n}.",
+      "confirm": "Das ist meine Reihenfolge — Ergebnisse anzeigen",
+      "back": "Zurück zur Checkliste",
+      "trust": "Vertrauen {n} %"
+    },
+    "results": {
+      "empty": "Schliessen Sie die Checkliste ab, um Ihre Ergebnisse zu sehen.",
+      "heading": "Ihr Vertrauensbarometer",
+      "overall": "Gesamtvertrauen",
+      "leadership": "Führung",
+      "capabilities": "Fähigkeiten",
+      "bands": [
+        "Beheben",
+        "Stärken",
+        "Erhalten"
+      ],
+      "startHere": "Hier beginnen",
+      "modeQuick": "Kurz-Check",
+      "modeDeep": "Vertiefte Bewertung",
+      "gapLabel": "Eine Frage zum Nachdenken",
+      "gapNote": "Ihre Werte für Führung liegen deutlich über denen für Fähigkeiten. Würden Ihre Teams die Führung gleich bewerten?",
+      "sustainHeading": "Erhalten, was funktioniert",
+      "sustain": "Alle Dimensionen liegen bei 75 % oder höher. Ihr Fokus liegt darauf, zu erhalten, was funktioniert: Überprüfen Sie diese Werte, wenn sich die Arbeit verändert, und fragen Sie, ob andere in der Organisation sie gleich bewerten würden.",
+      "startHeading": "Wo beginnen",
+      "startIntro": "Die von Ihnen gewählte Reihenfolge, mit Ihrem Vertrauenswert für jede Dimension.",
+      "coachingHeading": "Coaching-Fragen",
+      "coachingFrame": "Fragen, die Sie gemeinsam erkunden können. Es gibt keine falschen Antworten.",
+      "coachingMore": "Weitere Fragen zu Ihren anderen Bereichen sind Teil eines Gesprächs mit facilit8.",
+      "aiHeading": "Wie KI helfen kann",
+      "aiRiskLabel": "KI-Risiko im Blick behalten",
+      "readMore": "Mehr lesen",
+      "nextHeading": "Das nächste Gespräch",
+      "nextBody": "Denken Sie an eine häufige Kundenbeschwerde. Welche dieser Dimensionen stehen dahinter? Beginnen Sie mit den beteiligten Fähigkeiten und fragen Sie dann, was die Führung ändern könnte, um es einfacher zu machen. Selten ist es nur eine Dimension. Oft sind es mehrere, manchmal alle acht. Genau dieses Gespräch kann facilit8 mit Ihnen führen.",
+      "nextCta": "Mit facilit8 sprechen",
+      "keepHeading": "Ergebnisse sichern",
+      "keepBody": "Laden Sie ein PDF für sich herunter oder exportieren Sie eine Ergebnisdatei, damit eine Moderation die Sichtweisen mehrerer Führungskräfte vergleichen kann.",
+      "pdf": "PDF herunterladen",
+      "export": "Ergebnisdatei exportieren",
+      "paidNote": "Die vertiefte Bewertung und der Teamvergleich werden von facilit8 moderiert.",
+      "paidLink": "Nehmen Sie Kontakt auf, um mehr zu erfahren."
+    },
+    "interpret": {
+      "heading": "Eine persönliche Interpretation von Dave",
+      "consent": "Senden Sie mir meine Ergebnisse und eine persönliche einseitige Interpretation von Dave per E-Mail.",
+      "email": "E-Mail",
+      "name": "Name",
+      "org": "Organisation",
+      "optional": "optional",
+      "marketing": "Senden Sie mir auch gelegentlich Impulse von facilit8.",
+      "submit": "Anfrage senden",
+      "sending": "Wird gesendet…",
+      "ok": "Vielen Dank. Dave sendet Ihnen Ihre Interpretation persönlich.",
+      "turnaround": "Sie erhalten sie innerhalb von {t}.",
+      "errEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "err": "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder exportieren Sie Ihre Ergebnisdatei und senden Sie sie an david@facilit8.org.",
+      "limited": "Zu viele Anfragen. Bitte warten Sie einige Minuten und versuchen Sie es erneut.",
+      "privacy": "Was gesendet wird und warum, erklärt die",
+      "privacyLink": "Datenschutzerklärung"
+    },
+    "baseline": {
+      "heading": "Swiss Impact Baseline",
+      "consent": "Meine anonymen Werte zur facilit8 Swiss Impact Baseline hinzufügen.",
+      "detail": "Gespeichert werden nur Datum, Sprache, Modus, Branche, Unternehmensgrösse, Ihre 8 Vertrauenswerte und Ihre Reihenfolge. Kein Name, keine E-Mail, keine Organisation und keine Initiative.",
+      "submit": "Werte hinzufügen",
+      "sending": "Wird gesendet…",
+      "ok": "Vielen Dank. Ihre anonymen Werte wurden hinzugefügt.",
+      "err": "Ihre Werte konnten nicht hinzugefügt werden. Bitte versuchen Sie es später erneut.",
+      "limited": "Zu viele Anfragen. Bitte warten Sie einige Minuten und versuchen Sie es erneut."
+    },
+    "team": {
+      "heading": "Mehrere Führungskräfte vergleichen",
+      "body": "Laden Sie die exportierten Ergebnisdateien aller Führungskräfte. Das Tool zeigt das durchschnittliche Vertrauen pro Dimension, wie weit die Einschätzungen auseinanderliegen und wo die Führungskräfte beginnen würden.",
+      "gateHeading": "Zugang für die Moderation",
+      "gateBody": "Der Teamvergleich wird von facilit8 moderiert. Geben Sie Ihren Zugangscode ein, um fortzufahren.",
+      "load": "Ergebnisdateien laden",
+      "clear": "Leeren",
+      "bad": "{f} ist keine gültige Ergebnisdatei.",
+      "who": "{n} Personen",
+      "whoOne": "1 Person",
+      "leader": "Führungskraft {x}",
+      "showNames": "Namen anzeigen",
+      "noName": "(kein Name)",
+      "th": [
+        "Dimension",
+        "Durchschnittliches Vertrauen",
+        "Spanne (tiefster bis höchster Wert)",
+        "In den Top 3",
+        "Signal"
+      ],
+      "flag": "Unterschiedliche Sichtweisen",
+      "top3": "{n} von {m}",
+      "spreadNote": "Eine Spanne von 50 Punkten oder mehr zeigt, dass die Führungskräfte diese Dimension sehr unterschiedlich sehen. Dieses Gespräch ist oft wichtiger als der Wert selbst.",
+      "startHeading": "Wo das Team beginnen würde",
+      "startIntro": "Geordnet danach, wie viele Führungskräfte eine Dimension in ihre Top 3 gesetzt haben, dann nach durchschnittlichem Vertrauen (tiefster Wert zuerst).",
+      "startNone": "Keine Führungskraft hat eine Dimension in ihre Top 3 gesetzt: Alle Dimensionen lagen bei allen bei 75 % oder höher.",
+      "votes": "bei {n} von {m} in den Top 3 · Vertrauen im Schnitt {a} %"
+    },
+    "card": {
+      "eyebrow": "Kostenloses Tool · Für Sponsoren & Führungsteams",
+      "title": "Die facilit8 Impact-Checkliste",
+      "sub": "KI kann Ihre Prozesse diagnostizieren. Nur Menschen können das Vertrauen aufbauen, das es braucht, um Wirkung zu erzielen. Bewerten Sie acht Dimensionen des Vertrauens in rund fünf Minuten und sehen Sie, wo Sie beginnen.",
+      "tags": [
+        "Vertrauen",
+        "Führung",
+        "5 Minuten"
+      ]
+    }
+  },
+  /* impact:end */
 }
 
   }; /* end TRANSLATIONS */

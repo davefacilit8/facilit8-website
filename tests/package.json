@@ -1,0 +1,14 @@
+{
+  "name": "facilit8-website-tests",
+  "private": true,
+  "description": "Impact Checklist acceptance tests. Kept separate so the Netlify build does not install Playwright.",
+  "scripts": {
+    "test": "npm run test:functions && npm run test:e2e",
+    "test:functions": "node --test functions.test.js",
+    "test:e2e": "playwright test",
+    "server": "node support/server.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}
