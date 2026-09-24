@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>facilit8 Impact Checklist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --f8-blue:#0070C0;--f8-blue-bright:#0090E7;--f8-blue-deep:#005896;--f8-blue-tint:#E8F4FC;
+  --f8-navy:#0A1628;--f8-navy-2:#142238;
+  --f8-teal:#007B8A;--f8-teal-tint:#E6F4F6;
+  --f8-amber:#B86A00;--f8-amber-tint:#FFF4E0;
+  --f8-green:#1A6B3A;--f8-green-tint:#EAF6EE;
+  --f8-red:#C0392B;--f8-red-tint:#FDEEEC;
+  --f8-slate:#3D5166;--f8-slate-tint:#EDF1F5;
+  --f8-off-white:#F5F7FA;--f8-fog:#E6ECF2;--f8-mist:#C9D2DD;--f8-grey:#6B7A99;
+  --f8-ink:#1A1A2E;--f8-ink-soft:#3A3F55;--f8-white:#FFFFFF;
+  --font-sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --r-md:8px;--r-lg:12px;--r-xl:16px;
+  --shadow-1:0 1px 3px rgba(10,22,40,.06);
+  --shadow-2:0 4px 16px rgba(10,22,40,.08),0 1px 3px rgba(10,22,40,.04);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:var(--font-sans);background:var(--f8-off-white);color:var(--f8-ink);-webkit-font-smoothing:antialiased;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 20px 64px}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:20px;color:var(--f8-navy);letter-spacing:-.02em}
+.brand span{color:var(--f8-blue)}
+.lang{display:flex;border:1px solid var(--f8-mist);border-radius:var(--r-md);overflow:hidden}
+.lang button{border:0;background:var(--f8-white);padding:6px 14px;font:600 13px var(--font-sans);color:var(--f8-slate);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--f8-navy);color:var(--f8-white)}
+h1{font-size:clamp(28px,4.4vw,44px);font-weight:800;letter-spacing:-.02em;color:var(--f8-navy);line-height:1.12;margin-bottom:12px;max-width:18ch}
+h2{font-size:21px;font-weight:700;color:var(--f8-navy);letter-spacing:-.01em;margin-bottom:6px}
+h3{font-size:15px;font-weight:600;color:var(--f8-navy)}
+p.lead{font-size:16px;color:var(--f8-ink-soft);max-width:62ch;margin-bottom:24px}
+.muted{color:var(--f8-grey);font-size:13px}
+.card{background:var(--f8-white);border:1px solid var(--f8-fog);border-radius:var(--r-lg);padding:24px;box-shadow:var(--shadow-1);margin-bottom:20px}
+.tabs{display:flex;gap:4px;margin-bottom:20px;border-bottom:1px solid var(--f8-mist);flex-wrap:wrap}
+.tabs button{border:0;background:none;padding:10px 16px;font:600 14px var(--font-sans);color:var(--f8-grey);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--f8-navy);border-bottom-color:var(--f8-blue)}
+.view{display:none}.view.on{display:block}
+/* model */
+.model{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.roof{grid-column:1/-1;text-align:center;background:var(--f8-navy);color:var(--f8-white);border-radius:var(--r-lg);padding:14px;font-weight:700;font-size:18px;letter-spacing:.01em}
+.roof small{display:block;font-weight:400;font-size:13px;opacity:.75}
+.pillar{border-radius:var(--r-lg);padding:16px;border:1px solid var(--f8-fog);background:var(--f8-white)}
+.pillar.lead{border-top:4px solid var(--f8-blue)}
+.pillar.cap{border-top:4px solid var(--f8-teal)}
+.pillar h3{margin-bottom:4px}
+.pillar .owner{font-size:12.5px;color:var(--f8-grey);margin-bottom:10px}
+.dim{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;padding:10px 0;border-top:1px solid var(--f8-fog)}
+.dim b{font-size:14.5px;color:var(--f8-navy)}
+.dim .q{font-size:13px;font-weight:600}
+.lead .dim .q{color:var(--f8-blue)}.cap .dim .q{color:var(--f8-teal)}
+.dim .attrs{grid-column:1/-1;font-size:12.5px;color:var(--f8-grey)}
+/* forms */
+label.f{display:block;font-size:13px;font-weight:600;color:var(--f8-navy);margin-bottom:4px}
+input[type=text],input[type=email]{width:100%;padding:10px 12px;border:1px solid var(--f8-mist);border-radius:var(--r-md);font:400 14px var(--font-sans);color:var(--f8-ink)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.mode{border:1.5px solid var(--f8-mist);border-radius:var(--r-lg);padding:14px;cursor:pointer;background:var(--f8-white);text-align:left;font-family:var(--font-sans)}
+.mode[aria-pressed="true"]{border-color:var(--f8-blue);background:var(--f8-blue-tint)}
+.mode b{display:block;color:var(--f8-navy);font-size:15px}
+.mode span{font-size:13px;color:var(--f8-ink-soft)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:var(--r-md);padding:11px 18px;font:600 14px var(--font-sans);cursor:pointer;background:var(--f8-blue);color:var(--f8-white)}
+.btn:hover{background:var(--f8-blue-deep)}
+.btn.ghost{background:var(--f8-white);color:var(--f8-navy);border:1px solid var(--f8-mist)}
+.btn.ghost:hover{background:var(--f8-fog)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.err{color:var(--f8-red);font-size:13px;margin-top:8px;min-height:18px}
+:focus-visible{outline:3px solid var(--f8-blue-bright);outline-offset:2px}
+/* assessment */
+.progress{height:6px;background:var(--f8-fog);border-radius:3px;overflow:hidden;margin:6px 0 20px}
+.progress i{display:block;height:100%;background:var(--f8-blue);width:0;transition:width .25s}
+.item{border-left:4px solid var(--f8-blue);padding:18px 20px;background:var(--f8-white);border-radius:0;margin-bottom:14px;border-top:1px solid var(--f8-fog);border-right:1px solid var(--f8-fog);border-bottom:1px solid var(--f8-fog)}
+.item.cap{border-left-color:var(--f8-teal)}
+.item.missing{background:var(--f8-red-tint)}
+.item .head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.item .tag{font-size:12.5px;font-weight:600;color:var(--f8-grey)}
+.item p.stmt{font-size:15px;color:var(--f8-ink);margin-bottom:12px;max-width:70ch}
+.sub{padding:12px 0;border-top:1px dashed var(--f8-fog)}
+.sub p{font-size:14px;margin-bottom:8px}
+.sub .an{font-size:12px;font-weight:600;color:var(--f8-grey)}
+.scale{display:flex;flex-wrap:wrap;gap:6px}
+.scale button{flex:1 1 90px;border:1px solid var(--f8-mist);background:var(--f8-white);border-radius:var(--r-md);padding:8px 6px;font:500 12.5px var(--font-sans);color:var(--f8-ink-soft);cursor:pointer;line-height:1.25}
+.scale button b{display:block;font-size:14px;color:var(--f8-navy)}
+.scale button[aria-pressed="true"]{background:var(--f8-navy);border-color:var(--f8-navy);color:var(--f8-white)}
+.scale button[aria-pressed="true"] b{color:var(--f8-white)}
+.imp{margin-top:12px}
+.imp .scale button{flex:1 1 60px}
+.sublabel{font-size:12.5px;font-weight:600;color:var(--f8-slate);margin-bottom:6px}
+/* results */
+.gauges{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gauge{text-align:center;padding:12px 6px 14px;background:var(--f8-white);border:1px solid var(--f8-fog);border-radius:var(--r-lg)}
+.gauge svg{width:100%;max-width:150px;height:auto}
+.gauge .n{font-weight:700;color:var(--f8-navy);font-size:14px}
+.gauge .qq{font-size:12px;color:var(--f8-grey)}
+.gauge .band{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:10px}
+.b-red{background:var(--f8-red-tint);color:var(--f8-red)}
+.b-amber{background:var(--f8-amber-tint);color:var(--f8-amber)}
+.b-green{background:var(--f8-green-tint);color:var(--f8-green)}
+.grouplabel{font-size:13px;font-weight:700;margin:18px 0 8px;display:flex;justify-content:space-between}
+.grouplabel.l{color:var(--f8-blue)}.grouplabel.c{color:var(--f8-teal)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:8px}
+.kpi{background:var(--f8-navy);color:var(--f8-white);border-radius:var(--r-lg);padding:16px}
+.kpi b{display:block;font-size:30px;font-weight:800;letter-spacing:-.02em}
+.kpi span{font-size:13px;opacity:.8}
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:start}
+.matrix svg{width:100%;max-width:560px;height:auto;display:block;margin:0 auto}
+ol.prio{padding-left:20px}
+ol.prio li{margin-bottom:10px;font-size:14px}
+ol.prio li b{color:var(--f8-navy)}
+.note{border-radius:var(--r-md);padding:12px 14px;font-size:13px;line-height:1.55;margin-top:12px}
+.note.slate{background:var(--f8-slate-tint);color:var(--f8-slate)}
+.note.amber{background:var(--f8-amber-tint);color:var(--f8-amber)}
+.note.green{background:var(--f8-green-tint);color:var(--f8-green)}
+.consent{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--f8-ink-soft);margin:12px 0}
+.consent input{margin-top:3px}
+/* team */
+table.team{width:100%;border-collapse:collapse;font-size:13.5px}
+table.team th{text-align:left;font-size:12px;color:var(--f8-grey);font-weight:600;padding:8px 6px;border-bottom:1px solid var(--f8-mist)}
+table.team td{padding:10px 6px;border-bottom:1px solid var(--f8-fog);vertical-align:middle}
+.range{position:relative;height:14px;background:var(--f8-fog);border-radius:7px;min-width:140px}
+.range .span{position:absolute;top:3px;height:8px;background:var(--f8-mist);border-radius:4px}
+.range .avg{position:absolute;top:-2px;width:4px;height:18px;border-radius:2px;background:var(--f8-navy)}
+.flag{font-size:11.5px;font-weight:600;color:var(--f8-amber);background:var(--f8-amber-tint);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.scroll{overflow-x:auto}
+footer{margin-top:40px;font-size:12px;color:var(--f8-grey);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media (max-width:760px){
+  .model,.grid2,.modes,.two{grid-template-columns:1fr}
+  .gauges{grid-template-columns:repeat(2,1fr)}
+  .kpis{gap:8px}.kpi{padding:12px 10px}.kpi b{font-size:22px}.kpi span{font-size:12px}
+}
+@media print{
+  body{background:#fff}
+  .noprint,.tabs,header.top .lang,footer .noprint{display:none!important}
+  .view{display:none!important}
+  #v-results{display:block!important}
+  .card,.gauge{box-shadow:none;break-inside:avoid}
+  .wrap{padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">facilit<span>8</span></div>
+    <div class="lang noprint" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+    </div>
+  </header>
+
+  <h1 data-t="title"></h1>
+  <p class="lead" data-t="lead"></p>
+
+  <nav class="tabs noprint" role="tablist">
+    <button role="tab" data-view="model" aria-selected="true" data-t="tabModel"></button>
+    <button role="tab" data-view="assess" aria-selected="false" data-t="tabAssess"></button>
+    <button role="tab" data-view="results" aria-selected="false" data-t="tabResults"></button>
+    <button role="tab" data-view="team" aria-selected="false" data-t="tabTeam"></button>
+  </nav>
+
+  <!-- MODEL -->
+  <section class="view on" id="v-model">
+    <div class="model" id="modelGrid"></div>
+    <div class="note slate" data-t="scaleNote"></div>
+    <div class="row" style="margin-top:20px"><button class="btn" type="button" data-go="assess" data-t="startBtn"></button></div>
+  </section>
+
+  <!-- ASSESS -->
+  <section class="view" id="v-assess">
+    <div class="card" id="setup">
+      <h2 data-t="setupH"></h2>
+      <p class="muted" style="margin-bottom:16px" data-t="setupP"></p>
+      <div class="grid2">
+        <div><label class="f" for="fName" data-t="fName"></label><input type="text" id="fName" autocomplete="name"></div>
+        <div><label class="f" for="fRole" data-t="fRole"></label><input type="text" id="fRole" autocomplete="organization-title"></div>
+        <div><label class="f" for="fOrg" data-t="fOrg"></label><input type="text" id="fOrg" autocomplete="organization"></div>
+        <div><label class="f" for="fInit" data-t="fInit"></label><input type="text" id="fInit"></div>
+      </div>
+      <div style="margin-top:16px"><span class="f" style="font-size:13px;font-weight:600;color:var(--f8-navy)" data-t="modeH"></span>
+        <div class="modes">
+          <button class="mode" type="button" data-mode="quick" aria-pressed="true"><b data-t="quickH"></b><span data-t="quickP"></span></button>
+          <button class="mode" type="button" data-mode="deep" aria-pressed="false"><b data-t="deepH"></b><span data-t="deepP"></span></button>
+        </div>
+      </div>
+    </div>
+    <div class="muted"><span id="progTxt"></span></div>
+    <div class="progress" aria-hidden="true"><i id="progBar"></i></div>
+    <div id="items"></div>
+    <div class="row"><button class="btn" type="button" id="seeResults" data-t="seeResults"></button></div>
+    <div class="err" id="assessErr" role="alert"></div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="view" id="v-results">
+    <div id="resultsEmpty" class="card"><p data-t="noResults"></p></div>
+    <div id="resultsBody" hidden>
+      <div class="card">
+        <h2 id="rHead"></h2>
+        <p class="muted" id="rMeta" style="margin-bottom:16px"></p>
+        <div class="kpis" id="kpis"></div>
+        <div id="gaugeWrap"></div>
+      </div>
+      <div class="two">
+        <div class="card matrix"><h2 data-t="matrixH"></h2><p class="muted" data-t="matrixP" style="margin-bottom:10px"></p><div id="matrix"></div></div>
+        <div class="card"><h2 data-t="prioH"></h2><p class="muted" data-t="prioP" style="margin-bottom:12px"></p><ol class="prio" id="prio"></ol></div>
+      </div>
+      <div class="card noprint">
+        <h2 data-t="nextH"></h2>
+        <p class="muted" data-t="nextP" style="margin-bottom:14px"></p>
+        <div class="row">
+          <button class="btn" type="button" id="btnPdf" data-t="btnPdf"></button>
+          <button class="btn ghost" type="button" id="btnExport" data-t="btnExport"></button>
+        </div>
+        <div id="sendBox">
+          <label class="consent"><input type="checkbox" id="consent"><span data-t="consent"></span></label>
+          <button class="btn ghost" type="button" id="btnSend" data-t="btnSend"></button>
+          <div class="err" id="sendMsg" role="status"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="view" id="v-team">
+    <div class="card">
+      <h2 data-t="teamH"></h2>
+      <p class="muted" data-t="teamP" style="margin-bottom:14px"></p>
+      <div class="row"><label class="btn" for="teamFiles" data-t="teamLoad" style="cursor:pointer"></label>
+        <input type="file" id="teamFiles" accept=".json,application/json" multiple hidden>
+        <button class="btn ghost" type="button" id="teamClear" data-t="teamClear"></button></div>
+      <div class="err" id="teamErr" role="alert"></div>
+    </div>
+    <div id="teamBody" hidden>
+      <div class="card"><h2 data-t="teamSumH"></h2><p class="muted" id="teamWho" style="margin-bottom:12px"></p><div class="scroll"><table class="team" id="teamTable"></table></div>
+        <div class="note amber" data-t="spreadNote"></div></div>
+      <div class="card matrix"><h2 data-t="teamMatrixH"></h2><div id="teamMatrix"></div></div>
+    </div>
+  </section>
+
+  <footer><span>v1 · facilit8 Impact Checklist · 2026</span><span>www.facilit8.org</span></footer>
+</div>
+
+<script>
+/* ---------- Configuration: fill in before publishing on facilit8.org ---------- */
+const CONFIG = {
+  formEndpoint: "",   // e.g. "https://formspree.io/f/xxxxxxx" — results are POSTed here as JSON
+  contactEmail: ""    // fallback: opens an email to this address if no formEndpoint is set
+};
+
+/* ---------- Content ---------- */
+const DIMS = [
+ {id:"direction",p:"L",en:"Direction",de:"Richtung",qen:"Why?",qde:"Warum?",
+  hen:"How much do you trust that everyone knows why we are doing this and where we are going?",
+  hde:"Wie sehr vertrauen Sie darauf, dass alle wissen, warum wir das tun und wohin wir gehen?",
+  a:[["Clarity","Klarheit","The ambition, and why it matters, is clear and written down.","Das Ziel und warum es wichtig ist, sind klar und schriftlich festgehalten."],
+     ["Alignment","Ausrichtung","The leadership team tells the same story about where we are going.","Das Führungsteam erzählt dieselbe Geschichte darüber, wohin wir gehen."],
+     ["Success measures","Erfolgsmessung","We have agreed how success will be measured.","Wir haben vereinbart, wie Erfolg gemessen wird."]]},
+ {id:"risk",p:"L",en:"Risk",de:"Risiko",qen:"What could stop us?",qde:"Was könnte uns aufhalten?",
+  hen:"How much do you trust that we understand what could stop us, and are managing it?",
+  hde:"Wie sehr vertrauen Sie darauf, dass wir verstehen, was uns aufhalten könnte, und dies steuern?",
+  a:[["Assumptions","Annahmen","We know what needs to be true to deliver the direction, and we test it.","Wir wissen, was zutreffen muss, um das Ziel zu erreichen, und überprüfen es."],
+     ["Consequences","Konsequenzen","We understand what happens if we do not achieve the direction.","Wir verstehen, was passiert, wenn wir das Ziel nicht erreichen."],
+     ["Barriers","Hindernisse","We know what could prevent impact, and each barrier has an owner.","Wir wissen, was Wirkung verhindern könnte, und jedes Hindernis hat eine verantwortliche Person."]]},
+ {id:"decisions",p:"L",en:"Decisions",de:"Entscheidungen",qen:"Who decides?",qde:"Wer entscheidet?",
+  hen:"How much do you trust that the right decisions are made by the right people at the right pace?",
+  hde:"Wie sehr vertrauen Sie darauf, dass die richtigen Personen die richtigen Entscheidungen im richtigen Tempo treffen?",
+  a:[["Decision rights","Entscheidungsrechte","It is clear who decides what, and at which level.","Es ist klar, wer was auf welcher Ebene entscheidet."],
+     ["Prioritisation","Priorisierung","When everything seems important, we can still say what comes first.","Auch wenn alles wichtig scheint, können wir sagen, was zuerst kommt."],
+     ["Cadence","Rhythmus","Decisions are made at a regular rhythm, fast enough for the work.","Entscheidungen fallen in einem regelmässigen Rhythmus, schnell genug für die Arbeit."]]},
+ {id:"plan",p:"L",en:"Plan",de:"Plan",qen:"When and how much?",qde:"Wann und wie viel?",
+  hen:"How much do you trust that the plan, resources and timing are realistic?",
+  hde:"Wie sehr vertrauen Sie darauf, dass Plan, Ressourcen und Zeitrahmen realistisch sind?",
+  a:[["Realism","Realismus","Timelines and budgets are realistic, not wishful.","Zeitpläne und Budgets sind realistisch, nicht Wunschdenken."],
+     ["Resourcing","Ressourcen","The people and budget we need are committed, not borrowed.","Die benötigten Personen und Budgets sind fest zugesagt, nicht nur ausgeliehen."],
+     ["Issues","Probleme","Issues are raised early and resolved quickly.","Probleme werden früh angesprochen und rasch gelöst."]]},
+ {id:"people",p:"C",en:"People",de:"Menschen",qen:"Who?",qde:"Wer?",
+  hen:"How much do you trust that we have the right people, owning outcomes and engaged in the change?",
+  hde:"Wie sehr vertrauen Sie darauf, dass wir die richtigen Menschen haben, die Verantwortung übernehmen und die Veränderung mittragen?",
+  a:[["Capability","Fähigkeiten","We have the skills we need, or a plan to build them.","Wir haben die nötigen Fähigkeiten oder einen Plan, sie aufzubauen."],
+     ["Accountability","Verantwortung","Each outcome has a named owner who follows through.","Jedes Ergebnis hat eine benannte verantwortliche Person, die dranbleibt."],
+     ["Engagement","Engagement","People adopt new ways of working, and the change sticks.","Die Mitarbeitenden übernehmen neue Arbeitsweisen, und die Veränderung bleibt."]]},
+ {id:"partners",p:"C",en:"Partners",de:"Partner",qen:"With whom?",qde:"Mit wem?",
+  hen:"How much do you trust that our partners are capable, aligned and incentivised to deliver?",
+  hde:"Wie sehr vertrauen Sie darauf, dass unsere Partner fähig, ausgerichtet und richtig incentiviert sind?",
+  a:[["Expertise","Expertise","Our external partners bring expertise we do not have in-house.","Unsere externen Partner bringen Fachwissen, das wir intern nicht haben."],
+     ["Alignment","Ausrichtung","Partners work towards our outcomes, not only their own scope.","Partner arbeiten auf unsere Ergebnisse hin, nicht nur auf ihren Auftragsumfang."],
+     ["Commercial fit","Kommerzielle Passung","Contracts and incentives reward the results we need.","Verträge und Anreize belohnen die Ergebnisse, die wir brauchen."]]},
+ {id:"data",p:"C",en:"Data",de:"Daten",qen:"What do we know?",qde:"Was wissen wir?",
+  hen:"How much do you trust that our data is good enough to base decisions on?",
+  hde:"Wie sehr vertrauen Sie darauf, dass unsere Daten gut genug für Entscheidungen sind?",
+  a:[["Quality","Qualität","Our data is accurate and complete enough to act on.","Unsere Daten sind genau und vollständig genug, um danach zu handeln."],
+     ["Traceability","Nachvollziehbarkeit","We can see where our numbers come from.","Wir können nachvollziehen, woher unsere Zahlen stammen."],
+     ["Integrity","Integrität","Data is protected and used in line with regulation (e.g. FADP/GDPR).","Daten sind geschützt und werden gesetzeskonform genutzt (z. B. DSG/DSGVO)."]]},
+ {id:"systems",p:"C",en:"Systems",de:"Systeme",qen:"How?",qde:"Wie?",
+  hen:"How much do you trust that our systems help rather than hinder delivery?",
+  hde:"Wie sehr vertrauen Sie darauf, dass unsere Systeme die Umsetzung unterstützen statt behindern?",
+  a:[["Velocity","Tempo","Our systems let us change and deliver quickly.","Unsere Systeme ermöglichen schnelle Anpassung und Umsetzung."],
+     ["Usability","Benutzerfreundlichkeit","People find our systems easy to use.","Die Mitarbeitenden finden unsere Systeme einfach zu bedienen."],
+     ["Automation","Automatisierung","Repetitive work is automated where it makes sense.","Wiederkehrende Arbeit ist automatisiert, wo es sinnvoll ist."]]}
+];
+const TRUST = [0,25,50,75,100];
+const T = {
+ en:{title:"facilit8 Impact Checklist",
+  lead:"Eight questions every sponsor and executive team should be able to answer with confidence before, and during, a transformation. Score your trust in each, see where it is weakest, and decide where to focus first.",
+  tabModel:"The model",tabAssess:"Assessment",tabResults:"Your results",tabTeam:"Team comparison",
+  impact:"Impact",impactSub:"What sponsors and executive teams are accountable for",
+  lead_:"Leadership",leadOwner:"Owned by the sponsor and executive team",
+  cap:"Capabilities",capOwner:"Delivered by the organisation",
+  scaleNote:"Trust means confidence. Each item is scored from 0% (no trust) to 100% (full trust), and rated for importance to your impact. Higher is always better, including for Risk: a high score means risks are understood and managed.",
+  startBtn:"Start the assessment",
+  setupH:"Before you start",setupP:"Your name helps when several leaders' results are compared. Nothing is sent anywhere unless you choose to.",
+  fName:"Name",fRole:"Role",fOrg:"Organisation",fInit:"Initiative or programme being assessed",
+  modeH:"Choose a mode",quickH:"Quick check · 8 items",quickP:"One headline question per dimension. About 5 minutes.",
+  deepH:"Deep assessment · 24 items",deepP:"Three statements per dimension. About 15 minutes.",
+  prog:(a,b)=>`${a} of ${b} answered`,
+  trustL:"Trust",impL:"Importance for our impact",
+  tl:["No trust","Low","Partial","High","Full trust"],il:["Minor","Low","Medium","High","Critical"],
+  seeResults:"See my results",missing:n=>`${n} item${n===1?"":"s"} still to answer. They are highlighted.`,
+  noResults:"Complete the assessment to see your results.",
+  rHead:"Trust barometer",overall:"Overall trust",leadAvg:"Leadership",capAvg:"Capabilities",
+  band:["Fix","Strengthen","Sustain"],
+  matrixH:"Priority matrix",matrixP:"Low trust and high importance means fix first.",
+  q:["Fix first","Protect","Watch","Maintain"],axX:"Trust →",axY:"Importance ↑",
+  prioH:"Where to focus first",prioP:"Ranked by importance and the gap to full trust.",
+  prioNone:"No dimension is both low in trust and high in importance. Focus on sustaining what works.",
+  prioWhy:(t,i)=>`Trust ${t}%, importance ${i}/5`,
+  nextH:"Keep or share your results",nextP:"Download a PDF for yourself. Export a results file so a facilitator can compare several leaders' views.",
+  btnPdf:"Download PDF",btnExport:"Export results file",
+  consent:"I agree that my name, organisation and scores are sent to facilit8 so they can follow up with me.",
+  btnSend:"Send results to facilit8",sendOk:"Sent. facilit8 will be in touch.",sendNoConsent:"Tick the consent box first.",
+  sendFail:"Sending failed. Export the results file and email it instead.",sendMail:"Your email app has opened with the results.",
+  teamH:"Compare several leaders",teamP:"Load the exported results files from each leader. The tool shows the average trust per dimension and how far apart leaders are.",
+  teamLoad:"Load results files",teamClear:"Clear",teamBad:f=>`${f} is not a valid results file.`,
+  teamSumH:"Team view",teamWho:n=>`${n} respondent${n===1?"":"s"}: `,
+  th:["Dimension","Average","Range (lowest to highest)","Importance","Signal"],
+  flag:"Leaders disagree",
+  spreadNote:"A spread of 50 points or more means leaders see this dimension very differently. That conversation often matters more than the score.",
+  teamMatrixH:"Team priority matrix (averages)",
+  meta:(n,r,o,i,m,d)=>[n,r,o].filter(Boolean).join(", ")+(i?` · ${i}`:"")+` · ${m==="deep"?"Deep assessment":"Quick check"} · ${d}`},
+ de:{title:"facilit8 Impact-Checkliste",
+  lead:"Acht Fragen, die jede Sponsorin, jeder Sponsor und jedes Führungsteam vor und während einer Transformation mit Zuversicht beantworten können sollte. Bewerten Sie Ihr Vertrauen, erkennen Sie die Schwachstellen und entscheiden Sie, wo Sie zuerst ansetzen.",
+  tabModel:"Das Modell",tabAssess:"Bewertung",tabResults:"Ihre Ergebnisse",tabTeam:"Teamvergleich",
+  impact:"Impact",impactSub:"Wofür Sponsoren und Führungsteams verantwortlich sind",
+  lead_:"Führung",leadOwner:"Verantwortet von Sponsor und Führungsteam",
+  cap:"Fähigkeiten",capOwner:"Umgesetzt durch die Organisation",
+  scaleNote:"Vertrauen bedeutet Zuversicht. Jeder Punkt wird von 0 % (kein Vertrauen) bis 100 % (volles Vertrauen) bewertet und nach Wichtigkeit für Ihre Wirkung eingestuft. Höher ist immer besser, auch beim Risiko: Ein hoher Wert bedeutet, dass Risiken verstanden und gesteuert werden.",
+  startBtn:"Bewertung starten",
+  setupH:"Bevor Sie beginnen",setupP:"Ihr Name hilft beim Vergleich mehrerer Führungskräfte. Nichts wird versendet, ausser Sie entscheiden sich dafür.",
+  fName:"Name",fRole:"Funktion",fOrg:"Organisation",fInit:"Bewertete Initiative oder Programm",
+  modeH:"Modus wählen",quickH:"Kurz-Check · 8 Punkte",quickP:"Eine Leitfrage pro Dimension. Rund 5 Minuten.",
+  deepH:"Vertiefte Bewertung · 24 Punkte",deepP:"Drei Aussagen pro Dimension. Rund 15 Minuten.",
+  prog:(a,b)=>`${a} von ${b} beantwortet`,
+  trustL:"Vertrauen",impL:"Wichtigkeit für unsere Wirkung",
+  tl:["Kein Vertrauen","Gering","Teilweise","Hoch","Volles Vertrauen"],il:["Gering","Niedrig","Mittel","Hoch","Kritisch"],
+  seeResults:"Ergebnisse anzeigen",missing:n=>`Noch ${n} ${n===1?"Punkt":"Punkte"} offen. Sie sind markiert.`,
+  noResults:"Schliessen Sie die Bewertung ab, um Ihre Ergebnisse zu sehen.",
+  rHead:"Vertrauensbarometer",overall:"Gesamtvertrauen",leadAvg:"Führung",capAvg:"Fähigkeiten",
+  band:["Beheben","Stärken","Erhalten"],
+  matrixH:"Prioritätenmatrix",matrixP:"Geringes Vertrauen und hohe Wichtigkeit heisst: zuerst angehen.",
+  q:["Zuerst angehen","Schützen","Beobachten","Erhalten"],axX:"Vertrauen →",axY:"Wichtigkeit ↑",
+  prioH:"Wo zuerst ansetzen",prioP:"Gereiht nach Wichtigkeit und Abstand zu vollem Vertrauen.",
+  prioNone:"Keine Dimension hat zugleich geringes Vertrauen und hohe Wichtigkeit. Erhalten Sie, was funktioniert.",
+  prioWhy:(t,i)=>`Vertrauen ${t} %, Wichtigkeit ${i}/5`,
+  nextH:"Ergebnisse sichern oder teilen",nextP:"Laden Sie ein PDF für sich herunter. Exportieren Sie eine Ergebnisdatei, damit eine Moderation mehrere Sichtweisen vergleichen kann.",
+  btnPdf:"PDF herunterladen",btnExport:"Ergebnisdatei exportieren",
+  consent:"Ich bin einverstanden, dass mein Name, meine Organisation und meine Werte an facilit8 gesendet werden, damit facilit8 mit mir Kontakt aufnehmen kann.",
+  btnSend:"Ergebnisse an facilit8 senden",sendOk:"Gesendet. facilit8 meldet sich bei Ihnen.",sendNoConsent:"Bitte zuerst die Einwilligung bestätigen.",
+  sendFail:"Senden fehlgeschlagen. Exportieren Sie die Ergebnisdatei und senden Sie sie per E-Mail.",sendMail:"Ihr E-Mail-Programm wurde mit den Ergebnissen geöffnet.",
+  teamH:"Mehrere Führungskräfte vergleichen",teamP:"Laden Sie die exportierten Ergebnisdateien aller Führungskräfte. Das Tool zeigt das durchschnittliche Vertrauen pro Dimension und wie weit die Einschätzungen auseinanderliegen.",
+  teamLoad:"Ergebnisdateien laden",teamClear:"Leeren",teamBad:f=>`${f} ist keine gültige Ergebnisdatei.`,
+  teamSumH:"Teamsicht",teamWho:n=>`${n} ${n===1?"Person":"Personen"}: `,
+  th:["Dimension","Durchschnitt","Spanne (tiefster bis höchster Wert)","Wichtigkeit","Signal"],
+  flag:"Uneinigkeit",
+  spreadNote:"Eine Spanne von 50 Punkten oder mehr zeigt, dass die Führungskräfte diese Dimension sehr unterschiedlich sehen. Dieses Gespräch ist oft wichtiger als der Wert selbst.",
+  teamMatrixH:"Team-Prioritätenmatrix (Durchschnitte)",
+  meta:(n,r,o,i,m,d)=>[n,r,o].filter(Boolean).join(", ")+(i?` · ${i}`:"")+` · ${m==="deep"?"Vertiefte Bewertung":"Kurz-Check"} · ${d}`}
+};
+
+/* ---------- State ---------- */
+let lang = "en", mode = "quick";
+const ans = {trust:{}, imp:{}};   // trust keys: dimId (quick) or dimId-i (deep); imp keys: dimId
+let team = [];
+const $ = s=>document.querySelector(s), $$ = s=>[...document.querySelectorAll(s)];
+const L = ()=>T[lang];
+const nm = d=>lang==="de"?d.de:d.en, qq = d=>lang==="de"?d.qde:d.qen;
+const esc = s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* ---------- Render: static text + model ---------- */
+function renderText(){
+  document.documentElement.lang = lang;
+  $$("[data-t]").forEach(el=>{const v=L()[el.dataset.t]; if(typeof v==="string") el.textContent=v;});
+  $$(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===lang));
+  document.title = L().title;
+}
+function renderModel(){
+  const col = p=>DIMS.filter(d=>d.p===p).map(d=>`<div class="dim"><b>${esc(nm(d))}</b><span class="q">${esc(qq(d))}</span><span class="attrs">${d.a.map(a=>esc(lang==="de"?a[1]:a[0])).join(" · ")}</span></div>`).join("");
+  $("#modelGrid").innerHTML = `<div class="roof">${esc(L().impact)}<small>${esc(L().impactSub)}</small></div>
+   <div class="pillar lead"><h3>${esc(L().lead_)}</h3><div class="owner">${esc(L().leadOwner)}</div>${col("L")}</div>
+   <div class="pillar cap"><h3>${esc(L().cap)}</h3><div class="owner">${esc(L().capOwner)}</div>${col("C")}</div>`;
+}
+
+/* ---------- Render: assessment ---------- */
+function trustKeys(){ return mode==="quick" ? DIMS.map(d=>d.id) : DIMS.flatMap(d=>d.a.map((_,i)=>`${d.id}-${i}`)); }
+function scaleHTML(kind,key,labels,values){
+  const cur = ans[kind][key];
+  return `<div class="scale" role="group">${values.map((v,i)=>`<button type="button" data-kind="${kind}" data-key="${key}" data-v="${v}" aria-pressed="${cur===v}"><b>${kind==="trust"?v+"%":v}</b>${esc(labels[i])}</button>`).join("")}</div>`;
+}
+function renderItems(){
+  $$(".mode").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===mode));
+  $("#items").innerHTML = DIMS.map(d=>{
+    const cls = d.p==="C"?"item cap":"item";
+    const pillar = d.p==="L"?L().lead_:L().cap;
+    const body = mode==="quick"
+      ? `<p class="stmt">${esc(lang==="de"?d.hde:d.hen)}</p><div class="sublabel">${esc(L().trustL)}</div>${scaleHTML("trust",d.id,L().tl,TRUST)}`
+      : d.a.map((a,i)=>`<div class="sub"><div class="an">${esc(lang==="de"?a[1]:a[0])}</div><p>${esc(lang==="de"?a[3]:a[2])}</p>${scaleHTML("trust",`${d.id}-${i}`,L().tl,TRUST)}</div>`).join("");
+    return `<div class="${cls}" id="it-${d.id}"><div class="head"><h3>${esc(nm(d))} <span style="font-weight:500;color:var(--f8-grey)">· ${esc(qq(d))}</span></h3><span class="tag">${esc(pillar)}</span></div>
+      ${body}<div class="imp"><div class="sublabel">${esc(L().impL)}</div>${scaleHTML("imp",d.id,L().il,[1,2,3,4,5])}</div></div>`;
+  }).join("");
+  updateProgress();
+}
+function updateProgress(){
+  const tk = trustKeys(); const total = tk.length + DIMS.length;
+  const done = tk.filter(k=>ans.trust[k]!=null).length + DIMS.filter(d=>ans.imp[d.id]!=null).length;
+  $("#progTxt").textContent = L().prog(done,total);
+  $("#progBar").style.width = (100*done/total)+"%";
+  return total-done;
+}
+function dimComplete(d){
+  const t = mode==="quick" ? ans.trust[d.id]!=null : d.a.every((_,i)=>ans.trust[`${d.id}-${i}`]!=null);
+  return t && ans.imp[d.id]!=null;
+}
+
+/* ---------- Scoring ---------- */
+function scores(){
+  return DIMS.map(d=>{
+    const t = mode==="quick" ? ans.trust[d.id] : Math.round(d.a.reduce((s,_,i)=>s+ans.trust[`${d.id}-${i}`],0)/3);
+    return {id:d.id,p:d.p,trust:t,imp:ans.imp[d.id]};
+  });
+}
+const avg = a=>Math.round(a.reduce((s,x)=>s+x,0)/a.length);
+const bandIdx = t=>t<50?0:t<75?1:2;
+const bandCls = ["b-red","b-amber","b-green"];
+const bandCol = ["var(--f8-red)","var(--f8-amber)","var(--f8-green)"];
+
+/* ---------- Charts ---------- */
+function gaugeSVG(t){
+  const r=52,cx=70,cy=70,a=Math.PI*(t/100);
+  const x=cx-r*Math.cos(a), y=cy-r*Math.sin(a);
+  const arc = t>0?`<path d="M${cx-r} ${cy} A${r} ${r} 0 0 1 ${x.toFixed(1)} ${y.toFixed(1)}" fill="none" stroke="${bandCol[bandIdx(t)]}" stroke-width="12" stroke-linecap="round"/>`:"";
+  return `<svg viewBox="0 0 140 84" role="img" aria-label="${t}%"><path d="M${cx-r} ${cy} A${r} ${r} 0 0 1 ${cx+r} ${cy}" fill="none" stroke="var(--f8-fog)" stroke-width="12" stroke-linecap="round"/>${arc}
+    <text x="70" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="22" fill="var(--f8-navy)">${t}%</text></svg>`;
+}
+function matrixSVG(pts){
+  const W=460,H=340,x0=56,y0=20,w=380,h=270;
+  const X=t=>x0+w*t/100, Y=i=>y0+h-(h*(i-1)/4);
+  const lab = L().q;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(L().matrixH)}">
+   <rect x="${x0}" y="${y0}" width="${w/2}" height="${h/2}" fill="var(--f8-red-tint)"/>
+   <rect x="${x0+w/2}" y="${y0}" width="${w/2}" height="${h/2}" fill="var(--f8-green-tint)"/>
+   <rect x="${x0}" y="${y0+h/2}" width="${w/2}" height="${h/2}" fill="var(--f8-amber-tint)"/>
+   <rect x="${x0+w/2}" y="${y0+h/2}" width="${w/2}" height="${h/2}" fill="var(--f8-slate-tint)"/>
+   <rect x="${x0}" y="${y0}" width="${w}" height="${h}" fill="none" stroke="var(--f8-mist)"/>
+   <g font-family="Inter,sans-serif" font-size="12" font-weight="600">
+    <text x="${x0+10}" y="${y0+20}" fill="var(--f8-red)">${esc(lab[0])}</text>
+    <text x="${x0+w-10}" y="${y0+20}" text-anchor="end" fill="var(--f8-green)">${esc(lab[1])}</text>
+    <text x="${x0+10}" y="${y0+h-10}" fill="var(--f8-amber)">${esc(lab[2])}</text>
+    <text x="${x0+w-10}" y="${y0+h-10}" text-anchor="end" fill="var(--f8-slate)">${esc(lab[3])}</text></g>
+   <g font-family="Inter,sans-serif" font-size="11" fill="var(--f8-grey)">
+    <text x="${x0}" y="${y0+h+16}">0%</text><text x="${x0+w}" y="${y0+h+16}" text-anchor="end">100%</text>
+    <text x="${x0+w/2}" y="${y0+h+30}" text-anchor="middle">${esc(L().axX)}</text>
+    <text x="${x0-8}" y="${y0+6}" text-anchor="end">5</text><text x="${x0-8}" y="${y0+h}" text-anchor="end">1</text>
+</g>`;
+  const dots=[], labels=[], qw=i=>lab[i].length*7.2;
+  labels.push({x1:x0+10,x2:x0+10+qw(0),y1:y0+8,y2:y0+24},{x1:x0+w-10-qw(1),x2:x0+w-10,y1:y0+8,y2:y0+24},{x1:x0+10,x2:x0+10+qw(2),y1:y0+h-22,y2:y0+h-6},{x1:x0+w-10-qw(3),x2:x0+w-10,y1:y0+h-22,y2:y0+h-6});
+  pts.forEach(p=>{ let px=X(p.trust), py=Y(p.imp);
+    while(dots.some(q=>Math.abs(q.x-px)<10&&Math.abs(q.y-py)<10)) px+=12;
+    dots.push({x:px,y:py,p}); });
+  dots.forEach(o=>{ const d=DIMS.find(x=>x.id===o.p.id), tw=nm(d).length*7+4;
+    const cands=[[o.x+10,o.y+4,"start"],[o.x-10,o.y+4,"end"],[o.x,o.y-11,"middle"],[o.x,o.y+19,"middle"],[o.x+10,o.y+18,"start"],[o.x-10,o.y+18,"end"],[o.x+10,o.y-10,"start"],[o.x-10,o.y-10,"end"]];
+    let pick=null;
+    for(const [lx,ly,an] of cands){ const x1=an==="start"?lx:an==="end"?lx-tw:lx-tw/2, box={x1,x2:x1+tw,y1:ly-11,y2:ly+2};
+      if(box.x1<x0-40||box.x2>W-2||box.y1<2||box.y2>y0+h+4) continue;
+      const others=dots.filter(q=>q!==o); const clash=labels.some(b=>box.x1<b.x2&&box.x2>b.x1&&box.y1<b.y2&&box.y2>b.y1)||others.some(q=>q.x>box.x1-6&&q.x<box.x2+6&&q.y>box.y1-6&&q.y<box.y2+6);
+      if(!clash){pick=[lx,ly,an,box];break;} }
+    if(!pick){const lx=o.x+10,ly=o.y+4;pick=[lx,ly,"start",{x1:lx,x2:lx+tw,y1:ly-11,y2:ly+2}];}
+    labels.push(pick[3]);
+    s += `<circle cx="${o.x}" cy="${o.y}" r="6" fill="${d.p==="L"?"var(--f8-blue)":"var(--f8-teal)"}" stroke="#fff" stroke-width="1.5"/>
+      <text x="${pick[0]}" y="${pick[1]}" text-anchor="${pick[2]}" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="var(--f8-navy)">${esc(nm(d))}</text>`;
+  });
+  return s+`<text x="${x0}" y="${H-4}" font-family="Inter,sans-serif" font-size="11" fill="var(--f8-grey)">${esc(L().axY)}</text></svg>`;
+}
+function priorities(pts){
+  return pts.filter(p=>p.imp>=4 && p.trust<75)
+    .map(p=>({...p,score:p.imp*(100-p.trust)})).sort((a,b)=>b.score-a.score).slice(0,3);
+}
+
+/* ---------- Results ---------- */
+let lastResult = null;
+function buildResult(){
+  return {tool:"facilit8-impact-checklist",version:1,lang,mode,
+    date:new Date().toISOString().slice(0,10),
+    name:$("#fName").value.trim(),role:$("#fRole").value.trim(),org:$("#fOrg").value.trim(),initiative:$("#fInit").value.trim(),
+    scores:scores(),answers:JSON.parse(JSON.stringify(ans))};
+}
+function renderResults(){
+  if(!lastResult){ $("#resultsEmpty").hidden=false; $("#resultsBody").hidden=true; return; }
+  $("#resultsEmpty").hidden=true; $("#resultsBody").hidden=false;
+  const r=lastResult, sc=r.scores;
+  $("#rHead").textContent = L().rHead;
+  $("#rMeta").textContent = L().meta(r.name,r.role,r.org,r.initiative,r.mode,r.date);
+  const all=avg(sc.map(s=>s.trust)), la=avg(sc.filter(s=>s.p==="L").map(s=>s.trust)), ca=avg(sc.filter(s=>s.p==="C").map(s=>s.trust));
+  $("#kpis").innerHTML = [[all,L().overall],[la,L().leadAvg],[ca,L().capAvg]].map(k=>`<div class="kpi"><b>${k[0]}%</b><span>${esc(k[1])}</span></div>`).join("");
+  const g = p=>sc.filter(s=>s.p===p).map(s=>{const d=DIMS.find(x=>x.id===s.id),b=bandIdx(s.trust);
+    return `<div class="gauge">${gaugeSVG(s.trust)}<div class="n">${esc(nm(d))}</div><div class="qq">${esc(qq(d))}</div><span class="band ${bandCls[b]}">${esc(L().band[b])}</span></div>`}).join("");
+  $("#gaugeWrap").innerHTML = `<div class="grouplabel l"><span>${esc(L().lead_)}</span><span>${la}%</span></div><div class="gauges">${g("L")}</div>
+    <div class="grouplabel c"><span>${esc(L().cap)}</span><span>${ca}%</span></div><div class="gauges">${g("C")}</div>`;
+  $("#matrix").innerHTML = matrixSVG(sc);
+  const pr = priorities(sc);
+  $("#prio").innerHTML = pr.length ? pr.map(p=>{const d=DIMS.find(x=>x.id===p.id);
+    return `<li><b>${esc(nm(d))}</b> · ${esc(qq(d))}<br><span class="muted">${esc(L().prioWhy(p.trust,p.imp))}</span></li>`}).join("")
+    : `<li style="list-style:none;margin-left:-20px">${esc(L().prioNone)}</li>`;
+  const canSend = CONFIG.formEndpoint || CONFIG.contactEmail;
+  $("#sendBox").hidden = !canSend;
+}
+
+/* ---------- Actions ---------- */
+function download(filename, text){
+  const blob=new Blob([text],{type:"application/json"}); const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download=filename; document.body.appendChild(a); a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);
+}
+function slug(s){return (s||"leader").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"leader";}
+async function send(){
+  const msg=$("#sendMsg"); msg.style.color="var(--f8-red)";
+  if(!$("#consent").checked){msg.textContent=L().sendNoConsent;return;}
+  const r=lastResult;
+  if(CONFIG.formEndpoint){
+    try{
+      const res=await fetch(CONFIG.formEndpoint,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+        body:JSON.stringify({_subject:`Impact Checklist: ${r.org||r.name||"new result"}`,name:r.name,role:r.role,organisation:r.org,initiative:r.initiative,mode:r.mode,
+          summary:r.scores.map(s=>`${s.id}: trust ${s.trust}%, importance ${s.imp}/5`).join("\n"),result:JSON.stringify(r)})});
+      if(!res.ok) throw new Error(res.status);
+      msg.style.color="var(--f8-green)"; msg.textContent=L().sendOk;
+    }catch(e){ msg.textContent=L().sendFail; }
+  } else if(CONFIG.contactEmail){
+    const body = `${L().meta(r.name,r.role,r.org,r.initiative,r.mode,r.date)}\n\n`+r.scores.map(s=>{const d=DIMS.find(x=>x.id===s.id);return `${nm(d)}: ${s.trust}% · ${s.imp}/5`}).join("\n");
+    location.href=`mailto:${CONFIG.contactEmail}?subject=${encodeURIComponent(L().title+": "+(r.org||r.name))}&body=${encodeURIComponent(body)}`;
+    msg.style.color="var(--f8-green)"; msg.textContent=L().sendMail;
+  }
+}
+
+/* ---------- Team ---------- */
+function renderTeam(){
+  if(!team.length){$("#teamBody").hidden=true;return;}
+  $("#teamBody").hidden=false;
+  $("#teamWho").textContent = L().teamWho(team.length)+team.map(t=>t.name||"—").join(", ");
+  const rows = DIMS.map(d=>{
+    const ts=team.map(t=>t.scores.find(s=>s.id===d.id).trust), is=team.map(t=>t.scores.find(s=>s.id===d.id).imp);
+    const a=avg(ts), mn=Math.min(...ts), mx=Math.max(...ts), ia=Math.round(10*is.reduce((s,x)=>s+x,0)/is.length)/10;
+    return {d,a,mn,mx,ia};
+  });
+  $("#teamTable").innerHTML = `<thead><tr>${L().th.map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>`+
+    rows.map(r=>`<tr><td><b>${esc(nm(r.d))}</b><br><span class="muted">${esc(qq(r.d))}</span></td>
+      <td><span class="band ${bandCls[bandIdx(r.a)]}" style="font-size:12.5px;font-weight:700;padding:2px 8px;border-radius:10px">${r.a}%</span></td>
+      <td><div class="range" title="${r.mn}% – ${r.mx}%"><div class="span" style="left:${r.mn}%;width:${Math.max(r.mx-r.mn,1)}%"></div><div class="avg" style="left:calc(${r.a}% - 2px)"></div></div><span class="muted">${r.mn}% – ${r.mx}%</span></td>
+      <td>${r.ia}/5</td><td>${r.mx-r.mn>=50?`<span class="flag">${esc(L().flag)}</span>`:""}</td></tr>`).join("")+"</tbody>";
+  $("#teamMatrix").innerHTML = matrixSVG(rows.map(r=>({id:r.d.id,trust:r.a,imp:Math.max(1,Math.min(5,r.ia))})));
+}
+
+/* ---------- Navigation & events ---------- */
+function go(v){
+  $$(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.view===v));
+  $$(".view").forEach(s=>s.classList.toggle("on",s.id==="v-"+v));
+  if(v==="results") renderResults();
+  if(v==="team") renderTeam();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function rerenderAll(){ renderText(); renderModel(); renderItems(); renderResults(); renderTeam(); }
+
+document.addEventListener("click",e=>{
+  const lb=e.target.closest(".lang button"); if(lb){lang=lb.dataset.lang; if(lastResult) lastResult.lang=lang; rerenderAll(); return;}
+  const tb=e.target.closest(".tabs button"); if(tb){go(tb.dataset.view);return;}
+  const gb=e.target.closest("[data-go]"); if(gb){go(gb.dataset.go);return;}
+  const mb=e.target.closest(".mode"); if(mb){mode=mb.dataset.mode; renderItems(); return;}
+  const sb=e.target.closest(".scale button"); if(sb){
+    const {kind,key}=sb.dataset; ans[kind][key]=Number(sb.dataset.v);
+    sb.parentElement.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b===sb));
+    const d=DIMS.find(x=>key.startsWith(x.id)); if(d&&dimComplete(d)) $("#it-"+d.id).classList.remove("missing");
+    if(!updateProgress()) $("#assessErr").textContent="";
+    return;}
+});
+$("#seeResults").addEventListener("click",()=>{
+  const left=updateProgress();
+  DIMS.forEach(d=>$("#it-"+d.id).classList.toggle("missing",!dimComplete(d)));
+  if(left){ $("#assessErr").textContent=L().missing(left); const f=DIMS.find(d=>!dimComplete(d)); $("#it-"+f.id).scrollIntoView({behavior:"smooth",block:"center"}); return; }
+  $("#assessErr").textContent=""; lastResult=buildResult(); go("results");
+});
+$("#btnPdf").addEventListener("click",()=>window.print());
+$("#btnExport").addEventListener("click",()=>{ if(lastResult) download(`impact-checklist_${slug(lastResult.org)}_${slug(lastResult.name)}_${lastResult.date}.json`,JSON.stringify(lastResult,null,2)); });
+$("#btnSend").addEventListener("click",send);
+$("#consent").addEventListener("change",()=>{$("#sendMsg").textContent="";});
+$("#teamFiles").addEventListener("change",async e=>{
+  const err=[]; 
+  for(const f of e.target.files){
+    try{ const j=JSON.parse(await f.text());
+      if(j.tool!=="facilit8-impact-checklist"||!Array.isArray(j.scores)||j.scores.length!==8) throw 0;
+      team.push(j);
+    }catch(_){ err.push(L().teamBad(f.name)); }
+  }
+  $("#teamErr").textContent=err.join(" "); e.target.value=""; renderTeam();
+});
+$("#teamClear").addEventListener("click",()=>{team=[];$("#teamErr").textContent="";renderTeam();});
+
+rerenderAll();
+</script>
+</body>
+</html>

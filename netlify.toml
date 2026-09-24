@@ -56,3 +56,17 @@
   to = "/.netlify/functions/strategylens-email"
   status = 200
   force = true
+
+# Impact Checklist — public free tool. Its four functions
+# (netlify/functions/impact-*.mjs) are Netlify v2 functions that declare
+# their own paths (/api/impact/{access,submit,benchmark,count}), so they need
+# no redirects here.
+[[redirects]]
+  from = "/impact-checklist"
+  to = "/impact-checklist.html"
+  status = 200
+
+[[headers]]
+  for = "/js/impact-checklist.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

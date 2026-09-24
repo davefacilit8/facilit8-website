@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impact Checklist — facilit8</title>
+<meta name="description" content="Eight dimensions of trust decide whether a transformation delivers impact. Score your confidence in each, see where trust is fragile, and decide where to start.">
+<link rel="canonical" href="https://facilit8.org/impact-checklist.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="facilit8">
+<meta property="og:title" content="Impact Checklist — facilit8">
+<meta property="og:description" content="AI can diagnose your processes. Only people can build the trust needed to deliver impact.">
+<meta property="og:url" content="https://facilit8.org/impact-checklist.html">
+<meta property="og:image" content="https://facilit8.org/assets/facilit8-logo.png">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<style>
+:root {
+  --f8-blue:        #0070C0;
+  --f8-blue-bright: #0090E7;
+  --f8-blue-deep:   #005896;
+  --f8-blue-tint:   #E8F4FC;
+  --f8-navy:        #0A1628;
+  --f8-navy-2:      #142238;
+  --f8-teal:        #007B8A;
+  --f8-teal-tint:   #E6F4F6;
+  --f8-amber:       #B86A00;
+  --f8-amber-tint:  #FFF4E0;
+  --f8-green:       #1A6B3A;
+  --f8-green-tint:  #EAF6EE;
+  --f8-red:         #C0392B;
+  --f8-red-tint:    #FDEEEC;
+  --f8-slate:       #3D5166;
+  --f8-slate-tint:  #EDF1F5;
+  --f8-white:       #FFFFFF;
+  --f8-off-white:   #F5F7FA;
+  --f8-fog:         #E6ECF2;
+  --f8-mist:        #C9D2DD;
+  --f8-grey:        #6B7A99;
+  --f8-ink:         #1A1A2E;
+  --f8-ink-soft:    #3A3F55;
+  --fg-1: var(--f8-ink);
+  --fg-2: var(--f8-ink-soft);
+  --fg-3: var(--f8-grey);
+  --bg-1: var(--f8-white);
+  --bg-2: var(--f8-off-white);
+  --bg-dark: var(--f8-navy);
+  --link: var(--f8-blue);
+  --link-hover: var(--f8-blue-deep);
+  --border: var(--f8-fog);
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --t-display: clamp(2rem, 3vw + 1rem, 3.2rem);
+  --t-lead: 1.15rem;
+  --lh-tight: 1.1;
+  --lh-body: 1.6;
+  --tracking-tight: -0.02em;
+  --r-md: 6px; --r-lg: 10px; --r-xl: 16px;
+  --shadow-1: 0 1px 3px rgba(10,22,40,0.06);
+  --shadow-focus: 0 0 0 3px rgba(0,144,231,0.35);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 200ms;
+  --container: 1080px;
+  --gutter: clamp(16px, 4vw, 40px);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; font-family: var(--font-sans); font-size: 1rem; line-height: var(--lh-body);
+  color: var(--fg-1); background: var(--bg-2); -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { margin: 0 0 12px; color: var(--f8-navy); }
+h2 { font-size: 1.3rem; letter-spacing: -0.01em; }
+h3 { font-size: 1rem; font-weight: 600; }
+p { margin: 0 0 12px; }
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); text-decoration: underline; }
+img { display: block; max-width: 100%; }
+button, input, select { font: inherit; }
+:focus-visible { outline: 3px solid var(--f8-blue-bright); outline-offset: 2px; }
+[hidden] { display: none !important; }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+.muted { color: var(--fg-3); font-size: 13.5px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Header (same pattern as the standalone playbook pages) */
+.ks-header { background: var(--bg-1); border-bottom: 1px solid var(--border); }
+.ks-header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 72px; gap: 12px; flex-wrap: wrap; }
+.ks-header img { height: 30px; }
+.ks-back-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; }
+.pm-header-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.pm-lang-toggle { display: flex; gap: 4px; }
+.pm-lang-btn { font-size: 13px; font-weight: 600; padding: 6px 11px; border-radius: 6px; border: 1px solid var(--border); background: #fff; color: var(--f8-grey); cursor: pointer; }
+.pm-lang-btn[aria-pressed="true"] { background: var(--f8-navy); color: #fff; border-color: var(--f8-navy); }
+
+/* Hero */
+.ic-hero { background: var(--bg-dark); color: #fff; padding: clamp(40px, 7vw, 80px) 0 clamp(32px, 5vw, 56px); }
+.ic-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--f8-blue-bright); margin-bottom: 14px; }
+.ic-hero h1 { color: #fff; font-size: var(--t-display); line-height: var(--lh-tight); letter-spacing: var(--tracking-tight); max-width: 22ch; text-wrap: balance; }
+.ic-hero p { color: rgba(255,255,255,0.86); font-size: var(--t-lead); max-width: 70ch; margin: 18px 0 0; }
+
+main { padding: 28px 0 64px; }
+.card { background: var(--bg-1); border: 1px solid var(--border); border-radius: var(--r-lg); padding: clamp(16px, 3vw, 24px); box-shadow: var(--shadow-1); margin-bottom: 20px; }
+.tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--f8-mist); flex-wrap: wrap; }
+.tabs button { border: 0; background: none; padding: 10px 14px; font-weight: 600; font-size: 14px; color: var(--f8-grey); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--f8-navy); border-bottom-color: var(--f8-blue); }
+.tabs button:disabled { opacity: 0.4; cursor: not-allowed; }
+.view { display: none; }
+.view.on { display: block; }
+
+/* Model */
+.model { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.roof { grid-column: 1 / -1; text-align: center; background: var(--f8-navy); color: #fff; border-radius: var(--r-lg); padding: 16px; }
+.roof b { display: block; font-size: 18px; }
+.roof span { display: block; font-size: 13.5px; opacity: 0.8; max-width: 70ch; margin: 4px auto 0; }
+.pillar { border-radius: var(--r-lg); padding: 16px; border: 1px solid var(--border); background: var(--bg-1); }
+.pillar.lead { border-top: 4px solid var(--f8-blue); }
+.pillar.cap { border-top: 4px solid var(--f8-teal); }
+.pillar .owner { font-size: 12.5px; color: var(--f8-grey); margin-bottom: 8px; }
+.dim { padding: 10px 0; border-top: 1px solid var(--border); }
+.dim-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.dim-head b { font-size: 14.5px; color: var(--f8-navy); }
+.dim-head .q { font-size: 13px; font-weight: 600; }
+.lead .q { color: var(--f8-blue); }
+.cap .q { color: var(--f8-teal); }
+.dim .attrs, .dim .lens { font-size: 12.5px; color: var(--f8-grey); margin: 2px 0 0; }
+.dim .lens b { color: var(--f8-slate); font-weight: 600; }
+.note { border-radius: var(--r-md); padding: 12px 14px; font-size: 13.5px; line-height: 1.55; margin-top: 12px; }
+.note.slate { background: var(--f8-slate-tint); color: var(--f8-slate); }
+.note.amber { background: var(--f8-amber-tint); color: var(--f8-amber); }
+.note.green { background: var(--f8-green-tint); color: var(--f8-green); }
+.note.blue { background: var(--f8-blue-tint); color: var(--f8-blue-deep); }
+details.info { font-size: 12.5px; color: var(--f8-slate); margin-top: 4px; }
+details.info summary { cursor: pointer; font-weight: 600; color: var(--f8-teal); }
+
+/* Forms */
+label.f, .f-label { display: block; font-size: 13px; font-weight: 600; color: var(--f8-navy); margin-bottom: 4px; }
+label.f small, .f-label small { font-weight: 400; color: var(--f8-grey); }
+input[type=text], input[type=email], select { width: 100%; padding: 10px 12px; border: 1px solid var(--f8-mist); border-radius: var(--r-md); font-size: 14px; color: var(--fg-1); background: #fff; }
+.field.missing select { border-color: var(--f8-red); background: var(--f8-red-tint); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.modes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 6px; }
+.mode { border: 1.5px solid var(--f8-mist); border-radius: var(--r-lg); padding: 14px; cursor: pointer; background: #fff; text-align: left; }
+.mode[aria-pressed="true"] { border-color: var(--f8-blue); background: var(--f8-blue-tint); }
+.mode b { display: block; color: var(--f8-navy); font-size: 15px; }
+.mode span { font-size: 13px; color: var(--fg-2); }
+.code-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; align-items: flex-end; }
+.code-row > div { flex: 1 1 200px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid transparent; border-radius: var(--r-md); padding: 11px 18px; font-weight: 600; font-size: 14px; cursor: pointer; background: var(--f8-blue-bright); color: #fff; line-height: 1.2; text-decoration: none; transition: background var(--dur) var(--ease-out); }
+.btn:hover { background: var(--f8-blue); color: #fff; text-decoration: none; }
+.btn.ghost { background: #fff; color: var(--f8-navy); border-color: var(--f8-mist); }
+.btn.ghost:hover { background: var(--f8-fog); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.msg { font-size: 13.5px; margin-top: 8px; min-height: 1.2em; }
+.msg.err { color: var(--f8-red); }
+.msg.ok { color: var(--f8-green); }
+.consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--fg-2); margin: 12px 0; cursor: pointer; }
+.consent input { margin-top: 4px; width: 16px; height: 16px; flex: none; }
+.subform { border-left: 3px solid var(--f8-fog); padding: 4px 0 4px 14px; margin: 0 0 12px 6px; }
+.subform .grid2 { margin-bottom: 4px; }
+
+/* Assessment */
+.progress { height: 6px; background: var(--f8-fog); border-radius: 3px; overflow: hidden; margin: 6px 0 20px; }
+.progress i { display: block; height: 100%; background: var(--f8-blue); width: 0; transition: width 0.25s; }
+.item { border: 1px solid var(--border); border-left: 4px solid var(--f8-blue); padding: 18px clamp(14px, 3vw, 20px); background: #fff; margin-bottom: 14px; border-radius: 0 var(--r-md) var(--r-md) 0; }
+.item.cap { border-left-color: var(--f8-teal); }
+.item-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+.item-head h3 { margin: 0; }
+.item-head .tag { font-size: 12.5px; font-weight: 600; color: var(--f8-grey); }
+.item .prefix { font-size: 13px; color: var(--f8-grey); margin: 0 0 2px; }
+.item p.stmt { font-size: 15px; color: var(--fg-1); margin-bottom: 12px; max-width: 70ch; }
+.sub { padding: 12px 0; border-top: 1px dashed var(--f8-fog); }
+.sub.missing, .item.missing .single { background: var(--f8-red-tint); margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: var(--r-md); }
+.sub .an { font-size: 12px; font-weight: 600; color: var(--f8-grey); }
+.sub p { font-size: 14px; margin-bottom: 8px; }
+.levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 4px 0 8px; }
+.levels div { background: var(--f8-off-white); border-radius: var(--r-md); padding: 8px 10px; font-size: 12.5px; color: var(--fg-2); }
+.levels b { display: block; font-size: 11.5px; color: var(--f8-slate); margin-bottom: 2px; }
+.levels-h { font-size: 12px; font-weight: 600; color: var(--f8-slate); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+.scale { display: flex; flex-wrap: wrap; gap: 6px; }
+.scale button { flex: 1 1 88px; border: 1px solid var(--f8-mist); background: #fff; border-radius: var(--r-md); padding: 8px 6px; font-size: 12.5px; color: var(--fg-2); cursor: pointer; line-height: 1.25; }
+.scale button b { display: block; font-size: 14px; color: var(--f8-navy); }
+.scale button[aria-pressed="true"] { background: var(--f8-navy); border-color: var(--f8-navy); color: #fff; }
+.scale button[aria-pressed="true"] b { color: #fff; }
+
+/* Ranking */
+.rank-list { list-style: none; padding: 0; margin: 16px 0; }
+.rank-item { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--f8-mist); border-radius: var(--r-md); padding: 10px 12px; margin-bottom: 8px; touch-action: pan-y; }
+.rank-item.dragging { box-shadow: 0 6px 20px rgba(10,22,40,0.18); border-color: var(--f8-blue); position: relative; z-index: 2; }
+.rank-pos { font-weight: 800; color: var(--f8-blue); min-width: 1.5em; }
+.rank-handle { cursor: grab; touch-action: none; border: 0; background: none; padding: 6px; color: var(--f8-grey); font-size: 18px; line-height: 1; border-radius: var(--r-md); }
+.rank-handle:active { cursor: grabbing; }
+.rank-name { flex: 1; min-width: 0; }
+.rank-name b { color: var(--f8-navy); }
+.rank-name span { display: block; font-size: 12.5px; color: var(--f8-grey); }
+.rank-btns { display: flex; gap: 4px; }
+.rank-btns button { width: 36px; height: 36px; border: 1px solid var(--f8-mist); background: #fff; border-radius: var(--r-md); cursor: pointer; color: var(--f8-navy); font-size: 15px; }
+.rank-btns button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* Results */
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 8px; }
+.kpi { background: var(--f8-navy); color: #fff; border-radius: var(--r-lg); padding: 16px; }
+.kpi b { display: block; font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+.kpi span { font-size: 13px; opacity: 0.8; }
+.gauges { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.gauge { position: relative; text-align: center; padding: 14px 6px; background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg); }
+.gauge.focus { border-color: var(--f8-blue); box-shadow: inset 0 0 0 1px var(--f8-blue); }
+.gauge svg { width: 100%; max-width: 150px; height: auto; }
+.gauge .n { font-weight: 700; color: var(--f8-navy); font-size: 14px; }
+.gauge .qq { font-size: 12px; color: var(--f8-grey); }
+.band { display: inline-block; margin-top: 6px; font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+.b-red { background: var(--f8-red-tint); color: var(--f8-red); }
+.b-amber { background: var(--f8-amber-tint); color: var(--f8-amber); }
+.b-green { background: var(--f8-green-tint); color: var(--f8-green); }
+.start-chip { position: absolute; top: 8px; left: 8px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; background: var(--f8-blue); color: #fff; padding: 2px 7px; border-radius: 10px; }
+.grouplabel { font-size: 13px; font-weight: 700; margin: 18px 0 8px; display: flex; justify-content: space-between; }
+.grouplabel.l { color: var(--f8-blue); }
+.grouplabel.c { color: var(--f8-teal); }
+ol.start-list { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+ol.start-list > li { border-top: 1px solid var(--border); padding: 14px 0; counter-increment: s; }
+.start-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.start-row::before { content: counter(s); font-weight: 800; color: var(--f8-blue); min-width: 1.4em; }
+.start-row b { color: var(--f8-navy); }
+.start-detail { margin: 10px 0 0 1.9em; display: grid; gap: 12px; }
+.start-detail h4 { margin: 0 0 4px; font-size: 13px; color: var(--f8-slate); text-transform: uppercase; letter-spacing: 0.05em; }
+.start-detail ul { margin: 4px 0 0; padding-left: 18px; font-size: 14px; }
+.start-detail p { font-size: 14px; margin: 0; }
+.next-dims { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.next-dims span { font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 12px; }
+.next-dims .c { background: var(--f8-teal-tint); color: var(--f8-teal); }
+.next-dims .l { background: var(--f8-blue-tint); color: var(--f8-blue-deep); }
+.print-meta { display: none; }
+
+/* Team */
+table.team { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.team th { text-align: left; font-size: 12px; color: var(--f8-grey); font-weight: 600; padding: 8px 6px; border-bottom: 1px solid var(--f8-mist); }
+table.team td { padding: 10px 6px; border-bottom: 1px solid var(--f8-fog); vertical-align: middle; }
+.range { position: relative; height: 14px; background: var(--f8-fog); border-radius: 7px; min-width: 120px; }
+.range .span { position: absolute; top: 3px; height: 8px; background: var(--f8-mist); border-radius: 4px; }
+.range .avg { position: absolute; top: -2px; width: 4px; height: 18px; border-radius: 2px; background: var(--f8-navy); }
+.flag { font-size: 11.5px; font-weight: 600; color: var(--f8-amber); background: var(--f8-amber-tint); padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+.scroll { overflow-x: auto; }
+.team-who { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+ol.team-start { padding-left: 20px; margin: 8px 0 0; font-size: 14px; }
+ol.team-start li { margin-bottom: 6px; }
+
+.footer { background: var(--bg-dark); color: #fff; padding: 32px 0 24px; }
+.footer-bot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; color: rgba(255,255,255,0.56); font-size: 12px; }
+.footer a { color: rgba(255,255,255,0.78); }
+
+@media (max-width: 760px) {
+  .model, .grid2, .modes, .levels { grid-template-columns: 1fr; }
+  .gauges { grid-template-columns: repeat(2, 1fr); }
+  .kpis { gap: 8px; }
+  .kpi { padding: 12px 10px; }
+  .kpi b { font-size: 22px; }
+  .kpi span { font-size: 12px; }
+  .start-detail { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+@media print {
+  @page { size: A4; margin: 14mm; }
+  body { background: #fff; font-size: 11pt; }
+  .ks-header, .ic-hero, .tabs, .footer, .noprint, .view { display: none !important; }
+  #v-results { display: block !important; }
+  main { padding: 0; }
+  .container { max-width: none; padding: 0; }
+  .card, .gauge, ol.start-list > li { box-shadow: none; break-inside: avoid; }
+  .card { border: 0; padding: 0 0 12px; }
+  .print-meta { display: block; font-weight: 700; color: var(--f8-navy); margin-bottom: 8px; }
+  .kpi { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .band, .start-chip, .gauge svg { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a[href]::after { content: none; }
+}
+</style>
+</head>
+<body>
+<header class="ks-header">
+  <div class="container ks-header-inner">
+    <a href="/"><img src="assets/facilit8-logo.png" alt="facilit8"></a>
+    <div class="pm-header-right">
+      <div class="pm-lang-toggle" role="group" data-t-aria="impact.langLabel" aria-label="Language">
+        <button type="button" class="pm-lang-btn" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" class="pm-lang-btn" data-lang-btn="de" aria-pressed="false">DE</button>
+      </div>
+      <a class="ks-back-link" href="/" data-t="impact.back">← Back to facilit8.org</a>
+    </div>
+  </div>
+</header>
+
+<section class="ic-hero">
+  <div class="container">
+    <div class="ic-eyebrow" data-t="impact.hero.eyebrow"></div>
+    <h1 data-t="impact.hero.headline"></h1>
+    <p data-t="impact.hero.intro"></p>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+    <nav class="tabs noprint" role="tablist">
+      <button type="button" role="tab" id="tab-model" data-view="model" aria-selected="true" aria-controls="v-model" data-t="impact.tabs.model"></button>
+      <button type="button" role="tab" id="tab-assess" data-view="assess" aria-selected="false" aria-controls="v-assess" data-t="impact.tabs.assess"></button>
+      <button type="button" role="tab" id="tab-results" data-view="results" aria-selected="false" aria-controls="v-results" data-t="impact.tabs.results" disabled></button>
+      <button type="button" role="tab" id="tab-team" data-view="team" aria-selected="false" aria-controls="v-team" data-t="impact.tabs.team"></button>
+    </nav>
+
+    <!-- MODEL -->
+    <section class="view on" id="v-model" role="tabpanel" aria-labelledby="tab-model">
+      <div class="model" id="modelGrid"></div>
+      <div class="note slate" data-t="impact.model.scaleNote"></div>
+      <div class="row" style="margin-top:20px"><button class="btn" type="button" data-go="assess" data-t="impact.model.start"></button></div>
+    </section>
+
+    <!-- ASSESS -->
+    <section class="view" id="v-assess" role="tabpanel" aria-labelledby="tab-assess">
+      <div class="card" id="setup">
+        <h2 data-t="impact.setup.heading"></h2>
+        <p class="muted" data-t="impact.setup.body"></p>
+        <div class="grid2">
+          <div><label class="f" for="fName"><span data-t="impact.setup.name"></span> <small>(<span data-t="impact.setup.optional"></span>)</small></label><input type="text" id="fName" autocomplete="name" maxlength="120"></div>
+          <div><label class="f" for="fRole"><span data-t="impact.setup.role"></span> <small>(<span data-t="impact.setup.optional"></span>)</small></label><input type="text" id="fRole" autocomplete="organization-title" maxlength="120"></div>
+          <div><label class="f" for="fOrg"><span data-t="impact.setup.org"></span> <small>(<span data-t="impact.setup.optional"></span>)</small></label><input type="text" id="fOrg" autocomplete="organization" maxlength="160"></div>
+          <div><label class="f" for="fInit"><span data-t="impact.setup.initiative"></span> <small>(<span data-t="impact.setup.optional"></span>)</small></label><input type="text" id="fInit" maxlength="160"></div>
+          <div class="field" id="fld-industry"><label class="f" for="fIndustry"><span data-t="impact.setup.industry"></span> <small>(<span data-t="impact.setup.required"></span>)</small></label><select id="fIndustry" required aria-required="true"></select></div>
+          <div class="field" id="fld-size"><label class="f" for="fSize"><span data-t="impact.setup.size"></span> <small>(<span data-t="impact.setup.required"></span>)</small></label><select id="fSize" required aria-required="true"></select></div>
+        </div>
+        <div style="margin-top:16px">
+          <span class="f-label" id="modeLabel" data-t="impact.setup.mode"></span>
+          <div class="modes" role="group" aria-labelledby="modeLabel">
+            <button class="mode" type="button" data-mode="quick" aria-pressed="true"><b data-t="impact.setup.quickH"></b><span data-t="impact.setup.quickP"></span></button>
+            <button class="mode" type="button" data-mode="deep" aria-pressed="false"><b data-t="impact.setup.deepH"></b><span data-t="impact.setup.deepP"></span></button>
+          </div>
+          <div id="deepCode" hidden>
+            <div class="code-row">
+              <div><label class="f" for="fCode" data-t="impact.setup.code"></label><input type="text" id="fCode" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="64"></div>
+              <button class="btn" type="button" id="btnUnlock" data-t="impact.setup.unlock"></button>
+            </div>
+            <div class="msg" id="codeMsg" role="status" aria-live="polite"></div>
+          </div>
+          <p class="muted" style="margin-top:12px" id="paidSetup"><span data-t="impact.setup.paidNote"></span> <a href="/#contact" data-t="impact.setup.paidLink"></a></p>
+        </div>
+      </div>
+      <div class="muted" id="progTxt" aria-live="polite"></div>
+      <div class="progress" aria-hidden="true"><i id="progBar"></i></div>
+      <div id="items"></div>
+      <div class="row"><button class="btn" type="button" id="btnContinue" data-t="impact.assess.continue"></button></div>
+      <div class="msg err" id="assessErr" role="alert"></div>
+    </section>
+
+    <!-- RANK -->
+    <section class="view" id="v-rank" aria-labelledby="rankH">
+      <div class="card">
+        <h2 id="rankH" data-t="impact.rank.heading"></h2>
+        <p id="rankBody"></p>
+        <p class="muted" data-t="impact.rank.hint"></p>
+        <ol class="rank-list" id="rankList"></ol>
+        <div class="visually-hidden" id="rankLive" aria-live="assertive"></div>
+        <div class="row">
+          <button class="btn" type="button" id="btnRankDone" data-t="impact.rank.confirm"></button>
+          <button class="btn ghost" type="button" data-go="assess" data-t="impact.rank.back"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="view" id="v-results" role="tabpanel" aria-labelledby="tab-results">
+      <div id="resultsEmpty" class="card"><p data-t="impact.results.empty"></p></div>
+      <div id="resultsBody" hidden>
+        <div class="card">
+          <div class="print-meta" data-t="impact.hero.eyebrow"></div>
+          <h2 data-t="impact.results.heading"></h2>
+          <p class="muted" id="rMeta"></p>
+          <div class="kpis" id="kpis"></div>
+          <div id="gapNote" class="note blue" hidden><b data-t="impact.results.gapLabel"></b><br><span data-t="impact.results.gapNote"></span></div>
+          <div id="gaugeWrap"></div>
+        </div>
+        <div class="card" id="sustainCard" hidden>
+          <h2 data-t="impact.results.sustainHeading"></h2>
+          <p data-t="impact.results.sustain"></p>
+        </div>
+        <div class="card" id="startCard">
+          <h2 data-t="impact.results.startHeading"></h2>
+          <p class="muted" data-t="impact.results.startIntro"></p>
+          <ol class="start-list" id="startList"></ol>
+        </div>
+        <div class="card">
+          <h2 data-t="impact.results.nextHeading"></h2>
+          <p data-t="impact.results.nextBody"></p>
+          <div class="next-dims" id="nextDims"></div>
+          <a class="btn ghost noprint" href="/#contact" data-t="impact.results.nextCta"></a>
+        </div>
+        <div class="card noprint">
+          <h2 data-t="impact.results.keepHeading"></h2>
+          <p class="muted" data-t="impact.results.keepBody"></p>
+          <div class="row">
+            <button class="btn" type="button" id="btnPdf" data-t="impact.results.pdf"></button>
+            <button class="btn ghost" type="button" id="btnExport" data-t="impact.results.export"></button>
+          </div>
+          <p class="muted" style="margin-top:12px" id="paidResults"><span data-t="impact.results.paidNote"></span> <a href="/#contact" data-t="impact.results.paidLink"></a></p>
+        </div>
+        <div class="card noprint">
+          <h2 data-t="impact.interpret.heading"></h2>
+          <label class="consent"><input type="checkbox" id="cbInterpret"><span data-t="impact.interpret.consent"></span></label>
+          <div class="subform" id="interpretForm" hidden>
+            <div class="grid2">
+              <div><label class="f" for="iEmail" data-t="impact.interpret.email"></label><input type="email" id="iEmail" autocomplete="email" maxlength="254" required></div>
+              <div><label class="f" for="iName"><span data-t="impact.interpret.name"></span> <small>(<span data-t="impact.interpret.optional"></span>)</small></label><input type="text" id="iName" autocomplete="name" maxlength="120"></div>
+              <div><label class="f" for="iOrg"><span data-t="impact.interpret.org"></span> <small>(<span data-t="impact.interpret.optional"></span>)</small></label><input type="text" id="iOrg" autocomplete="organization" maxlength="160"></div>
+            </div>
+            <label class="consent"><input type="checkbox" id="cbMarketing"><span data-t="impact.interpret.marketing"></span></label>
+            <button class="btn" type="button" id="btnInterpret" data-t="impact.interpret.submit"></button>
+            <div class="msg" id="interpretMsg" role="status" aria-live="polite"></div>
+            <p class="muted"><span data-t="impact.interpret.privacy"></span> <a href="/#privacy" data-t="impact.interpret.privacyLink"></a>.</p>
+          </div>
+          <h2 style="margin-top:20px" data-t="impact.baseline.heading"></h2>
+          <label class="consent"><input type="checkbox" id="cbBaseline"><span data-t="impact.baseline.consent"></span></label>
+          <div class="subform" id="baselineForm" hidden>
+            <p class="muted" data-t="impact.baseline.detail"></p>
+            <button class="btn" type="button" id="btnBaseline" data-t="impact.baseline.submit"></button>
+            <div class="msg" id="baselineMsg" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="view" id="v-team" role="tabpanel" aria-labelledby="tab-team">
+      <div class="card" id="teamGate">
+        <h2 data-t="impact.team.gateHeading"></h2>
+        <p class="muted" data-t="impact.team.gateBody"></p>
+        <div class="code-row">
+          <div><label class="f" for="tCode" data-t="impact.setup.code"></label><input type="text" id="tCode" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="64"></div>
+          <button class="btn" type="button" id="btnTeamUnlock" data-t="impact.setup.unlock"></button>
+        </div>
+        <div class="msg" id="tCodeMsg" role="status" aria-live="polite"></div>
+        <p class="muted" style="margin-top:12px"><span data-t="impact.setup.paidNote"></span> <a href="/#contact" data-t="impact.setup.paidLink"></a></p>
+      </div>
+      <div id="teamTool" hidden>
+        <div class="card">
+          <h2 data-t="impact.team.heading"></h2>
+          <p class="muted" data-t="impact.team.body"></p>
+          <div class="row">
+            <label class="btn" for="teamFiles" data-t="impact.team.load" tabindex="0" id="teamLoadLabel"></label>
+            <input type="file" id="teamFiles" accept=".json,application/json" multiple hidden>
+            <button class="btn ghost" type="button" id="teamClear" data-t="impact.team.clear"></button>
+          </div>
+          <div class="msg err" id="teamErr" role="alert"></div>
+        </div>
+        <div id="teamBody" hidden>
+          <div class="card">
+            <div class="team-who">
+              <span class="muted" id="teamWho"></span>
+              <label class="consent" style="margin:0"><input type="checkbox" id="cbShowNames"><span data-t="impact.team.showNames"></span></label>
+            </div>
+            <div class="scroll"><table class="team" id="teamTable"></table></div>
+            <div class="note amber" data-t="impact.team.spreadNote"></div>
+          </div>
+          <div class="card">
+            <h2 data-t="impact.team.startHeading"></h2>
+            <p class="muted" data-t="impact.team.startIntro"></p>
+            <ol class="team-start" id="teamStart"></ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-bot">
+    <span>© 2026 facilit8. All rights reserved.</span>
+    <a href="/">facilit8.org</a>
+  </div>
+</footer>
+
+<script src="/js/i18n.js?v=impact-3"></script>
+<script src="/js/impact-checklist.js?v=impact-2"></script>
+<!-- HubSpot Analytics (consent-gated) -->
+<script src="js/playbook-consent.js"></script>
+</body>
+</html>
