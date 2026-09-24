@@ -18,9 +18,26 @@ async function serverLog(request) {
   return (await request.get('/__test/log')).json();
 }
 
+// The site-wide cookie banner covers the bottom of the screen until a
+// visitor chooses; "Essential only" loads nothing off-origin.
+async function dismissCookieBanner(page) {
+  const btn = page.locator('#f8c-essential');
+  if (await btn.isVisible().catch(() => false)) await btn.click();
+}
+
 async function openChecklist(page) {
   await page.goto('/impact-checklist.html');
+  await dismissCookieBanner(page);
   await page.click('#tab-assess');
+}
+
+// Scroll the ranking list into view and return handle/row boxes.
+async function dragBoxes(page, fromId, toId) {
+  await page.locator('#rankList').scrollIntoViewIfNeeded();
+  await page.evaluate(() => document.querySelector('#rankList').scrollIntoView({ block: 'center' }));
+  const s = await page.locator(`#rankList .rank-item[data-id="${fromId}"] .rank-handle`).boundingBox();
+  const d = await page.locator(`#rankList .rank-item[data-id="${toId}"]`).boundingBox();
+  return { s, d };
 }
 
 async function fillSetup(page) {
@@ -104,8 +121,7 @@ test('3: ties include all tied dimensions; all >=75% skips ranking', async ({ pa
   await page.click('#btnContinue');
   await expect(page.locator('#rankList .rank-item')).toHaveCount(6);
 
-  await page.goto('/impact-checklist.html');
-  await page.click('#tab-assess');
+  await openChecklist(page);
   await fillSetup(page);
   await answerQuick(page, [75, 100, 75, 75, 100, 75, 75, 100]);
   await page.click('#btnContinue');
@@ -138,9 +154,7 @@ test('4b: ranking works with mouse drag', async ({ page }) => {
   await answerQuick(page, [0, 25, 50, 50, 50, 100, 100, 100]);
   await page.click('#btnContinue');
   const before = await rankOrder(page);
-  const src = page.locator(`#rankList .rank-item[data-id="${before[0]}"] .rank-handle`);
-  const dst = page.locator(`#rankList .rank-item[data-id="${before[2]}"]`);
-  const s = await src.boundingBox(), d = await dst.boundingBox();
+  const { s, d } = await dragBoxes(page, before[0], before[2]);
   await page.mouse.move(s.x + s.width / 2, s.y + s.height / 2);
   await page.mouse.down();
   await page.mouse.move(s.x + s.width / 2, d.y + d.height - 2, { steps: 12 });
@@ -157,8 +171,7 @@ test('4c: ranking works with touch drag', async ({ browser, baseURL }) => {
   await answerQuick(page, [0, 25, 50, 50, 50, 100, 100, 100]);
   await page.click('#btnContinue');
   const before = await rankOrder(page);
-  const s = await page.locator(`#rankList .rank-item[data-id="${before[0]}"] .rank-handle`).boundingBox();
-  const d = await page.locator(`#rankList .rank-item[data-id="${before[2]}"]`).boundingBox();
+  const { s, d } = await dragBoxes(page, before[0], before[2]);
   const cdp = await ctx.newCDPSession(page);
   const x = s.x + s.width / 2;
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y: s.y + s.height / 2 }] });
@@ -213,6 +226,7 @@ test('6: team comparison loads 3 files, hides names, flags disagreement, counts 
   ].map((j, i) => { const p = path.join(dir, `leader${i}.json`); fs.writeFileSync(p, JSON.stringify(j)); return p; });
 
   await page.goto('/impact-checklist.html');
+  await dismissCookieBanner(page);
   await page.click('#tab-team');
   await expect(page.locator('#teamTool')).toBeHidden();
   await page.fill('#tCode', 'TEST-VALID');
@@ -240,6 +254,7 @@ test('6: team comparison loads 3 files, hides names, flags disagreement, counts 
 
 test('6b: team view refuses an expired code', async ({ page }) => {
   await page.goto('/impact-checklist.html');
+  await dismissCookieBanner(page);
   await page.click('#tab-team');
   await page.fill('#tCode', 'TEST-EXPIRED');
   await page.click('#btnTeamUnlock');
@@ -269,6 +284,8 @@ test('10: no horizontal scroll at 360px on every view', async ({ browser, baseUR
     expect(w.s, label).toBeLessThanOrEqual(w.c);
   };
   await page.goto('/impact-checklist.html');
+  await noScroll('model (with cookie banner)');
+  await dismissCookieBanner(page);
   await noScroll('model');
   await page.click('#tab-assess');
   await fillSetup(page);
@@ -311,8 +328,7 @@ test('12: free shows coaching questions for the first-ranked area only; deep sho
   // "Start here" markers on the top 3
   await expect(page.locator('.gauge .start-chip')).toHaveCount(3);
 
-  await page.goto('/impact-checklist.html');
-  await page.click('#tab-assess');
+  await openChecklist(page);
   await fillSetup(page);
   await unlockDeep(page, 'TEST-VALID');
   await expect(page.locator('#items .sub')).toHaveCount(24);
