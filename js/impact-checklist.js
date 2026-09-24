@@ -597,7 +597,10 @@
     postJSON(CONFIG.api.submit, body).then(function (res) {
       if (res.ok) {
         var turn = CONFIG.interpretationTurnaround[I.lang];
-        setMsg('#interpretMsg', t('interpret.ok') + (turn ? ' ' + t('interpret.turnaround', { t: turn }) : ''), 'ok');
+        var el = $('#interpretMsg');
+        el.className = 'msg ok';
+        el.innerHTML = '<b>' + esc(t('interpret.okTitle')) + '</b><br>' +
+          esc(t('interpret.ok') + (turn ? ' ' + t('interpret.turnaround', { t: turn }) : ''));
         return;
       }
       btn.disabled = false;

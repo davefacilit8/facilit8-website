@@ -365,7 +365,8 @@ test('14: interpretation request succeeds with the marketing box unticked', asyn
   await expect(page.locator('#cbMarketing')).not.toBeChecked();
   await page.fill('#iEmail', 'anna@example.ch');
   await page.click('#btnInterpret');
-  await expect(page.locator('#interpretMsg')).toHaveText('Thank you. Dave will send your interpretation personally.');
+  await expect(page.locator('#interpretMsg b')).toHaveText('Step 1 to higher impact complete!');
+  await expect(page.locator('#interpretMsg')).toContainText('Dave will send your interpretation personally.');
   const log = await serverLog(request);
   expect(log.hubspot).toHaveLength(1);
   const fields = Object.fromEntries(log.hubspot[0].body.fields.map((f) => [f.name, f.value]));
