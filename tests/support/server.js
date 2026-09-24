@@ -1,12 +1,13 @@
 // Local test server for the Impact Checklist.
 // - Serves the repo as static files (like Netlify with publish = ".").
-// - Routes /api/impact/* to the real function handlers, with Netlify Blobs
+// - Routes /api/impact/* to the real v2 function entry points, with Netlify Blobs
 //   replaced by an in-memory store and HubSpot replaced by a recorder.
 // - /__test/* endpoints let tests inspect function inputs and reset state.
 
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { pathToFileURL } = require('url');
 const setTestEnv = require('./env');
 const { createStores } = require('./memory-store');
 
@@ -15,7 +16,7 @@ const PORT = Number(process.env.PORT || 8765);
 const BASE = `http://127.0.0.1:${PORT}`;
 
 setTestEnv({ URL: BASE });
-const lib = require(path.join(ROOT, 'netlify/functions/_impact-lib.js'));
+const lib = require(path.join(ROOT, 'netlify/impact/lib.js'));
 const stores = createStores();
 lib.setStoreFactory(stores);
 
@@ -51,17 +52,25 @@ function readBody(req) {
   });
 }
 
+// Calls the real Netlify v2 entry point (netlify/functions/<name>.mjs) with a
+// web Request and a context carrying the client IP, as Netlify does.
 async function handleFunction(req, res, name, body) {
-  const fn = require(path.join(ROOT, 'netlify/functions', name + '.js'));
+  const mod = await import(pathToFileURL(path.join(ROOT, 'netlify/functions', name + '.mjs')).href);
   let parsed = null;
   try { parsed = JSON.parse(body || 'null'); } catch (e) {}
   log.inputs.push({ fn: name, method: req.method, body: parsed });
-  const headers = {};
-  for (const [k, v] of Object.entries(req.headers)) headers[k] = v;
-  headers['x-nf-client-connection-ip'] = headers['x-test-ip'] || '127.0.0.1';
-  const out = await fn.handler({ httpMethod: req.method, headers, body });
-  res.writeHead(out.statusCode, out.headers || {});
-  res.end(out.body || '');
+  const headers = new Headers();
+  for (const [k, v] of Object.entries(req.headers)) if (typeof v === 'string') headers.set(k, v);
+  const request = new Request(BASE + req.url, {
+    method: req.method,
+    headers,
+    body: req.method === 'GET' || req.method === 'HEAD' ? undefined : body,
+  });
+  const out = await mod.default(request, { ip: req.headers['x-test-ip'] || '127.0.0.1' });
+  const outHeaders = {};
+  out.headers.forEach((v, k) => { outHeaders[k] = v; });
+  res.writeHead(out.status, outHeaders);
+  res.end(await out.text());
 }
 
 const server = http.createServer(async (req, res) => {

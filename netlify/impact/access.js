@@ -1,4 +1,4 @@
-const lib = require('./_impact-lib');
+const lib = require('./lib');
 
 // Impact Checklist: checks a deep-mode / facilitator access code.
 // Codes live only in the IMPACT_ACCESS_CODES env var, as JSON:

@@ -1,4 +1,4 @@
-const lib = require('./_impact-lib');
+const lib = require('./lib');
 
 // Impact Checklist: anonymous completion counters.
 //   POST {event, mode}  -> +1 for that event, mode and month (Europe/Zurich).

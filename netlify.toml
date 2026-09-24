@@ -57,35 +57,14 @@
   status = 200
   force = true
 
-# Impact Checklist — public free tool plus its four functions.
+# Impact Checklist — public free tool. Its four functions
+# (netlify/functions/impact-*.mjs) are Netlify v2 functions that declare
+# their own paths (/api/impact/{access,submit,benchmark,count}), so they need
+# no redirects here.
 [[redirects]]
   from = "/impact-checklist"
   to = "/impact-checklist.html"
   status = 200
-
-[[redirects]]
-  from = "/api/impact/access"
-  to = "/.netlify/functions/impact-access"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/impact/submit"
-  to = "/.netlify/functions/impact-submit"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/impact/benchmark"
-  to = "/.netlify/functions/impact-benchmark"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/impact/count"
-  to = "/.netlify/functions/impact-count"
-  status = 200
-  force = true
 
 [[headers]]
   for = "/js/impact-checklist.js"

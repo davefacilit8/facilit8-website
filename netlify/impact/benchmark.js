@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const lib = require('./_impact-lib');
+const lib = require('./lib');
 
 // Impact Checklist: "Add my anonymous scores to the facilit8 Swiss Impact
 // Baseline." Stores ONLY date, language, mode, industry, size band, the 8

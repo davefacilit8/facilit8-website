@@ -13,14 +13,14 @@ const { createStores } = require('./support/memory-store');
 
 const ROOT = path.resolve(__dirname, '..');
 setTestEnv();
-const lib = require(path.join(ROOT, 'netlify/functions/_impact-lib.js'));
+const lib = require(path.join(ROOT, 'netlify/impact/lib.js'));
 const stores = createStores();
 lib.setStoreFactory(stores);
 
-const access = require(path.join(ROOT, 'netlify/functions/impact-access.js'));
-const submit = require(path.join(ROOT, 'netlify/functions/impact-submit.js'));
-const benchmark = require(path.join(ROOT, 'netlify/functions/impact-benchmark.js'));
-const counter = require(path.join(ROOT, 'netlify/functions/impact-count.js'));
+const access = require(path.join(ROOT, 'netlify/impact/access.js'));
+const submit = require(path.join(ROOT, 'netlify/impact/submit.js'));
+const benchmark = require(path.join(ROOT, 'netlify/impact/benchmark.js'));
+const counter = require(path.join(ROOT, 'netlify/impact/count.js'));
 
 let ipSeq = 0;
 function ev(body, opts) {
@@ -202,6 +202,31 @@ test('count: stats view requires the password', async () => {
   const ok = await counter.handler(ev(undefined, { method: 'GET', headers: { authorization: 'Basic ' + Buffer.from('dave:test-stats-password').toString('base64') } }));
   assert.equal(ok.statusCode, 200);
   assert.equal(json(ok).months[lib.zurichMonth()].quick.started, 1);
+});
+
+/* ── Netlify v2 entry points ── */
+test('v2 entry points wrap the handlers and declare their /api/impact paths', async () => {
+  const { pathToFileURL } = require('url');
+  for (const name of ['access', 'submit', 'benchmark', 'count']) {
+    const mod = await import(pathToFileURL(path.join(ROOT, `netlify/functions/impact-${name}.mjs`)).href);
+    assert.equal(typeof mod.default, 'function', name);
+    assert.deepEqual(mod.config, { path: `/api/impact/${name}` });
+  }
+  const access = await import(pathToFileURL(path.join(ROOT, 'netlify/functions/impact-access.mjs')).href);
+  const ok = await access.default(new Request('http://x/api/impact/access', {
+    method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ code: 'TEST-VALID' }),
+  }), { ip: '198.51.100.9' });
+  assert.equal(ok.status, 200);
+  assert.deepEqual(await ok.json(), { ok: true });
+  const expired = await access.default(new Request('http://x/api/impact/access', {
+    method: 'POST', body: JSON.stringify({ code: 'TEST-EXPIRED' }),
+  }), { ip: '198.51.100.9' });
+  assert.equal(expired.status, 403);
+  assert.equal((await expired.json()).error, 'expired');
+  const stats = await (await import(pathToFileURL(path.join(ROOT, 'netlify/functions/impact-count.mjs')).href))
+    .default(new Request('http://x/api/impact/count'), { ip: '198.51.100.9' });
+  assert.equal(stats.status, 401);
+  assert.match(stats.headers.get('www-authenticate'), /^Basic/);
 });
 
 /* ── 8: EN/DE parity in locales/*.json and js/i18n.js ── */

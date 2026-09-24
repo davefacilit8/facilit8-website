@@ -19,14 +19,33 @@ const JSON_HEADERS = {
   'Cache-Control': 'no-store',
 };
 
-/* ── Blobs (injectable for tests) ── */
+/* ── Blobs (injectable for tests) ──
+   The Impact functions run in Netlify's current (v2) function format, where
+   Blobs is configured automatically, including the uncached endpoint that
+   strong-consistency reads need. Lambda-compatibility functions never get
+   that endpoint, which is why these are not written as `exports.handler`
+   functions like the older ones in netlify/functions. */
 let storeFactory = null;
 function setStoreFactory(fn) { storeFactory = fn; }
-function store(name, event) {
+function store(name) {
   if (storeFactory) return storeFactory(name);
-  const blobs = require('@netlify/blobs');
-  if (event && event.blobs && typeof blobs.connectLambda === 'function') blobs.connectLambda(event);
-  return blobs.getStore({ name, consistency: 'strong' });
+  const { getStore } = require('@netlify/blobs');
+  return getStore({ name, consistency: 'strong' });
+}
+
+/* ── v2 adapter ──
+   Each handler takes a small event object ({ httpMethod, headers, body })
+   and returns { statusCode, headers, body }. toV2 wraps it as a Netlify v2
+   function: (Request, Context) => Response. */
+function toV2(handler) {
+  return async (req, context) => {
+    const headers = {};
+    req.headers.forEach((v, k) => { headers[k] = v; });
+    if (context && context.ip) headers['x-nf-client-connection-ip'] = context.ip;
+    const body = req.method === 'GET' || req.method === 'HEAD' ? undefined : await req.text();
+    const out = await handler({ httpMethod: req.method, headers, body });
+    return new Response(out.body == null ? '' : out.body, { status: out.statusCode, headers: out.headers || {} });
+  };
 }
 
 /* ── Responses ── */
@@ -195,7 +214,7 @@ async function incrementCounter(event, name, mode) {
 
 module.exports = {
   DIMS, MODES, LANGS, INDUSTRIES, SIZES, COUNTER_EVENTS,
-  setStoreFactory, store, reply, guard, parseBody, onlyKeys,
+  setStoreFactory, store, toV2, reply, guard, parseBody, onlyKeys,
   checkScores, checkRanking, checkCommon, zurichDate, zurichMonth,
   safeEqual, atomicUpdate, rateLimit, incrementCounter,
 };

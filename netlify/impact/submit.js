@@ -1,4 +1,4 @@
-const lib = require('./_impact-lib');
+const lib = require('./lib');
 
 // Impact Checklist: "Email me my results and a personal one-page
 // interpretation from Dave." Forwards to the HubSpot Forms submission API
