@@ -122,14 +122,19 @@ function safeEqual(a, b) {
 }
 
 /* ── Conditional-write update, retried on conflict ── */
+// Each conflict means another request won the race, so a burst of N
+// simultaneous writers needs up to N rounds; the jittered backoff spreads
+// them out so they do not keep colliding.
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function atomicUpdate(st, key, mutate, attempts) {
-  const max = attempts || 8;
+  const max = attempts || 40;
   for (let i = 0; i < max; i++) {
     const cur = await st.getWithMetadata(key, { type: 'json' });
     const next = mutate(cur ? cur.data : null);
     const opts = cur ? { onlyIfMatch: cur.etag } : { onlyIfNew: true };
     const res = await st.setJSON(key, next, opts);
     if (!res || res.modified !== false) return next;
+    await sleep(Math.random() * Math.min(200, 10 * (i + 1)));
   }
   throw new Error('atomic update failed after retries');
 }

@@ -7,7 +7,8 @@ module.exports = defineConfig({
   testMatch: /.*\.spec\.js/,
   fullyParallel: false,
   workers: 1,
-  reporter: [['list']],
+  // 'github' adds failure annotations to the Actions run page.
+  reporter: process.env.CI ? [['list'], ['github']] : [['list']],
   use: {
     baseURL: `http://127.0.0.1:${PORT}`,
     ...devices['Desktop Chrome'],

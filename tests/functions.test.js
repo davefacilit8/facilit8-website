@@ -248,7 +248,7 @@ test('i18n: every key the page uses exists in EN and DE', () => {
   const js = fs.readFileSync(path.join(ROOT, 'js/impact-checklist.js'), 'utf8');
   const keys = new Set();
   for (const m of html.matchAll(/data-t(?:-aria)?="([^"]+)"/g)) keys.add(m[1]);
-  for (const m of js.matchAll(/\bt\('([a-zA-Z0-9.]+)'/g)) keys.add('impact.' + m[1]);
+  for (const m of js.matchAll(/\bt\('([a-zA-Z0-9.]*[a-zA-Z0-9])'/g)) keys.add('impact.' + m[1]);
   for (const id of lib.DIMS) keys.add(`impact.dims.${id}.name`);
   for (const lang of ['en', 'de']) {
     for (const k of keys) {
