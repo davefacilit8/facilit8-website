@@ -2053,10 +2053,12 @@ function AskHero({ navigate }) {
             <div className="answer-panel-eyebrow">{t('home.heroAsk.answerEyebrow')}</div>
             <p className="answer-panel-answer">{current.answer}</p>
             <p className="answer-panel-proof">{current.proof}</p>
-            <p className="answer-panel-tool">
-              {t('home.heroAsk.toolLead')}{' '}
-              <a href="impact-checklist.html">{t('home.heroAsk.toolLink')} <span aria-hidden="true">→</span></a>
-            </p>
+            {situation === 0 && (
+              <p className="answer-panel-tool">
+                {t('home.heroAsk.toolLead')}{' '}
+                <a href="impact-checklist.html">{t('home.heroAsk.toolLink')} <span aria-hidden="true">→</span></a>
+              </p>
+            )}
           </div>
           <PrimaryButton onClick={() => navigate('contact')}>{t('home.heroAsk.cta')}</PrimaryButton>
         </div>
