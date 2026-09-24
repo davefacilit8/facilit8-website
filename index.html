@@ -1199,6 +1199,9 @@ main { flex: 1; }
 .answer-panel-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #7FD0FF; }
 .answer-panel-answer { margin-top: 12px; font-size: 21px; line-height: 1.45; font-weight: 500; color: #fff; text-wrap: pretty; }
 .answer-panel-proof { margin-top: 10px; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.62); }
+.answer-panel-tool { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.78); }
+.answer-panel-tool a { color: #7FD0FF; font-weight: 600; white-space: nowrap; }
+.answer-panel-tool a:hover { color: #fff; }
 .answer-panel .btn { white-space: nowrap; padding: 16px 28px; font-size: 16px; }
 @media (max-width: 860px) {
   .hero-ask-row1 { grid-template-columns: 1fr; }
@@ -1272,7 +1275,7 @@ main { flex: 1; }
 <link rel="alternate" hreflang="de" href="https://www.facilit8.org/?lang=de"/>
 <link rel="alternate" hreflang="x-default" href="https://www.facilit8.org/"/>
 <!-- i18n: language detection and translations (must load before React) -->
-<script src="/js/i18n.js?v=impact-2"></script>
+<script src="/js/i18n.js?v=impact-3"></script>
 <script>document.documentElement.lang = window.F8_I18N.lang;</script>
 </head>
 <body>
@@ -2050,6 +2053,10 @@ function AskHero({ navigate }) {
             <div className="answer-panel-eyebrow">{t('home.heroAsk.answerEyebrow')}</div>
             <p className="answer-panel-answer">{current.answer}</p>
             <p className="answer-panel-proof">{current.proof}</p>
+            <p className="answer-panel-tool">
+              {t('home.heroAsk.toolLead')}{' '}
+              <a href="impact-checklist.html">{t('home.heroAsk.toolLink')} <span aria-hidden="true">→</span></a>
+            </p>
           </div>
           <PrimaryButton onClick={() => navigate('contact')}>{t('home.heroAsk.cta')}</PrimaryButton>
         </div>

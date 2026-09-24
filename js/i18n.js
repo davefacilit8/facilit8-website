@@ -193,7 +193,9 @@ en: {
       proof2:'The structure behind the CRM, engagement and ERP recovery framework in the Rescue the Rollout playbook.',
       answer3:"A structured session that turns AI from a buzzword into an owned plan — clear on where it creates value, and who's accountable for it.",
       proof3:'The same structured thinking behind StrategyLENS — our 20-minute tool for testing your strategic choices, including AI.',
-      cta:'Start with a conversation'
+      cta:'Start with a conversation',
+      toolLead:"Or start on your own: the free Impact Checklist shows, in about five minutes, where your leadership team’s trust is strong and where it is fragile.",
+      toolLink:"Take the Impact Checklist"
     },
     founder: {
       photoAlt:'David Howes, founder of facilit8',
@@ -883,7 +885,9 @@ de: {
       proof2:'Die Struktur hinter dem Recovery-Framework für CRM, Customer Engagement und ERP aus dem Playbook „Rescue the Rollout”.',
       answer3:'Eine strukturierte Session, die AI vom Schlagwort zu einem verantworteten Plan macht — klar, wo der Wert entsteht und wer dafür verantwortlich ist.',
       proof3:'Dasselbe strukturierte Denken, das hinter StrategyLENS steht — unserem 20-minütigen Tool, um Ihre strategischen Entscheidungen zu testen, einschliesslich AI.',
-      cta:'Gespräch beginnen'
+      cta:'Gespräch beginnen',
+      toolLead:"Oder beginnen Sie selbst: Die kostenlose Impact-Checkliste zeigt in rund fünf Minuten, wo das Vertrauen Ihres Führungsteams stark ist und wo es fragil ist.",
+      toolLink:"Zur Impact-Checkliste"
     },
     founder: {
       photoAlt:'David Howes, Gründer von facilit8',

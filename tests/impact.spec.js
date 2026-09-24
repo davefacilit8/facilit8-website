@@ -410,3 +410,14 @@ test('language switch persists across pages and keeps answers', async ({ page })
   await page.goto('/impact-checklist.html');
   await expect(page.locator('html')).toHaveAttribute('lang', 'de');
 });
+
+test('homepage "Where we\'d start" panel links to the checklist in EN and DE', async ({ page }) => {
+  await page.goto('/');
+  const link = page.locator('.answer-panel-tool a[href="impact-checklist.html"]');
+  await expect(link).toContainText('Take the Impact Checklist');
+  // still there after switching situation card
+  await page.locator('.situation-card').nth(2).click();
+  await expect(link).toBeVisible();
+  await page.goto('/?lang=de');
+  await expect(page.locator('.answer-panel-tool a[href="impact-checklist.html"]')).toContainText('Zur Impact-Checkliste');
+});
