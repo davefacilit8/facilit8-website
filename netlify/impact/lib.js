@@ -31,10 +31,17 @@ function setStoreFactory(fn) { storeFactory = fn; }
 // The v2 entry points import @netlify/blobs statically (so Netlify's bundler
 // ships it) and hand getStore in here.
 function setBlobsGetStore(fn) { blobsGetStore = fn; }
+// Blobs stores are site-wide, shared by production and every preview. Keep
+// preview and branch-deploy data out of the real Baseline and counters by
+// suffixing the store name outside production.
+let deployContext = 'production';
+function storeName(name) {
+  return deployContext === 'production' ? name : `${name}-${deployContext}`;
+}
 function store(name) {
   if (storeFactory) return storeFactory(name);
   if (!blobsGetStore) throw new Error('Netlify Blobs not wired: call setBlobsGetStore from the entry point');
-  return blobsGetStore({ name, consistency: 'strong' });
+  return blobsGetStore({ name: storeName(name), consistency: 'strong' });
 }
 
 /* ── v2 adapter ──
@@ -46,6 +53,7 @@ function toV2(handler) {
     const headers = {};
     req.headers.forEach((v, k) => { headers[k] = v; });
     if (context && context.ip) headers['x-nf-client-connection-ip'] = context.ip;
+    deployContext = (context && context.deploy && context.deploy.context) || 'production';
     const body = req.method === 'GET' || req.method === 'HEAD' ? undefined : await req.text();
     const out = await handler({ httpMethod: req.method, headers, body });
     return new Response(out.body == null ? '' : out.body, { status: out.statusCode, headers: out.headers || {} });
@@ -218,7 +226,7 @@ async function incrementCounter(event, name, mode) {
 
 module.exports = {
   DIMS, MODES, LANGS, INDUSTRIES, SIZES, COUNTER_EVENTS,
-  setStoreFactory, setBlobsGetStore, store, toV2, reply, guard, parseBody, onlyKeys,
+  setStoreFactory, setBlobsGetStore, store, storeName, toV2, reply, guard, parseBody, onlyKeys,
   checkScores, checkRanking, checkCommon, zurichDate, zurichMonth,
   safeEqual, atomicUpdate, rateLimit, incrementCounter,
 };

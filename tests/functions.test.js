@@ -229,6 +229,28 @@ test('v2 entry points wrap the handlers and declare their /api/impact paths', as
   assert.match(stats.headers.get('www-authenticate'), /^Basic/);
 });
 
+test('previews and branch deploys use separate Blobs stores', async () => {
+  const names = [];
+  lib.setStoreFactory(null);
+  lib.setBlobsGetStore((opts) => { names.push(opts.name); return createStores()(opts.name); });
+  try {
+    const { pathToFileURL } = require('url');
+    const count = await import(pathToFileURL(path.join(ROOT, 'netlify/functions/impact-count.mjs')).href);
+    lib.setBlobsGetStore((opts) => { names.push(opts.name); return createStores()(opts.name); });
+    const call = (ctx) => count.default(new Request('http://x/api/impact/count', {
+      method: 'POST', body: JSON.stringify({ event: 'started', mode: 'quick' }),
+    }), { ip: '198.51.100.10', deploy: { context: ctx } });
+    await call('deploy-preview');
+    assert.ok(names.includes('impact-counters-deploy-preview'), names.join(','));
+    assert.ok(!names.includes('impact-counters'), names.join(','));
+    names.length = 0;
+    await call('production');
+    assert.ok(names.includes('impact-counters'), names.join(','));
+  } finally {
+    lib.setStoreFactory(stores);
+  }
+});
+
 /* ── 8: EN/DE parity in locales/*.json and js/i18n.js ── */
 function loadI18n() {
   const win = { location: { search: '', href: 'http://x/' }, dispatchEvent() {}, history: { replaceState() {} } };
