@@ -33,8 +33,13 @@ async function openChecklist(page) {
 
 // Scroll the ranking list into view and return handle/row boxes.
 async function dragBoxes(page, fromId, toId) {
-  await page.locator('#rankList').scrollIntoViewIfNeeded();
-  await page.evaluate(() => document.querySelector('#rankList').scrollIntoView({ block: 'center' }));
+  // The page scrolls smoothly; measure only once scrolling has stopped,
+  // otherwise the drop point is computed against a moving list.
+  await page.evaluate(() => document.querySelector('#rankList').scrollIntoView({ block: 'center', behavior: 'instant' }));
+  await page.waitForFunction(() => new Promise((resolve) => {
+    const y = window.scrollY;
+    setTimeout(() => resolve(window.scrollY === y), 150);
+  }));
   const s = await page.locator(`#rankList .rank-item[data-id="${fromId}"] .rank-handle`).boundingBox();
   const d = await page.locator(`#rankList .rank-item[data-id="${toId}"]`).boundingBox();
   return { s, d };
