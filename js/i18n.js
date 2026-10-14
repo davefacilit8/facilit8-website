@@ -45,7 +45,7 @@
    ========================================================= */
 en: {
   nav: { home:'Home', services:'Services', caseStudies:'Case Studies', playbooks:'Playbooks', about:'About', contact:'Contact', bookMeeting:'Start a conversation' },
-  footer: { tagline:'Commercial Excellence — transformation that sticks.', servicesHeading:'Services', companyHeading:'Company', basedInHeading:'Based in', basedInValue:'Switzerland', workingInternationally:'Working internationally', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Switzerland — DACH & International', cookiesPrivacy:'Cookies & Privacy', bookMeeting:'Book a meeting' , privacy:'Privacy'},
+  footer: { tagline:'Commercial Excellence — transformation that sticks.', servicesHeading:'Services', companyHeading:'Company', basedInHeading:'Based in', basedInValue:'Switzerland', workingInternationally:'Working internationally', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Switzerland — DACH & International', cookiesPrivacy:'Cookies & Privacy', bookMeeting:'Book a meeting' , privacy:'Privacy', aiMomentum:'AI: MOMENTUM'},
   deBanner: { text:'This page is also available in German.', switchButton:'Switch to German', dismiss:'×' },
   cookieBanner: { text:'We use cookies to power the meeting booking tool and, if you accept, to understand how visitors use this site.', managePreferences:'Manage preferences', essentialOnly:'Essential only', acceptAll:'Accept all', ariaLabel:'Cookie notice' },
   cookies: {
@@ -737,7 +737,7 @@ en: {
    ========================================================= */
 de: {
   nav: { home:'Startseite', services:'Leistungen', caseStudies:'Case Studies', playbooks:'Playbooks', about:'Über uns', contact:'Kontakt', bookMeeting:'Gespräch beginnen' },
-  footer: { tagline:'Commercial Excellence — Transformation, die hält.', servicesHeading:'Leistungen', companyHeading:'Unternehmen', basedInHeading:'Standort', basedInValue:'Schweiz', workingInternationally:'International tätig', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Schweiz — DACH & International', cookiesPrivacy:'Cookies & Datenschutz', bookMeeting:'Termin buchen' , privacy:'Datenschutz'},
+  footer: { tagline:'Commercial Excellence — Transformation, die hält.', servicesHeading:'Leistungen', companyHeading:'Unternehmen', basedInHeading:'Standort', basedInValue:'Schweiz', workingInternationally:'International tätig', languages:'English & Deutsch', copyright:'© 2026 facilit8 — David Howes', location:'Schweiz — DACH & International', cookiesPrivacy:'Cookies & Datenschutz', bookMeeting:'Termin buchen' , privacy:'Datenschutz', aiMomentum:'KI: MOMENTUM'},
   deBanner: { text:'Diese Seite ist auch auf Deutsch verfügbar.', switchButton:'Auf Deutsch wechseln', dismiss:'×' },
   cookieBanner: { text:'Wir verwenden Cookies, um das Meeting-Buchungstool zu betreiben und — sofern Sie zustimmen — zu verstehen, wie Besucher diese Website nutzen.', managePreferences:'Einstellungen verwalten', essentialOnly:'Nur notwendige', acceptAll:'Alle akzeptieren', ariaLabel:'Cookie-Hinweis' },
   cookies: {
