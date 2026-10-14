@@ -369,16 +369,6 @@ main { flex: 1; }
 .form-success p { margin: 0; color: var(--fg-2); }
 
 /* ============================================================
-   Contact details grid
-   ============================================================ */
-.contact-details {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px; margin-top: 16px;
-}
-.detail-label { font-size: 12px; color: var(--f8-grey); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
-.detail-value { margin-top: 6px; font-size: 16px; }
-
-/* ============================================================
    Footer
    ============================================================ */
 .footer {
@@ -2428,15 +2418,6 @@ function ContactPage({ navigate }) {
             </button>
           </div>
         )}
-      </Section>
-      <Section narrow>
-        <div className="section-eyebrow">{t('contact.details.eyebrow')}</div>
-        <div className="contact-details">
-          <div><div className="detail-label">{t('contact.details.founderLabel')}</div><div className="detail-value">{t('contact.details.founderValue')}</div></div>
-          <div><div className="detail-label">{t('contact.details.basedInLabel')}</div><div className="detail-value">{t('contact.details.basedInValue')}</div></div>
-          <div><div className="detail-label">{t('contact.details.languagesLabel')}</div><div className="detail-value">{t('contact.details.languagesValue')}</div></div>
-          <div><div className="detail-label">{t('contact.details.emailLabel')}</div><div className="detail-value"><a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a></div></div>
-        </div>
       </Section>
     </>
   );
